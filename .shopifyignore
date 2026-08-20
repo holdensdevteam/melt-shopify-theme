@@ -1,0 +1,29 @@
+# .shopifyignore — controls what Shopify CLI syncs to/from the store.
+#
+# Note: the CLI only ever uploads recognised theme directories (assets, blocks,
+# config, layout, locales, sections, snippets, templates). Repo-level files such
+# as README.md, .github/, .vscode/, .prettierrc.json and .theme-check.yml are
+# never uploaded, so they do not need listing here.
+
+# Editor and OS noise, in case any of it lands inside a theme directory.
+.DS_Store
+*.map
+
+# ---------------------------------------------------------------------------
+# config/settings_data.json — READ BEFORE UNCOMMENTING
+#
+# This file holds the *values* behind the theme settings (colour schemes,
+# typography, spacing) plus every section's content. It is edited both here and
+# by anyone using the theme editor in the Shopify admin.
+#
+# During the build, we WANT it synced: the design system work in
+# settings_schema.json is meaningless without its values, and it should be in
+# version control.
+#
+# At launch, once Melt start customising in the admin, `shopify theme push`
+# would overwrite their work. At that point, uncomment the line below so pushes
+# stop clobbering merchant edits, and pull deliberately with `shopify theme pull
+# --only config/settings_data.json` when you want their changes locally.
+#
+# config/settings_data.json
+# ---------------------------------------------------------------------------
