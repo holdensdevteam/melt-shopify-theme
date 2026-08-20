@@ -26,6 +26,8 @@ shopify theme push                                         # deploy (--unpublish
 
 Deploys are **manual CLI** during the build. The Shopify GitHub integration is deliberately not connected yet — don't suggest connecting it as a fix for something.
 
+Dev store `holdens-melt-dev.myshopify.com`. Its published theme is `Melt-theme-v1` (id `165005426913`) — our own Dawn push, not Horizon. `shopify theme push` uploads working-tree files, not commits. Prefer `--unpublished` then publish from the admin; **avoid `--live`**, which overwrites the published theme's files in place with no backup. `127.0.0.1:9292` serves local files via a temporary development theme and never touches the published one.
+
 ## Branches
 
 `main` = production/live · `develop` = integration/dev store · `feature/*` off develop.

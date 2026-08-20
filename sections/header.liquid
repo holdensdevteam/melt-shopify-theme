@@ -22,6 +22,18 @@
     margin-left: -1.2rem;
   }
 
+  .header__heading-logo-wrapper--svg {
+    width: {{ settings.logo_width }}px;
+    max-width: {{ settings.logo_width }}px;
+    /* max-width: 100%; */
+  }
+
+  .melt-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
@@ -205,7 +217,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {% render 'melt-logo' %}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -248,7 +260,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          {% render 'melt-logo' %}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

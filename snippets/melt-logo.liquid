@@ -1,0 +1,22 @@
+{% comment %}
+  Renders Melt's logo as an inline SVG.
+
+  Shopify's image_picker setting won't accept an SVG, so the mark lives in
+  assets/melt-logo.svg and is inlined here instead. Being inline means it stays
+  crisp at any size, costs no extra request, and inherits the current text
+  colour via fill="currentColor" — so it works across Dawn's colour schemes.
+
+  Width follows the "Logo width" theme setting. If a raster logo is uploaded in
+  Theme settings → Logo, the header uses that instead and this is not rendered.
+
+  Accepts:
+  - class: {String} Optional additional classes for the wrapper.
+
+  Usage:
+  {% render 'melt-logo' %}
+{% endcomment %}
+
+<span class="header__heading-logo-wrapper header__heading-logo-wrapper--svg{% if class %} {{ class }}{% endif %}">
+  {{- 'melt-logo.svg' | inline_asset_content -}}
+</span>
+<span class="visually-hidden">{{ shop.name }}</span>

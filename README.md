@@ -23,7 +23,16 @@ You also need to be a member of the Holdens Shopify Partner organisation to acce
 | Development | `holdens-melt-dev.myshopify.com` | Partner dev store. Test orders only (Bogus Gateway). Password protected. Ownership transfers to Melt at launch. |
 | Production | TBC | Not yet provisioned. |
 
-The dev store's **live** theme is Horizon, which ships by default on new dev stores. Leave it alone — don't delete it and don't publish over it. Local development renders our theme regardless of what's published.
+### Themes on the dev store
+
+| Theme | Role | ID |
+|---|---|---|
+| `Melt-theme-v1` | Published (live) | `165005426913` |
+| `Development (…)` | Temporary, created by `shopify theme dev` | varies per machine |
+
+`Melt-theme-v1` is **our theme** — Dawn pushed as an unpublished theme and then published from the admin. Newer dev stores ship with Horizon as the default live theme; this store no longer has it.
+
+Note that "live theme" and "live site" are different things. This is a development store, so nothing here is customer-facing — the published theme is just whichever theme the store URL serves.
 
 ## Getting started
 
@@ -74,6 +83,35 @@ Tag `dawn-baseline` marks unmodified Dawn 16.0.0, for diffing our changes agains
 **During the build, deploys are manual** via `shopify theme push`. The Shopify GitHub integration is deliberately not connected yet — its bidirectional sync gets messy mid-build.
 
 Closer to launch we'll connect it. When we do, `config/settings_data.json` starts flowing back from the admin whenever anyone edits in the theme editor, so read the notes in `.shopifyignore` before that switch happens.
+
+### Which URL shows what
+
+| URL | Serves |
+|---|---|
+| `http://127.0.0.1:9292` | Your **local files**, rendered by Shopify against the store's real data. Backed by a temporary development theme, visible only to you, expires after ~7 days idle. |
+| `https://holdens-melt-dev.myshopify.com` | Whichever theme is **published** — currently `Melt-theme-v1`. |
+
+`shopify theme dev` never touches the published theme, which is why local changes don't appear at the myshopify URL until you push.
+
+### Pushing to the dev store
+
+`shopify theme push` uploads **files on disk, not commits** — so commit first, or you'll lose track of what's actually deployed.
+
+Safest route, which overwrites nothing:
+
+```bash
+shopify theme push --unpublished --theme "Melt develop" --store=holdens-melt-dev.myshopify.com
+```
+
+Then preview it in Online Store → Themes and hit **Publish** when you're happy. The previously published theme drops to unpublished but stays in the library as a rollback. Preview also gives you a shareable link for client review without publishing.
+
+To update the published theme in place:
+
+```bash
+shopify theme push --theme 165005426913 --store=holdens-melt-dev.myshopify.com
+```
+
+**Careful with `--live`.** It doesn't publish a new theme — it overwrites the files inside whichever theme is currently published, with no backup. While `config/settings_data.json` is still syncing (see `.shopifyignore`), that also replaces any theme-editor settings on that theme with local defaults.
 
 ## Staying in sync with Dawn
 
