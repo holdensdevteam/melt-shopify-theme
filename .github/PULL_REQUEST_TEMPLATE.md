@@ -15,7 +15,7 @@
 ### Checklist
 
 - [ ] Theme Check passes (`shopify theme check`)
-- [ ] Previewed against the dev store (`shopify theme dev`)
+- [ ] Previewed locally against the store (`shopify theme dev`)
 - [ ] Checked on mobile and desktop widths
 - [ ] Keyboard and screen-reader behaviour unaffected
 - [ ] No hard-coded copy that should be in `locales/en.default.json`

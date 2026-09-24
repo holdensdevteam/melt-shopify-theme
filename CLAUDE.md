@@ -17,20 +17,26 @@ Standard Dawn / Online Store 2.0 layout — `layout/`, `templates/` (JSON), `sec
 ## Commands
 
 ```bash
-shopify theme dev --store=holdens-melt-dev.myshopify.com   # local dev, http://127.0.0.1:9292
-shopify theme check                                        # lint — must pass before a PR
+shopify theme dev --store=melt-co-uk-maqm6c3j.myshopify.com   # local dev, http://127.0.0.1:9292
+shopify theme check                                            # lint — must pass before a PR
 shopify theme list
-shopify theme pull                                         # pull theme-editor changes back
-shopify theme push                                         # deploy (--unpublished / --live)
+shopify theme pull --live                                      # pull theme-editor changes back (commit first)
+shopify theme push --live                                      # deploy to Holdens Dawn Theme (see below)
 ```
 
 Deploys are **manual CLI** during the build. The Shopify GitHub integration is deliberately not connected yet — don't suggest connecting it as a fix for something.
 
-Dev store `holdens-melt-dev.myshopify.com`. Its published theme is `Melt-theme-v1` (id `165005426913`) — our own Dawn push, not Horizon. `shopify theme push` uploads working-tree files, not commits. Prefer `--unpublished` then publish from the admin; **avoid `--live`**, which overwrites the published theme's files in place with no backup. `127.0.0.1:9292` serves local files via a temporary development theme and never touches the published one.
+Store `melt-co-uk-maqm6c3j.myshopify.com` — a paid **client transfer store** (replaced the earlier `holdens-melt-dev` Partner dev store, which is retired). It transfers to Melt at handover and will take the `melt.co.uk` domain once acquired. Its published theme is **`Holdens Dawn Theme`** (id `195550380358`) — our Dawn fork.
+
+**Pre-launch, "live" is still a dev site.** The customer-facing site is the WooCommerce store at `https://www.themeltco.com/` until the Shopify launch in October 2026. The Shopify store is password-protected with no SEO, so `shopify theme push --live` is acceptable while Lawrence is the sole editor. Still commit before any push or pull — both overwrite without merging and ignore Git state.
+
+**This changes once Ted (Melt) starts working in the admin, and at launch.** From then on: no `--live` pushes without Lawrence explicitly asking; use `--unpublished` and share the preview; never overwrite `templates/*.json`, `config/settings_data.json`, `sections/*-group.json` or `locales/*.json` on the live theme without confirming, since they carry merchant edits.
+
+`shopify theme push` uploads working-tree files, not commits. `127.0.0.1:9292` serves local files via a temporary development theme and never touches the published one.
 
 ## Branches
 
-`main` = production/live · `develop` = integration/dev store · `feature/*` off develop.
+`main` = production/live · `develop` = integration (currently what's on Holdens Dawn Theme) · `feature/*` off develop.
 
 Work happens on `develop` unless told otherwise. Don't commit or push unless asked.
 

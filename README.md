@@ -14,25 +14,29 @@ Forked from [Shopify Dawn](https://github.com/Shopify/dawn) at **v16.0.0** — s
 | Shopify CLI | v4.7.0+ — `npm install -g @shopify/cli@latest` |
 | Git | with SSH access to the `holdensdevteam` org |
 
-You also need to be a member of the Holdens Shopify Partner organisation to access the dev store.
+You also need staff or collaborator access to the Melt store (`melt-co-uk-maqm6c3j`).
 
 ## Stores
 
 | Environment | Store | Notes |
 |---|---|---|
-| Development | `holdens-melt-dev.myshopify.com` | Partner dev store. Test orders only (Bogus Gateway). Password protected. Ownership transfers to Melt at launch. |
-| Production | TBC | Not yet provisioned. |
+| Pre-launch / production | `melt-co-uk-maqm6c3j.myshopify.com` | Paid client transfer store. Password protected. Ownership transfers to Melt at handover. Will take the `melt.co.uk` domain once acquired. |
+| Current live site | `https://www.themeltco.com/` | WordPress/WooCommerce — stays live until the Shopify launch in October 2026. |
 
-### Themes on the dev store
+The earlier Partner dev store (`holdens-melt-dev.myshopify.com`) is retired.
+
+- Admin: `https://admin.shopify.com/store/melt-co-uk-maqm6c3j`
+
+### Themes on the store
 
 | Theme | Role | ID |
 |---|---|---|
-| `Melt-theme-v1` | Published (live) | `165005426913` |
+| `Holdens Dawn Theme` | Published (live) | `195550380358` |
 | `Development (…)` | Temporary, created by `shopify theme dev` | varies per machine |
 
-`Melt-theme-v1` is **our theme** — Dawn pushed as an unpublished theme and then published from the admin. Newer dev stores ship with Horizon as the default live theme; this store no longer has it.
+`Holdens Dawn Theme` is **our theme** — this repo's Dawn fork. Horizon (the new-store default) has been deleted.
 
-Note that "live theme" and "live site" are different things. This is a development store, so nothing here is customer-facing — the published theme is just whichever theme the store URL serves.
+Until launch, "live theme" and "live site" are different things: the store is password protected with no SEO, so the published theme is effectively a dev site. The customer-facing site is still WooCommerce.
 
 ## Getting started
 
@@ -47,13 +51,13 @@ Open in VS Code and install the recommended extensions when prompted — `.vscod
 Then start the dev server:
 
 ```bash
-shopify theme dev --store=holdens-melt-dev.myshopify.com
+shopify theme dev --store=melt-co-uk-maqm6c3j.myshopify.com
 ```
 
 First run opens a browser for Partner authentication. It uploads your local files as a **development theme** (separate from anything published) and serves a live-reloading preview.
 
 - Storefront preview: `http://127.0.0.1:9292`
-- Store admin: `https://holdens-melt-dev.myshopify.com/admin`
+- Store admin: `https://admin.shopify.com/store/melt-co-uk-maqm6c3j`
 - Theme editor for your dev theme: the URL printed in the terminal on startup
 
 ## Everyday commands
@@ -73,7 +77,7 @@ shopify theme push     # upload to a theme
 | Branch | Purpose |
 |---|---|
 | `main` | Production-ready. Matches the live store. |
-| `develop` | Integration branch. Matches the dev store. |
+| `develop` | Integration branch. Matches `Holdens Dawn Theme` pre-launch. |
 | `feature/*` | Branched off `develop`, PR'd back into it. |
 
 Tag `dawn-baseline` marks unmodified Dawn 16.0.0, for diffing our changes against upstream.
@@ -89,29 +93,28 @@ Closer to launch we'll connect it. When we do, `config/settings_data.json` start
 | URL | Serves |
 |---|---|
 | `http://127.0.0.1:9292` | Your **local files**, rendered by Shopify against the store's real data. Backed by a temporary development theme, visible only to you, expires after ~7 days idle. |
-| `https://holdens-melt-dev.myshopify.com` | Whichever theme is **published** — currently `Melt-theme-v1`. |
+| `https://melt-co-uk-maqm6c3j.myshopify.com` | Whichever theme is **published** — currently `Holdens Dawn Theme`. Password protected. |
 
 `shopify theme dev` never touches the published theme, which is why local changes don't appear at the myshopify URL until you push.
 
-### Pushing to the dev store
+### Pushing to the store
 
-`shopify theme push` uploads **files on disk, not commits** — so commit first, or you'll lose track of what's actually deployed.
+`shopify theme push` uploads **files on disk, not commits**, and `shopify theme pull` overwrites local files — neither merges or looks at Git. **Commit before every push and every pull.**
 
-Safest route, which overwrites nothing:
-
-```bash
-shopify theme push --unpublished --theme "Melt develop" --store=holdens-melt-dev.myshopify.com
-```
-
-Then preview it in Online Store → Themes and hit **Publish** when you're happy. The previously published theme drops to unpublished but stays in the library as a rollback. Preview also gives you a shareable link for client review without publishing.
-
-To update the published theme in place:
+**Pre-launch, with one editor (now):** pushing straight to the published theme is fine, because the store isn't customer-facing yet.
 
 ```bash
-shopify theme push --theme 165005426913 --store=holdens-melt-dev.myshopify.com
+shopify theme push --live --store=melt-co-uk-maqm6c3j.myshopify.com
+shopify theme pull --live --store=melt-co-uk-maqm6c3j.myshopify.com   # bring theme-editor changes back, then commit
 ```
 
-**Careful with `--live`.** It doesn't publish a new theme — it overwrites the files inside whichever theme is currently published, with no backup. While `config/settings_data.json` is still syncing (see `.shopifyignore`), that also replaces any theme-editor settings on that theme with local defaults.
+**Once Melt are editing in the admin, and after launch:** stop pushing `--live`. Push to an unpublished theme, preview it, then publish from Online Store → Themes (the old theme stays in the library as a rollback):
+
+```bash
+shopify theme push --unpublished --theme "Melt develop" --store=melt-co-uk-maqm6c3j.myshopify.com
+```
+
+`--live` doesn't publish a new theme — it overwrites the files inside whichever theme is published, with no backup. These files carry theme-editor edits and are the danger zone: `templates/*.json`, `config/settings_data.json`, `sections/*-group.json`, `locales/*.json`. Narrow the blast radius with `--only` / `--ignore` when in doubt.
 
 ## Staying in sync with Dawn
 
