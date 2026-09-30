@@ -50,37 +50,498 @@
         "show_text_below": false
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "usp_bar_fVNHrU": {
+      "type": "usp-bar",
+      "blocks": {
+        "usp_w6cQ68": {
+          "type": "usp",
+          "settings": {
+            "text": "Add a line about what makes us, us",
+            "icon": "leaf"
+          }
+        },
+        "usp_gNnfJr": {
+          "type": "usp",
+          "settings": {
+            "text": "Add a line about what makes us, us",
+            "icon": "truck"
+          }
+        },
+        "usp_C8634y": {
+          "type": "usp",
+          "settings": {
+            "text": "Add a line about what makes us, us",
+            "icon": "heart"
+          }
+        }
+      },
+      "block_order": [
+        "usp_w6cQ68",
+        "usp_gNnfJr",
+        "usp_C8634y"
+      ],
+      "name": "t:sections.usp_bar.presets.name",
       "settings": {
-        "collection": "all",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "image_with_text_WxeKV7": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_CyKp3g": {
+          "type": "heading",
+          "settings": {
+            "heading": "The season for staying in",
+            "heading_size": "h1"
+          }
+        },
+        "text_8QpfQK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Darker evenings, woodsmoke and the first proper excuse to light something. Our autumn fragrances, gathered in one place.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_jHmhC6": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop autumn",
+            "button_link": "shopify://collections/autumn",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_CyKp3g",
+        "text_8QpfQK",
+        "button_jHmhC6"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/burgundy-candles-with-autumn-leaves.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_aEkfbC": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_ryhnRJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "christmas"
+          }
+        },
+        "featured_collection_qYBEg4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "halloween"
+          }
+        },
+        "featured_collection_BxdUAK": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "new-home"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_ryhnRJ",
+        "featured_collection_qYBEg4",
+        "featured_collection_BxdUAK"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Shopping for an occasion?",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_QWnBJJ": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_MGyXJK": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fresh"
+          }
+        },
+        "featured_collection_ewNiym": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "floral"
+          }
+        },
+        "featured_collection_CVpBeb": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "spicy"
+          }
+        },
+        "featured_collection_QiVigJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "woody"
+          }
+        },
+        "featured_collection_34F8Fj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "warm"
+          }
+        },
+        "featured_collection_qN3xRz": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "soft"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_MGyXJK",
+        "featured_collection_ewNiym",
+        "featured_collection_CVpBeb",
+        "featured_collection_QiVigJ",
+        "featured_collection_34F8Fj",
+        "featured_collection_qN3xRz"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Shop by scent",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "scheme-1",
+        "show_view_all": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_d7RLwX": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "best-sellers",
         "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
+        "title": "Most loved",
+        "heading_size": "h1",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac lacinia dolor.</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "view_all_style": "outline",
+        "color_scheme": "",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
+        "swipe_on_mobile": true,
+        "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "collection_list_tYQD88": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_PmdrfR": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "scented-candles"
+          }
+        },
+        "featured_collection_a6APCt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "wax-melts"
+          }
+        },
+        "featured_collection_yDtTrF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "reed-diffusers"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_PmdrfR",
+        "featured_collection_a6APCt",
+        "featured_collection_yDtTrF"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Candles, diffusers & melts",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_YTdYtr": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_UtF4F4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_NRFkwy": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_rpj9zY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_LFUddR": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_rjbLeM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_3MGhUH": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_UtF4F4",
+        "featured_collection_NRFkwy",
+        "featured_collection_rpj9zY",
+        "featured_collection_LFUddR",
+        "featured_collection_rjbLeM",
+        "featured_collection_3MGhUH"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Shop by moment",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_8cqF6y": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_eEMhbh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "for-her"
+          }
+        },
+        "featured_collection_BLkDGL": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "for-him"
+          }
+        },
+        "featured_collection_JNF8p9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "for-mum"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_eEMhbh",
+        "featured_collection_BLkDGL",
+        "featured_collection_JNF8p9"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Find something for someone",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "page_ByMPB7": {
+      "type": "page",
+      "name": "t:sections.page.presets.name",
+      "settings": {
+        "page": "the-shop-on-the-farm",
+        "heading_size": "h1",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_XPC38z": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_Vfei9D": {
+          "type": "column",
+          "settings": {
+            "title": "\"Saddle is an old friend. Fifteen years and I have never once been tempted elsewhere.\"",
+            "text": "<p>Alison, Preston</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_pnrHJP": {
+          "type": "column",
+          "settings": {
+            "title": "\"Bought Angel as a gift and immediately had to order one for myself. That is on Melt, not me.\"",
+            "text": "<p>Rachel, Skipton</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mN4rVH": {
+          "type": "column",
+          "settings": {
+            "title": "\"The shop on the farm is worth the drive. Take an hour, not twenty minutes.\"",
+            "text": "<p>David, Manchester</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Vfei9D",
+        "column_pnrHJP",
+        "column_mN4rVH"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "In your words",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_blog_yddmtK": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "",
+        "post_limit": 3,
+        "heading": "The Melt blog",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "newsletter_pGDmrV": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_PzU8mc": {
+          "type": "heading",
+          "settings": {
+            "heading": "First to know",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_NmzzbD": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Forty-eight hours ahead of everyone else on new fragrances, and the occasional note from the farm. No discount — just a head start.</p>"
+          }
+        },
+        "email_form_nefgBc": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_PzU8mc",
+        "paragraph_NmzzbD",
+        "email_form_nefgBc"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "usp_bar_fVNHrU",
+    "image_with_text_WxeKV7",
+    "collection_list_aEkfbC",
+    "collection_list_QWnBJJ",
+    "featured_collection_d7RLwX",
+    "collection_list_tYQD88",
+    "collection_list_YTdYtr",
+    "collection_list_8cqF6y",
+    "page_ByMPB7",
+    "multicolumn_XPC38z",
+    "featured_blog_yddmtK",
+    "newsletter_pGDmrV"
   ]
 }

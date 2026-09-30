@@ -13,9 +13,60 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "brand_information_A3NRwq": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "link_list_7eDpbf": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "footer"
+          }
+        },
+        "link_list_RmfKBE": {
+          "type": "link_list",
+          "settings": {
+            "heading": "About us",
+            "menu": "footer-menu-about-us"
+          }
+        },
+        "link_list_WpqwfW": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Trade",
+            "menu": "footer-menu-trade"
+          }
+        },
+        "link_list_GmfqVR": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer-menu-help"
+          }
+        },
+        "link_list_YXYdji": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Account",
+            "menu": "footer-menu-account"
+          }
+        }
+      },
+      "block_order": [
+        "brand_information_A3NRwq",
+        "link_list_7eDpbf",
+        "link_list_RmfKBE",
+        "link_list_WpqwfW",
+        "link_list_GmfqVR",
+        "link_list_YXYdji"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": true,
         "show_social": true,
