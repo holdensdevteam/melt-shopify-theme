@@ -375,6 +375,31 @@
     }
   },
   "sections": {
+    "usp_bar": {
+      "name": "USP bar",
+      "blocks": {
+        "usp": {
+          "name": "USP",
+          "settings": {
+            "text": {
+              "label": "Text",
+              "info": "Keep it short — one line on desktop. Leave blank to hide this USP.",
+              "default": "Add a line about what makes us, us"
+            },
+            "icon": {
+              "label": "Icon"
+            },
+            "image": {
+              "label": "Custom icon",
+              "info": "Replaces the icon above. Square SVG or PNG works best."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "USP bar"
+      }
+    },
     "all": {
       "animation": {
         "content": "Animations",
