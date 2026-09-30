@@ -11,9 +11,48 @@
     "name": "t:settings_schema.logo.name",
     "settings": [
       {
+        "type": "select",
+        "id": "logo_type",
+        "label": "t:settings_schema.logo.settings.logo_type.label",
+        "options": [
+          {
+            "value": "svg",
+            "label": "t:settings_schema.logo.settings.logo_type.options__svg.label"
+          },
+          {
+            "value": "image",
+            "label": "t:settings_schema.logo.settings.logo_type.options__image.label"
+          }
+        ],
+        "default": "svg"
+      },
+      {
+        "type": "select",
+        "id": "logo_svg_color",
+        "label": "t:settings_schema.logo.settings.logo_svg_color.label",
+        "options": [
+          {
+            "value": "auto",
+            "label": "t:settings_schema.logo.settings.logo_svg_color.options__auto.label"
+          },
+          {
+            "value": "dark",
+            "label": "t:settings_schema.logo.settings.logo_svg_color.options__dark.label"
+          },
+          {
+            "value": "light",
+            "label": "t:settings_schema.logo.settings.logo_svg_color.options__light.label"
+          }
+        ],
+        "default": "auto",
+        "info": "t:settings_schema.logo.settings.logo_svg_color.info",
+        "visible_if": "{{ settings.logo_type == 'svg' }}"
+      },
+      {
         "type": "image_picker",
         "id": "logo",
-        "label": "t:settings_schema.logo.settings.logo_image.label"
+        "label": "t:settings_schema.logo.settings.logo_image.label",
+        "visible_if": "{{ settings.logo_type == 'image' }}"
       },
       {
         "type": "range",
@@ -1274,19 +1313,52 @@
         "content": "t:settings_schema.brand_information.settings.paragraph.content"
       },
       {
-        "type": "inline_richtext",
-        "id": "brand_headline",
-        "label": "t:settings_schema.brand_information.settings.brand_headline.label"
+        "type": "select",
+        "id": "brand_logo_type",
+        "label": "t:settings_schema.brand_information.settings.brand_logo_type.label",
+        "options": [
+          {
+            "value": "svg",
+            "label": "t:settings_schema.brand_information.settings.brand_logo_type.options__svg.label"
+          },
+          {
+            "value": "image",
+            "label": "t:settings_schema.brand_information.settings.brand_logo_type.options__image.label"
+          },
+          {
+            "value": "none",
+            "label": "t:settings_schema.brand_information.settings.brand_logo_type.options__none.label"
+          }
+        ],
+        "default": "svg"
       },
       {
-        "type": "richtext",
-        "id": "brand_description",
-        "label": "t:settings_schema.brand_information.settings.brand_description.label"
+        "type": "select",
+        "id": "brand_logo_svg_color",
+        "label": "t:settings_schema.logo.settings.logo_svg_color.label",
+        "options": [
+          {
+            "value": "auto",
+            "label": "t:settings_schema.logo.settings.logo_svg_color.options__auto.label"
+          },
+          {
+            "value": "dark",
+            "label": "t:settings_schema.logo.settings.logo_svg_color.options__dark.label"
+          },
+          {
+            "value": "light",
+            "label": "t:settings_schema.logo.settings.logo_svg_color.options__light.label"
+          }
+        ],
+        "default": "auto",
+        "info": "t:settings_schema.logo.settings.logo_svg_color.info",
+        "visible_if": "{{ settings.brand_logo_type == 'svg' }}"
       },
       {
         "type": "image_picker",
         "id": "brand_image",
-        "label": "t:settings_schema.brand_information.settings.brand_image.label"
+        "label": "t:settings_schema.brand_information.settings.brand_image.label",
+        "visible_if": "{{ settings.brand_logo_type == 'image' }}"
       },
       {
         "type": "range",
@@ -1296,7 +1368,18 @@
         "step": 5,
         "default": 100,
         "unit": "px",
-        "label": "t:settings_schema.brand_information.settings.brand_image_width.label"
+        "label": "t:settings_schema.brand_information.settings.brand_image_width.label",
+        "visible_if": "{{ settings.brand_logo_type != 'none' }}"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "brand_headline",
+        "label": "t:settings_schema.brand_information.settings.brand_headline.label"
+      },
+      {
+        "type": "richtext",
+        "id": "brand_description",
+        "label": "t:settings_schema.brand_information.settings.brand_description.label"
       }
     ]
   },

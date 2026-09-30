@@ -318,7 +318,9 @@
       }
     },
     "footer": {
-      "payment": "Payment methods"
+      "payment": "Payment methods",
+      "copyright_html": "&copy; {{ shop_name }} {{ year }}. All rights reserved.",
+      "legal": "Legal"
     },
     "featured_blog": {
       "view_all": "View all",

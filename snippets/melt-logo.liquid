@@ -3,20 +3,28 @@
 
   Shopify's image_picker setting won't accept an SVG, so the mark lives in
   assets/melt-logo.svg and is inlined here instead. Being inline means it stays
-  crisp at any size, costs no extra request, and inherits the current text
-  colour via fill="currentColor" — so it works across Dawn's colour schemes.
+  crisp at any size, costs no extra request, and fills with currentColor — so
+  by default it follows the colour scheme it sits in.
 
-  Width follows the "Logo width" theme setting. If a raster logo is uploaded in
-  Theme settings → Logo, the header uses that instead and this is not rendered.
+  Wherever a logo can be set (Theme settings → Logo, Theme settings → Brand
+  information), a "Logo type" setting picks between this SVG and an uploaded
+  image. If "Image" is chosen but nothing is uploaded, callers fall back to this.
 
   Accepts:
   - class: {String} Optional additional classes for the wrapper.
+  - color: {String} 'auto' (follow colour scheme), 'dark' or 'light'. Defaults to 'auto'.
+  - width: {Number} Optional width in px. Omit when the caller sizes the wrapper in CSS.
 
   Usage:
-  {% render 'melt-logo' %}
+  {% render 'melt-logo', color: settings.logo_svg_color, class: 'header__heading-logo-wrapper' %}
 {% endcomment %}
 
-<span class="header__heading-logo-wrapper header__heading-logo-wrapper--svg{% if class %} {{ class }}{% endif %}">
+<span
+  class="melt-logo-wrapper melt-logo-wrapper--{{ color | default: 'auto' }}{% if class %} {{ class }}{% endif %}"
+  {% if width %}
+    style="width: {{ width }}px; max-width: 100%;"
+  {% endif %}
+>
   {{- 'melt-logo.svg' | inline_asset_content -}}
 </span>
 <span class="visually-hidden">{{ shop.name }}</span>

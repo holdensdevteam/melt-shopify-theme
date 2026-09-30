@@ -3635,3 +3635,22 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Melt logo (snippets/melt-logo.liquid) */
+.melt-logo-wrapper {
+  display: block;
+}
+
+.melt-logo-wrapper--dark {
+  color: #000;
+}
+
+.melt-logo-wrapper--light {
+  color: #fff;
+}
+
+.melt-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}

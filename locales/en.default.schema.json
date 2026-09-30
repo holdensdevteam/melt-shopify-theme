@@ -141,6 +141,28 @@
     "logo": {
       "name": "Logo",
       "settings": {
+        "logo_type": {
+          "label": "Logo type",
+          "options__svg": {
+            "label": "Melt logo (SVG)"
+          },
+          "options__image": {
+            "label": "Image"
+          }
+        },
+        "logo_svg_color": {
+          "label": "Logo colour",
+          "info": "Match colour scheme uses the text colour of the section the logo sits in.",
+          "options__auto": {
+            "label": "Match colour scheme"
+          },
+          "options__dark": {
+            "label": "Dark"
+          },
+          "options__light": {
+            "label": "Light"
+          }
+        },
         "logo_image": {
           "label": "Logo"
         },
@@ -176,11 +198,23 @@
         "brand_description": {
           "label": "Description"
         },
+        "brand_logo_type": {
+          "label": "Logo type",
+          "options__svg": {
+            "label": "Melt logo (SVG)"
+          },
+          "options__image": {
+            "label": "Image"
+          },
+          "options__none": {
+            "label": "None"
+          }
+        },
         "brand_image": {
           "label": "Image"
         },
         "brand_image_width": {
-          "label": "Image width"
+          "label": "Logo width"
         }
       }
     },
@@ -1085,6 +1119,13 @@
         "show_policy": {
           "label": "Policy links",
           "info": "[Manage policies](/admin/settings/legal)"
+        },
+        "legal_menu": {
+          "label": "Legal links menu",
+          "info": "Shown beside the copyright line, e.g. Privacy · Cookies · Terms · Accessibility. Replaces the automatic policy links when set."
+        },
+        "show_powered_by": {
+          "label": "Show “Powered by Shopify”"
         },
         "margin_top": {
           "label": "Top margin"

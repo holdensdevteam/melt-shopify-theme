@@ -506,3 +506,228 @@
     }
   }
 }
+
+/*
+ * ------------------------------------------------------------
+ * Melt footer
+ * Brand + up to 5 menus: one row of equal columns on desktop,
+ * stacked with accordion menus on mobile and tablet. Legal strip below.
+ * ------------------------------------------------------------
+ */
+.footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media screen and (min-width: 990px) {
+  .footer__grid {
+    grid-template-columns: repeat(var(--footer-columns-desktop), minmax(0, 1fr));
+    column-gap: var(--grid-desktop-horizontal-spacing);
+    row-gap: 5rem;
+  }
+}
+
+footer-accordion {
+  display: block;
+}
+
+.footer .footer-block__heading {
+  margin: 0 0 2.4rem;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight-bold);
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.footer-block--menu .list-menu__item--link {
+  font-size: 1.5rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+/* Brand column: logo on top, social icons pinned to the bottom of the row */
+.footer-block--brand-information .footer-block__brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3rem;
+  height: 100%;
+}
+
+.footer-block__logo {
+  color: rgb(var(--color-foreground));
+}
+
+.footer-block--brand-information .footer__list-social.list-social {
+  justify-content: flex-start;
+  margin-left: -1.1rem;
+}
+
+.footer-block--brand-information .list-social__link {
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.footer-block--brand-information .list-social__item .icon {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+@media screen and (min-width: 990px) {
+  .footer-block--brand-information .footer__list-social {
+    margin-top: auto;
+  }
+}
+
+/* Accordion toggle shows below 990px; the static heading shows on desktop */
+.footer-accordion__heading {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__content-top.page-width {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .footer-block {
+    margin: 0;
+  }
+
+  .footer-block--brand-information {
+    margin-bottom: 3rem;
+  }
+
+  .footer .footer-block__heading--static {
+    display: none;
+  }
+
+  .footer .footer-accordion__heading {
+    display: block;
+    margin: 0;
+  }
+
+  footer-accordion {
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.15);
+  }
+
+  .footer-accordion__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2.2rem 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .footer-accordion__icon .svg-wrapper {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .footer-accordion__toggle[aria-expanded='true'] .footer-accordion__icon--plus,
+  .footer-accordion__toggle[aria-expanded='false'] .footer-accordion__icon--minus {
+    display: none;
+  }
+
+  footer-accordion .footer-block__details-content {
+    margin: -1rem 0 0;
+    padding-bottom: 2rem;
+  }
+
+  /* Only collapse once the component has loaded, so links are never unreachable */
+  footer-accordion:defined:not(.is-open) .footer-block__details-content {
+    display: none;
+  }
+}
+
+/* Legal strip: copyright left, legal links right (stacked on mobile) */
+.footer__content-bottom {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.footer__legal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  width: 100%;
+  padding-top: 2.4rem;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.footer__legal small {
+  font-size: inherit;
+}
+
+.footer__legal a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer__legal a:hover {
+  color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.footer__legal-links.policies {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.footer__legal-links.policies li::before {
+  padding: 0 0.5rem;
+}
+
+.footer__legal-links.policies li:first-child::before {
+  content: none;
+}
+
+.footer__legal-links.policies li a {
+  padding: 0.4rem 0;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__content-bottom-wrapper:has(.footer__legal) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .footer__legal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 3rem;
+  }
+
+  .footer__legal-links.policies li a {
+    padding: 0;
+  }
+}
+
+/* Divider only on desktop — below 990px the last accordion's border does the job */
+@media screen and (min-width: 990px) {
+  .footer__legal {
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  }
+}

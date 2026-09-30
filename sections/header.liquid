@@ -28,12 +28,6 @@
     /* max-width: 100%; */
   }
 
-  .melt-logo {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
@@ -197,7 +191,7 @@
         <h1 class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        {%- if settings.logo != blank -%}
+        {%- if settings.logo_type == 'image' and settings.logo != blank -%}
           <div class="header__heading-logo-wrapper">
             {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
             {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
@@ -217,7 +211,10 @@
             }}
           </div>
         {%- else -%}
-          {% render 'melt-logo' %}
+          {% render 'melt-logo',
+            class: 'header__heading-logo-wrapper header__heading-logo-wrapper--svg',
+            color: settings.logo_svg_color
+          %}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -240,7 +237,7 @@
         <h1 class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        {%- if settings.logo != blank -%}
+        {%- if settings.logo_type == 'image' and settings.logo != blank -%}
           <div class="header__heading-logo-wrapper">
             {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
             {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
@@ -260,7 +257,10 @@
             }}
           </div>
         {%- else -%}
-          {% render 'melt-logo' %}
+          {% render 'melt-logo',
+            class: 'header__heading-logo-wrapper header__heading-logo-wrapper--svg',
+            color: settings.logo_svg_color
+          %}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

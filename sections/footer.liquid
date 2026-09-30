@@ -4,6 +4,7 @@
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'footer-accordion.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
   .footer {
@@ -34,7 +35,7 @@
       assign has_social_icons = false
     endif
 
-    if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
+    if settings.brand_logo_type == 'none' and settings.brand_headline == blank and settings.brand_description == blank
       assign brand_empty = true
     endif
 
@@ -52,23 +53,31 @@
       <div class="footer__content-top page-width">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
-            if section.blocks.size == 9
-              assign footer_grid_class = 'grid--3-col-tablet'
-            elsif section.blocks.size > 6
-              assign footer_grid_class = 'grid--4-col-desktop'
-            elsif section.blocks.size > 4
-              assign footer_grid_class = 'grid--3-col-tablet'
-            endif
+            # One equal column per block on desktop, up to 6 (brand + 5 menus). Stacked below 990px.
+            assign footer_columns_desktop = section.blocks.size | at_most: 6
           -%}
           <div
-            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="footer__blocks-wrapper footer__grid{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            style="--footer-columns-desktop: {{ footer_columns_desktop }};"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
             {% endif %}
           >
             {%- for block in section.blocks -%}
-              <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {%- liquid
+                # Menus with a heading collapse into accordions on mobile.
+                assign is_accordion = false
+                if block.type == 'link_list' and block.settings.heading != blank and block.settings.menu != blank
+                  assign is_accordion = true
+                endif
+                if is_accordion
+                  assign block_tag = 'footer-accordion'
+                else
+                  assign block_tag = 'div'
+                endif
+              -%}
+              <{{ block_tag }}
+                class="footer-block footer-block--{{ block.type | replace: '_', '-' }}{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -76,7 +85,27 @@
                 {% endif %}
               >
                 {%- if block.settings.heading != blank -%}
-                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                  <h2 class="footer-block__heading inline-richtext{% if is_accordion %} footer-block__heading--static{% endif %}">
+                    {{- block.settings.heading -}}
+                  </h2>
+                  {%- if is_accordion -%}
+                    <h2 class="footer-block__heading footer-accordion__heading">
+                      <button
+                        type="button"
+                        class="footer-accordion__toggle"
+                        aria-expanded="false"
+                        aria-controls="FooterMenu-{{ block.id }}"
+                      >
+                        <span>{{ block.settings.heading | strip_html }}</span>
+                        <span class="footer-accordion__icon footer-accordion__icon--plus" aria-hidden="true">
+                          <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+                        </span>
+                        <span class="footer-accordion__icon footer-accordion__icon--minus" aria-hidden="true">
+                          <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+                        </span>
+                      </button>
+                    </h2>
+                  {%- endif -%}
                 {%- endif -%}
 
                 {%- case block.type -%}
@@ -88,7 +117,7 @@
                     </div>
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
-                      <ul class="footer-block__details-content list-unstyled">
+                      <ul id="FooterMenu-{{ block.id }}" class="footer-block__details-content list-unstyled">
                         {%- for link in block.settings.menu.links -%}
                           <li>
                             <a
@@ -103,7 +132,17 @@
                     {%- endif -%}
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
-                      {%- if settings.brand_image != blank -%}
+                      {%- if settings.brand_logo_type == 'svg'
+                        or settings.brand_logo_type == 'image'
+                        and settings.brand_image == blank
+                      -%}
+                        <div class="footer-block__logo">
+                          {%- render 'melt-logo',
+                            color: settings.brand_logo_svg_color,
+                            width: settings.brand_image_width
+                          -%}
+                        </div>
+                      {%- elsif settings.brand_logo_type == 'image' -%}
                         {%- assign brand_image_height = settings.brand_image_width
                           | divided_by: settings.brand_image.aspect_ratio
                         -%}
@@ -154,7 +193,7 @@
                       {%- endif -%}
                     </div>
                 {%- endcase -%}
-              </div>
+              </{{ block_tag }}>
             {%- endfor -%}
           </div>
         {%- endif -%}
@@ -297,24 +336,38 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
-      <div class="footer__copyright caption">
-        <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__legal">
+        {%- liquid
+          assign copyright_year = 'now' | date: '%Y'
+          assign copyright_name = shop.name | escape
+        -%}
+        <small class="footer__copyright-text">
+          {{- 'sections.footer.copyright_html' | t: shop_name: copyright_name, year: copyright_year -}}
+          {%- if section.settings.show_powered_by %} {{ powered_by_link }}{% endif -%}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
-          <ul class="policies list-unstyled">
-            {%- for policy in shop.policies -%}
-              {%- if policy != blank -%}
+        {%- if section.settings.legal_menu != blank and section.settings.legal_menu.links.size > 0 -%}
+          <nav aria-label="{{ 'sections.footer.legal' | t }}">
+            <ul class="footer__legal-links policies list-unstyled">
+              {%- for link in section.settings.legal_menu.links -%}
                 <li>
-                  <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
-                  >
+                  <small><a href="{{ link.url }}">{{ link.title | escape }}</a></small>
                 </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- elsif section.settings.show_policy -%}
+          <nav aria-label="{{ 'sections.footer.legal' | t }}">
+            <ul class="footer__legal-links policies list-unstyled">
+              {%- for policy in shop.policies -%}
+                {%- if policy != blank -%}
+                  <li>
+                    <small><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </nav>
         {%- endif -%}
       </div>
     </div>
@@ -491,6 +544,18 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "t:sections.footer.settings.legal_menu.label",
+      "info": "t:sections.footer.settings.legal_menu.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_powered_by",
+      "default": false,
+      "label": "t:sections.footer.settings.show_powered_by.label"
     },
     {
       "type": "header",
