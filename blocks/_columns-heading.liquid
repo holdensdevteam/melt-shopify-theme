@@ -1,0 +1,44 @@
+{%- if block.settings.text != blank -%}
+  <h3 class="melt-columns__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+    {{- block.settings.text -}}
+  </h3>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.columns_heading.name",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "t:blocks.columns_heading.settings.text.label",
+      "default": "t:blocks.columns_heading.settings.text.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:sections.all.heading_size.label",
+      "options": [
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.columns_heading.name"
+    }
+  ]
+}
+{% endschema %}

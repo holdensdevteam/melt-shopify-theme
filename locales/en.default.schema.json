@@ -409,6 +409,72 @@
     }
   },
   "sections": {
+    "melt_columns": {
+      "name": "Columns",
+      "settings": {
+        "header_heading": {
+          "content": "Heading"
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "title": {
+          "label": "Heading"
+        },
+        "intro": {
+          "label": "Intro",
+          "info": "Shows under the heading — e.g. a star rating summary."
+        },
+        "custom_code": {
+          "label": "Custom HTML",
+          "info": "For star ratings or review widgets. Shows under the intro."
+        },
+        "link_label": {
+          "label": "Link label",
+          "info": "Shows top right on desktop, e.g. Read all reviews. Leave blank to hide."
+        },
+        "link_url": {
+          "label": "Link"
+        },
+        "header_columns": {
+          "content": "Columns"
+        },
+        "column_style": {
+          "label": "Column style",
+          "options__plain": {
+            "label": "Plain"
+          },
+          "options__card": {
+            "label": "Card"
+          }
+        },
+        "card_color_scheme": {
+          "label": "Card colour scheme"
+        },
+        "header_carousel": {
+          "content": "Carousel"
+        },
+        "enable_desktop_slider": {
+          "label": "Carousel on desktop",
+          "info": "Only kicks in when there are more columns than fit in one row."
+        }
+      },
+      "presets": {
+        "columns": {
+          "name": "Columns",
+          "title": "From the farm"
+        },
+        "testimonials": {
+          "name": "Testimonials",
+          "eyebrow": "Reviews",
+          "title": "In your words",
+          "link_label": "Read all reviews",
+          "stars": "<p>★★★★★</p>",
+          "quote": "<p>Add a real customer review here — their words, not ours.</p>",
+          "reviewer": "Name, town"
+        }
+      }
+    },
     "usp_bar": {
       "name": "USP bar",
       "blocks": {
@@ -3460,6 +3526,85 @@
         },
         "open_by_default": {
           "label": "Open by default"
+        }
+      }
+    }
+  },
+  "blocks": {
+    "columns_column": {
+      "name": "Column"
+    },
+    "columns_eyebrow": {
+      "name": "Eyebrow",
+      "settings": {
+        "text": {
+          "label": "Text",
+          "default": "A small heading"
+        }
+      }
+    },
+    "columns_heading": {
+      "name": "Heading",
+      "settings": {
+        "text": {
+          "label": "Heading",
+          "default": "Column heading"
+        }
+      }
+    },
+    "columns_image": {
+      "name": "Image",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "ratio": {
+          "label": "Image ratio",
+          "options__adapt": {
+            "label": "Adapt to image"
+          },
+          "options__landscape": {
+            "label": "Landscape"
+          },
+          "options__square": {
+            "label": "Square"
+          },
+          "options__portrait": {
+            "label": "Portrait"
+          }
+        }
+      }
+    },
+    "columns_text": {
+      "name": "Summary",
+      "settings": {
+        "text": {
+          "label": "Text",
+          "default": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
+        }
+      }
+    },
+    "columns_content": {
+      "name": "Custom content",
+      "settings": {
+        "text": {
+          "label": "Text"
+        },
+        "html": {
+          "label": "Custom HTML",
+          "info": "For star ratings, embeds or anything the text editor can't do."
+        }
+      }
+    },
+    "columns_link": {
+      "name": "Link",
+      "settings": {
+        "label": {
+          "label": "Label",
+          "default": "Find out more"
+        },
+        "url": {
+          "label": "Link"
         }
       }
     }

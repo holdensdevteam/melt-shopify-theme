@@ -1,0 +1,24 @@
+{%- if block.settings.text != blank -%}
+  <div class="melt-columns__text rte" {{ block.shopify_attributes }}>
+    {{- block.settings.text -}}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.columns_text.name",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:blocks.columns_text.settings.text.label",
+      "default": "t:blocks.columns_text.settings.text.default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.columns_text.name"
+    }
+  ]
+}
+{% endschema %}

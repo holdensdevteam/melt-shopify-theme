@@ -1,0 +1,70 @@
+{%- liquid
+  # Approximate rendered width for srcset. Columns are equal width within the page.
+  assign columns_desktop = section.settings.columns_desktop
+  assign columns_mobile = section.settings.columns_mobile | plus: 0
+  capture sizes
+    echo '(min-width: ' | append: settings.page_width | append: 'px) calc(' | append: settings.page_width | append: 'px / ' | append: columns_desktop | append: ' - 5rem), '
+    echo '(min-width: 990px) calc(100vw / ' | append: columns_desktop | append: ' - 5rem), '
+    echo '(min-width: 750px) calc(100vw / ' | append: columns_mobile | append: ' - 5rem), '
+    echo 'calc(100vw / ' | append: columns_mobile | append: ' - 3rem)'
+  endcapture
+-%}
+{%- if block.settings.image != blank or request.design_mode -%}
+  <div class="melt-columns__media melt-columns__media--{{ block.settings.ratio }}" {{ block.shopify_attributes }}>
+    {%- if block.settings.image != blank -%}
+      {{
+        block.settings.image
+        | image_url: width: 2000
+        | image_tag:
+          widths: '300, 450, 600, 750, 900, 1100, 1400, 1700, 2000',
+          sizes: sizes,
+          loading: 'lazy',
+          class: 'melt-columns__image'
+      }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'melt-columns__image placeholder-svg' }}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.columns_image.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:blocks.columns_image.settings.image.label"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "t:blocks.columns_image.settings.ratio.label",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:blocks.columns_image.settings.ratio.options__adapt.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:blocks.columns_image.settings.ratio.options__landscape.label"
+        },
+        {
+          "value": "square",
+          "label": "t:blocks.columns_image.settings.ratio.options__square.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:blocks.columns_image.settings.ratio.options__portrait.label"
+        }
+      ],
+      "default": "landscape"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.columns_image.name"
+    }
+  ]
+}
+{% endschema %}

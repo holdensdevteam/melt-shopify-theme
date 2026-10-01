@@ -1,0 +1,24 @@
+{%- if block.settings.text != blank -%}
+  <p class="melt-columns__eyebrow caption-with-letter-spacing" {{ block.shopify_attributes }}>
+    {{- block.settings.text | escape -}}
+  </p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.columns_eyebrow.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:blocks.columns_eyebrow.settings.text.label",
+      "default": "t:blocks.columns_eyebrow.settings.text.default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.columns_eyebrow.name"
+    }
+  ]
+}
+{% endschema %}

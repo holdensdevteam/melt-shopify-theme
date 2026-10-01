@@ -1,0 +1,25 @@
+{% comment %}
+  Renders a text link with Dawn's animated arrow ("Read all reviews →").
+
+  Accepts:
+  - label: {String} Link text.
+  - url: {String} Link destination. If blank, renders a disabled link (matches Dawn's multicolumn).
+  - class: {String} Optional additional classes.
+
+  Usage:
+  {% render 'melt-arrow-link', label: section.settings.link_label, url: section.settings.link_url %}
+{% endcomment %}
+
+<a
+  class="melt-arrow-link link animate-arrow{% if class %} {{ class }}{% endif %}"
+  {% if url == blank %}
+    role="link" aria-disabled="true"
+  {% else %}
+    href="{{ url }}"
+  {% endif %}
+>
+  {{- label | escape -}}
+  <span class="svg-wrapper"
+    ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
+  >
+</a>

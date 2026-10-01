@@ -1,0 +1,29 @@
+{%- if block.settings.label != blank -%}
+  <div class="melt-columns__link" {{ block.shopify_attributes }}>
+    {%- render 'melt-arrow-link', label: block.settings.label, url: block.settings.url -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.columns_link.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:blocks.columns_link.settings.label.label",
+      "default": "t:blocks.columns_link.settings.label.default"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "t:blocks.columns_link.settings.url.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.columns_link.name"
+    }
+  ]
+}
+{% endschema %}
