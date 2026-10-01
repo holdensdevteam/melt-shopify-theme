@@ -1,0 +1,17 @@
+{
+  "name": "melt-shopify-theme",
+  "private": true,
+  "description": "Shopify theme for The Melt Co. — SCSS tooling only. The theme itself has no build step beyond compiling src/scss to assets/.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:css": "sass --no-source-map --style=expanded --load-path=src/scss src/scss:assets",
+    "watch:css": "sass --watch --no-source-map --style=expanded --load-path=src/scss src/scss:assets",
+    "dev": "concurrently --kill-others --names css,theme --prefix-colors magenta,cyan \"npm:watch:css\" \"shopify theme dev --store=melt-co-uk-maqm6c3j.myshopify.com\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "sass": "^1.105.1"
+  }
+}

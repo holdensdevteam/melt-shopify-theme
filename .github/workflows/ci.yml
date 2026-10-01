@@ -16,3 +16,21 @@ jobs:
         uses: shopify/theme-check-action@v2
         with:
           token: ${{ github.token }}
+
+  scss:
+    name: SCSS compiled
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build:css
+      - name: Compiled CSS matches src/scss
+        run: |
+          if ! git diff --exit-code -- assets; then
+            echo "::error::assets/*.css is out of date with src/scss. Run 'npm run build:css' and commit the result — and edit the .scss source, not the compiled .css."
+            exit 1
+          fi

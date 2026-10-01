@@ -72,6 +72,31 @@ shopify theme push     # upload to a theme
 
 `shopify theme push` targets a theme you pick interactively. Add `--unpublished` to create a new one, or `--live` to overwrite the published theme — be deliberate with `--live`.
 
+## Styles (SCSS)
+
+Shopify doesn't compile SCSS (the old `.scss.liquid` support is deprecated), so we compile locally with [Dart Sass](https://sass-lang.com/dart-sass/) and commit the CSS it produces.
+
+```bash
+nvm use            # Node version from .nvmrc
+npm install        # first time only
+npm run dev        # sass --watch and shopify theme dev in one terminal
+npm run build:css  # one-off compile — run before committing
+```
+
+`npm run dev` sometimes struggles with `shopify theme dev`'s interactive prompts (first login, store password). If it does, run `npm run watch:css` and `shopify theme dev` in two terminals instead.
+
+**How it works**
+
+- Every non-partial file in `src/scss/` compiles to `assets/` under the same name: `src/scss/section-usp-bar.scss` → `assets/section-usp-bar.css`. Liquid keeps referencing the `.css` as usual.
+- Files starting with `_` (e.g. `_breakpoints.scss`) are partials — pulled in with `@use`, never output on their own.
+- `src/scss/_breakpoints.scss` has Dawn's breakpoints as mixins: `@include bp.from(bp.$medium)` (≥ 750px) and `@include bp.below(bp.$large)` (≤ 989px).
+
+**Rules**
+
+- **If a file has a `.scss` source, edit that — never the compiled `.css`.** Compiled files start with a `/*! Compiled from … */` banner. CI rebuilds everything and fails the PR if `assets/` doesn't match `src/scss/`.
+- **Dawn files are converted when we need to work on them, not all at once.** Copy `assets/foo.css` to `src/scss/foo.scss` (plain CSS is valid SCSS), add the banner comment, run `npm run build:css`. The output is equivalent to the original — Sass only normalises quotes and line wrapping. The trade-off: Dawn fixes cherry-picked from upstream into a converted file have to be ported into the `.scss` by hand.
+- **No Liquid in SCSS.** Theme settings reach stylesheets through Dawn's CSS custom properties (`--color-foreground`, `--font-body-scale`…) or a section's `{% style %}` block.
+
 ## Branches
 
 | Branch | Purpose |
@@ -129,7 +154,7 @@ We **cherry-pick** fixes we want rather than merging Dawn releases wholesale —
 
 ## Conventions
 
-- **No build step.** Dawn is build-step-free and we're keeping it that way. Don't add SCSS or a bundler without a real reason.
+- **The only build step is SCSS → CSS** (see [Styles](#styles-scss)). JS stays vanilla — no bundler.
 - **Design system before markup.** Colour schemes, typography, spacing and button/card styles get settled in `config/settings_schema.json` before section markup is edited.
 - **All user-facing copy goes through `locales/en.default.json`.** No hard-coded strings in Liquid.
 - **Theme Check must pass** before a PR is opened. Config lives in `.theme-check.yml`.

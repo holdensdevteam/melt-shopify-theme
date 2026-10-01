@@ -12,11 +12,19 @@ Melt are a British artisan maker of luxury handmade scented candles, reed diffus
 
 Standard Dawn / Online Store 2.0 layout — `layout/`, `templates/` (JSON), `sections/`, `snippets/`, `assets/`, `config/`, `locales/`.
 
-**There is no build step.** Dawn ships build-step-free and we're keeping it that way. CSS is plain CSS, JS is vanilla with Web Components. Don't introduce SCSS, a bundler, or a `package.json` without asking first.
+**The only build step is SCSS → CSS.** Added at Lawrence's request (Oct 2026). Sources live in `src/scss/` and Dart Sass compiles each non-partial file to `assets/<same name>.css`; the compiled CSS is committed, because `shopify theme push` uploads the working tree. Shopify itself doesn't compile SCSS (`.scss.liquid` is deprecated — don't use it).
+
+- If a stylesheet has a source in `src/scss/`, **edit the `.scss`, never the compiled `.css`** — it gets overwritten on the next build, and CI fails if the two drift. Compiled files start with a `/*! Compiled from … */` banner.
+- Dawn's other CSS files stay plain CSS until someone needs to work on one. To convert: copy `assets/foo.css` to `src/scss/foo.scss` (plain CSS is valid SCSS), add the banner, build. Converting a Dawn file means upstream cherry-picks to it have to be ported into the `.scss` by hand.
+- No Liquid in SCSS — theme settings reach CSS through Dawn's CSS custom properties, or a section's `{% style %}` block.
+- Use the breakpoint mixins in `src/scss/_breakpoints.scss` (750 / 990px, matching Dawn).
+- JS stays vanilla Web Components with no bundler. Don't add further tooling (bundlers, PostCSS, etc.) without asking first.
 
 ## Commands
 
 ```bash
+npm run dev                                                    # sass --watch + shopify theme dev, together
+npm run build:css                                              # compile src/scss → assets/ once (run before committing)
 shopify theme dev --store=melt-co-uk-maqm6c3j.myshopify.com   # local dev, http://127.0.0.1:9292
 shopify theme check                                            # lint — must pass before a PR
 shopify theme list
