@@ -50,15 +50,19 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width">
+      {%- liquid
+        # One equal column per block on desktop, up to 6 (brand + 5 menus). Stacked below 990px.
+        # The column count is set here rather than on .footer__grid because Dawn's animations.js
+        # overwrites the style attribute of any [data-cascade] element when it reveals on scroll.
+        assign footer_columns_desktop = section.blocks.size | at_most: 6
+      -%}
+      <div
+        class="footer__content-top page-width"
+        style="--footer-columns-desktop: {{ footer_columns_desktop }};"
+      >
         {%- if section.blocks.size > 0 -%}
-          {%- liquid
-            # One equal column per block on desktop, up to 6 (brand + 5 menus). Stacked below 990px.
-            assign footer_columns_desktop = section.blocks.size | at_most: 6
-          -%}
           <div
             class="footer__blocks-wrapper footer__grid{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            style="--footer-columns-desktop: {{ footer_columns_desktop }};"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
             {% endif %}

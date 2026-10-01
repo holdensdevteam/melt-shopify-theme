@@ -521,7 +521,7 @@
 
 @media screen and (min-width: 990px) {
   .footer__grid {
-    grid-template-columns: repeat(var(--footer-columns-desktop), minmax(0, 1fr));
+    grid-template-columns: repeat(var(--footer-columns-desktop, 6), minmax(0, 1fr));
     column-gap: var(--grid-desktop-horizontal-spacing);
     row-gap: 5rem;
   }
