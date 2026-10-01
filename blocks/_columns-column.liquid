@@ -2,16 +2,18 @@
   One column in the Columns section (sections/melt-columns.liquid).
   Its content is made of child blocks, so the order can be changed in the theme editor.
   The id must start with "Slide-" for Dawn's slider-component to pick it up.
+  role="listitem" (not <li>) because Shopify's block wrapper div sits between this and the list.
 {%- endcomment -%}
-<li
+<div
   id="Slide-{{ section.id }}-{{ block.id }}"
   class="melt-columns__item grid__item slider__slide"
+  role="listitem"
   {{ block.shopify_attributes }}
 >
   <div class="melt-columns__column{% if section.settings.column_style == 'card' %} melt-columns__column--card color-{{ section.settings.card_color_scheme }} gradient{% endif %}{% if section.settings.column_alignment == 'center' %} melt-columns__column--center{% endif %}">
     {% content_for 'blocks' %}
   </div>
-</li>
+</div>
 
 {% schema %}
 {

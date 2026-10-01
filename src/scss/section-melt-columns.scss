@@ -50,6 +50,20 @@
 
 .melt-columns__list {
   margin-bottom: 0;
+
+  // Shopify wraps each theme block in <div class="shopify-block">. Take the wrapper out of
+  // layout so the columns themselves are the grid/slider items and Dawn's widths apply.
+  > .shopify-block {
+    display: contents;
+  }
+}
+
+// Every column is now the first child of its own wrapper, so Dawn's "first slide" offsets
+// (component-slider.css, base.css grid--peek) would hit all of them. Undo them on all but the
+// first column. Extra specificity so this beats Dawn's rules, which load after this file.
+.melt-columns .melt-columns__list > .shopify-block:not(:first-child) > .slider__slide {
+  margin-left: 0;
+  scroll-margin-left: 0;
 }
 
 .melt-columns__column {
@@ -58,6 +72,12 @@
   align-items: flex-start;
   gap: var(--melt-columns-gap);
   height: 100%;
+
+  // Same wrapper issue for the child blocks: without this, each wrapper shrinks to its
+  // content and full-width children (images) end up narrower than the column.
+  > .shopify-block {
+    display: contents;
+  }
 
   &--card {
     padding: 2.4rem;

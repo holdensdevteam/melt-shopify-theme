@@ -422,6 +422,190 @@
         "padding_bottom": 36
       }
     },
+    "melt_columns_P4N4L6": {
+      "type": "melt-columns",
+      "blocks": {
+        "columns_column_D3p98k": {
+          "type": "_columns-column",
+          "name": "t:blocks.columns_column.name",
+          "settings": {},
+          "blocks": {
+            "columns_eyebrow_aaYLRN": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "A small heading"
+              },
+              "blocks": {}
+            },
+            "columns_heading_zR9PBz": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Column heading",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "columns_image_RDFjKM": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/burgundy-candles-with-autumn-leaves.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "columns_text_xUqwYG": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
+              },
+              "blocks": {}
+            },
+            "columns_link_fFLkgC": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Find out more",
+                "url": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "columns_eyebrow_aaYLRN",
+            "columns_heading_zR9PBz",
+            "columns_image_RDFjKM",
+            "columns_text_xUqwYG",
+            "columns_link_fFLkgC"
+          ]
+        },
+        "columns_column_9mC8JX": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "columns_eyebrow_JAXpJN": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "A small heading"
+              },
+              "blocks": {}
+            },
+            "columns_heading_LWcfyW": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Column heading",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "columns_image_PQJXjA": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/homemade-candles.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "columns_text_dWzFjU": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
+              },
+              "blocks": {}
+            },
+            "columns_link_7UhbfU": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Find out more",
+                "url": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "columns_eyebrow_JAXpJN",
+            "columns_heading_LWcfyW",
+            "columns_image_PQJXjA",
+            "columns_text_dWzFjU",
+            "columns_link_7UhbfU"
+          ]
+        },
+        "columns_column_yAJiKV": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "columns_eyebrow_tRGp99": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "A small heading"
+              },
+              "blocks": {}
+            },
+            "columns_heading_q7aXaw": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Column heading",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "columns_image_rYemLU": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/burgundy-candles-with-autumn-leaves.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "columns_text_QBTWdy": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
+              },
+              "blocks": {}
+            },
+            "columns_link_tfVddA": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Find out more",
+                "url": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "columns_eyebrow_tRGp99",
+            "columns_heading_q7aXaw",
+            "columns_image_rYemLU",
+            "columns_text_QBTWdy",
+            "columns_link_tfVddA"
+          ]
+        }
+      },
+      "block_order": [
+        "columns_column_D3p98k",
+        "columns_column_9mC8JX",
+        "columns_column_yAJiKV"
+      ],
+      "name": "t:sections.melt_columns.presets.columns.name",
+      "settings": {
+        "eyebrow": "",
+        "title": "From the farm",
+        "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "card_color_scheme": "",
+        "column_alignment": "left",
+        "color_scheme": "",
+        "enable_desktop_slider": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "multicolumn_XPC38z": {
       "type": "multicolumn",
       "blocks": {
@@ -540,6 +724,7 @@
     "collection_list_YTdYtr",
     "collection_list_8cqF6y",
     "page_ByMPB7",
+    "melt_columns_P4N4L6",
     "multicolumn_XPC38z",
     "featured_blog_yddmtK",
     "newsletter_pGDmrV"

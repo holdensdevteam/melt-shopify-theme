@@ -44,6 +44,14 @@
 .melt-columns__list {
   margin-bottom: 0;
 }
+.melt-columns__list > .shopify-block {
+  display: contents;
+}
+
+.melt-columns .melt-columns__list > .shopify-block:not(:first-child) > .slider__slide {
+  margin-left: 0;
+  scroll-margin-left: 0;
+}
 
 .melt-columns__column {
   display: flex;
@@ -51,6 +59,9 @@
   align-items: flex-start;
   gap: var(--melt-columns-gap);
   height: 100%;
+}
+.melt-columns__column > .shopify-block {
+  display: contents;
 }
 .melt-columns__column--card {
   padding: 2.4rem;
