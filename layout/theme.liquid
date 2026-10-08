@@ -106,6 +106,7 @@
         --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
         --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+        --color-border: {{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }};
         --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
         --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
         --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
@@ -115,6 +116,33 @@
         --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+
+        {%- comment -%}
+          Melt hover colours. Only output when set, so CSS falls back to the normal colour
+          (var(--color-x-hover, var(--color-x))) — see src/scss/melt-global.scss.
+        {%- endcomment -%}
+        {%- if scheme.settings.background_hover != blank %}
+          --color-background-hover: {{ scheme.settings.background_hover.red }},{{ scheme.settings.background_hover.green }},{{ scheme.settings.background_hover.blue }};
+          --color-secondary-button-hover: {{ scheme.settings.background_hover.red }},{{ scheme.settings.background_hover.green }},{{ scheme.settings.background_hover.blue }};
+        {%- endif %}
+        {%- if scheme.settings.text_hover != blank %}
+          --color-foreground-hover: {{ scheme.settings.text_hover.red }},{{ scheme.settings.text_hover.green }},{{ scheme.settings.text_hover.blue }};
+        {%- endif %}
+        {%- if scheme.settings.button_hover != blank %}
+          --color-button-hover: {{ scheme.settings.button_hover.red }},{{ scheme.settings.button_hover.green }},{{ scheme.settings.button_hover.blue }};
+        {%- endif %}
+        {%- if scheme.settings.button_label_hover != blank %}
+          --color-button-text-hover: {{ scheme.settings.button_label_hover.red }},{{ scheme.settings.button_label_hover.green }},{{ scheme.settings.button_label_hover.blue }};
+        {%- endif %}
+        {%- if scheme.settings.secondary_button_label_hover != blank %}
+          --color-secondary-button-text-hover: {{ scheme.settings.secondary_button_label_hover.red }},{{ scheme.settings.secondary_button_label_hover.green }},{{ scheme.settings.secondary_button_label_hover.blue }};
+        {%- endif %}
+        {%- if scheme.settings.border_hover != blank %}
+          --color-border-hover: {{ scheme.settings.border_hover.red }},{{ scheme.settings.border_hover.green }},{{ scheme.settings.border_hover.blue }};
+        {%- endif %}
+        {%- if scheme.settings.shadow_hover != blank %}
+          --color-shadow-hover: {{ scheme.settings.shadow_hover.red }},{{ scheme.settings.shadow_hover.green }},{{ scheme.settings.shadow_hover.blue }};
+        {%- endif %}
       }
       {% endfor %}
 
@@ -279,6 +307,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'melt-global.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}

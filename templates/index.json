@@ -187,18 +187,18 @@
             "subtitle": "From 10 January"
           }
         },
-        "featured_collection_BxdUAK": {
+        "featured_collection_ky33Br": {
           "type": "featured_collection",
           "settings": {
-            "collection": "new-home",
-            "subtitle": ""
+            "collection": "mothers-day-1",
+            "subtitle": "From 10 March"
           }
         }
       },
       "block_order": [
         "featured_collection_ryhnRJ",
         "featured_collection_qYBEg4",
-        "featured_collection_BxdUAK"
+        "featured_collection_ky33Br"
       ],
       "name": "t:sections.collection-list.presets.name",
       "settings": {

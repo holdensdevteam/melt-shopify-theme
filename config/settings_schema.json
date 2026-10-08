@@ -97,9 +97,20 @@
           },
           {
             "type": "color",
+            "id": "background_hover",
+            "label": "t:settings_schema.colors.settings.background_hover.label",
+            "info": "t:settings_schema.colors.settings.background_hover.info"
+          },
+          {
+            "type": "color",
             "id": "text",
             "label": "t:settings_schema.colors.settings.text.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "text_hover",
+            "label": "t:settings_schema.colors.settings.text_hover.label"
           },
           {
             "type": "color",
@@ -109,9 +120,19 @@
           },
           {
             "type": "color",
+            "id": "button_hover",
+            "label": "t:settings_schema.colors.settings.button_hover.label"
+          },
+          {
+            "type": "color",
             "id": "button_label",
             "label": "t:settings_schema.colors.settings.button_label.label",
             "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "button_label_hover",
+            "label": "t:settings_schema.colors.settings.button_label_hover.label"
           },
           {
             "type": "color",
@@ -121,9 +142,31 @@
           },
           {
             "type": "color",
+            "id": "secondary_button_label_hover",
+            "label": "t:settings_schema.colors.settings.secondary_button_label_hover.label"
+          },
+          {
+            "type": "color",
+            "id": "border",
+            "label": "t:settings_schema.colors.settings.border.label",
+            "info": "t:settings_schema.colors.settings.border.info",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "border_hover",
+            "label": "t:settings_schema.colors.settings.border_hover.label"
+          },
+          {
+            "type": "color",
             "id": "shadow",
             "label": "t:settings_schema.colors.settings.shadow.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "shadow_hover",
+            "label": "t:settings_schema.colors.settings.shadow_hover.label"
           }
         ],
         "role": {

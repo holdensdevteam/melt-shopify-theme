@@ -76,9 +76,82 @@
   pointer-events: none;
 }
 
+.collection-list-section .title-wrapper-with-link {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.6rem 3rem;
+}
+
+.collection-list-section__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.collection-list-section__description {
+  margin-top: 1rem;
+  max-width: 72rem;
+  font-size: 1.6rem;
+}
+@media screen and (min-width: 750px) {
+  .collection-list-section__description {
+    font-size: 1.8rem;
+  }
+}
+.collection-list-section__description > *:first-child {
+  margin-top: 0;
+}
+.collection-list-section__description > *:last-child {
+  margin-bottom: 0;
+}
+
 .collection-list-section--heading-center .title-wrapper-with-link {
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+}
+.collection-list-section--heading-center .title-wrapper-with-link .collection-list-section__description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collection-list-section__cta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 1.2rem 2rem;
+  border-radius: var(--buttons-radius);
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-size: 1.5rem;
+  letter-spacing: 0.04rem;
+  text-decoration: none;
+}
+@media screen and (min-width: 750px) {
+  .collection-list-section__cta {
+    font-size: 1.6rem;
+    min-width: 28rem;
+  }
+}
+.collection-list-section__cta {
+  transition: background-color var(--duration-short) ease, color var(--duration-short) ease;
+}
+.collection-list-section__cta:hover {
+  background-color: rgb(var(--color-background-hover, var(--color-background)));
+  color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+}
+.collection-list-section__cta:hover .collection-list-section__cta-arrow {
+  transform: translateX(0.4rem);
+}
+
+.collection-list-section__cta-arrow {
+  display: flex;
+  transition: transform var(--duration-short) ease;
+}
+.collection-list-section__cta-arrow .icon {
+  width: 4.2rem;
+  height: 2rem;
 }
 
 .collection-list-section--name-large .card__heading {
@@ -104,6 +177,41 @@
 
 .collection-list-section .card .card__inner .card__media {
   border-radius: var(--media-radius);
+}
+
+.collection-list-section--outline .card--card,
+.collection-list-section--outline .card--standard .card__inner {
+  border-color: rgb(var(--color-border));
+}
+.collection-list-section--outline .card-wrapper:hover .card--card,
+.collection-list-section--outline .card-wrapper:hover .card--standard .card__inner {
+  border-color: rgb(var(--color-border-hover, var(--color-border)));
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: var(--text-alignment, left);
+  gap: 0.8rem;
+  margin: 1.6rem 0 0;
+}
+
+.card__tag {
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.4rem;
+  background-color: rgba(var(--color-foreground), 0.06);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+@media screen and (min-width: 750px) {
+  .card__tag {
+    font-size: 1.125rem;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .card__tag {
+    font-size: 1.25rem;
+  }
 }
 
 .collection-list-section--no-arrow .card__heading .icon-wrap {

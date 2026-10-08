@@ -11,6 +11,7 @@
   - card_style_override: {String} 'standard' or 'card' — overrides Theme settings → Collection cards (optional, Melt)
   - card_color_scheme_override: {String} Colour scheme for this card, overriding the theme setting (optional, Melt)
   - subtitle: {String} Short line under the collection name, e.g. "From 10 November" (optional, Melt)
+  - tags: {String} Comma-separated labels shown as pills under the name, max 4, e.g. "Citrus, Green, Clean" (optional, Melt)
 
   Usage:
   {% render 'card-collection' %}
@@ -41,6 +42,23 @@
     assign card_color_scheme = card_color_scheme_override
   endif
 -%}
+
+{%- capture card_extras -%}
+  {%- if subtitle != blank -%}
+    <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
+  {%- endif -%}
+  {%- if tags != blank -%}
+    {%- assign tag_list = tags | split: ',' -%}
+    <ul class="card__tags list-unstyled" role="list">
+      {%- for tag in tag_list limit: 4 -%}
+        {%- assign tag_text = tag | strip -%}
+        {%- if tag_text != blank -%}
+          <li class="card__tag">{{ tag_text | escape }}</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+{%- endcapture -%}
 
 <div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
   <div
@@ -115,9 +133,7 @@
                 {%- endif %}
               </a>
             </h3>
-            {%- if subtitle != blank -%}
-              <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
-            {%- endif -%}
+            {{- card_extras -}}
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
                 {{- card_collection.description | strip_html | truncatewords: 12 -}}
@@ -154,9 +170,7 @@
               {%- endif %}
             </a>
           </h3>
-          {%- if subtitle != blank -%}
-            <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
-          {%- endif -%}
+          {{- card_extras -}}
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}

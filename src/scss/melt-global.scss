@@ -1,0 +1,51 @@
+/*! Compiled from src/scss/melt-global.scss — edit that file, not this one. */
+
+// Site-wide Melt rules, loaded straight after Dawn's base.css (layout/theme.liquid).
+//
+// Hover colours: each colour scheme can set optional hover colours (Theme settings → Colours).
+// layout/theme.liquid only outputs a --color-*-hover variable when one is set, so every rule here
+// falls back to the normal colour — nothing changes on hover until a hover colour is chosen.
+
+// ------------------------------------------------------------------ buttons
+
+.button:not([disabled]):hover,
+.shopify-challenge__button:hover,
+.customer button:not([disabled]):hover {
+  background-color: rgba(var(--color-button-hover, var(--color-button)), var(--alpha-button-background));
+  color: rgb(var(--color-button-text-hover, var(--color-button-text)));
+}
+
+// Outline buttons: Dawn swaps the button colours for the secondary ones; do the same for hover.
+.button--secondary {
+  --color-button-hover: var(--color-secondary-button-hover, var(--color-secondary-button));
+  --color-button-text-hover: var(--color-secondary-button-text-hover, var(--color-secondary-button-text));
+}
+
+// Dawn forces a white button over the email signup image on mobile; keep it white on hover too
+// ('initial' unsets the scheme's hover colour so the fallback applies).
+@media screen and (max-width: 749px) {
+  .email-signup-banner:not(.banner--mobile-bottom) .banner__box:not(.email-signup-banner__box--no-image) {
+    --color-button-hover: initial;
+    --color-button-text-hover: initial;
+  }
+}
+
+// ------------------------------------------------------------------ cards
+
+// "Card" style cards (Theme settings → Product / Collection / Blog cards → Style: Card).
+.card-wrapper .card--card {
+  transition:
+    background-color var(--duration-short) ease,
+    color var(--duration-short) ease,
+    border-color var(--duration-short) ease;
+}
+
+.card-wrapper:hover .card--card {
+  background: rgb(var(--color-background-hover, var(--color-background)));
+  color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+}
+
+.card-wrapper:hover .card--card::after {
+  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
+    rgba(var(--color-shadow-hover, var(--color-shadow)), var(--shadow-opacity));
+}

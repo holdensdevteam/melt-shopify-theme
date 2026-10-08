@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/melt-global.scss — edit that file, not this one. */
+.button:not([disabled]):hover,
+.shopify-challenge__button:hover,
+.customer button:not([disabled]):hover {
+  background-color: rgba(var(--color-button-hover, var(--color-button)), var(--alpha-button-background));
+  color: rgb(var(--color-button-text-hover, var(--color-button-text)));
+}
+
+.button--secondary {
+  --color-button-hover: var(--color-secondary-button-hover, var(--color-secondary-button));
+  --color-button-text-hover: var(--color-secondary-button-text-hover, var(--color-secondary-button-text));
+}
+
+@media screen and (max-width: 749px) {
+  .email-signup-banner:not(.banner--mobile-bottom) .banner__box:not(.email-signup-banner__box--no-image) {
+    --color-button-hover: initial;
+    --color-button-text-hover: initial;
+  }
+}
+.card-wrapper .card--card {
+  transition: background-color var(--duration-short) ease, color var(--duration-short) ease, border-color var(--duration-short) ease;
+}
+
+.card-wrapper:hover .card--card {
+  background: rgb(var(--color-background-hover, var(--color-background)));
+  color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+}
+
+.card-wrapper:hover .card--card::after {
+  box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius) rgba(var(--color-shadow-hover, var(--color-shadow)), var(--shadow-opacity));
+}

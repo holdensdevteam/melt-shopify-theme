@@ -203,11 +203,14 @@
 
         {%- comment -%} Dawn's buttons read these scheme variables (as "r, g, b"), so hover and border effects follow. {%- endcomment -%}
         .{{ buttons_class }} .button--primary {
+          {%- comment -%} Custom colours hold on hover, rather than switching to the scheme's hover colours. {%- endcomment -%}
           {%- if button_color != blank %}
             --color-button: {{ button_color.red }}, {{ button_color.green }}, {{ button_color.blue }};
+            --color-button-hover: {{ button_color.red }}, {{ button_color.green }}, {{ button_color.blue }};
           {%- endif %}
           {%- if button_text_color != blank %}
             --color-button-text: {{ button_text_color.red }}, {{ button_text_color.green }}, {{ button_text_color.blue }};
+            --color-button-text-hover: {{ button_text_color.red }}, {{ button_text_color.green }}, {{ button_text_color.blue }};
           {%- endif %}
         }
       {%- endstyle -%}

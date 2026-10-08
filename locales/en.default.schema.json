@@ -133,6 +133,32 @@
         "secondary_button_label": {
           "label": "Outline button"
         },
+        "background_hover": {
+          "label": "Background on hover",
+          "info": "Hover colours are optional — leave any of them empty to keep the normal colour on hover. Used by buttons, cards and heading links."
+        },
+        "text_hover": {
+          "label": "Text on hover"
+        },
+        "button_hover": {
+          "label": "Solid button background on hover"
+        },
+        "button_label_hover": {
+          "label": "Solid button label on hover"
+        },
+        "secondary_button_label_hover": {
+          "label": "Outline button on hover"
+        },
+        "border_hover": {
+          "label": "Outline on hover"
+        },
+        "shadow_hover": {
+          "label": "Shadow on hover"
+        },
+        "border": {
+          "label": "Outline",
+          "info": "Used for card outlines where a section turns them on."
+        },
         "shadow": {
           "label": "Shadow"
         }
@@ -782,6 +808,53 @@
     "collection-list": {
       "name": "Collection list",
       "settings": {
+        "description": {
+          "label": "Description"
+        },
+        "header_cta": {
+          "content": "Heading link",
+          "info": "A link top right of the heading, e.g. All 24 fragrances, A–Z."
+        },
+        "cta_label": {
+          "label": "Link label"
+        },
+        "cta_link": {
+          "label": "Link"
+        },
+        "cta_arrow": {
+          "label": "Show arrow"
+        },
+        "cta_color_scheme": {
+          "label": "Link colour scheme"
+        },
+        "card_border_width": {
+          "label": "Outline thickness",
+          "info": "Outline colour comes from the card colour scheme's Outline colour. 0 uses the theme's card border."
+        },
+        "heading_margin_top": {
+          "label": "Heading margin top",
+          "info": "Heading margins are 75% of these on mobile."
+        },
+        "heading_margin_bottom": {
+          "label": "Heading margin bottom"
+        },
+        "heading_margin_sides": {
+          "label": "Heading margin left and right"
+        },
+        "padding_sides": {
+          "label": "Left and right padding",
+          "info": "Desktop only. 50px is the standard page margin."
+        },
+        "content_width": {
+          "label": "Content width",
+          "info": "Desktop only. Full width lets the cards run edge to edge, minus the left and right padding.",
+          "options__page": {
+            "label": "Page width"
+          },
+          "options__full": {
+            "label": "Full width"
+          }
+        },
         "heading_alignment": {
           "label": "Heading alignment",
           "options__left": {
@@ -890,6 +963,10 @@
         "featured_collection": {
           "name": "Collection",
           "settings": {
+            "tags": {
+              "label": "Tags",
+              "info": "Up to 4, separated by commas, e.g. Citrus, Green, Clean."
+            },
             "subtitle": {
               "label": "Subtitle",
               "info": "Short line under the collection name, e.g. From 10 November."
