@@ -10,14 +10,14 @@
 {
   "current": {
     "logo_width": 50,
-    "type_header_font": "assistant_n4",
+    "type_header_font": "ebgaramond_n4",
     "heading_scale": 100,
-    "type_body_font": "assistant_n4",
+    "type_body_font": "work_sans_n4",
     "body_scale": 100,
     "page_width": 1300,
     "spacing_sections": 0,
-    "spacing_grid_horizontal": 8,
-    "spacing_grid_vertical": 8,
+    "spacing_grid_horizontal": 20,
+    "spacing_grid_vertical": 20,
     "animations_reveal_on_scroll": true,
     "animations_hover_elements": "none",
     "buttons_border_thickness": 1,
@@ -76,7 +76,7 @@
     "blog_card_shadow_blur": 5,
     "text_boxes_border_thickness": 0,
     "text_boxes_border_opacity": 10,
-    "text_boxes_radius": 0,
+    "text_boxes_radius": 4,
     "text_boxes_shadow_opacity": 0,
     "text_boxes_shadow_horizontal_offset": 0,
     "text_boxes_shadow_vertical_offset": 4,
@@ -197,6 +197,17 @@
           "button_label": "#334fb4",
           "secondary_button_label": "#ffffff",
           "shadow": "#121212"
+        }
+      },
+      "scheme-51c98cfa-be83-4eed-9f3d-16bbb919c584": {
+        "settings": {
+          "background": "#CE7721",
+          "background_gradient": "",
+          "text": "#FFFFFF",
+          "button": "#FFFFFF",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#FFFFFF",
+          "shadow": "#FFFFFF"
         }
       }
     }

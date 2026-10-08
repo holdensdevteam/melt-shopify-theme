@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "Next working day delivery - order by 1pm",
             "link": ""
           }
         }
@@ -28,7 +28,7 @@
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-51c98cfa-be83-4eed-9f3d-16bbb919c584",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -38,7 +38,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-center",
+        "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",

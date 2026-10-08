@@ -15,16 +15,16 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Luxury candles from the heart of the Ribble Valley",
+            "heading": "Luxury scented candles, hand-poured in the Ribble Valley",
             "heading_size": "h1"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
+            "button_label_1": "Shop all candles",
+            "button_link_1": "shopify://collections/scented-candles",
+            "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "shopify://collections",
             "button_style_secondary_2": false
@@ -36,13 +36,12 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/melt-hero-placeholder.jpg",
-        "image_2": "shopify://shop_images/homemade-candles.png",
-        "image_overlay_opacity": 20,
-        "image_height": "medium",
-        "image_behavior": "ambient",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
+        "image": "shopify://shop_images/Home-hero.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-left",
+        "desktop_content_alignment": "left",
         "show_text_box": false,
         "color_scheme": "scheme-3",
         "stack_images_on_mobile": false,
@@ -411,17 +410,6 @@
         "padding_bottom": 36
       }
     },
-    "page_ByMPB7": {
-      "type": "page",
-      "name": "t:sections.page.presets.name",
-      "settings": {
-        "page": "the-shop-on-the-farm",
-        "heading_size": "h1",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "melt_columns_P4N4L6": {
       "type": "melt-columns",
       "blocks": {
@@ -433,15 +421,15 @@
             "columns_eyebrow_aaYLRN": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "A small heading"
+                "text": "Come and see us"
               },
               "blocks": {}
             },
             "columns_heading_zR9PBz": {
               "type": "_columns-heading",
               "settings": {
-                "text": "Column heading",
-                "heading_size": "h3"
+                "text": "The shop on the farm",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -456,7 +444,7 @@
             "columns_text_xUqwYG": {
               "type": "_columns-text",
               "settings": {
-                "text": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
+                "text": "<p>Waddington, in the Ribble Valley. Open seven days. You can smell everything before you buy it, which is rather the point.</p>"
               },
               "blocks": {}
             },
@@ -491,8 +479,8 @@
             "columns_heading_LWcfyW": {
               "type": "_columns-heading",
               "settings": {
-                "text": "Column heading",
-                "heading_size": "h3"
+                "text": "Made in Lancashire",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -507,7 +495,7 @@
             "columns_text_dWzFjU": {
               "type": "_columns-text",
               "settings": {
-                "text": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
+                "text": "<p>Hand-poured since 2000, with 89% of what goes into a Melt candle sourced inside the county. We deliver next working day if you order by 1pm, and worldwide if you are further afield.</p>"
               },
               "blocks": {}
             },
@@ -527,135 +515,164 @@
             "columns_text_dWzFjU",
             "columns_link_7UhbfU"
           ]
-        },
-        "columns_column_yAJiKV": {
-          "type": "_columns-column",
-          "settings": {},
-          "blocks": {
-            "columns_eyebrow_tRGp99": {
-              "type": "_columns-eyebrow",
-              "settings": {
-                "text": "A small heading"
-              },
-              "blocks": {}
-            },
-            "columns_heading_q7aXaw": {
-              "type": "_columns-heading",
-              "settings": {
-                "text": "Column heading",
-                "heading_size": "h3"
-              },
-              "blocks": {}
-            },
-            "columns_image_rYemLU": {
-              "type": "_columns-image",
-              "settings": {
-                "image": "shopify://shop_images/burgundy-candles-with-autumn-leaves.png",
-                "ratio": "landscape"
-              },
-              "blocks": {}
-            },
-            "columns_text_QBTWdy": {
-              "type": "_columns-text",
-              "settings": {
-                "text": "<p>A sentence or two. Short is good — the detail can live on the page you link to.</p>"
-              },
-              "blocks": {}
-            },
-            "columns_link_tfVddA": {
-              "type": "_columns-link",
-              "settings": {
-                "label": "Find out more",
-                "url": ""
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "columns_eyebrow_tRGp99",
-            "columns_heading_q7aXaw",
-            "columns_image_rYemLU",
-            "columns_text_QBTWdy",
-            "columns_link_tfVddA"
-          ]
         }
       },
       "block_order": [
         "columns_column_D3p98k",
-        "columns_column_9mC8JX",
-        "columns_column_yAJiKV"
+        "columns_column_9mC8JX"
       ],
       "name": "t:sections.melt_columns.presets.columns.name",
       "settings": {
         "eyebrow": "",
-        "title": "From the farm",
+        "title": "",
         "heading_size": "h1",
         "intro": "",
         "custom_code": "",
         "link_label": "",
         "link_url": "",
-        "columns_desktop": 3,
+        "columns_desktop": 2,
         "column_style": "plain",
         "card_color_scheme": "",
         "column_alignment": "left",
         "color_scheme": "",
         "enable_desktop_slider": false,
         "columns_mobile": "1",
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "multicolumn_XPC38z": {
-      "type": "multicolumn",
+    "melt_columns_Wt7AqJ": {
+      "type": "melt-columns",
       "blocks": {
-        "column_Vfei9D": {
-          "type": "column",
-          "settings": {
-            "title": "\"Saddle is an old friend. Fifteen years and I have never once been tempted elsewhere.\"",
-            "text": "<p>Alison, Preston</p>",
-            "link_label": "",
-            "link": ""
-          }
+        "columns_column_7wWGzA": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "columns_content_KiH6AE": {
+              "type": "_columns-content",
+              "name": "t:blocks.columns_content.name",
+              "settings": {
+                "text": "",
+                "html": "<svg width=\"61\" height=\"10\" viewbox=\"0 0 61 10\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.18185 7.57688L1.96026 9.90359L3.23014 6.1195L2.77758e-05 3.78427H3.95457L5.18185 0.000176907L6.40912 3.78427H10.3637L7.13355 6.1195L8.40344 9.90359L5.18185 7.57688ZM17.7326 7.57688L14.511 9.90359L15.7809 6.1195L12.5508 3.78427H16.5054L17.7326 0.000176907L18.9599 3.78427H22.9144L19.6843 6.1195L20.9542 9.90359L17.7326 7.57688ZM30.2834 7.57688L27.0618 9.90359L28.3317 6.1195L25.1016 3.78427H29.0561L30.2834 0.000176907L31.5107 3.78427H35.4652L32.2351 6.1195L33.505 9.90359L30.2834 7.57688ZM42.8342 7.57688L39.6126 9.90359L40.8825 6.1195L37.6524 3.78427H41.6069L42.8342 0.000176907L44.0615 3.78427H48.016L44.7859 6.1195L46.0558 9.90359L42.8342 7.57688ZM55.385 7.57688L52.1634 9.90359L53.4333 6.1195L50.2032 3.78427H54.1577L55.385 0.000176907L56.6122 3.78427H60.5668L57.3367 6.1195L58.6066 9.90359L55.385 7.57688Z\" fill=\"#6B6B6B\"></path>\n</svg>"
+              },
+              "blocks": {}
+            },
+            "columns_heading_h6hnYf": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "\"Saddle is an old friend. Fifteen years and I have never once been tempted elsewhere.\"",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "columns_text_fNtX3U": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Alison, Preston</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "columns_content_KiH6AE",
+            "columns_heading_h6hnYf",
+            "columns_text_fNtX3U"
+          ]
         },
-        "column_pnrHJP": {
-          "type": "column",
-          "settings": {
-            "title": "\"Bought Angel as a gift and immediately had to order one for myself. That is on Melt, not me.\"",
-            "text": "<p>Rachel, Skipton</p>",
-            "link_label": "",
-            "link": ""
-          }
+        "columns_column_GFd3Ez": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "columns_content_3w7cb9": {
+              "type": "_columns-content",
+              "name": "t:blocks.columns_content.name",
+              "settings": {
+                "text": "",
+                "html": "<svg width=\"61\" height=\"10\" viewbox=\"0 0 61 10\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.18185 7.57688L1.96026 9.90359L3.23014 6.1195L2.77758e-05 3.78427H3.95457L5.18185 0.000176907L6.40912 3.78427H10.3637L7.13355 6.1195L8.40344 9.90359L5.18185 7.57688ZM17.7326 7.57688L14.511 9.90359L15.7809 6.1195L12.5508 3.78427H16.5054L17.7326 0.000176907L18.9599 3.78427H22.9144L19.6843 6.1195L20.9542 9.90359L17.7326 7.57688ZM30.2834 7.57688L27.0618 9.90359L28.3317 6.1195L25.1016 3.78427H29.0561L30.2834 0.000176907L31.5107 3.78427H35.4652L32.2351 6.1195L33.505 9.90359L30.2834 7.57688ZM42.8342 7.57688L39.6126 9.90359L40.8825 6.1195L37.6524 3.78427H41.6069L42.8342 0.000176907L44.0615 3.78427H48.016L44.7859 6.1195L46.0558 9.90359L42.8342 7.57688ZM55.385 7.57688L52.1634 9.90359L53.4333 6.1195L50.2032 3.78427H54.1577L55.385 0.000176907L56.6122 3.78427H60.5668L57.3367 6.1195L58.6066 9.90359L55.385 7.57688Z\" fill=\"#6B6B6B\"></path>\n</svg>"
+              },
+              "blocks": {}
+            },
+            "columns_heading_ngGPjX": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "\"Bought Angel as a gift and immediately had to order one for myself. That is on Melt, not me.\"",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "columns_text_qpQUyA": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Rachel, Skipton</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "columns_content_3w7cb9",
+            "columns_heading_ngGPjX",
+            "columns_text_qpQUyA"
+          ]
         },
-        "column_mN4rVH": {
-          "type": "column",
-          "settings": {
-            "title": "\"The shop on the farm is worth the drive. Take an hour, not twenty minutes.\"",
-            "text": "<p>David, Manchester</p>",
-            "link_label": "",
-            "link": ""
-          }
+        "columns_column_DF8h34": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "columns_content_qEbTfP": {
+              "type": "_columns-content",
+              "name": "t:blocks.columns_content.name",
+              "settings": {
+                "text": "",
+                "html": "<svg width=\"61\" height=\"10\" viewbox=\"0 0 61 10\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.18185 7.57688L1.96026 9.90359L3.23014 6.1195L2.77758e-05 3.78427H3.95457L5.18185 0.000176907L6.40912 3.78427H10.3637L7.13355 6.1195L8.40344 9.90359L5.18185 7.57688ZM17.7326 7.57688L14.511 9.90359L15.7809 6.1195L12.5508 3.78427H16.5054L17.7326 0.000176907L18.9599 3.78427H22.9144L19.6843 6.1195L20.9542 9.90359L17.7326 7.57688ZM30.2834 7.57688L27.0618 9.90359L28.3317 6.1195L25.1016 3.78427H29.0561L30.2834 0.000176907L31.5107 3.78427H35.4652L32.2351 6.1195L33.505 9.90359L30.2834 7.57688ZM42.8342 7.57688L39.6126 9.90359L40.8825 6.1195L37.6524 3.78427H41.6069L42.8342 0.000176907L44.0615 3.78427H48.016L44.7859 6.1195L46.0558 9.90359L42.8342 7.57688ZM55.385 7.57688L52.1634 9.90359L53.4333 6.1195L50.2032 3.78427H54.1577L55.385 0.000176907L56.6122 3.78427H60.5668L57.3367 6.1195L58.6066 9.90359L55.385 7.57688Z\" fill=\"#6B6B6B\"></path>\n</svg>"
+              },
+              "blocks": {}
+            },
+            "columns_heading_fLzJed": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "\"The shop on the farm is worth the drive. Take an hour, not twenty minutes.\"",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "columns_text_ycJUxV": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>David, Manchester</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "columns_content_qEbTfP",
+            "columns_heading_fLzJed",
+            "columns_text_ycJUxV"
+          ]
         }
       },
       "block_order": [
-        "column_Vfei9D",
-        "column_pnrHJP",
-        "column_mN4rVH"
+        "columns_column_7wWGzA",
+        "columns_column_GFd3Ez",
+        "columns_column_DF8h34"
       ],
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "t:sections.melt_columns.presets.columns.name",
       "settings": {
+        "eyebrow": "Reviews",
         "title": "In your words",
         "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "Read all reviews",
+        "link_url": "",
         "columns_desktop": 3,
+        "column_style": "card",
+        "card_color_scheme": "scheme-2",
         "column_alignment": "left",
-        "background_style": "primary",
         "color_scheme": "",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -723,9 +740,8 @@
     "collection_list_tYQD88",
     "collection_list_YTdYtr",
     "collection_list_8cqF6y",
-    "page_ByMPB7",
     "melt_columns_P4N4L6",
-    "multicolumn_XPC38z",
+    "melt_columns_Wt7AqJ",
     "featured_blog_yddmtK",
     "newsletter_pGDmrV"
   ]
