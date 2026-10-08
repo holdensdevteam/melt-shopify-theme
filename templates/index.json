@@ -15,8 +15,16 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Luxury scented candles, hand-poured in the Ribble Valley",
+            "heading_rich": "<p>Luxury scented candles,</p><p>hand-poured in the Ribble Valley</p>",
+            "heading": "",
             "heading_size": "h1"
+          }
+        },
+        "text_wtRGxp": {
+          "type": "text",
+          "settings": {
+            "text": "Twenty four fragrances, made by hand in Lancashire since 1999.",
+            "text_style": "body"
           }
         },
         "button": {
@@ -27,12 +35,20 @@
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "shopify://collections",
-            "button_style_secondary_2": false
+            "button_style_secondary_2": false,
+            "button_color": "#ce7721",
+            "button_text_color": "#ffffff",
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 0,
+            "button_padding_horizontal": 30,
+            "button_margin_top": 54,
+            "button_margin_bottom": 0
           }
         }
       },
       "block_order": [
         "heading",
+        "text_wtRGxp",
         "button"
       ],
       "settings": {
@@ -40,6 +56,10 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "min_height_desktop": 440,
+        "max_height_desktop": 580,
+        "min_height_mobile": 520,
+        "max_height_mobile": 700,
         "desktop_content_position": "bottom-left",
         "desktop_content_alignment": "left",
         "show_text_box": false,
@@ -55,22 +75,25 @@
         "usp_w6cQ68": {
           "type": "usp",
           "settings": {
-            "text": "Add a line about what makes us, us",
-            "icon": "leaf"
+            "text": "Hand-poured in the Ribble Valley",
+            "icon": "leaf",
+            "image": "shopify://shop_images/Valley-icon.svg"
           }
         },
         "usp_gNnfJr": {
           "type": "usp",
           "settings": {
-            "text": "Add a line about what makes us, us",
-            "icon": "truck"
+            "text": "Next working day delivery. Order by 1pm",
+            "icon": "truck",
+            "image": "shopify://shop_images/Next-day-icon.svg"
           }
         },
         "usp_C8634y": {
           "type": "usp",
           "settings": {
-            "text": "Add a line about what makes us, us",
-            "icon": "heart"
+            "text": "Making Candles since 1999",
+            "icon": "heart",
+            "image": "shopify://shop_images/established-icon.svg"
           }
         }
       },
@@ -81,14 +104,24 @@
       ],
       "name": "t:sections.usp_bar.presets.name",
       "settings": {
-        "color_scheme": "",
-        "padding_top": 16,
-        "padding_bottom": 16
+        "color_scheme": "scheme-1",
+        "icon_position": "top",
+        "icon_height": 30,
+        "text_style": "heading",
+        "padding_top": 48,
+        "padding_bottom": 52
       }
     },
     "image_with_text_WxeKV7": {
       "type": "image-with-text",
       "blocks": {
+        "eyebrow_FFR988": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "AUTUMN",
+            "eyebrow_color": "#000000"
+          }
+        },
         "heading_CyKp3g": {
           "type": "heading",
           "settings": {
@@ -113,23 +146,26 @@
         }
       },
       "block_order": [
+        "eyebrow_FFR988",
         "heading_CyKp3g",
         "text_8QpfQK",
         "button_jHmhC6"
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/burgundy-candles-with-autumn-leaves.png",
+        "image": "shopify://shop_images/Autumn-lounge.jpg",
         "height": "adapt",
+        "image_corners": "theme",
+        "image_radius": 8,
         "desktop_image_width": "medium",
         "layout": "image_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "color_scheme": "",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -140,19 +176,22 @@
         "featured_collection_ryhnRJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "christmas"
+            "collection": "christmas",
+            "subtitle": "From 10 November"
           }
         },
         "featured_collection_qYBEg4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "halloween"
+            "collection": "valentines-day",
+            "subtitle": "From 10 January"
           }
         },
         "featured_collection_BxdUAK": {
           "type": "featured_collection",
           "settings": {
-            "collection": "new-home"
+            "collection": "new-home",
+            "subtitle": ""
           }
         }
       },
@@ -165,10 +204,19 @@
       "settings": {
         "title": "Shopping for an occasion?",
         "heading_size": "h1",
-        "image_ratio": "square",
+        "heading_alignment": "center",
+        "image_ratio": "landscape",
         "columns_desktop": 3,
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "show_view_all": false,
+        "card_style": "card",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_text_alignment": "center",
+        "card_heading_size": "large",
+        "show_arrow": false,
+        "background_image": "shopify://shop_images/occasion-bg2.png",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -181,37 +229,43 @@
         "featured_collection_MGyXJK": {
           "type": "featured_collection",
           "settings": {
-            "collection": "fresh"
+            "collection": "fresh",
+            "subtitle": ""
           }
         },
         "featured_collection_ewNiym": {
           "type": "featured_collection",
           "settings": {
-            "collection": "floral"
+            "collection": "floral",
+            "subtitle": ""
           }
         },
         "featured_collection_CVpBeb": {
           "type": "featured_collection",
           "settings": {
-            "collection": "spicy"
+            "collection": "spicy",
+            "subtitle": ""
           }
         },
         "featured_collection_QiVigJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "woody"
+            "collection": "woody",
+            "subtitle": ""
           }
         },
         "featured_collection_34F8Fj": {
           "type": "featured_collection",
           "settings": {
-            "collection": "warm"
+            "collection": "warm",
+            "subtitle": ""
           }
         },
         "featured_collection_qN3xRz": {
           "type": "featured_collection",
           "settings": {
-            "collection": "soft"
+            "collection": "soft",
+            "subtitle": ""
           }
         }
       },
@@ -227,10 +281,18 @@
       "settings": {
         "title": "Shop by scent",
         "heading_size": "h1",
+        "heading_alignment": "left",
         "image_ratio": "square",
         "columns_desktop": 6,
         "color_scheme": "scheme-1",
         "show_view_all": true,
+        "card_style": "theme",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_text_alignment": "theme",
+        "card_heading_size": "default",
+        "show_arrow": true,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -272,19 +334,22 @@
         "featured_collection_PmdrfR": {
           "type": "featured_collection",
           "settings": {
-            "collection": "scented-candles"
+            "collection": "scented-candles",
+            "subtitle": ""
           }
         },
         "featured_collection_a6APCt": {
           "type": "featured_collection",
           "settings": {
-            "collection": "wax-melts"
+            "collection": "wax-melts",
+            "subtitle": ""
           }
         },
         "featured_collection_yDtTrF": {
           "type": "featured_collection",
           "settings": {
-            "collection": "reed-diffusers"
+            "collection": "reed-diffusers",
+            "subtitle": ""
           }
         }
       },
@@ -297,10 +362,18 @@
       "settings": {
         "title": "Candles, diffusers & melts",
         "heading_size": "h1",
+        "heading_alignment": "left",
         "image_ratio": "square",
         "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": false,
+        "card_style": "theme",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_text_alignment": "theme",
+        "card_heading_size": "default",
+        "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -313,37 +386,43 @@
         "featured_collection_UtF4F4": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "",
+            "subtitle": ""
           }
         },
         "featured_collection_NRFkwy": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "",
+            "subtitle": ""
           }
         },
         "featured_collection_rpj9zY": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "",
+            "subtitle": ""
           }
         },
         "featured_collection_LFUddR": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "",
+            "subtitle": ""
           }
         },
         "featured_collection_rjbLeM": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "",
+            "subtitle": ""
           }
         },
         "featured_collection_3MGhUH": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "",
+            "subtitle": ""
           }
         }
       },
@@ -359,10 +438,18 @@
       "settings": {
         "title": "Shop by moment",
         "heading_size": "h1",
+        "heading_alignment": "left",
         "image_ratio": "square",
         "columns_desktop": 3,
         "color_scheme": "scheme-1",
         "show_view_all": false,
+        "card_style": "theme",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_text_alignment": "theme",
+        "card_heading_size": "default",
+        "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -375,19 +462,22 @@
         "featured_collection_eEMhbh": {
           "type": "featured_collection",
           "settings": {
-            "collection": "for-her"
+            "collection": "for-her",
+            "subtitle": ""
           }
         },
         "featured_collection_BLkDGL": {
           "type": "featured_collection",
           "settings": {
-            "collection": "for-him"
+            "collection": "for-him",
+            "subtitle": ""
           }
         },
         "featured_collection_JNF8p9": {
           "type": "featured_collection",
           "settings": {
-            "collection": "for-mum"
+            "collection": "for-mum",
+            "subtitle": ""
           }
         }
       },
@@ -400,10 +490,18 @@
       "settings": {
         "title": "Find something for someone",
         "heading_size": "h1",
+        "heading_alignment": "left",
         "image_ratio": "square",
         "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": false,
+        "card_style": "theme",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_text_alignment": "theme",
+        "card_heading_size": "default",
+        "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -421,7 +519,8 @@
             "columns_eyebrow_aaYLRN": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "Come and see us"
+                "text": "Come and see us",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -472,7 +571,8 @@
             "columns_eyebrow_JAXpJN": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "A small heading"
+                "text": "A small heading",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -524,6 +624,7 @@
       "name": "t:sections.melt_columns.presets.columns.name",
       "settings": {
         "eyebrow": "",
+        "eyebrow_color": "",
         "title": "",
         "heading_size": "h1",
         "intro": "",
@@ -659,6 +760,7 @@
       "name": "t:sections.melt_columns.presets.columns.name",
       "settings": {
         "eyebrow": "Reviews",
+        "eyebrow_color": "",
         "title": "In your words",
         "heading_size": "h1",
         "intro": "",

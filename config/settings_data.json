@@ -9,17 +9,19 @@
  */
 {
   "current": {
-    "logo_width": 50,
+    "logo_type": "v2",
+    "logo_svg_color": "dark",
+    "logo_width": 70,
     "type_header_font": "ebgaramond_n4",
     "heading_scale": 100,
     "type_body_font": "work_sans_n4",
     "body_scale": 100,
-    "page_width": 1300,
+    "page_width": 1600,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 20,
     "spacing_grid_vertical": 20,
     "animations_reveal_on_scroll": true,
-    "animations_hover_elements": "none",
+    "animations_hover_elements": "default",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 4,
@@ -83,7 +85,7 @@
     "text_boxes_shadow_blur": 5,
     "media_border_thickness": 1,
     "media_border_opacity": 5,
-    "media_radius": 0,
+    "media_radius": 6,
     "media_shadow_opacity": 0,
     "media_shadow_horizontal_offset": 0,
     "media_shadow_vertical_offset": 4,
@@ -157,11 +159,11 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#f3f3f3",
+          "background": "#f6f4ee",
           "background_gradient": "",
           "text": "#121212",
-          "button": "#121212",
-          "button_label": "#f3f3f3",
+          "button": "#ce7721",
+          "button_label": "#ffffff",
           "secondary_button_label": "#121212",
           "shadow": "#121212"
         }
@@ -201,13 +203,13 @@
       },
       "scheme-51c98cfa-be83-4eed-9f3d-16bbb919c584": {
         "settings": {
-          "background": "#CE7721",
+          "background": "#ce7721",
           "background_gradient": "",
-          "text": "#FFFFFF",
-          "button": "#FFFFFF",
+          "text": "#ffffff",
+          "button": "#ffffff",
           "button_label": "#ffffff",
-          "secondary_button_label": "#FFFFFF",
-          "shadow": "#FFFFFF"
+          "secondary_button_label": "#ffffff",
+          "shadow": "#ffffff"
         }
       }
     }
