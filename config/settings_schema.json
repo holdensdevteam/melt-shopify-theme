@@ -20,6 +20,10 @@
             "label": "t:settings_schema.logo.settings.logo_type.options__svg.label"
           },
           {
+            "value": "v2",
+            "label": "t:settings_schema.logo.settings.logo_type.options__v2.label"
+          },
+          {
             "value": "image",
             "label": "t:settings_schema.logo.settings.logo_type.options__image.label"
           }
@@ -46,7 +50,7 @@
         ],
         "default": "auto",
         "info": "t:settings_schema.logo.settings.logo_svg_color.info",
-        "visible_if": "{{ settings.logo_type == 'svg' }}"
+        "visible_if": "{{ settings.logo_type == 'svg' or settings.logo_type == 'v2' }}"
       },
       {
         "type": "image_picker",
@@ -1322,6 +1326,10 @@
             "label": "t:settings_schema.brand_information.settings.brand_logo_type.options__svg.label"
           },
           {
+            "value": "v2",
+            "label": "t:settings_schema.brand_information.settings.brand_logo_type.options__v2.label"
+          },
+          {
             "value": "image",
             "label": "t:settings_schema.brand_information.settings.brand_logo_type.options__image.label"
           },
@@ -1352,7 +1360,7 @@
         ],
         "default": "auto",
         "info": "t:settings_schema.logo.settings.logo_svg_color.info",
-        "visible_if": "{{ settings.brand_logo_type == 'svg' }}"
+        "visible_if": "{{ settings.brand_logo_type == 'svg' or settings.brand_logo_type == 'v2' }}"
       },
       {
         "type": "image_picker",

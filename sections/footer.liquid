@@ -137,11 +137,13 @@
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
                       {%- if settings.brand_logo_type == 'svg'
+                        or settings.brand_logo_type == 'v2'
                         or settings.brand_logo_type == 'image'
                         and settings.brand_image == blank
                       -%}
                         <div class="footer-block__logo">
                           {%- render 'melt-logo',
+                            variant: settings.brand_logo_type,
                             color: settings.brand_logo_svg_color,
                             width: settings.brand_image_width
                           -%}

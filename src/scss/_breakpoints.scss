@@ -1,15 +1,18 @@
 // Dawn's breakpoints, so SCSS media queries line up with the rest of the theme.
 // small: < 750px · medium: 750–989px · large: ≥ 990px
+// xlarge (1200px) is ours, not Dawn's — for tightening layouts on small desktops/laptops.
 //
 // Usage:
 //   @use 'breakpoints' as bp;
 //   .thing {
 //     @include bp.from(bp.$medium) { ... }   // min-width: 750px
 //     @include bp.below(bp.$large) { ... }   // max-width: 989px
+//     @include bp.between(bp.$large, bp.$xlarge) { ... }   // 990px–1199px
 //   }
 
 $medium: 750px;
 $large: 990px;
+$xlarge: 1200px;
 
 @mixin from($breakpoint) {
   @media screen and (min-width: $breakpoint) {
@@ -19,6 +22,12 @@ $large: 990px;
 
 @mixin below($breakpoint) {
   @media screen and (max-width: $breakpoint - 1px) {
+    @content;
+  }
+}
+
+@mixin between($min, $max) {
+  @media screen and (min-width: $min) and (max-width: $max - 1px) {
     @content;
   }
 }

@@ -1,0 +1,134 @@
+/*! Compiled from src/scss/section-header.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Melt additions to Dawn's header (sections/header.liquid). Dawn's own header styles stay in
+// base.css. Setting values arrive as CSS variables from the section's {% style %} block.
+
+// ------------------------------------------------------------------ floating bar
+
+// The gap around the bar is padding on the section, not margin on the bar: a child's margin
+// would collapse through the sticky section, and Dawn's sticky/hide-on-scroll code measures
+// the section's offsetHeight, which includes padding but not collapsed margins.
+.section-header {
+  padding: var(--melt-header-margin-top, 0) var(--melt-header-margin-right, 0) var(--melt-header-margin-bottom, 0)
+    var(--melt-header-margin-left, 0);
+}
+
+.section-header .header-wrapper {
+  border-radius: var(--melt-header-radius, 0);
+}
+
+// Page width: cap the bar at the layout's page width and centre it. The side margins still apply.
+.section-header .header-wrapper--contained {
+  max-width: var(--page-width);
+  margin-inline: auto;
+}
+
+// Only when opacity is below 100%, so colour scheme gradients still work at full opacity.
+.section-header .header-wrapper--translucent.gradient {
+  background: rgba(var(--color-background), var(--melt-header-opacity, 1));
+}
+
+// Overlay (home page): the section's footprint is cancelled out by a negative margin equal to
+// its height (set inline by header.liquid), so the first section runs up behind it.
+// Clicks in the gap around the bar fall through to the section underneath.
+.section-header:has(> .header-wrapper--overlay) {
+  margin-bottom: calc(-1 * var(--melt-header-overlay-height, 0px));
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+// ------------------------------------------------------------------ menu alignment
+
+// Dawn's middle-left layout is 'heading navigation icons' with columns auto auto 1fr, which
+// puts all the spare space between the menu and the icons.
+@include bp.from(bp.$large) {
+  .header--middle-left.header--has-menu:not(.drawer-menu) {
+    &.header--menu-center {
+      grid-template-columns: 1fr auto 1fr;
+
+      .header__inline-menu {
+        justify-self: center;
+      }
+    }
+
+    &.header--menu-right {
+      grid-template-columns: 1fr auto auto;
+    }
+  }
+}
+
+// ------------------------------------------------------------------ menu spacing
+
+// Extra gap between top-level items, on top of Dawn's 1.2rem padding per item.
+// Halved on small desktops (990–1199px), where the full gap can push the menu onto two lines.
+.header__inline-menu .list-menu--inline {
+  column-gap: var(--melt-menu-gap, 0px);
+
+  @include bp.between(bp.$large, bp.$xlarge) {
+    column-gap: calc(var(--melt-menu-gap, 0px) / 2);
+  }
+}
+
+// ------------------------------------------------------------------ menu text case
+
+.header--menu-case-lowercase {
+  --melt-menu-case: lowercase;
+}
+
+.header--menu-case-capitalize {
+  --melt-menu-case: capitalize;
+}
+
+.header--menu-case-uppercase {
+  --melt-menu-case: uppercase;
+}
+
+// Top-level items only — dropdown and mega menu links keep their case.
+// 2px smaller on small desktops (990–1199px), alongside the halved gap above.
+.header__inline-menu .list-menu--inline > li > .header__menu-item,
+.header__inline-menu .list-menu--inline > li > header-menu > details > .header__menu-item {
+  text-transform: var(--melt-menu-case, none);
+
+  @include bp.between(bp.$large, bp.$xlarge) {
+    font-size: calc(1em - 2px);
+  }
+}
+
+// ------------------------------------------------------------------ hover weight
+
+// Top-level items go bolder on hover (below). Bold text is wider, which nudged the neighbouring
+// items. Each label carries its own text in data-text (header-*-menu.liquid); an invisible,
+// zero-height bold copy reserves the bold width, so the item never changes size.
+.header {
+  --melt-menu-hover-weight: 600;
+}
+
+.header__inline-menu .list-menu--inline > li .header__menu-item > span[data-text] {
+  display: inline-flex;
+  flex-direction: column;
+
+  &::after {
+    content: attr(data-text);
+    content: attr(data-text) / ''; // hidden from screen readers where supported
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+    font-weight: var(--melt-menu-hover-weight);
+  }
+}
+
+// ------------------------------------------------------------------ custom
+
+.header__menu-item:hover {
+  font-weight: var(--melt-menu-hover-weight, 600);
+}
+
+.header__menu-item .icon-caret {
+  display: none;
+}

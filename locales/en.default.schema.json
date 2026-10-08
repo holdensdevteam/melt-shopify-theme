@@ -144,7 +144,10 @@
         "logo_type": {
           "label": "Logo type",
           "options__svg": {
-            "label": "Melt logo (SVG)"
+            "label": "Melt logo original"
+          },
+          "options__v2": {
+            "label": "Melt logo"
           },
           "options__image": {
             "label": "Image"
@@ -201,7 +204,10 @@
         "brand_logo_type": {
           "label": "Logo type",
           "options__svg": {
-            "label": "Melt logo (SVG)"
+            "label": "Melt logo original"
+          },
+          "options__v2": {
+            "label": "Melt logo"
           },
           "options__image": {
             "label": "Image"
@@ -1208,6 +1214,75 @@
     "header": {
       "name": "Header",
       "settings": {
+        "menu_alignment": {
+          "label": "Menu alignment",
+          "info": "Desktop only. Right sits the menu next to the icons, keeping the logo on the left.",
+          "options__left": {
+            "label": "Left, next to the logo"
+          },
+          "options__center": {
+            "label": "Centre"
+          },
+          "options__right": {
+            "label": "Right, next to the icons"
+          }
+        },
+        "menu_text_transform": {
+          "label": "Menu text case",
+          "options__none": {
+            "label": "As typed in the menu"
+          },
+          "options__lowercase": {
+            "label": "lowercase"
+          },
+          "options__capitalize": {
+            "label": "Capitalised"
+          },
+          "options__uppercase": {
+            "label": "UPPERCASE"
+          }
+        },
+        "menu_item_spacing": {
+          "label": "Extra space between menu items",
+          "info": "Added to each item's own padding. 0 keeps the standard spacing."
+        },
+        "header_bar": {
+          "content": "Bar"
+        },
+        "bar_width": {
+          "label": "Width",
+          "info": "Page width follows Theme settings → Layout → Page width.",
+          "options__full": {
+            "label": "Full width"
+          },
+          "options__page": {
+            "label": "Page width"
+          }
+        },
+        "bar_opacity": {
+          "label": "Background opacity",
+          "info": "Below 100% the page shows through the header. Best with Overlay home page switched on."
+        },
+        "bar_radius": {
+          "label": "Corner radius"
+        },
+        "bar_margin_top": {
+          "label": "Margin top",
+          "info": "Margins are halved on mobile."
+        },
+        "bar_margin_right": {
+          "label": "Margin right"
+        },
+        "bar_margin_bottom": {
+          "label": "Margin bottom"
+        },
+        "bar_margin_left": {
+          "label": "Margin left"
+        },
+        "overlay_home": {
+          "label": "Overlay home page",
+          "info": "Lets the first section on the home page run up behind the header, so a hero image shows through the margins and a see-through background."
+        },
         "logo_help": {
           "content": "Edit your logo in [theme settings](/editor?context=theme&category=logo)"
         },

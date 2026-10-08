@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
+{%- comment -%} Melt header options (bar, menu alignment, text case) — loaded normally, not deferred, to avoid a layout jump. {%- endcomment -%}
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+
 <style>
   header-drawer {
     justify-self: start;
@@ -128,6 +131,25 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .section-header {
+    --melt-header-opacity: {{ section.settings.bar_opacity | divided_by: 100.0 }};
+    --melt-header-radius: {{ section.settings.bar_radius }}px;
+    --melt-menu-gap: {{ section.settings.menu_item_spacing }}px;
+    --melt-header-margin-top: {{ section.settings.bar_margin_top | divided_by: 2 }}px;
+    --melt-header-margin-right: {{ section.settings.bar_margin_right | divided_by: 2 }}px;
+    --melt-header-margin-bottom: {{ section.settings.bar_margin_bottom | divided_by: 2 }}px;
+    --melt-header-margin-left: {{ section.settings.bar_margin_left | divided_by: 2 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-header {
+      --melt-header-margin-top: {{ section.settings.bar_margin_top }}px;
+      --melt-header-margin-right: {{ section.settings.bar_margin_right }}px;
+      --melt-header-margin-bottom: {{ section.settings.bar_margin_bottom }}px;
+      --melt-header-margin-left: {{ section.settings.bar_margin_left }}px;
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -146,13 +168,18 @@
   if section.settings.sticky_header_type != 'none'
     assign header_tag = 'sticky-header'
   endif
+
+  assign overlay_header = false
+  if section.settings.overlay_home and request.page_type == 'index'
+    assign overlay_header = true
+  endif
 %}
 
 <{{ header_tag }}
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if section.settings.bar_opacity < 100 %} header-wrapper--translucent{% endif %}{% if overlay_header %} header-wrapper--overlay{% endif %}{% if section.settings.bar_width == 'page' %} header-wrapper--contained{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -170,7 +197,7 @@
       assign language_selector = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} header--menu-{{ section.settings.menu_alignment }} header--menu-case-{{ section.settings.menu_text_transform }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
     {%- liquid
       assign render_search_left = false
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank or shop.customer_accounts_enabled
@@ -213,6 +240,7 @@
         {%- else -%}
           {% render 'melt-logo',
             class: 'header__heading-logo-wrapper header__heading-logo-wrapper--svg',
+            variant: settings.logo_type,
             color: settings.logo_svg_color
           %}
         {%- endif -%}
@@ -259,6 +287,7 @@
         {%- else -%}
           {% render 'melt-logo',
             class: 'header__heading-logo-wrapper header__heading-logo-wrapper--svg',
+            variant: settings.logo_type,
             color: settings.logo_svg_color
           %}
         {%- endif -%}
@@ -330,6 +359,26 @@
     </div>
   </header>
 </{{ header_tag }}>
+
+{%- if overlay_header -%}
+  {%- comment -%}
+    Overlay: pull the next section up behind the header by its own height. Runs inline,
+    straight after the header markup, so the hero is already in place on first paint.
+    The ResizeObserver keeps it right when fonts load or the sticky logo shrinks — the
+    header's footprint stays at zero, so that never shifts the page.
+  {%- endcomment -%}
+  <script>
+    (function () {
+      var section = document.currentScript && document.currentScript.closest('.section-header');
+      if (!section) return;
+      var setHeight = function () {
+        section.style.setProperty('--melt-header-overlay-height', section.offsetHeight + 'px');
+      };
+      setHeight();
+      if ('ResizeObserver' in window) new ResizeObserver(setHeight).observe(section);
+    })();
+  </script>
+{%- endif -%}
 
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
@@ -585,6 +634,63 @@
     },
     {
       "type": "select",
+      "id": "menu_alignment",
+      "label": "t:sections.header.settings.menu_alignment.label",
+      "info": "t:sections.header.settings.menu_alignment.info",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.header.settings.menu_alignment.options__left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.header.settings.menu_alignment.options__center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.header.settings.menu_alignment.options__right.label"
+        }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.logo_position == 'middle-left' }}"
+    },
+    {
+      "type": "select",
+      "id": "menu_text_transform",
+      "label": "t:sections.header.settings.menu_text_transform.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.header.settings.menu_text_transform.options__none.label"
+        },
+        {
+          "value": "lowercase",
+          "label": "t:sections.header.settings.menu_text_transform.options__lowercase.label"
+        },
+        {
+          "value": "capitalize",
+          "label": "t:sections.header.settings.menu_text_transform.options__capitalize.label"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:sections.header.settings.menu_text_transform.options__uppercase.label"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "menu_item_spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.header.settings.menu_item_spacing.label",
+      "info": "t:sections.header.settings.menu_item_spacing.info"
+    },
+    {
+      "type": "select",
       "id": "sticky_header_type",
       "options": [
         {
@@ -628,6 +734,96 @@
       "id": "menu_color_scheme",
       "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header_bar.content"
+    },
+    {
+      "type": "select",
+      "id": "bar_width",
+      "label": "t:sections.header.settings.bar_width.label",
+      "options": [
+        {
+          "value": "full",
+          "label": "t:sections.header.settings.bar_width.options__full.label"
+        },
+        {
+          "value": "page",
+          "label": "t:sections.header.settings.bar_width.options__page.label"
+        }
+      ],
+      "default": "full",
+      "info": "t:sections.header.settings.bar_width.info"
+    },
+    {
+      "type": "range",
+      "id": "bar_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100,
+      "label": "t:sections.header.settings.bar_opacity.label",
+      "info": "t:sections.header.settings.bar_opacity.info"
+    },
+    {
+      "type": "range",
+      "id": "bar_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.header.settings.bar_radius.label"
+    },
+    {
+      "type": "range",
+      "id": "bar_margin_top",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.header.settings.bar_margin_top.label",
+      "info": "t:sections.header.settings.bar_margin_top.info"
+    },
+    {
+      "type": "range",
+      "id": "bar_margin_right",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.header.settings.bar_margin_right.label"
+    },
+    {
+      "type": "range",
+      "id": "bar_margin_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.header.settings.bar_margin_bottom.label"
+    },
+    {
+      "type": "range",
+      "id": "bar_margin_left",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.header.settings.bar_margin_left.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_home",
+      "default": false,
+      "label": "t:sections.header.settings.overlay_home.label",
+      "info": "t:sections.header.settings.overlay_home.info"
     },
     {
       "type": "header",

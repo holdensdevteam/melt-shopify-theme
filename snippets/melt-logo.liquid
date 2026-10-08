@@ -12,12 +12,22 @@
 
   Accepts:
   - class: {String} Optional additional classes for the wrapper.
+  - variant: {String} 'v2' for the current "Melt logo" (assets/melt-logo-v2.svg). Anything else
+    renders "Melt logo original" (assets/melt-logo.svg). Pass the logo type setting straight in.
   - color: {String} 'auto' (follow colour scheme), 'dark' or 'light'. Defaults to 'auto'.
   - width: {Number} Optional width in px. Omit when the caller sizes the wrapper in CSS.
 
   Usage:
-  {% render 'melt-logo', color: settings.logo_svg_color, class: 'header__heading-logo-wrapper' %}
+  {% render 'melt-logo', variant: settings.logo_type, color: settings.logo_svg_color, class: 'header__heading-logo-wrapper' %}
 {% endcomment %}
+
+{%- liquid
+  if variant == 'v2'
+    assign logo_file = 'melt-logo-v2.svg'
+  else
+    assign logo_file = 'melt-logo.svg'
+  endif
+-%}
 
 <span
   class="melt-logo-wrapper melt-logo-wrapper--{{ color | default: 'auto' }}{% if class %} {{ class }}{% endif %}"
@@ -25,6 +35,6 @@
     style="width: {{ width }}px; max-width: 100%;"
   {% endif %}
 >
-  {{- 'melt-logo.svg' | inline_asset_content -}}
+  {{- logo_file | inline_asset_content -}}
 </span>
 <span class="visually-hidden">{{ shop.name }}</span>
