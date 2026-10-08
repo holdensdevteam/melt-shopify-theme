@@ -177,21 +177,24 @@
           "type": "featured_collection",
           "settings": {
             "collection": "christmas",
-            "subtitle": "From 10 November"
+            "subtitle": "From 10 November",
+            "tags": ""
           }
         },
         "featured_collection_qYBEg4": {
           "type": "featured_collection",
           "settings": {
             "collection": "valentines-day",
-            "subtitle": "From 10 January"
+            "subtitle": "From 10 January",
+            "tags": ""
           }
         },
         "featured_collection_ky33Br": {
           "type": "featured_collection",
           "settings": {
             "collection": "mothers-day-1",
-            "subtitle": "From 10 March"
+            "subtitle": "From 10 March",
+            "tags": ""
           }
         }
       },
@@ -204,7 +207,15 @@
       "settings": {
         "title": "Shopping for an occasion?",
         "heading_size": "h1",
+        "description": "",
         "heading_alignment": "center",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 50,
+        "heading_margin_sides": 0,
+        "cta_label": "",
+        "cta_link": "",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
         "image_ratio": "landscape",
         "columns_desktop": 3,
         "color_scheme": "scheme-2",
@@ -213,14 +224,17 @@
         "card_color_scheme": "",
         "card_image_padding": 12,
         "card_radius": 8,
+        "card_border_width": 0,
         "card_text_alignment": "center",
         "card_heading_size": "large",
         "show_arrow": false,
         "background_image": "shopify://shop_images/occasion-bg2.png",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "padding_sides": 50,
+        "content_width": "page"
       }
     },
     "collection_list_QWnBJJ": {
@@ -230,42 +244,48 @@
           "type": "featured_collection",
           "settings": {
             "collection": "fresh",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": "Citrus, Green, Clean"
           }
         },
         "featured_collection_ewNiym": {
           "type": "featured_collection",
           "settings": {
             "collection": "floral",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": "Rose, Lily, Hyacinth"
           }
         },
         "featured_collection_CVpBeb": {
           "type": "featured_collection",
           "settings": {
             "collection": "spicy",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": "Clove, Pepper, Nutmeg"
           }
         },
         "featured_collection_QiVigJ": {
           "type": "featured_collection",
           "settings": {
             "collection": "woody",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": "Cedar, Sandwood, Moss"
           }
         },
         "featured_collection_34F8Fj": {
           "type": "featured_collection",
           "settings": {
             "collection": "warm",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": "Amber, Vanilla, Musk"
           }
         },
         "featured_collection_qN3xRz": {
           "type": "featured_collection",
           "settings": {
             "collection": "soft",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": "Powder, Cashmere, Cream"
           }
         }
       },
@@ -281,22 +301,33 @@
       "settings": {
         "title": "Shop by scent",
         "heading_size": "h1",
+        "description": "<p>Six families to start with. Or go straight to a name you already know.</p>",
         "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 30,
+        "heading_margin_sides": 0,
+        "cta_label": "All 24 Fragrances, A-Z",
+        "cta_link": "shopify://collections",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
         "image_ratio": "square",
         "columns_desktop": 6,
         "color_scheme": "scheme-1",
-        "show_view_all": true,
-        "card_style": "theme",
-        "card_color_scheme": "",
+        "show_view_all": false,
+        "card_style": "card",
+        "card_color_scheme": "scheme-1",
         "card_image_padding": 12,
         "card_radius": 8,
-        "card_text_alignment": "theme",
+        "card_border_width": 1,
+        "card_text_alignment": "center",
         "card_heading_size": "default",
-        "show_arrow": true,
+        "show_arrow": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "padding_sides": 50,
+        "content_width": "page"
       }
     },
     "featured_collection_d7RLwX": {
@@ -335,21 +366,24 @@
           "type": "featured_collection",
           "settings": {
             "collection": "scented-candles",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_a6APCt": {
           "type": "featured_collection",
           "settings": {
             "collection": "wax-melts",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_yDtTrF": {
           "type": "featured_collection",
           "settings": {
             "collection": "reed-diffusers",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         }
       },
@@ -362,7 +396,15 @@
       "settings": {
         "title": "Candles, diffusers & melts",
         "heading_size": "h1",
+        "description": "",
         "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 30,
+        "heading_margin_sides": 0,
+        "cta_label": "",
+        "cta_link": "",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
         "image_ratio": "square",
         "columns_desktop": 3,
         "color_scheme": "",
@@ -371,13 +413,16 @@
         "card_color_scheme": "",
         "card_image_padding": 12,
         "card_radius": 8,
+        "card_border_width": 0,
         "card_text_alignment": "theme",
         "card_heading_size": "default",
         "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "padding_sides": 50,
+        "content_width": "page"
       }
     },
     "collection_list_YTdYtr": {
@@ -387,42 +432,48 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_NRFkwy": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_rpj9zY": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_LFUddR": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_rjbLeM": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_3MGhUH": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         }
       },
@@ -438,7 +489,15 @@
       "settings": {
         "title": "Shop by moment",
         "heading_size": "h1",
+        "description": "",
         "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 30,
+        "heading_margin_sides": 0,
+        "cta_label": "",
+        "cta_link": "",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
         "image_ratio": "square",
         "columns_desktop": 3,
         "color_scheme": "scheme-1",
@@ -447,13 +506,16 @@
         "card_color_scheme": "",
         "card_image_padding": 12,
         "card_radius": 8,
+        "card_border_width": 0,
         "card_text_alignment": "theme",
         "card_heading_size": "default",
         "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "padding_sides": 50,
+        "content_width": "page"
       }
     },
     "collection_list_8cqF6y": {
@@ -463,21 +525,24 @@
           "type": "featured_collection",
           "settings": {
             "collection": "for-her",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_BLkDGL": {
           "type": "featured_collection",
           "settings": {
             "collection": "for-him",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         },
         "featured_collection_JNF8p9": {
           "type": "featured_collection",
           "settings": {
             "collection": "for-mum",
-            "subtitle": ""
+            "subtitle": "",
+            "tags": ""
           }
         }
       },
@@ -490,7 +555,15 @@
       "settings": {
         "title": "Find something for someone",
         "heading_size": "h1",
+        "description": "",
         "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 30,
+        "heading_margin_sides": 0,
+        "cta_label": "",
+        "cta_link": "",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
         "image_ratio": "square",
         "columns_desktop": 3,
         "color_scheme": "",
@@ -499,13 +572,16 @@
         "card_color_scheme": "",
         "card_image_padding": 12,
         "card_radius": 8,
+        "card_border_width": 0,
         "card_text_alignment": "theme",
         "card_heading_size": "default",
         "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "padding_sides": 50,
+        "content_width": "page"
       }
     },
     "melt_columns_P4N4L6": {
