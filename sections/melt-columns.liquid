@@ -1,4 +1,5 @@
 {{ 'section-melt-columns.css' | asset_url | stylesheet_tag }}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -47,9 +48,7 @@
     {%- if has_header -%}
       <div class="melt-columns__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <div class="melt-columns__header-main">
-          {%- if section.settings.eyebrow != blank -%}
-            <p class="melt-columns__eyebrow caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
-          {%- endif -%}
+          {%- render 'melt-eyebrow', text: section.settings.eyebrow, color: section.settings.eyebrow_color -%}
           {%- if section.settings.title != blank -%}
             <h2 class="melt-columns__title inline-richtext {{ section.settings.heading_size }}">
               {{ section.settings.title }}
@@ -144,6 +143,12 @@
       "type": "text",
       "id": "eyebrow",
       "label": "t:sections.melt_columns.settings.eyebrow.label"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "t:sections.all.eyebrow_color.label",
+      "info": "t:sections.all.eyebrow_color.info"
     },
     {
       "type": "inline_richtext",

@@ -1,4 +1,5 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -12,6 +13,16 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- comment -%}
+    Custom image corners: override Dawn's --media-radius for this section only, so the image
+    and Dawn's corner-joining rules (where image and text box meet) all pick it up.
+  {%- endcomment -%}
+  {%- if section.settings.image_corners == 'custom' %}
+    .section-{{ section.id }}-padding {
+      --media-radius: {{ section.settings.image_radius }}px;
+    }
+  {%- endif %}
 {%- endstyle -%}
 
 {%- liquid
@@ -66,6 +77,13 @@
           >
             {%- for block in section.blocks -%}
               {% case block.type %}
+                {%- when 'eyebrow' -%}
+                  {%- render 'melt-eyebrow',
+                    text: block.settings.text,
+                    color: block.settings.eyebrow_color,
+                    class: 'image-with-text__eyebrow',
+                    attributes: block.shopify_attributes
+                  -%}
                 {%- when 'heading' -%}
                   <h2
                     class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}"
@@ -112,7 +130,10 @@
   "name": "t:sections.image-with-text.name",
   "class": "section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
     {
@@ -143,6 +164,34 @@
       ],
       "default": "adapt",
       "label": "t:sections.image-with-text.settings.height.label"
+    },
+    {
+      "type": "select",
+      "id": "image_corners",
+      "label": "t:sections.image-with-text.settings.image_corners.label",
+      "options": [
+        {
+          "value": "theme",
+          "label": "t:sections.image-with-text.settings.image_corners.options__theme.label"
+        },
+        {
+          "value": "custom",
+          "label": "t:sections.image-with-text.settings.image_corners.options__custom.label"
+        }
+      ],
+      "default": "theme",
+      "info": "t:sections.image-with-text.settings.image_corners.info"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8,
+      "label": "t:sections.image-with-text.settings.image_radius.label",
+      "visible_if": "{{ section.settings.image_corners == 'custom' }}"
     },
     {
       "type": "select",
@@ -203,7 +252,7 @@
     {
       "type": "header",
       "content": "t:sections.image-with-text.settings.header.content"
-    }, 
+    },
     {
       "type": "select",
       "id": "content_layout",
@@ -219,7 +268,7 @@
       ],
       "default": "no-overlap",
       "label": "t:sections.image-with-text.settings.content_layout.label"
-    },       
+    },
     {
       "type": "select",
       "id": "desktop_content_position",
@@ -283,7 +332,7 @@
     {
       "type": "header",
       "content": "t:sections.image-with-text.settings.header_colors.content"
-    },        
+    },
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
@@ -322,6 +371,25 @@
     }
   ],
   "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "t:sections.image-with-text.blocks.eyebrow.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.image-with-text.blocks.eyebrow.settings.text.label",
+          "default": "t:sections.image-with-text.blocks.eyebrow.settings.text.default"
+        },
+        {
+          "type": "color",
+          "id": "eyebrow_color",
+          "label": "t:sections.all.eyebrow_color.label",
+          "info": "t:sections.all.eyebrow_color.info"
+        }
+      ]
+    },
     {
       "type": "heading",
       "name": "t:sections.image-with-text.blocks.heading.name",

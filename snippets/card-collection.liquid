@@ -3,11 +3,14 @@
 
   Accepts:
   - card_collection: {Object} Collection Liquid object
-  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+  - media_aspect_ratio: {String} Size of the product image card. Values are "square", "portrait", "landscape" (14:9, Melt) and "adapt". Default is "square" (optional)
   - columns: {Number}
   - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
   - wrapper_class: {String} Wrapper class for card (optional)
   - placeholder_image: {String} Placeholder image when collection is empty (optional)
+  - card_style_override: {String} 'standard' or 'card' — overrides Theme settings → Collection cards (optional, Melt)
+  - card_color_scheme_override: {String} Colour scheme for this card, overriding the theme setting (optional, Melt)
+  - subtitle: {String} Short line under the collection name, e.g. "From 10 November" (optional, Melt)
 
   Usage:
   {% render 'card-collection' %}
@@ -17,6 +20,8 @@
   assign ratio = 1
   if card_collection.featured_image and media_aspect_ratio == 'portrait'
     assign ratio = 0.8
+  elsif card_collection.featured_image and media_aspect_ratio == 'landscape'
+    assign ratio = 14 | divided_by: 9.0
   elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
     assign ratio = card_collection.featured_image.aspect_ratio
   endif
@@ -28,6 +33,12 @@
   if wrapper_class == null or wrapper_class == 'none'
     assign card_color_scheme = settings.collection_card_color_scheme
     assign card_style = settings.collection_card_style
+  endif
+  if card_style_override != blank
+    assign card_style = card_style_override
+  endif
+  if card_color_scheme_override != blank
+    assign card_color_scheme = card_color_scheme_override
   endif
 -%}
 
@@ -104,6 +115,9 @@
                 {%- endif %}
               </a>
             </h3>
+            {%- if subtitle != blank -%}
+              <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
+            {%- endif -%}
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
                 {{- card_collection.description | strip_html | truncatewords: 12 -}}
@@ -140,6 +154,9 @@
               {%- endif %}
             </a>
           </h3>
+          {%- if subtitle != blank -%}
+            <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
+          {%- endif -%}
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}

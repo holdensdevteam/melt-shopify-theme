@@ -1,0 +1,26 @@
+{% comment %}
+  Renders an eyebrow: the small uppercase line above a heading. Every Melt eyebrow goes through
+  this snippet so they look the same everywhere. Styles: assets/component-eyebrow.css (load it in
+  the section — src/scss/component-eyebrow.scss).
+
+  Accepts:
+  - text: {String} Eyebrow text.
+  - color: {Color} Optional colour setting. Blank uses the colour scheme's text colour, softened.
+  - class: {String} Optional additional classes (section-specific spacing).
+  - attributes: {String} Optional extra attributes, e.g. block.shopify_attributes.
+
+  Usage:
+  {% render 'melt-eyebrow', text: block.settings.text, color: block.settings.color, attributes: block.shopify_attributes %}
+{% endcomment %}
+
+{%- if text != blank -%}
+  <p
+    class="melt-eyebrow{% if class %} {{ class }}{% endif %}"
+    {% if color != blank and color.alpha != 0 %}
+      style="--eyebrow-color: {{ color }};"
+    {% endif %}
+    {{ attributes }}
+  >
+    {{- text | escape -}}
+  </p>
+{%- endif -%}

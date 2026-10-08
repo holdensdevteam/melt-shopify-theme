@@ -1,5 +1,6 @@
-@charset "UTF-8";
 /*! Compiled from src/scss/section-collection-list.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
 .collection-list {
   margin-top: 0;
   margin-bottom: 0;
@@ -14,15 +15,18 @@
     padding-left: 0;
     padding-right: 0;
   }
+
   .section-collection-list .page-width {
     padding-left: 0;
     padding-right: 0;
   }
+
   .section-collection-list .collection-list:not(.slider) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
+
 .collection-list__item:only-child {
   max-width: 100%;
   width: 100%;
@@ -33,6 +37,7 @@
     padding-bottom: 0;
   }
 }
+
 @media screen and (min-width: 750px) and (max-width: 989px) {
   .slider.collection-list--1-items,
   .slider.collection-list--2-items,
@@ -41,16 +46,19 @@
     padding-bottom: 0;
   }
 }
+
 @media screen and (min-width: 750px) {
   .collection-list__item a:hover {
     box-shadow: none;
   }
 }
+
 @media screen and (max-width: 989px) {
   .collection-list.slider .collection-list__item {
     max-width: 100%;
   }
 }
+
 .collection-list-view-all {
   margin-top: 2rem;
 }
@@ -61,6 +69,8 @@
  * Card padding/radius/alignment overrides are CSS variables set in the section's {% style %}.
  * ------------------------------------------------------------
  */
+
+// Background image: fills the section behind the content.
 .collection-list-section {
   position: relative;
   isolation: isolate;
@@ -76,36 +86,40 @@
   pointer-events: none;
 }
 
+// Centred heading
 .collection-list-section--heading-center .title-wrapper-with-link {
   justify-content: center;
   text-align: center;
 }
 
+// Larger collection names
 .collection-list-section--name-large .card__heading {
   font-size: calc(var(--font-heading-scale) * 2rem);
-}
-@media screen and (min-width: 750px) {
-  .collection-list-section--name-large .card__heading {
+
+  @include bp.from(bp.$medium) {
     font-size: calc(var(--font-heading-scale) * 2.4rem);
   }
 }
 
+// Subtitle under the name ("From 10 November")
 .collection-list-section .card__subtitle {
   margin: 0.4rem 0 0;
   font-size: 1.5rem;
   line-height: 1.4;
   color: rgba(var(--color-foreground), 0.85);
-}
-@media screen and (min-width: 750px) {
-  .collection-list-section .card__subtitle {
+
+  @include bp.from(bp.$medium) {
     font-size: 1.7rem;
   }
 }
 
+// Card images use Theme settings → Media → Corner radius (--media-radius), rather than Dawn's
+// default of the card radius minus the image padding. Extra specificity to beat component-card.css.
 .collection-list-section .card .card__inner .card__media {
   border-radius: var(--media-radius);
 }
 
+// Hide Dawn's arrow after the name
 .collection-list-section--no-arrow .card__heading .icon-wrap {
   display: none;
 }

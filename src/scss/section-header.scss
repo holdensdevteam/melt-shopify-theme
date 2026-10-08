@@ -41,6 +41,17 @@
   }
 }
 
+// ------------------------------------------------------------------ icons
+
+// Melt's search, account and basket icons (assets/icon-search|account|cart|cart-empty.svg) are
+// drawn on a 24 × 24 canvas. Dawn sized its own at 20px, and its basket at 44px because that
+// icon had padding built in. Show all three at the same size.
+.header__icon .icon,
+.header__icon--cart .icon {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
 // ------------------------------------------------------------------ menu alignment
 
 // Dawn's middle-left layout is 'heading navigation icons' with columns auto auto 1fr, which
@@ -61,15 +72,30 @@
   }
 }
 
+// ------------------------------------------------------------------ header spacing
+
+// Gap between the header's own columns (logo, menu, icons). Dawn uses 2rem; widen it on wide
+// screens. .section-header prefix so this beats Dawn's per-layout rules in base.css.
+@include bp.from(bp.$xxlarge) {
+  .section-header .header {
+    column-gap: 6rem;
+  }
+}
+
 // ------------------------------------------------------------------ menu spacing
 
 // Extra gap between top-level items, on top of Dawn's 1.2rem padding per item.
-// Halved on small desktops (990–1199px), where the full gap can push the menu onto two lines.
+// Halved on small desktops (990–1199px), where the full gap can push the menu onto two lines;
+// 50% larger on wide screens (1400px and up), where the full gap looks cramped.
 .header__inline-menu .list-menu--inline {
   column-gap: var(--melt-menu-gap, 0px);
 
   @include bp.between(bp.$large, bp.$xlarge) {
     column-gap: calc(var(--melt-menu-gap, 0px) / 2);
+  }
+
+  @include bp.from(bp.$xxlarge) {
+    column-gap: calc(var(--melt-menu-gap, 0px) * 1.5);
   }
 }
 

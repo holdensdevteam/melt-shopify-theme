@@ -109,11 +109,6 @@
   background-color: rgba(var(--color-foreground), 0.04);
 }
 
-.melt-columns__eyebrow {
-  margin: 0;
-  color: rgba(var(--color-foreground), 0.6);
-}
-
 .melt-columns .rte {
   width: 100%;
 }

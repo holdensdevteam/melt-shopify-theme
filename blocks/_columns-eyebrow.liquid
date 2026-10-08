@@ -1,8 +1,8 @@
-{%- if block.settings.text != blank -%}
-  <p class="melt-columns__eyebrow caption-with-letter-spacing" {{ block.shopify_attributes }}>
-    {{- block.settings.text | escape -}}
-  </p>
-{%- endif -%}
+{%- render 'melt-eyebrow',
+  text: block.settings.text,
+  color: block.settings.eyebrow_color,
+  attributes: block.shopify_attributes
+-%}
 
 {% schema %}
 {
@@ -13,6 +13,12 @@
       "id": "text",
       "label": "t:blocks.columns_eyebrow.settings.text.label",
       "default": "t:blocks.columns_eyebrow.settings.text.default"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "t:sections.all.eyebrow_color.label",
+      "info": "t:sections.all.eyebrow_color.info"
     }
   ],
   "presets": [

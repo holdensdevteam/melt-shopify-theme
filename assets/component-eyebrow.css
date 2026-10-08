@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/component-eyebrow.scss — edit that file, not this one. */
+.melt-eyebrow {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--eyebrow-color, rgba(var(--color-foreground), 0.6));
+}
