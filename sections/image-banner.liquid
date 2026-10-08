@@ -1,12 +1,44 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  # Min/max height (0 = off). For "Adapt to first image" they clamp the image-ratio height, so the
+  # image crops to fit (object-fit: cover, centred on the image's focal point). For the fixed
+  # presets the minimum replaces the preset height; the maximum doesn't apply, as those heights
+  # grow with the content.
+  assign min_desktop = section.settings.min_height_desktop
+  assign max_desktop = section.settings.max_height_desktop
+  assign min_mobile = section.settings.min_height_mobile
+  assign max_mobile = section.settings.max_height_mobile
+-%}
+
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
+  {%- liquid
+    assign ratio_height = 1 | divided_by: section.settings.image.aspect_ratio | times: 100 | append: '%'
+
+    assign height_mobile = ratio_height
+    if min_mobile > 0 and max_mobile > 0
+      assign height_mobile = 'clamp(' | append: min_mobile | append: 'px, ' | append: ratio_height | append: ', ' | append: max_mobile | append: 'px)'
+    elsif min_mobile > 0
+      assign height_mobile = 'max(' | append: min_mobile | append: 'px, ' | append: ratio_height | append: ')'
+    elsif max_mobile > 0
+      assign height_mobile = 'min(' | append: ratio_height | append: ', ' | append: max_mobile | append: 'px)'
+    endif
+
+    assign height_desktop = ratio_height
+    if min_desktop > 0 and max_desktop > 0
+      assign height_desktop = 'clamp(' | append: min_desktop | append: 'px, ' | append: ratio_height | append: ', ' | append: max_desktop | append: 'px)'
+    elsif min_desktop > 0
+      assign height_desktop = 'max(' | append: min_desktop | append: 'px, ' | append: ratio_height | append: ')'
+    elsif max_desktop > 0
+      assign height_desktop = 'min(' | append: ratio_height | append: ', ' | append: max_desktop | append: 'px)'
+    endif
+  -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before,
       #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        padding-bottom: {{ height_mobile }};
         content: '';
         display: block;
       }
@@ -15,11 +47,29 @@
     @media screen and (min-width: 750px) {
       #Banner-{{ section.id }}::before,
       #Banner-{{ section.id }} .banner__media::before {
-        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        padding-bottom: {{ height_desktop }};
         content: '';
         display: block;
       }
     }
+  {%- endstyle -%}
+{%- elsif min_desktop > 0 or min_mobile > 0 -%}
+  {%- style -%}
+    {%- if min_mobile > 0 %}
+      @media screen and (max-width: 749px) {
+        #Banner-{{ section.id }},
+        #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content {
+          min-height: {{ min_mobile }}px;
+        }
+      }
+    {%- endif %}
+    {%- if min_desktop > 0 %}
+      @media screen and (min-width: 750px) {
+        #Banner-{{ section.id }} {
+          min-height: {{ min_desktop }}px;
+        }
+      }
+    {%- endif %}
   {%- endstyle -%}
 {%- endif -%}
 
@@ -59,6 +109,11 @@
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {%- liquid
         assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
+        # Crop around the focal point set on the image in Shopify admin (Content → Files, or the image picker).
+        assign focal_style = nil
+        if section.settings.image.presentation.focal_point != blank
+          assign focal_style = 'object-position: ' | append: section.settings.image.presentation.focal_point
+        endif
         if section.settings.image_2 != blank
           assign image_class = 'banner__media-image-half'
         endif
@@ -77,6 +132,7 @@
           width: section.settings.image.width,
           height: image_height,
           class: image_class,
+          style: focal_style,
           sizes: sizes,
           widths: widths,
           fetchpriority: fetch_priority
@@ -91,6 +147,10 @@
     <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {%- liquid
         assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
+        assign focal_style_2 = nil
+        if section.settings.image_2.presentation.focal_point != blank
+          assign focal_style_2 = 'object-position: ' | append: section.settings.image_2.presentation.focal_point
+        endif
         if section.settings.image != blank
           assign image_class_2 = 'banner__media-image-half'
         endif
@@ -109,30 +169,83 @@
           width: section.settings.image_2.width,
           height: image_height_2,
           class: image_class_2,
+          style: focal_style_2,
           sizes: sizes,
           widths: widths,
           fetchpriority: fetch_priority
       }}
     </div>
   {%- endif -%}
+  {%- comment -%} Button style settings — output outside .banner__box so the <style> tag doesn't affect Dawn's sibling spacing rules. {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'buttons' -%}
+      {%- liquid
+        assign buttons_class = 'banner__buttons--' | append: section.id | append: '-' | append: block.id
+        assign button_color = block.settings.button_color
+        assign button_text_color = block.settings.button_text_color
+      -%}
+      {%- style -%}
+        .banner__box > .{{ buttons_class }} {
+          margin-top: {{ block.settings.button_margin_top }}px;
+          margin-bottom: {{ block.settings.button_margin_bottom }}px;
+        }
+
+        .{{ buttons_class }} .button {
+          padding-left: {{ block.settings.button_padding_horizontal }}px;
+          padding-right: {{ block.settings.button_padding_horizontal }}px;
+          text-transform: {{ block.settings.button_text_transform }};
+          {%- if block.settings.button_padding_vertical > 0 %}
+            min-height: 0;
+            padding-top: {{ block.settings.button_padding_vertical }}px;
+            padding-bottom: {{ block.settings.button_padding_vertical }}px;
+          {%- endif %}
+        }
+
+        {%- comment -%} Dawn's buttons read these scheme variables (as "r, g, b"), so hover and border effects follow. {%- endcomment -%}
+        .{{ buttons_class }} .button--primary {
+          {%- if button_color != blank %}
+            --color-button: {{ button_color.red }}, {{ button_color.green }}, {{ button_color.blue }};
+          {%- endif %}
+          {%- if button_text_color != blank %}
+            --color-button-text: {{ button_text_color.red }}, {{ button_text_color.green }}, {{ button_text_color.blue }};
+          {%- endif %}
+        }
+      {%- endstyle -%}
+    {%- endif -%}
+  {%- endfor -%}
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
-            <h2
-              class="banner__heading inline-richtext {{ block.settings.heading_size }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.heading }}
-            </h2>
+            {%- if block.settings.heading_rich != blank -%}
+              {%- comment -%}
+                Rich text heading: line breaks and per-line sizes come from the editor. Paragraphs
+                take the "Heading size" setting; lines set to Heading 1–6 in the editor use that
+                heading's size and become real heading elements.
+              {%- endcomment -%}
+              <div
+                class="banner__heading banner__heading--rich {{ block.settings.heading_size }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading_rich }}
+              </div>
+            {%- else -%}
+              <h2
+                class="banner__heading inline-richtext {{ block.settings.heading_size }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- endif -%}
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
+            {%- assign buttons_class = 'banner__buttons--' | append: section.id | append: '-' | append: block.id -%}
             <div
-              class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
+              class="banner__buttons {{ buttons_class }}{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
               {{ block.shopify_attributes }}
             >
               {%- if block.settings.button_label_1 != blank -%}
@@ -172,7 +285,10 @@
   "tag": "section",
   "class": "section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
     {
@@ -242,6 +358,53 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-banner.settings.header_height.content",
+      "info": "t:sections.image-banner.settings.header_height.info"
+    },
+    {
+      "type": "range",
+      "id": "min_height_desktop",
+      "min": 0,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.image-banner.settings.min_height_desktop.label",
+      "info": "t:sections.image-banner.settings.min_height_desktop.info"
+    },
+    {
+      "type": "range",
+      "id": "max_height_desktop",
+      "min": 0,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.image-banner.settings.max_height_desktop.label",
+      "info": "t:sections.image-banner.settings.max_height_desktop.info"
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "min": 0,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.image-banner.settings.min_height_mobile.label"
+    },
+    {
+      "type": "range",
+      "id": "max_height_mobile",
+      "min": 0,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.image-banner.settings.max_height_mobile.label"
     },
     {
       "type": "header",
@@ -332,7 +495,7 @@
       "id": "stack_images_on_mobile",
       "default": true,
       "label": "t:sections.image-banner.settings.stack_images_on_mobile.label"
-    },    
+    },
     {
       "type": "select",
       "id": "mobile_content_alignment",
@@ -367,10 +530,17 @@
       "limit": 1,
       "settings": [
         {
+          "type": "richtext",
+          "id": "heading_rich",
+          "label": "t:sections.image-banner.blocks.heading.settings.heading_rich.label",
+          "info": "t:sections.image-banner.blocks.heading.settings.heading_rich.info"
+        },
+        {
           "type": "inline_richtext",
           "id": "heading",
           "default": "t:sections.image-banner.blocks.heading.settings.heading.default",
-          "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
+          "label": "t:sections.image-banner.blocks.heading.settings.heading.label_single_line",
+          "info": "t:sections.image-banner.blocks.heading.settings.heading.info_single_line"
         },
         {
           "type": "select",
@@ -441,8 +611,8 @@
       "limit": 1,
       "settings": [
         {
-        "type": "header",
-        "content": "t:sections.image-banner.blocks.buttons.settings.header_1.content"
+          "type": "header",
+          "content": "t:sections.image-banner.blocks.buttons.settings.header_1.content"
         },
         {
           "type": "text",
@@ -463,8 +633,8 @@
           "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
-        "type": "header",
-        "content": "t:sections.image-banner.blocks.buttons.settings.header_2.content"
+          "type": "header",
+          "content": "t:sections.image-banner.blocks.buttons.settings.header_2.content"
         },
         {
           "type": "text",
@@ -483,6 +653,87 @@
           "id": "button_style_secondary_2",
           "default": false,
           "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_2.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.image-banner.blocks.buttons.settings.header_style.content"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_color.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_color.info"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_text_color.label"
+        },
+        {
+          "type": "select",
+          "id": "button_text_transform",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_text_transform.label",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.header.settings.menu_text_transform.options__none.label"
+            },
+            {
+              "value": "lowercase",
+              "label": "t:sections.header.settings.menu_text_transform.options__lowercase.label"
+            },
+            {
+              "value": "capitalize",
+              "label": "t:sections.header.settings.menu_text_transform.options__capitalize.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.header.settings.menu_text_transform.options__uppercase.label"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "default": 0,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_padding_vertical.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_padding_vertical.info"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 30,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_padding_horizontal.label"
+        },
+        {
+          "type": "range",
+          "id": "button_margin_top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 10,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_margin_top.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_margin_top.info"
+        },
+        {
+          "type": "range",
+          "id": "button_margin_bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_margin_bottom.label"
         }
       ]
     }

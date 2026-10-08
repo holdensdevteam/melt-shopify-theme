@@ -1371,6 +1371,24 @@
     "image-banner": {
       "name": "Image banner",
       "settings": {
+        "header_height": {
+          "content": "Height limits",
+          "info": "0 means no limit. The image crops to fill, centred on its focal point (set it when choosing the image)."
+        },
+        "min_height_desktop": {
+          "label": "Minimum height (desktop)",
+          "info": "With a fixed Banner height, this replaces it."
+        },
+        "max_height_desktop": {
+          "label": "Maximum height (desktop)",
+          "info": "Applies to Adapt to first image. The banner still grows to fit its text."
+        },
+        "min_height_mobile": {
+          "label": "Minimum height (mobile)"
+        },
+        "max_height_mobile": {
+          "label": "Maximum height (mobile)"
+        },
         "image": {
           "label": "Image 1"
         },
@@ -1469,8 +1487,14 @@
         "heading": {
           "name": "Heading",
           "settings": {
+            "heading_rich": {
+              "label": "Heading",
+              "info": "Press Enter for a new line. Use the Aa menu to size a line: Paragraph follows Heading size below; Heading 1–6 sets that line's size and makes it a heading for search engines."
+            },
             "heading": {
               "label": "Heading",
+              "label_single_line": "Heading (single line)",
+              "info_single_line": "Only used when the Heading above is empty.",
               "default": "Image banner"
             }
           }
@@ -1499,6 +1523,33 @@
         "buttons": {
           "name": "Buttons",
           "settings": {
+            "header_style": {
+              "content": "Button style"
+            },
+            "button_color": {
+              "label": "Button colour",
+              "info": "Leave blank to use the colour scheme. Applies to primary buttons; outline buttons keep the scheme colours."
+            },
+            "button_text_color": {
+              "label": "Button text colour"
+            },
+            "button_text_transform": {
+              "label": "Text case"
+            },
+            "button_padding_vertical": {
+              "label": "Padding top and bottom",
+              "info": "0 keeps the standard button height."
+            },
+            "button_padding_horizontal": {
+              "label": "Padding left and right"
+            },
+            "button_margin_top": {
+              "label": "Margin top",
+              "info": "Space above the buttons. 10px is the standard."
+            },
+            "button_margin_bottom": {
+              "label": "Margin bottom"
+            },
           "header_1":{
           "content": "Button 1"
           },
