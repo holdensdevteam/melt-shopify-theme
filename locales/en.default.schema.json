@@ -483,6 +483,29 @@
     },
     "usp_bar": {
       "name": "USP bar",
+      "settings": {
+        "icon_position": {
+          "label": "Icon position",
+          "options__top": {
+            "label": "Above text"
+          },
+          "options__left": {
+            "label": "Left of text"
+          }
+        },
+        "icon_height": {
+          "label": "Icon height"
+        },
+        "text_style": {
+          "label": "Text style",
+          "options__heading": {
+            "label": "Heading font"
+          },
+          "options__body": {
+            "label": "Body font"
+          }
+        }
+      },
       "blocks": {
         "usp": {
           "name": "USP",
@@ -493,7 +516,16 @@
               "default": "Add a line about what makes us, us"
             },
             "icon": {
-              "label": "Icon"
+              "label": "Icon",
+              "options__melt_valley": {
+                "label": "Melt: Ribble Valley"
+              },
+              "options__melt_next_day": {
+                "label": "Melt: Next day (sunrise)"
+              },
+              "options__melt_established": {
+                "label": "Melt: Est. 1999"
+              }
             },
             "image": {
               "label": "Custom icon",

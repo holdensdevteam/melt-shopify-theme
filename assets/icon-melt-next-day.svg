@@ -1,0 +1,12 @@
+<svg class="icon icon-accordion icon-melt-next-day" aria-hidden="true" focusable="false" viewBox="0 0 79 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill="none" d="M0 19.5H78.5" stroke="currentColor" stroke-width="2"/>
+<mask id="melt-next-day-mask" fill="white">
+<path d="M45 0C51.9036 0 57.5 5.59644 57.5 12.5C57.5 15.0937 56.7099 17.5028 55.3574 19.5H34.6426C33.2901 17.5028 32.5 15.0937 32.5 12.5C32.5 5.59644 38.0964 0 45 0Z"/>
+</mask>
+<path d="M55.3574 19.5V20.5H55.888L56.1854 20.0607L55.3574 19.5ZM34.6426 19.5L33.8146 20.0607L34.112 20.5H34.6426V19.5ZM45 0V1C51.3513 1 56.5 6.14873 56.5 12.5H57.5H58.5C58.5 5.04416 52.4558 -1 45 -1V0ZM57.5 12.5H56.5C56.5 14.8875 55.7733 17.1023 54.5294 18.9393L55.3574 19.5L56.1854 20.0607C57.6464 17.9032 58.5 15.2999 58.5 12.5H57.5ZM55.3574 19.5V18.5H34.6426V19.5V20.5H55.3574V19.5ZM34.6426 19.5L35.4706 18.9393C34.2267 17.1023 33.5 14.8875 33.5 12.5H32.5H31.5C31.5 15.2999 32.3536 17.9032 33.8146 20.0607L34.6426 19.5ZM32.5 12.5H33.5C33.5 6.14873 38.6487 1 45 1V0V-1C37.5442 -1 31.5 5.04416 31.5 12.5H32.5Z" fill="currentColor" mask="url(#melt-next-day-mask)"/>
+<path fill="none" d="M61.5681 7.35618C62.5435 7.63274 64.5994 8.89925 65.0206 11.7528C66.0424 10.7609 68.8091 9.11896 71.7024 10.4862" stroke="currentColor" stroke-width="2"/>
+<path fill="none" d="M20.7691 6.35913C21.7229 6.01579 24.1319 5.84762 26.1364 7.92169C26.3891 6.5203 27.6816 3.57402 30.8297 3.00001" stroke="currentColor" stroke-width="2"/>
+<path fill="none" d="M36.5 23H53.5" stroke="currentColor" stroke-width="2"/>
+<path fill="none" d="M37.5 26L52.5 26" stroke="currentColor" stroke-width="2"/>
+<path fill="none" d="M39.5 29L50.5 29" stroke="currentColor" stroke-width="2"/>
+</svg>

@@ -12,9 +12,16 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  #UspBar-{{ section.id }} {
+    --usp-icon-height: {{ section.settings.icon_height }}px;
+  }
 {%- endstyle -%}
 
-<div class="usp-bar color-{{ section.settings.color_scheme }} gradient">
+<div
+  id="UspBar-{{ section.id }}"
+  class="usp-bar usp-bar--icon-{{ section.settings.icon_position }} usp-bar--text-{{ section.settings.text_style }} color-{{ section.settings.color_scheme }} gradient"
+>
   <div class="page-width section-{{ section.id }}-padding">
     <ul class="usp-bar__list list-unstyled" role="list">
       {%- for block in section.blocks -%}
@@ -24,7 +31,7 @@
               {{
                 block.settings.image
                 | image_url: width: 96
-                | image_tag: class: 'usp-bar__image', alt: '', loading: 'lazy', width: 24, height: 24
+                | image_tag: class: 'usp-bar__image', alt: '', loading: 'lazy'
               }}
             {%- elsif block.settings.icon != 'none' -%}
               <span class="usp-bar__icon" aria-hidden="true">
@@ -51,6 +58,48 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-2"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "t:sections.usp_bar.settings.icon_position.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.usp_bar.settings.icon_position.options__top.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.usp_bar.settings.icon_position.options__left.label"
+        }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "range",
+      "id": "icon_height",
+      "min": 16,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 30,
+      "label": "t:sections.usp_bar.settings.icon_height.label"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "t:sections.usp_bar.settings.text_style.label",
+      "options": [
+        {
+          "value": "heading",
+          "label": "t:sections.usp_bar.settings.text_style.options__heading.label"
+        },
+        {
+          "value": "body",
+          "label": "t:sections.usp_bar.settings.text_style.options__body.label"
+        }
+      ],
+      "default": "heading"
     },
     {
       "type": "header",
@@ -97,6 +146,18 @@
             {
               "value": "none",
               "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.icon.options__1.label"
+            },
+            {
+              "value": "melt_valley",
+              "label": "t:sections.usp_bar.blocks.usp.settings.icon.options__melt_valley.label"
+            },
+            {
+              "value": "melt_next_day",
+              "label": "t:sections.usp_bar.blocks.usp.settings.icon.options__melt_next_day.label"
+            },
+            {
+              "value": "melt_established",
+              "label": "t:sections.usp_bar.blocks.usp.settings.icon.options__melt_established.label"
             },
             {
               "value": "apple",
@@ -271,7 +332,7 @@
               "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.icon.options__44.label"
             }
           ],
-          "default": "leaf"
+          "default": "melt_valley"
         },
         {
           "type": "image_picker",
@@ -289,19 +350,19 @@
         {
           "type": "usp",
           "settings": {
-            "icon": "leaf"
+            "icon": "melt_valley"
           }
         },
         {
           "type": "usp",
           "settings": {
-            "icon": "truck"
+            "icon": "melt_next_day"
           }
         },
         {
           "type": "usp",
           "settings": {
-            "icon": "heart"
+            "icon": "melt_established"
           }
         }
       ]
