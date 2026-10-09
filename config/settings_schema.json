@@ -184,6 +184,12 @@
           "on_secondary_button": "secondary_button_label",
           "secondary_button_border": "secondary_button_label"
         }
+      },
+      {
+        "type": "color",
+        "id": "star_rating_color",
+        "label": "t:settings_schema.colors.settings.star_rating_color.label",
+        "info": "t:settings_schema.colors.settings.star_rating_color.info"
       }
     ]
   },

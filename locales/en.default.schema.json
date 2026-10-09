@@ -133,6 +133,10 @@
         "secondary_button_label": {
           "label": "Outline button"
         },
+        "star_rating_color": {
+          "label": "Star rating colour",
+          "info": "Stars on product cards and product pages. Leave empty to use the text colour."
+        },
         "background_hover": {
           "label": "Background on hover",
           "info": "Hover colours are optional — leave any of them empty to keep the normal colour on hover. Used by buttons, cards and heading links."
@@ -1048,6 +1052,27 @@
     "featured-collection": {
       "name": "Featured collection",
       "settings": {
+        "header_melt_cards": {
+          "content": "Card style"
+        },
+        "card_name_size": {
+          "label": "Product name size"
+        },
+        "show_type_eyebrow": {
+          "label": "Show product type above the name"
+        },
+        "price_rating_row": {
+          "label": "Price and rating on one line",
+          "info": "Price on the left, star rating on the right."
+        },
+        "star_color": {
+          "label": "Star rating colour",
+          "info": "Leave blank to use the text colour."
+        },
+        "padding_sides": {
+          "label": "Left and right padding",
+          "info": "Desktop only, when not full width. 50px is the standard page margin."
+        },
         "header_text": {
         "content": "Text"
         },

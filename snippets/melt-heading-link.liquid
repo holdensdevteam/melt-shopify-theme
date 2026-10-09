@@ -1,0 +1,30 @@
+{% comment %}
+  Renders a section heading link, top right of the heading ("All 24 Fragrances, A–Z →").
+  Colours come from its own colour scheme (background, text and their hover colours).
+  Styles: src/scss/melt-global.scss.
+
+  Accepts:
+  - label: {String} Link text. Nothing renders if blank.
+  - url: {String} Link destination. If blank, renders a disabled link.
+  - color_scheme: {String} Colour scheme id.
+  - show_arrow: {Boolean} Show the long arrow. Default: true.
+
+  Usage:
+  {% render 'melt-heading-link', label: section.settings.cta_label, url: section.settings.cta_link, color_scheme: section.settings.cta_color_scheme, show_arrow: section.settings.cta_arrow %}
+{% endcomment %}
+
+{%- if label != blank -%}
+  <a
+    class="melt-heading-link color-{{ color_scheme }}"
+    {% if url == blank %}
+      role="link" aria-disabled="true"
+    {% else %}
+      href="{{ url }}"
+    {% endif %}
+  >
+    <span>{{ label | escape }}</span>
+    {%- unless show_arrow == false -%}
+      <span class="melt-heading-link__arrow">{{ 'icon-arrow-long.svg' | inline_asset_content }}</span>
+    {%- endunless -%}
+  </a>
+{%- endif -%}

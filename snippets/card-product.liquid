@@ -16,6 +16,11 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
+  Melt additions (all optional — other sections don't pass them and render as Dawn did):
+  - card_style_override: {String} 'standard' or 'card', overriding Theme settings → Product cards
+  - card_color_scheme_override: {String} Colour scheme for the card, overriding the theme setting
+  - show_type_eyebrow: {Boolean} Show the product type as an eyebrow above the name
+  - eyebrow_color: {Color} Eyebrow colour (blank uses the default eyebrow colour)
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
@@ -28,6 +33,16 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
+{%- liquid
+  assign card_style = settings.card_style
+  assign card_color_scheme = settings.card_color_scheme
+  if card_style_override != blank
+    assign card_style = card_style_override
+  endif
+  if card_color_scheme_override != blank
+    assign card_color_scheme = card_color_scheme_override
+  endif
+-%}
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
@@ -41,26 +56,33 @@
     endif
   -%}
 
+  {%- capture card_eyebrow -%}
+    {%- if show_type_eyebrow and card_product.type != blank -%}
+      {%- render 'melt-eyebrow', text: card_product.type, color: eyebrow_color, class: 'card__eyebrow' -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
     <div class="card-wrapper product-card-wrapper underline-links-hover">
       <div
         class="
-          card card--{{ settings.card_style }}
+          card card--{{ card_style }}
           {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
-          {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
+          {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
           {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
           {% if extend_height %} card--extend-height{% endif %}
-          {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
+          {% if card_product.featured_media == nil and card_style == 'card' %} ratio{% endif %}
           {% if horizontal_class %} card--horizontal{% endif %}
         "
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         <div
-          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+          class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or card_style == 'standard' %} ratio{% endif %}"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
           {%- if card_product.featured_media -%}
-            <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+            <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ card_color_scheme }} gradient{% endif %}">
               <div class="media media--transparent media--hover-effect">
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                 <img
@@ -110,9 +132,10 @@
           {%- endif -%}
           <div class="card__content">
             <div class="card__information">
+              {{- card_eyebrow -}}
               <h3
                 class="card__heading"
-                {% if card_product.featured_media == null and settings.card_style == 'standard' %}
+                {% if card_product.featured_media == null and card_style == 'standard' %}
                   id="title-{{ section_id }}-{{ card_product.id }}"
                 {% endif %}
               >
@@ -147,9 +170,10 @@
         </div>
         <div class="card__content">
           <div class="card__information">
+            {{- card_eyebrow -}}
             <h3
-              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-              {% if card_product.featured_media or settings.card_style == 'card' %}
+              class="card__heading{% if card_product.featured_media or card_style == 'standard' %} h5{% endif %}"
+              {% if card_product.featured_media or card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
             >
@@ -582,18 +606,18 @@
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="
-        card card--{{ settings.card_style }}
+        card card--{{ card_style }}
         {% if extend_height %} card--extend-height{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
-        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
+        {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
       <div
-        class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
+        class="card__inner{% if card_style == 'standard' %} color-{{ card_color_scheme }} gradient{% endif %} ratio"
       >
         <div
-          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
+          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ card_color_scheme }} gradient{% endif %}"
         >
           <div
             class="media media--transparent"
@@ -608,7 +632,7 @@
       </div>
       <div class="card__content">
         <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}">
+          <h3 class="card__heading card__heading--placeholder{% if card_style == 'standard' %} h5{% endif %}">
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               {{ 'onboarding.product_title' | t }}
             </a>

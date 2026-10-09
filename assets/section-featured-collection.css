@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-featured-collection.scss — edit that file, not this one. */
+.featured-collection-section .collection__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.6rem 3rem;
+}
+
+.featured-collection-section__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.featured-collection-section__heading .collection__description {
+  max-width: 72rem;
+  margin-top: 0;
+}
+.featured-collection-section__heading .title + .collection__description {
+  margin-top: 1rem;
+}
+
+.featured-collection-section .collection__title .featured-collection-section__heading .title {
+  margin: 0;
+}
+
+.featured-collection-section--heading-center .collection__title {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.featured-collection-section--heading-center .featured-collection-section__heading .collection__description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.featured-collection-section--price-row .card-information {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.6rem;
+  row-gap: 0.4rem;
+}
+.featured-collection-section--price-row .card-information > .caption-with-letter-spacing {
+  order: -2;
+  flex-basis: 100%;
+}
+.featured-collection-section--price-row .card-information > .price {
+  order: -1;
+  margin-right: auto;
+}
+.featured-collection-section--price-row .card-information > .rating,
+.featured-collection-section--price-row .card-information > .rating-count {
+  margin: 0;
+}
+.featured-collection-section--price-row .card-information > .card__information-volume-pricing-note,
+.featured-collection-section--price-row .card-information > quantity-popover {
+  flex-basis: 100%;
+}
+
+.featured-collection-section .rating-count {
+  color: var(--melt-star-color, rgba(var(--color-foreground), 0.75));
+}
+
+.featured-collection-section .card__eyebrow {
+  font-size: 1.5rem;
+}

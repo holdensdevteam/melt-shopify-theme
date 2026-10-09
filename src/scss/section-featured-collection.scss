@@ -1,0 +1,96 @@
+/*! Compiled from src/scss/section-featured-collection.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Melt additions to Dawn's Featured collection (sections/featured-collection.liquid).
+// Shared pieces (background image, heading link, card outline/tags/eyebrow, name size) live in
+// melt-global.scss; settings-driven values come from the section's {% style %} block.
+
+// ------------------------------------------------------------------ heading
+
+// Title + description on the left, optional heading link top right.
+.featured-collection-section .collection__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.6rem 3rem;
+}
+
+.featured-collection-section__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+
+
+  .collection__description {
+    max-width: 72rem; // 720px body copy measure
+    margin-top: 0;
+  }
+
+  .title + .collection__description {
+    margin-top: 1rem;
+  }
+}
+
+// No margins on the title, so its top lines up with the heading link. Specific enough to beat
+// template-collection.css's ".collection__title .title:not(:only-child)", which loads later.
+.featured-collection-section .collection__title .featured-collection-section__heading .title {
+  margin: 0;
+}
+
+// Centred heading: stack the link under the title.
+.featured-collection-section--heading-center {
+  .collection__title {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .featured-collection-section__heading .collection__description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// ------------------------------------------------------------------ price + rating row
+
+// "Price and rating on one line": price bottom left, stars and count on the right.
+.featured-collection-section--price-row .card-information {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.6rem;
+  row-gap: 0.4rem;
+
+  // Vendor (if shown) stays on its own line above.
+  > .caption-with-letter-spacing {
+    order: -2;
+    flex-basis: 100%;
+  }
+
+  > .price {
+    order: -1;
+    margin-right: auto;
+  }
+
+  > .rating,
+  > .rating-count {
+    margin: 0;
+  }
+
+  // Volume pricing notes and anything else Dawn adds go underneath.
+  > .card__information-volume-pricing-note,
+  > quantity-popover {
+    flex-basis: 100%;
+  }
+}
+
+.featured-collection-section .rating-count {
+  color: var(--melt-star-color, rgba(var(--color-foreground), 0.75));
+}
+
+// ------------------------------------------------------------------ eyebrow
+
+// Product type eyebrow: smaller here than the shared 18px eyebrow (component-eyebrow.scss).
+.featured-collection-section .card__eyebrow {
+  font-size: 1.5rem;
+}

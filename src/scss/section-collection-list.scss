@@ -70,22 +70,6 @@
  * ------------------------------------------------------------
  */
 
-// Background image: fills the section behind the content.
-.collection-list-section {
-  position: relative;
-  isolation: isolate;
-}
-
-.collection-list-section__background {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
 // Heading area: title + description on the left, optional link top right.
 .collection-list-section .title-wrapper-with-link {
   flex-wrap: wrap;
@@ -128,60 +112,6 @@
   }
 }
 
-// Heading link ("All 24 Fragrances, A–Z →"). Colours come from its own colour scheme setting.
-.collection-list-section__cta {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4rem;
-  padding: 1.2rem 2rem;
-  border-radius: var(--buttons-radius);
-  background-color: rgb(var(--color-background));
-  color: rgb(var(--color-foreground));
-  font-size: 1.5rem;
-  letter-spacing: 0.04rem;
-  text-decoration: none;
-
-  @include bp.from(bp.$medium) {
-    font-size: 1.6rem;
-    min-width: 28rem;
-  }
-
-  transition:
-    background-color var(--duration-short) ease,
-    color var(--duration-short) ease;
-
-  // Hover colours from the link's colour scheme, falling back to the normal ones.
-  &:hover {
-    background-color: rgb(var(--color-background-hover, var(--color-background)));
-    color: rgb(var(--color-foreground-hover, var(--color-foreground)));
-  }
-
-  &:hover .collection-list-section__cta-arrow {
-    transform: translateX(0.4rem);
-  }
-}
-
-.collection-list-section__cta-arrow {
-  display: flex;
-  transition: transform var(--duration-short) ease;
-
-  .icon {
-    width: 4.2rem;
-    height: 2rem;
-  }
-}
-
-// Larger collection names
-.collection-list-section--name-large .card__heading {
-  font-size: calc(var(--font-heading-scale) * 2rem);
-
-  @include bp.from(bp.$medium) {
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
-  }
-}
-
 // Subtitle under the name ("From 10 November")
 .collection-list-section .card__subtitle {
   margin: 0.4rem 0 0;
@@ -191,51 +121,6 @@
 
   @include bp.from(bp.$medium) {
     font-size: 1.7rem;
-  }
-}
-
-// Card images use Theme settings → Media → Corner radius (--media-radius), rather than Dawn's
-// default of the card radius minus the image padding. Extra specificity to beat component-card.css.
-.collection-list-section .card .card__inner .card__media {
-  border-radius: var(--media-radius);
-}
-
-// Card outline: thickness from the section, colour from the card colour scheme's Outline colour
-// (--color-border). The colour class sits on .card--card, or on .card__inner for Standard.
-.collection-list-section--outline {
-  .card--card,
-  .card--standard .card__inner {
-    border-color: rgb(var(--color-border));
-  }
-
-  // Outline on hover (colour scheme → Outline on hover), falling back to the normal outline.
-  .card-wrapper:hover .card--card,
-  .card-wrapper:hover .card--standard .card__inner {
-    border-color: rgb(var(--color-border-hover, var(--color-border)));
-  }
-}
-
-// Tags under the name ("Citrus · Green · Clean"), max 4. Follow the card's text alignment.
-.card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: var(--text-alignment, left);
-  gap: 0.8rem;
-  margin: 1.6rem 0 0;
-}
-
-.card__tag {
-  padding: 0.4rem 1.2rem;
-  border-radius: 0.4rem;
-  background-color: rgba(var(--color-foreground), 0.06);
-  font-size: 1.125rem;
-  line-height: 1.6;
-
-  @include bp.from(bp.$medium) {
-    font-size: 1.125rem;
-  }
-  @include bp.from(bp.$xxxlarge) {
-    font-size: 1.25rem;
   }
 }
 

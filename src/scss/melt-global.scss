@@ -49,3 +49,133 @@
   box-shadow: var(--shadow-horizontal-offset) var(--shadow-vertical-offset) var(--shadow-blur-radius)
     rgba(var(--color-shadow-hover, var(--color-shadow)), var(--shadow-opacity));
 }
+
+// ------------------------------------------------------------------ section background image
+
+// snippets/melt-section-background.liquid — fills the section behind its content.
+.melt-section-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.melt-section-bg__image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+// ------------------------------------------------------------------ heading link
+
+// snippets/melt-heading-link.liquid ("All 24 Fragrances, A–Z →"). Colours from its own scheme.
+.melt-heading-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 1.2rem 2rem;
+  border-radius: var(--buttons-radius);
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-size: 1.5rem;
+  letter-spacing: 0.04rem;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-short) ease,
+    color var(--duration-short) ease;
+
+  @media screen and (min-width: 750px) {
+    min-width: 28rem;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    background-color: rgb(var(--color-background-hover, var(--color-background)));
+    color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+  }
+}
+
+.melt-heading-link__arrow {
+  display: flex;
+  transition: transform var(--duration-short) ease;
+
+  .icon {
+    width: 4.2rem;
+    height: 2rem;
+  }
+
+  .melt-heading-link:hover & {
+    transform: translateX(0.4rem);
+  }
+}
+
+// ------------------------------------------------------------------ card extras
+
+// Section classes shared by Melt's card options (collection list, featured collection).
+
+// Card images use Theme settings → Media → Corner radius, rather than Dawn's
+// card radius minus the image padding. Extra specificity to beat component-card.css.
+.melt-cards--media-radius .card .card__inner .card__media {
+  border-radius: var(--media-radius);
+}
+
+// Card outline: thickness set by the section (Dawn's border-width variable), colour from the card
+// colour scheme's Outline colour. The colour class sits on .card--card, or .card__inner for Standard.
+.melt-cards--outline {
+  .card--card,
+  .card--standard .card__inner {
+    border-color: rgb(var(--color-border));
+  }
+
+  .card-wrapper:hover .card--card,
+  .card-wrapper:hover .card--standard .card__inner {
+    border-color: rgb(var(--color-border-hover, var(--color-border)));
+  }
+}
+
+// Larger card names
+.melt-cards--name-large .card__heading {
+  font-size: calc(var(--font-heading-scale) * 2rem);
+
+  @media screen and (min-width: 750px) {
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+  }
+}
+
+// Eyebrow above the card name (product type)
+.card__eyebrow {
+  margin-bottom: 0.4rem;
+}
+
+// Tags under the card name ("Citrus · Green · Clean"). Follow the card's text alignment.
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: var(--text-alignment, left);
+  gap: 0.8rem;
+  margin: 1.2rem 0 0;
+}
+
+.card__tag {
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.4rem;
+  background-color: rgba(var(--color-foreground), 0.06);
+  font-size: 1.4rem;
+  line-height: 1.6;
+
+  @media screen and (min-width: 750px) {
+    font-size: 1.5rem;
+  }
+}
+
+// ------------------------------------------------------------------ star ratings
+
+// Theme settings → Colours → Star rating colour (--melt-star-color, only set when chosen).
+// :root prefix beats Dawn's .rating-star rule in component-rating.css, which loads later.
+:root .rating-star {
+  --color-rating-star: var(--melt-star-color, rgb(var(--color-foreground)));
+}
