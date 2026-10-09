@@ -1,0 +1,30 @@
+{% comment %}
+  Renders a product's scent notes as tags ("Bergamot · Lavender · White Musk").
+
+  Data: product metafield custom.scent_notes — "Scent notes", a list of references to the
+  "Scent note" metaobject (field: Name), so notes are picked or created like tags and spelled
+  once. Plain-text lists also work. Set up in Settings → Custom data. Not product tags (those
+  drive filters and the Flow sale tag) and not ingredients (the CLP ingredients/allergens field
+  is separate).
+  Styles: .card__tags in src/scss/melt-global.scss.
+
+  Accepts:
+  - product: {Object} Product. Nothing renders if it has no scent notes.
+  - show: {Boolean} Render only when true (lets callers pass a setting straight through).
+  - limit: {Number} Maximum notes to show. Default: 3
+
+  Usage:
+  {% render 'melt-scent-notes', product: card_product, show: true %}
+{% endcomment %}
+
+{%- assign notes = product.metafields.custom.scent_notes.value -%}
+{%- if show and notes != blank -%}
+  {%- assign notes_max = limit | default: 3 -%}
+  <ul class="card__tags list-unstyled" role="list" aria-label="{{ 'products.product.scent_notes' | t }}">
+    {%- for note in notes limit: notes_max -%}
+      {%- comment -%} Metaobject entries expose their Name field; plain text is used as-is. {%- endcomment -%}
+      {%- assign note_label = note.name.value | default: note -%}
+      <li class="card__tag">{{ note_label | escape }}</li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

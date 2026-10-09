@@ -21,6 +21,7 @@
   - card_color_scheme_override: {String} Colour scheme for the card, overriding the theme setting
   - show_type_eyebrow: {Boolean} Show the product type as an eyebrow above the name
   - eyebrow_color: {Color} Eyebrow colour (blank uses the default eyebrow colour)
+  - show_scent_notes: {Boolean} Show up to 3 scent notes (custom.scent_notes metafield) under the name
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
@@ -186,6 +187,7 @@
                 {{ card_product.title | escape }}
               </a>
             </h3>
+            {%- render 'melt-scent-notes', product: card_product, show: show_scent_notes -%}
             <div class="card-information">
               {%- if show_vendor -%}
                 <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>

@@ -88,6 +88,26 @@
   color: var(--melt-star-color, rgba(var(--color-foreground), 0.75));
 }
 
+// Scent notes: 1rem (10px) up to 1599px, 1.25rem (12.5px) from 1600px.
+.featured-collection-section .card__tag {
+  font-size: 1rem;
+
+  @include bp.from(bp.$xxxlarge) {
+    font-size: 1.25rem;
+  }
+}
+
+// Space the price row away from the scent notes above it.
+.featured-collection-section .card__tags + .card-information {
+  margin-top: 1.6rem;
+}
+
+// No underline on the product name when hovering the card (Dawn's .underline-links-hover in
+// component-card.css). The card's hover colours signal the link instead.
+.featured-collection-section .underline-links-hover:hover a {
+  text-decoration: none;
+}
+
 // ------------------------------------------------------------------ eyebrow
 
 // Product type eyebrow: smaller here than the shared 18px eyebrow (component-eyebrow.scss).
