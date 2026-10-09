@@ -12,6 +12,11 @@
   - card_color_scheme_override: {String} Colour scheme for this card, overriding the theme setting (optional, Melt)
   - subtitle: {String} Short line under the collection name, e.g. "From 10 November" (optional, Melt)
   - tags: {String} Comma-separated labels shown as pills under the name, max 4, e.g. "Citrus, Green, Clean" (optional, Melt)
+  - button_label: {String} Button under the text, e.g. "Shop candles". Nothing renders if blank (optional, Melt)
+  - button_link: {String} Button link. Defaults to the collection (optional, Melt)
+  - button_text_color / button_background_color: {Color} Button colours; blank uses the colour
+    scheme's button colours. The arrow follows the text colour (optional, Melt)
+  - button_arrow: {Boolean} Show the long arrow in the button. Default: true (optional, Melt)
 
   Usage:
   {% render 'card-collection' %}
@@ -57,6 +62,39 @@
         {%- endif -%}
       {%- endfor -%}
     </ul>
+  {%- endif -%}
+  {%- if button_label != blank -%}
+    {%- liquid
+      assign button_url = button_link | default: card_collection.url
+      capture button_style
+        if button_background_color != blank and button_background_color.alpha != 0
+          echo '--color-button: ' | append: button_background_color.red | append: ',' | append: button_background_color.green | append: ',' | append: button_background_color.blue | append: '; '
+          echo '--color-button-hover: ' | append: button_background_color.red | append: ',' | append: button_background_color.green | append: ',' | append: button_background_color.blue | append: '; '
+        endif
+        if button_text_color != blank and button_text_color.alpha != 0
+          echo '--color-button-text: ' | append: button_text_color.red | append: ',' | append: button_text_color.green | append: ',' | append: button_text_color.blue | append: '; '
+          echo '--color-button-text-hover: ' | append: button_text_color.red | append: ',' | append: button_text_color.green | append: ',' | append: button_text_color.blue | append: ';'
+        endif
+      endcapture
+    -%}
+    <div class="card__button-wrapper">
+      <a
+        class="button button--primary card__button"
+        {% if button_url == blank %}
+          role="link" aria-disabled="true"
+        {% else %}
+          href="{{ button_url }}"
+        {% endif %}
+        {% if button_style != blank %}
+          style="{{ button_style | strip }}"
+        {% endif %}
+      >
+        <span>{{ button_label | escape }}</span>
+        {%- unless button_arrow == false -%}
+          <span class="card__button-arrow">{{ 'icon-arrow-long.svg' | inline_asset_content }}</span>
+        {%- endunless -%}
+      </a>
+    </div>
   {%- endif -%}
 {%- endcapture -%}
 

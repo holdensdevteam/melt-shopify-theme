@@ -148,7 +148,12 @@
               card_style_override: card_style_override,
               card_color_scheme_override: card_color_scheme_override,
               subtitle: block.settings.subtitle,
-              tags: block.settings.tags
+              tags: block.settings.tags,
+              button_label: block.settings.button_label,
+              button_link: block.settings.button_link,
+              button_text_color: block.settings.button_text_color,
+              button_background_color: block.settings.button_background_color,
+              button_arrow: block.settings.button_arrow
             %}
           </li>
         {%- endfor -%}
@@ -484,6 +489,14 @@
         {
           "value": "large",
           "label": "t:sections.collection-list.settings.card_heading_size.options__large.label"
+        },
+        {
+          "value": "xlarge",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__xlarge.label"
+        },
+        {
+          "value": "xxlarge",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__xxlarge.label"
         }
       ],
       "default": "default"
@@ -604,6 +617,39 @@
           "id": "tags",
           "label": "t:sections.collection-list.blocks.featured_collection.settings.tags.label",
           "info": "t:sections.collection-list.blocks.featured_collection.settings.tags.info"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.collection-list.blocks.featured_collection.settings.header_button.content"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.button_label.label",
+          "info": "t:sections.collection-list.blocks.featured_collection.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.button_link.label",
+          "info": "t:sections.collection-list.blocks.featured_collection.settings.button_link.info"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.button_text_color.label"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.button_background_color.label",
+          "info": "t:sections.collection-list.blocks.featured_collection.settings.button_background_color.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_arrow",
+          "default": true,
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.button_arrow.label"
         }
       ]
     }

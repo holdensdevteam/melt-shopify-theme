@@ -146,6 +146,57 @@
   }
 }
 
+.melt-cards--name-xlarge .card__heading {
+  font-size: calc(var(--font-heading-scale) * 2.4rem);
+
+  @media screen and (min-width: 750px) {
+    font-size: calc(var(--font-heading-scale) * 2.8rem);
+  }
+}
+
+.melt-cards--name-xxlarge .card__heading {
+  font-size: calc(var(--font-heading-scale) * 2.6rem);
+
+  @media screen and (min-width: 750px) {
+    font-size: calc(var(--font-heading-scale) * 3.2rem);
+  }
+}
+
+// Card button ("SHOP CANDLES →"), snippets/card-collection.liquid. Dawn's .button supplies
+// shape, focus and hover; colours come from the block or the colour scheme. Sits above the
+// card's whole-card link (z-index 1) so it stays clickable.
+.card__button-wrapper {
+  margin-top: 2rem;
+}
+
+.card__button {
+  position: relative;
+  z-index: 2;
+  gap: 2rem;
+  padding: 1.4rem 2.4rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 750px) {
+    font-size: 1.5rem;
+  }
+}
+
+.card__button-arrow {
+  display: flex;
+  transition: transform var(--duration-short) ease;
+
+  .icon {
+    width: 3.2rem;
+    height: 1.6rem;
+  }
+
+  .card__button:hover & {
+    transform: translateX(0.4rem);
+  }
+}
+
 // Eyebrow above the card name (product type)
 .card__eyebrow {
   margin-bottom: 0.4rem;
