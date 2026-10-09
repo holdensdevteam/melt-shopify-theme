@@ -178,7 +178,12 @@
           "settings": {
             "collection": "christmas",
             "subtitle": "From 10 November",
-            "tags": ""
+            "tags": "",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_qYBEg4": {
@@ -186,7 +191,12 @@
           "settings": {
             "collection": "valentines-day",
             "subtitle": "From 10 January",
-            "tags": ""
+            "tags": "",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_ky33Br": {
@@ -194,7 +204,12 @@
           "settings": {
             "collection": "mothers-day-1",
             "subtitle": "From 10 March",
-            "tags": ""
+            "tags": "",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         }
       },
@@ -245,7 +260,12 @@
           "settings": {
             "collection": "fresh",
             "subtitle": "",
-            "tags": "Citrus, Green, Clean"
+            "tags": "Citrus, Green, Clean",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_ewNiym": {
@@ -253,7 +273,12 @@
           "settings": {
             "collection": "floral",
             "subtitle": "",
-            "tags": "Rose, Lily, Hyacinth"
+            "tags": "Rose, Lily, Hyacinth",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_CVpBeb": {
@@ -261,7 +286,12 @@
           "settings": {
             "collection": "spicy",
             "subtitle": "",
-            "tags": "Clove, Pepper, Nutmeg"
+            "tags": "Clove, Pepper, Nutmeg",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_QiVigJ": {
@@ -269,7 +299,12 @@
           "settings": {
             "collection": "woody",
             "subtitle": "",
-            "tags": "Cedar, Sandwood, Moss"
+            "tags": "Cedar, Sandwood, Moss",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_34F8Fj": {
@@ -277,7 +312,12 @@
           "settings": {
             "collection": "warm",
             "subtitle": "",
-            "tags": "Amber, Vanilla, Musk"
+            "tags": "Amber, Vanilla, Musk",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_qN3xRz": {
@@ -285,7 +325,12 @@
           "settings": {
             "collection": "soft",
             "subtitle": "",
-            "tags": "Powder, Cashmere, Cream"
+            "tags": "Powder, Cashmere, Cream",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         }
       },
@@ -338,9 +383,17 @@
         "products_to_show": 8,
         "title": "Most loved",
         "heading_size": "h1",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac lacinia dolor.</p>",
+        "description": "",
         "show_description": false,
         "description_style": "body",
+        "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 40,
+        "heading_margin_sides": 0,
+        "cta_label": "Shop best sellers",
+        "cta_link": "shopify://collections/best-sellers",
+        "cta_arrow": true,
+        "cta_color_scheme": "scheme-5",
         "columns_desktop": 4,
         "enable_desktop_slider": true,
         "full_width": false,
@@ -353,10 +406,21 @@
         "show_vendor": false,
         "show_rating": true,
         "quick_add": "none",
+        "card_style": "card",
+        "card_color_scheme": "scheme-5",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_name_size": "large",
+        "show_type_eyebrow": true,
+        "eyebrow_color": "#171717",
+        "price_rating_row": false,
+        "background_image": "shopify://shop_images/melt-section-bg.png",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "padding_sides": 50
       }
     },
     "collection_list_tYQD88": {
@@ -366,24 +430,39 @@
           "type": "featured_collection",
           "settings": {
             "collection": "scented-candles",
-            "subtitle": "",
-            "tags": ""
+            "subtitle": "Six shapes, from the new travel tin to the luxury glass jar.",
+            "tags": "",
+            "button_label": "Shop Candles",
+            "button_link": "shopify://collections/scented-candles",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_a6APCt": {
           "type": "featured_collection",
           "settings": {
             "collection": "wax-melts",
-            "subtitle": "",
-            "tags": ""
+            "subtitle": "Continuous fragrance, plus refills  so the bottle stays.",
+            "tags": "",
+            "button_label": "Shop Wax Melts",
+            "button_link": "shopify://collections/wax-melts",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_yDtTrF": {
           "type": "featured_collection",
           "settings": {
             "collection": "reed-diffusers",
-            "subtitle": "",
-            "tags": ""
+            "subtitle": "Six and twelve packs, and the burners to go with them.",
+            "tags": "",
+            "button_label": "Shop Diffusers",
+            "button_link": "shopify://collections/reed-diffusers",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         }
       },
@@ -399,24 +478,24 @@
         "description": "",
         "heading_alignment": "left",
         "heading_margin_top": 0,
-        "heading_margin_bottom": 30,
+        "heading_margin_bottom": 40,
         "heading_margin_sides": 0,
-        "cta_label": "",
-        "cta_link": "",
+        "cta_label": "Shop all",
+        "cta_link": "shopify://collections/all",
         "cta_arrow": true,
         "cta_color_scheme": "",
-        "image_ratio": "square",
+        "image_ratio": "landscape",
         "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": false,
-        "card_style": "theme",
-        "card_color_scheme": "",
+        "card_style": "card",
+        "card_color_scheme": "scheme-1",
         "card_image_padding": 12,
         "card_radius": 8,
-        "card_border_width": 0,
+        "card_border_width": 1,
         "card_text_alignment": "theme",
-        "card_heading_size": "default",
-        "show_arrow": true,
+        "card_heading_size": "large",
+        "show_arrow": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -431,49 +510,79 @@
         "featured_collection_UtF4F4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "winding-down",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "Shop Moment",
+            "button_link": "",
+            "button_text_color": "#FFFFFF",
+            "button_background_color": "#CE7721",
+            "button_arrow": true
           }
         },
         "featured_collection_NRFkwy": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "bath-time",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "Shop moment",
+            "button_link": "",
+            "button_text_color": "#FFFFFF",
+            "button_background_color": "#CE7721",
+            "button_arrow": true
           }
         },
         "featured_collection_rpj9zY": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "romance",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "Shop moment",
+            "button_link": "",
+            "button_text_color": "#FFFFFF",
+            "button_background_color": "#CE7721",
+            "button_arrow": true
           }
         },
         "featured_collection_LFUddR": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "meditation",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "Shop Moment",
+            "button_link": "",
+            "button_text_color": "#FFFFFF",
+            "button_background_color": "#CE7721",
+            "button_arrow": true
           }
         },
         "featured_collection_rjbLeM": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "morning",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "Shop moment",
+            "button_link": "",
+            "button_text_color": "#FFFFFF",
+            "button_background_color": "#CE7721",
+            "button_arrow": true
           }
         },
         "featured_collection_3MGhUH": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "dining",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "Shop moment",
+            "button_link": "",
+            "button_text_color": "#FFFFFF",
+            "button_background_color": "#CE7721",
+            "button_arrow": true
           }
         }
       },
@@ -489,16 +598,16 @@
       "settings": {
         "title": "Shop by moment",
         "heading_size": "h1",
-        "description": "",
+        "description": "<p>Six families to start with. Or go straight to a name you already know.</p>",
         "heading_alignment": "left",
         "heading_margin_top": 0,
-        "heading_margin_bottom": 30,
+        "heading_margin_bottom": 40,
         "heading_margin_sides": 0,
         "cta_label": "",
         "cta_link": "",
         "cta_arrow": true,
         "cta_color_scheme": "",
-        "image_ratio": "square",
+        "image_ratio": "landscape",
         "columns_desktop": 3,
         "color_scheme": "scheme-1",
         "show_view_all": false,
@@ -507,9 +616,9 @@
         "card_image_padding": 12,
         "card_radius": 8,
         "card_border_width": 0,
-        "card_text_alignment": "theme",
-        "card_heading_size": "default",
-        "show_arrow": true,
+        "card_text_alignment": "center",
+        "card_heading_size": "xxlarge",
+        "show_arrow": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -526,7 +635,12 @@
           "settings": {
             "collection": "for-her",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_BLkDGL": {
@@ -534,7 +648,12 @@
           "settings": {
             "collection": "for-him",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         },
         "featured_collection_JNF8p9": {
@@ -542,7 +661,12 @@
           "settings": {
             "collection": "for-mum",
             "subtitle": "",
-            "tags": ""
+            "tags": "",
+            "button_label": "",
+            "button_link": "",
+            "button_text_color": "",
+            "button_background_color": "",
+            "button_arrow": true
           }
         }
       },
