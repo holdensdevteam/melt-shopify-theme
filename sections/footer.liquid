@@ -51,14 +51,28 @@
   -%}
     {%- unless only_empty_brand -%}
       {%- liquid
-        # One equal column per block on desktop, up to 6 (brand + 5 menus). Stacked below 990px.
-        # The column count is set here rather than on .footer__grid because Dawn's animations.js
-        # overwrites the style attribute of any [data-cascade] element when it reveals on scroll.
+        # One column per block on desktop, up to 6 (brand + 5 menus). Stacked below 990px.
+        # The brand column can be wider than the menus (Brand column width setting), so with
+        # 6 or fewer blocks the column template is built here, one track per block in order.
+        # Set on this wrapper rather than .footer__grid because Dawn's animations.js overwrites
+        # the style attribute of any [data-cascade] element when it reveals on scroll.
         assign footer_columns_desktop = section.blocks.size | at_most: 6
+        assign brand_fr = section.settings.brand_column_width | divided_by: 100.0
+        assign footer_template = ''
+        if section.blocks.size <= 6
+          for block in section.blocks
+            if block.type == 'brand_information'
+              assign track = 'minmax(0, ' | append: brand_fr | append: 'fr) '
+            else
+              assign track = 'minmax(0, 1fr) '
+            endif
+            assign footer_template = footer_template | append: track
+          endfor
+        endif
       -%}
       <div
         class="footer__content-top page-width"
-        style="--footer-columns-desktop: {{ footer_columns_desktop }};"
+        style="--footer-columns-desktop: {{ footer_columns_desktop }};{% if footer_template != blank %} --footer-grid-template: {{ footer_template | strip }};{% endif %}"
       >
         {%- if section.blocks.size > 0 -%}
           <div
@@ -168,7 +182,7 @@
                         </div>
                       {%- endif -%}
                       {%- if settings.brand_headline != blank -%}
-                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
+                        <h2 class="footer-block__brand-headline rte">{{ settings.brand_headline }}</h2>
                       {%- endif -%}
                       {%- if settings.brand_description != blank -%}
                         <div class="rte">{{ settings.brand_description }}</div>
@@ -562,6 +576,17 @@
       "id": "show_powered_by",
       "default": false,
       "label": "t:sections.footer.settings.show_powered_by.label"
+    },
+    {
+      "type": "range",
+      "id": "brand_column_width",
+      "min": 100,
+      "max": 250,
+      "step": 10,
+      "unit": "%",
+      "default": 150,
+      "label": "t:sections.footer.settings.brand_column_width.label",
+      "info": "t:sections.footer.settings.brand_column_width.info"
     },
     {
       "type": "header",

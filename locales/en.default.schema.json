@@ -1488,6 +1488,10 @@
         }
       },
       "settings": {
+        "brand_column_width": {
+          "label": "Brand column width",
+          "info": "Desktop. How wide the brand information column is compared with each menu column — 100% is equal."
+        },
         "newsletter_enable": {
           "label": "Email signup"
         },
