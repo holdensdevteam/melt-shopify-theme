@@ -393,7 +393,7 @@
         "cta_label": "Shop best sellers",
         "cta_link": "shopify://collections/best-sellers",
         "cta_arrow": true,
-        "cta_color_scheme": "scheme-5",
+        "cta_color_scheme": "scheme-1",
         "columns_desktop": 4,
         "enable_desktop_slider": true,
         "full_width": false,
@@ -515,8 +515,8 @@
             "tags": "",
             "button_label": "Shop Moment",
             "button_link": "",
-            "button_text_color": "#FFFFFF",
-            "button_background_color": "#CE7721",
+            "button_text_color": "#ffffff",
+            "button_background_color": "#ce7721",
             "button_arrow": true
           }
         },
@@ -528,8 +528,8 @@
             "tags": "",
             "button_label": "Shop moment",
             "button_link": "",
-            "button_text_color": "#FFFFFF",
-            "button_background_color": "#CE7721",
+            "button_text_color": "#ffffff",
+            "button_background_color": "#ce7721",
             "button_arrow": true
           }
         },
@@ -541,8 +541,8 @@
             "tags": "",
             "button_label": "Shop moment",
             "button_link": "",
-            "button_text_color": "#FFFFFF",
-            "button_background_color": "#CE7721",
+            "button_text_color": "#ffffff",
+            "button_background_color": "#ce7721",
             "button_arrow": true
           }
         },
@@ -554,8 +554,8 @@
             "tags": "",
             "button_label": "Shop Moment",
             "button_link": "",
-            "button_text_color": "#FFFFFF",
-            "button_background_color": "#CE7721",
+            "button_text_color": "#ffffff",
+            "button_background_color": "#ce7721",
             "button_arrow": true
           }
         },
@@ -567,8 +567,8 @@
             "tags": "",
             "button_label": "Shop moment",
             "button_link": "",
-            "button_text_color": "#FFFFFF",
-            "button_background_color": "#CE7721",
+            "button_text_color": "#ffffff",
+            "button_background_color": "#ce7721",
             "button_arrow": true
           }
         },
@@ -580,8 +580,8 @@
             "tags": "",
             "button_label": "Shop moment",
             "button_link": "",
-            "button_text_color": "#FFFFFF",
-            "button_background_color": "#CE7721",
+            "button_text_color": "#ffffff",
+            "button_background_color": "#ce7721",
             "button_arrow": true
           }
         }
@@ -702,6 +702,46 @@
         "show_arrow": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_sides": 50,
+        "content_width": "page"
+      }
+    },
+    "melt_gifting_EQjjmq": {
+      "type": "melt-gifting",
+      "name": "t:sections.melt_gifting.name",
+      "settings": {
+        "title": "Finding something special for someone special",
+        "heading_size": "h1",
+        "description": "",
+        "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 40,
+        "heading_margin_sides": 0,
+        "featured_collection": "hampers-gift-sets",
+        "featured_title": "",
+        "featured_subtitle": "Made with here, wrapped with care and sent anywhere",
+        "featured_image_ratio": "wide",
+        "featured_link_label": "Shop Hampers & Gift Sets",
+        "featured_link": "shopify://collections/hampers-gift-sets",
+        "featured_link_arrow": true,
+        "featured_color_scheme": "scheme-02a447b1-f285-4b2e-b7e1-41d413999aeb",
+        "featured_border_width": 1,
+        "label_color_scheme": "scheme-1",
+        "recipient_label": "Shop by recipient",
+        "recipient_collection_1": "for-her",
+        "recipient_title_1": "",
+        "recipient_collection_2": "for-him",
+        "recipient_title_2": "",
+        "recipient_color_scheme": "scheme-1",
+        "price_label": "Shop by price",
+        "price_collection_1": "under-20",
+        "price_collection_2": "under-30",
+        "price_collection_3": "under-50",
+        "price_color_scheme": "scheme-59ea2cf9-05de-4eed-8404-60f500b2ab1f",
+        "color_scheme": "",
+        "background_image": "shopify://shop_images/melt-section-bg3.png",
         "padding_top": 36,
         "padding_bottom": 36,
         "padding_sides": 50,
@@ -1042,6 +1082,7 @@
     "collection_list_tYQD88",
     "collection_list_YTdYtr",
     "collection_list_8cqF6y",
+    "melt_gifting_EQjjmq",
     "melt_columns_P4N4L6",
     "melt_columns_Wt7AqJ",
     "featured_blog_yddmtK",
