@@ -79,7 +79,7 @@
     -%}
     <div class="card__button-wrapper">
       <a
-        class="button button--primary card__button"
+        class="button button--primary melt-arrow-button"
         {% if button_url == blank %}
           role="link" aria-disabled="true"
         {% else %}
@@ -91,7 +91,7 @@
       >
         <span>{{ button_label | escape }}</span>
         {%- unless button_arrow == false -%}
-          <span class="card__button-arrow">{{ 'icon-arrow-long.svg' | inline_asset_content }}</span>
+          <span class="melt-arrow-button__arrow">{{ 'icon-arrow-long.svg' | inline_asset_content }}</span>
         {%- endunless -%}
       </a>
     </div>

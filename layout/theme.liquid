@@ -120,10 +120,13 @@
         {%- comment -%}
           Melt hover colours. Only output when set, so CSS falls back to the normal colour
           (var(--color-x-hover, var(--color-x))) — see src/scss/melt-global.scss.
+          --color-* values are "r,g,b" with no alpha (so transparent becomes black); for
+          backgrounds use the full-colour --gradient-background(-hover) instead.
         {%- endcomment -%}
         {%- if scheme.settings.background_hover != blank %}
           --color-background-hover: {{ scheme.settings.background_hover.red }},{{ scheme.settings.background_hover.green }},{{ scheme.settings.background_hover.blue }};
           --color-secondary-button-hover: {{ scheme.settings.background_hover.red }},{{ scheme.settings.background_hover.green }},{{ scheme.settings.background_hover.blue }};
+          --gradient-background-hover: {{ scheme.settings.background_hover }};
         {%- endif %}
         {%- if scheme.settings.text_hover != blank %}
           --color-foreground-hover: {{ scheme.settings.text_hover.red }},{{ scheme.settings.text_hover.green }},{{ scheme.settings.text_hover.blue }};

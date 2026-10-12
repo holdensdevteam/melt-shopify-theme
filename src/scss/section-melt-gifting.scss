@@ -1,0 +1,286 @@
+/*! Compiled from src/scss/section-melt-gifting.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Gifting section (sections/melt-gifting.liquid). Shared pieces — background image, group labels
+// (.melt-heading-link--static), arrow button — come from melt-global.scss.
+//
+// Desktop (990px+): featured card left, right column with tiles above and buttons below.
+// Below 990px: everything stacks — featured, then the two tiles side by side, then the three
+// buttons in one row.
+
+// ------------------------------------------------------------------ heading
+
+.melt-gifting__title {
+  margin: 0;
+}
+
+.melt-gifting__description {
+  max-width: 72rem;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+
+  @include bp.from(bp.$medium) {
+    font-size: 1.8rem;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.melt-gifting--heading-center .melt-gifting__header {
+  text-align: center;
+
+  .melt-gifting__description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Backgrounds use --gradient-background(-hover), the scheme's full colour: Dawn's --color-background
+// is "r,g,b" without alpha, so a transparent scheme background would render black.
+
+// ------------------------------------------------------------------ layout
+
+.melt-gifting__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.2rem;
+
+  @include bp.from(bp.$large) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+  }
+}
+
+.melt-gifting__side {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  // Desktop: tiles at the top, buttons pinned to the bottom, matching the featured card's height.
+  @include bp.from(bp.$large) {
+    justify-content: space-between;
+  }
+}
+
+.melt-gifting__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+
+  @include bp.from(bp.$medium) {
+    gap: 2.4rem;
+  }
+
+  // Group labels ("SHOP BY RECIPIENT →") are smaller on mobile.
+  .melt-heading-link {
+    @include bp.below(bp.$medium) {
+      min-width: 0;
+      gap: 2rem;
+      padding: 1rem 1.6rem;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// ------------------------------------------------------------------ featured card
+
+.melt-gifting__featured {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.2rem 2rem;
+  border: var(--gifting-featured-border, 1px) solid rgb(var(--color-border));
+  border-radius: var(--text-boxes-radius);
+
+  @include bp.from(bp.$medium) {
+    padding: 1.6rem 1.6rem 2.5rem;
+  }
+}
+
+.melt-gifting__featured-media {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--media-radius);
+
+  img,
+  .placeholder-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.melt-gifting--image-wide .melt-gifting__featured-media {
+  aspect-ratio: 2 / 1;
+}
+
+.melt-gifting--image-landscape .melt-gifting__featured-media {
+  aspect-ratio: 16 / 9;
+}
+
+.melt-gifting--image-adapt .melt-gifting__featured-media img {
+  height: auto;
+}
+
+.melt-gifting__featured-content {
+  padding: 2.4rem 0 0.4rem;
+}
+
+.melt-gifting__featured-title {
+  margin: 0;
+  font-size: calc(var(--font-heading-scale) * 2.4rem);
+
+  @include bp.from(bp.$medium) {
+    font-size: calc(var(--font-heading-scale) * 3rem);
+  }
+}
+
+.melt-gifting__featured-subtitle {
+  margin: 0.6rem 0 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+
+  @include bp.from(bp.$medium) {
+    font-size: 1.7rem;
+  }
+}
+
+.melt-gifting__featured-button {
+  margin-top: 2.4rem;
+}
+
+// ------------------------------------------------------------------ upper: image tiles
+
+.melt-gifting__tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+  margin: 0;
+
+  @include bp.from(bp.$medium) {
+    gap: 3rem;
+  }
+}
+
+// The whole tile — image and label — is the link.
+.melt-gifting__tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 13 / 9;
+  border-radius: var(--media-radius);
+  text-decoration: none;
+}
+
+.melt-gifting__tile-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-long) ease;
+
+  .melt-gifting__tile:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.melt-gifting__tile-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 2rem;
+  //transform: translateX(-50%);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--buttons-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-short) ease,
+    color var(--duration-short) ease;
+
+  @include bp.from(bp.$medium) {
+    bottom: 2.75rem;
+    left: 3.5rem;
+    padding: 1.4rem 4.4rem;
+    font-size: 2rem;
+    letter-spacing: 0.12rem;
+  }
+
+  @include bp.from(bp.$large) {
+    font-size: 1.5rem;
+    bottom: 2rem;
+    left: 2rem;
+    padding: 1rem 3rem;
+  }
+  @include bp.from(bp.$xlarge) {
+    font-size: 2rem;
+    bottom: 2.75rem;
+    left: 3.5rem;
+    padding: 1.4rem 4.4rem;
+  }
+
+  .melt-gifting__tile:hover & {
+    background: var(--gradient-background-hover, var(--gradient-background));
+    color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+  }
+}
+
+// ------------------------------------------------------------------ lower: text buttons
+
+// Always one row of three, including mobile.
+.melt-gifting__buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+
+  @include bp.from(bp.$medium) {
+    gap: 3rem;
+  }
+}
+
+// Larger padding than the site's other buttons. Colours, outline and their hovers from the scheme.
+.melt-gifting__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1.6rem 0.8rem;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--buttons-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+  letter-spacing: 0.08rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color var(--duration-short) ease,
+    color var(--duration-short) ease,
+    border-color var(--duration-short) ease;
+
+  @include bp.from(bp.$medium) {
+    padding: 2.25rem 2rem;
+    font-size: 2rem;
+    letter-spacing: 0.12rem;
+  }
+
+  &:hover {
+    background: var(--gradient-background-hover, var(--gradient-background));
+    color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+    border-color: rgb(var(--color-border-hover, var(--color-border)));
+  }
+}

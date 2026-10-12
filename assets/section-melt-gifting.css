@@ -1,0 +1,260 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-melt-gifting.scss — edit that file, not this one. */
+.melt-gifting__title {
+  margin: 0;
+}
+
+.melt-gifting__description {
+  max-width: 72rem;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__description {
+    font-size: 1.8rem;
+  }
+}
+.melt-gifting__description > *:first-child {
+  margin-top: 0;
+}
+.melt-gifting__description > *:last-child {
+  margin-bottom: 0;
+}
+
+.melt-gifting--heading-center .melt-gifting__header {
+  text-align: center;
+}
+.melt-gifting--heading-center .melt-gifting__header .melt-gifting__description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.melt-gifting__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.2rem;
+}
+@media screen and (min-width: 990px) {
+  .melt-gifting__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+  }
+}
+
+.melt-gifting__side {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+@media screen and (min-width: 990px) {
+  .melt-gifting__side {
+    justify-content: space-between;
+  }
+}
+
+.melt-gifting__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__group {
+    gap: 2.4rem;
+  }
+}
+@media screen and (max-width: 749px) {
+  .melt-gifting__group .melt-heading-link {
+    min-width: 0;
+    gap: 2rem;
+    padding: 1rem 1.6rem;
+    font-size: 1.3rem;
+  }
+}
+
+.melt-gifting__featured {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.2rem 2rem;
+  border: var(--gifting-featured-border, 1px) solid rgb(var(--color-border));
+  border-radius: var(--text-boxes-radius);
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__featured {
+    padding: 1.6rem 1.6rem 2.5rem;
+  }
+}
+
+.melt-gifting__featured-media {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--media-radius);
+}
+.melt-gifting__featured-media img,
+.melt-gifting__featured-media .placeholder-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.melt-gifting--image-wide .melt-gifting__featured-media {
+  aspect-ratio: 2/1;
+}
+
+.melt-gifting--image-landscape .melt-gifting__featured-media {
+  aspect-ratio: 16/9;
+}
+
+.melt-gifting--image-adapt .melt-gifting__featured-media img {
+  height: auto;
+}
+
+.melt-gifting__featured-content {
+  padding: 2.4rem 0 0.4rem;
+}
+
+.melt-gifting__featured-title {
+  margin: 0;
+  font-size: calc(var(--font-heading-scale) * 2.4rem);
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__featured-title {
+    font-size: calc(var(--font-heading-scale) * 3rem);
+  }
+}
+
+.melt-gifting__featured-subtitle {
+  margin: 0.6rem 0 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__featured-subtitle {
+    font-size: 1.7rem;
+  }
+}
+
+.melt-gifting__featured-button {
+  margin-top: 2.4rem;
+}
+
+.melt-gifting__tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+  margin: 0;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__tiles {
+    gap: 3rem;
+  }
+}
+
+.melt-gifting__tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 13/9;
+  border-radius: var(--media-radius);
+  text-decoration: none;
+}
+
+.melt-gifting__tile-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-long) ease;
+}
+.melt-gifting__tile:hover .melt-gifting__tile-image {
+  transform: scale(1.03);
+}
+
+.melt-gifting__tile-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--buttons-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color var(--duration-short) ease, color var(--duration-short) ease;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__tile-label {
+    bottom: 2.75rem;
+    left: 3.5rem;
+    padding: 1.4rem 4.4rem;
+    font-size: 2rem;
+    letter-spacing: 0.12rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .melt-gifting__tile-label {
+    font-size: 1.5rem;
+    bottom: 2rem;
+    left: 2rem;
+    padding: 1rem 3rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .melt-gifting__tile-label {
+    font-size: 2rem;
+    bottom: 2.75rem;
+    left: 3.5rem;
+    padding: 1.4rem 4.4rem;
+  }
+}
+.melt-gifting__tile:hover .melt-gifting__tile-label {
+  background: var(--gradient-background-hover, var(--gradient-background));
+  color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+}
+
+.melt-gifting__buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__buttons {
+    gap: 3rem;
+  }
+}
+
+.melt-gifting__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1.6rem 0.8rem;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--buttons-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+  letter-spacing: 0.08rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color var(--duration-short) ease, color var(--duration-short) ease, border-color var(--duration-short) ease;
+}
+@media screen and (min-width: 750px) {
+  .melt-gifting__button {
+    padding: 2.25rem 2rem;
+    font-size: 2rem;
+    letter-spacing: 0.12rem;
+  }
+}
+.melt-gifting__button:hover {
+  background: var(--gradient-background-hover, var(--gradient-background));
+  color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+  border-color: rgb(var(--color-border-hover, var(--color-border)));
+}

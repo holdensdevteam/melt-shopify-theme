@@ -8,12 +8,21 @@
   - url: {String} Link destination. If blank, renders a disabled link.
   - color_scheme: {String} Colour scheme id.
   - show_arrow: {Boolean} Show the long arrow. Default: true.
+  - as_heading: {Boolean} Render as a non-link <h3> in the same style (e.g. "Shop by recipient →"
+    labelling a group of links). url is ignored. Default: false.
 
   Usage:
   {% render 'melt-heading-link', label: section.settings.cta_label, url: section.settings.cta_link, color_scheme: section.settings.cta_color_scheme, show_arrow: section.settings.cta_arrow %}
 {% endcomment %}
 
-{%- if label != blank -%}
+{%- if label != blank and as_heading -%}
+  <h3 class="melt-heading-link melt-heading-link--static color-{{ color_scheme }}">
+    <span>{{ label | escape }}</span>
+    {%- unless show_arrow == false -%}
+      <span class="melt-heading-link__arrow" aria-hidden="true">{{ 'icon-arrow-long.svg' | inline_asset_content }}</span>
+    {%- endunless -%}
+  </h3>
+{%- elsif label != blank -%}
   <a
     class="melt-heading-link color-{{ color_scheme }}"
     {% if url == blank %}

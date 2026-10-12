@@ -23,7 +23,7 @@
 }
 
 .card-wrapper:hover .card--card {
-  background: rgb(var(--color-background-hover, var(--color-background)));
+  background: var(--gradient-background-hover, var(--gradient-background));
   color: rgb(var(--color-foreground-hover, var(--color-foreground)));
 }
 
@@ -54,7 +54,7 @@
   gap: 4rem;
   padding: 1.2rem 2rem;
   border-radius: var(--buttons-radius);
-  background-color: rgb(var(--color-background));
+  background: var(--gradient-background);
   color: rgb(var(--color-foreground));
   font-size: 1.5rem;
   letter-spacing: 0.04rem;
@@ -68,8 +68,20 @@
   }
 }
 .melt-heading-link:hover {
-  background-color: rgb(var(--color-background-hover, var(--color-background)));
+  background: var(--gradient-background-hover, var(--gradient-background));
   color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+}
+
+.melt-heading-link--static {
+  margin: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-transform: uppercase;
+}
+.melt-heading-link--static:hover {
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
 }
 
 .melt-heading-link__arrow {
@@ -80,7 +92,7 @@
   width: 4.2rem;
   height: 2rem;
 }
-.melt-heading-link:hover .melt-heading-link__arrow {
+.melt-heading-link:not(.melt-heading-link--static):hover .melt-heading-link__arrow {
   transform: translateX(0.4rem);
 }
 
@@ -128,7 +140,7 @@
   margin-top: 2rem;
 }
 
-.card__button {
+.melt-arrow-button {
   position: relative;
   z-index: 2;
   gap: 2rem;
@@ -138,20 +150,20 @@
   text-transform: uppercase;
 }
 @media screen and (min-width: 750px) {
-  .card__button {
+  .melt-arrow-button {
     font-size: 1.5rem;
   }
 }
 
-.card__button-arrow {
+.melt-arrow-button__arrow {
   display: flex;
   transition: transform var(--duration-short) ease;
 }
-.card__button-arrow .icon {
+.melt-arrow-button__arrow .icon {
   width: 3.2rem;
   height: 1.6rem;
 }
-.card__button:hover .card__button-arrow {
+.melt-arrow-button:hover .melt-arrow-button__arrow {
   transform: translateX(0.4rem);
 }
 

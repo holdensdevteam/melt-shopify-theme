@@ -2,6 +2,9 @@
 
 // Site-wide Melt rules, loaded straight after Dawn's base.css (layout/theme.liquid).
 //
+// Backgrounds use --gradient-background(-hover), the scheme's full colour: Dawn's --color-background
+// is "r,g,b" without alpha, so a transparent scheme background would render black.
+//
 // Hover colours: each colour scheme can set optional hover colours (Theme settings → Colours).
 // layout/theme.liquid only outputs a --color-*-hover variable when one is set, so every rule here
 // falls back to the normal colour — nothing changes on hover until a hover colour is chosen.
@@ -41,7 +44,7 @@
 }
 
 .card-wrapper:hover .card--card {
-  background: rgb(var(--color-background-hover, var(--color-background)));
+  background: var(--gradient-background-hover, var(--gradient-background));
   color: rgb(var(--color-foreground-hover, var(--color-foreground)));
 }
 
@@ -79,7 +82,7 @@
   gap: 4rem;
   padding: 1.2rem 2rem;
   border-radius: var(--buttons-radius);
-  background-color: rgb(var(--color-background));
+  background: var(--gradient-background);
   color: rgb(var(--color-foreground));
   font-size: 1.5rem;
   letter-spacing: 0.04rem;
@@ -94,8 +97,22 @@
   }
 
   &:hover {
-    background-color: rgb(var(--color-background-hover, var(--color-background)));
+    background: var(--gradient-background-hover, var(--gradient-background));
     color: rgb(var(--color-foreground-hover, var(--color-foreground)));
+  }
+}
+
+// Static version: a heading in the link's style, labelling a group of links. No hover.
+.melt-heading-link--static {
+  margin: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-transform: uppercase;
+
+  &:hover {
+    background: var(--gradient-background);
+    color: rgb(var(--color-foreground));
   }
 }
 
@@ -108,7 +125,7 @@
     height: 2rem;
   }
 
-  .melt-heading-link:hover & {
+  .melt-heading-link:not(.melt-heading-link--static):hover & {
     transform: translateX(0.4rem);
   }
 }
@@ -162,14 +179,14 @@
   }
 }
 
-// Card button ("SHOP CANDLES →"), snippets/card-collection.liquid. Dawn's .button supplies
-// shape, focus and hover; colours come from the block or the colour scheme. Sits above the
-// card's whole-card link (z-index 1) so it stays clickable.
+// Arrow button ("SHOP CANDLES →") — collection card buttons, Gifting featured link. Dawn's
+// .button supplies shape, focus and hover; colours come from settings or the colour scheme.
+// position/z-index keep it clickable above a card's whole-card link (z-index 1).
 .card__button-wrapper {
   margin-top: 2rem;
 }
 
-.card__button {
+.melt-arrow-button {
   position: relative;
   z-index: 2;
   gap: 2rem;
@@ -183,7 +200,7 @@
   }
 }
 
-.card__button-arrow {
+.melt-arrow-button__arrow {
   display: flex;
   transition: transform var(--duration-short) ease;
 
@@ -192,7 +209,7 @@
     height: 1.6rem;
   }
 
-  .card__button:hover & {
+  .melt-arrow-button:hover & {
     transform: translateX(0.4rem);
   }
 }

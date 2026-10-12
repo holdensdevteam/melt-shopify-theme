@@ -445,6 +445,101 @@
     }
   },
   "sections": {
+    "melt_gifting": {
+      "name": "Gifting",
+      "settings": {
+        "header_heading": {
+          "content": "Heading"
+        },
+        "title": {
+          "label": "Heading",
+          "default": "Finding something special for someone special"
+        },
+        "header_featured": {
+          "content": "Featured collection (left)"
+        },
+        "featured_collection": {
+          "label": "Collection"
+        },
+        "featured_title": {
+          "label": "Title",
+          "info": "Leave blank to use the collection's title."
+        },
+        "featured_subtitle": {
+          "label": "Subtitle"
+        },
+        "featured_image_ratio": {
+          "label": "Image ratio",
+          "options__wide": {
+            "label": "Wide (2:1)"
+          },
+          "options__landscape": {
+            "label": "Landscape (16:9)"
+          },
+          "options__adapt": {
+            "label": "Adapt to image"
+          }
+        },
+        "featured_link_label": {
+          "label": "Button label",
+          "default": "Shop the collection"
+        },
+        "featured_link": {
+          "label": "Button link",
+          "info": "Leave blank to link to the collection."
+        },
+        "featured_color_scheme": {
+          "label": "Card colour scheme",
+          "info": "Button colours come from this scheme's button colours; the outline from its Outline colour."
+        },
+        "featured_border_width": {
+          "label": "Outline thickness"
+        },
+        "header_right": {
+          "content": "Right-hand links",
+          "info": "Each tile and button links to its collection and shows the collection's title."
+        },
+        "label_color_scheme": {
+          "label": "Group label colour scheme"
+        },
+        "recipient_label": {
+          "label": "Upper label",
+          "default": "Shop by recipient"
+        },
+        "recipient_collection_1": {
+          "label": "Upper tile 1 collection"
+        },
+        "recipient_collection_2": {
+          "label": "Upper tile 2 collection"
+        },
+        "recipient_title": {
+          "label": "Tile title"
+        },
+        "recipient_color_scheme": {
+          "label": "Tile label colour scheme"
+        },
+        "price_label": {
+          "label": "Lower label",
+          "default": "Shop by price"
+        },
+        "price_collection_1": {
+          "label": "Lower button 1 collection"
+        },
+        "price_collection_2": {
+          "label": "Lower button 2 collection"
+        },
+        "price_collection_3": {
+          "label": "Lower button 3 collection"
+        },
+        "price_color_scheme": {
+          "label": "Lower button colour scheme",
+          "info": "Background, text and Outline colours (and their hover colours) come from this scheme."
+        },
+        "header_section": {
+          "content": "Section"
+        }
+      }
+    },
     "melt_columns": {
       "name": "Columns",
       "settings": {
