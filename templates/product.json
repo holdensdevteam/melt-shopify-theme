@@ -9,13 +9,30 @@
  */
 {
   "sections": {
+    "breadcrumbs": {
+      "type": "melt-breadcrumbs",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your cart",
+        "font_size": 14,
+        "text_color": "#121212",
+        "link_color": "#121212",
+        "link_hover_color": "#CE7721",
+        "color_scheme": "scheme-1",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
+            "text": "{{ product.title }}",
             "text_style": "uppercase"
           }
         },
@@ -23,8 +40,23 @@
           "type": "title",
           "settings": {}
         },
+        "text_gnYPCG": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.scent_notes | metafield_text: field: 'name' }}",
+            "text_style": "body"
+          }
+        },
+        "rating_8Ya4be": {
+          "type": "rating",
+          "settings": {}
+        },
         "price": {
           "type": "price",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
           "settings": {}
         },
         "variant_picker": {
@@ -44,32 +76,23 @@
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
           }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
         }
       },
       "block_order": [
         "vendor",
         "title",
+        "text_gnYPCG",
+        "rating_8Ya4be",
         "price",
+        "description",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
+        "buy_buttons"
       ],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
-        "media_size": "large",
+        "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "stacked",
@@ -82,9 +105,53 @@
         "padding_bottom": 12
       }
     },
+    "usp_bar_bgyAdV": {
+      "type": "usp-bar",
+      "blocks": {
+        "usp_eJ4fYk": {
+          "type": "usp",
+          "settings": {
+            "text": "Hand-poured in the Ribble Valley",
+            "icon": "melt_valley"
+          }
+        },
+        "usp_XwAPzy": {
+          "type": "usp",
+          "settings": {
+            "text": "Next working day delivery. Order by 1pm",
+            "icon": "melt_next_day"
+          }
+        },
+        "usp_6RgWwf": {
+          "type": "usp",
+          "settings": {
+            "text": "Next working day delivery. Order by 1pm",
+            "icon": "melt_established"
+          }
+        }
+      },
+      "block_order": [
+        "usp_eJ4fYk",
+        "usp_XwAPzy",
+        "usp_6RgWwf"
+      ],
+      "name": "t:sections.usp_bar.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "icon_position": "top",
+        "icon_height": 30,
+        "text_style": "heading",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "disclosures": {
       "type": "disclosures",
       "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 0
       }
@@ -109,7 +176,9 @@
     }
   },
   "order": [
+    "breadcrumbs",
     "main",
+    "usp_bar_bgyAdV",
     "disclosures",
     "related-products"
   ]

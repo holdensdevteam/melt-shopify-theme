@@ -86,6 +86,12 @@
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+            {%- liquid
+              # Melt: values for the [type] / [title] / [vendor] placeholders in Text and Heading blocks.
+              assign placeholder_type = product.type | escape
+              assign placeholder_title = product.title | escape
+              assign placeholder_vendor = product.vendor | escape
+            -%}
             {%- for block in section.blocks -%}
               {%- case block.type -%}
                 {%- when '@app' -%}
@@ -95,8 +101,23 @@
                     class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                     {{ block.shopify_attributes }}
                   >
-                    {{- block.settings.text -}}
+                    {{- block.settings.text | replace: '[type]', placeholder_type | replace: '[title]', placeholder_title | replace: '[vendor]', placeholder_vendor -}}
                   </p>
+                {%- when 'heading' -%}
+                  {%- comment -%}
+                    Melt: custom heading styled like the Title block. Text can use dynamic sources
+                    (e.g. a metafield) and the placeholders [type], [title] and [vendor] — Shopify's
+                    dynamic source picker doesn't offer product type. Choose H1 only if the Title
+                    block is removed — one H1 per page.
+                  {%- endcomment -%}
+                  {%- if block.settings.heading != blank -%}
+                    {%- assign heading_tag = block.settings.heading_tag -%}
+                    <div class="product__heading" {{ block.shopify_attributes }}>
+                      <{{ heading_tag }} class="h1 inline-richtext">
+                        {{- block.settings.heading | replace: '[type]', placeholder_type | replace: '[title]', placeholder_title | replace: '[vendor]', placeholder_vendor -}}
+                      </{{ heading_tag }}>
+                    </div>
+                  {%- endif -%}
                 {%- when 'title' -%}
                   <div class="product__title" {{ block.shopify_attributes }}>
                     <h1>{{ product.title | escape }}</h1>
@@ -770,7 +791,8 @@
           "type": "inline_richtext",
           "id": "text",
           "default": "t:sections.main-product.blocks.text.settings.text.default",
-          "label": "t:sections.main-product.blocks.text.settings.text.label"
+          "label": "t:sections.main-product.blocks.text.settings.text.label",
+          "info": "t:sections.main-product.blocks.text.settings.text.info_placeholders"
         },
         {
           "type": "select",
@@ -798,6 +820,40 @@
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
       "limit": 1
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.main-product.blocks.heading.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:sections.main-product.blocks.heading.settings.heading.label",
+          "info": "t:sections.main-product.blocks.heading.settings.heading.info",
+          "default": "t:sections.main-product.blocks.heading.settings.heading.default"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "t:sections.main-product.blocks.heading.settings.heading_tag.label",
+          "info": "t:sections.main-product.blocks.heading.settings.heading_tag.info",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.main-product.blocks.heading.settings.heading_tag.options__h2.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.main-product.blocks.heading.settings.heading_tag.options__h1.label"
+            },
+            {
+              "value": "p",
+              "label": "t:sections.main-product.blocks.heading.settings.heading_tag.options__p.label"
+            }
+          ],
+          "default": "h2"
+        }
+      ]
     },
     {
       "type": "price",

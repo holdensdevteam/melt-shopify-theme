@@ -445,6 +445,48 @@
     }
   },
   "sections": {
+    "melt_breadcrumbs": {
+      "name": "Breadcrumbs",
+      "settings": {
+        "width": {
+          "label": "Width",
+          "options__container": {
+            "label": "Container (page width)"
+          },
+          "options__full": {
+            "label": "Full width"
+          }
+        },
+        "home_label": {
+          "label": "Home label",
+          "default": "Home"
+        },
+        "separator": {
+          "label": "Separator"
+        },
+        "search_label": {
+          "label": "Search label",
+          "default": "Search"
+        },
+        "cart_label": {
+          "label": "Cart label",
+          "default": "Your basket"
+        },
+        "font_size": {
+          "label": "Font size"
+        },
+        "text_color": {
+          "label": "Text colour",
+          "info": "Current page and separators. Leave the colours blank to use the colour scheme."
+        },
+        "link_color": {
+          "label": "Link colour"
+        },
+        "link_hover_color": {
+          "label": "Link hover colour"
+        }
+      }
+    },
     "melt_gifting": {
       "name": "Gifting",
       "settings": {
@@ -2526,11 +2568,35 @@
     "main-product": {
       "name": "Product information",
       "blocks": {
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "info": "Styled like the product title. Type [type], [title] or [vendor] to insert the product's type, title or vendor (e.g. Angel [type]), or use the dynamic source icon for metafields.",
+              "default": "Heading"
+            },
+            "heading_tag": {
+              "label": "Heading level",
+              "info": "For search engines and screen readers. Use H1 only if you remove the Title block — a page should have one H1.",
+              "options__h2": {
+                "label": "H2"
+              },
+              "options__h1": {
+                "label": "H1"
+              },
+              "options__p": {
+                "label": "Not a heading (paragraph)"
+              }
+            }
+          }
+        },
         "text": {
           "name": "Text",
           "settings": {
             "text": {
               "label": "Text",
+              "info_placeholders": "Type [type], [title] or [vendor] to insert the product's type, title or vendor.",
               "default": "Text block"
             },
             "text_style": {

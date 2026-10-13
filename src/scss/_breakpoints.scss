@@ -16,7 +16,6 @@ $large: 990px;
 $xlarge: 1200px;
 $xxlarge: 1400px;
 $xxxlarge: 1600px;
-$xxxlarge: 1600px;
 
 @mixin from($breakpoint) {
   @media screen and (min-width: $breakpoint) {

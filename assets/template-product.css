@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/template-product.scss — edit that file, not this one. */
+#MainContent {
+  margin-top: 8px;
+}
+@media screen and (min-width: 750px) {
+  #MainContent {
+    margin-top: 1em;
+  }
+}

@@ -1,0 +1,14 @@
+/*! Compiled from src/scss/template-product.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Product page template only — layout/theme.liquid loads this when request.page_type is 'product'
+// (any product template). Styles for the product section itself belong in section-main-product.scss,
+// but that file is also loaded by Featured product and the quick-add popup, so page-level rules
+// like this one live here instead.
+
+#MainContent {
+  margin-top: 8px;
+  @include bp.from(bp.$medium) {
+    margin-top: 1em;
+  }
+}

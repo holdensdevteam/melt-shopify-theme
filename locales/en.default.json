@@ -318,6 +318,9 @@
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> to check out faster."
       }
     },
+    "breadcrumbs": {
+      "label": "Breadcrumb"
+    },
     "footer": {
       "payment": "Payment methods",
       "copyright_html": "&copy; {{ shop_name }} {{ year }}. All rights reserved.",
