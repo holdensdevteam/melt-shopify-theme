@@ -52,7 +52,7 @@
         "bar_width": "page",
         "bar_opacity": 80,
         "bar_radius": 6,
-        "bar_margin_top": 16,
+        "bar_margin_top": 18,
         "bar_margin_right": 26,
         "bar_margin_bottom": 0,
         "bar_margin_left": 26,
@@ -61,7 +61,7 @@
         "enable_language_selector": true,
         "margin_bottom": 0,
         "padding_top": 8,
-        "padding_bottom": 12
+        "padding_bottom": 8
       }
     }
   },

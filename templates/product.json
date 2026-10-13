@@ -17,10 +17,10 @@
         "separator": "/",
         "search_label": "Search",
         "cart_label": "Your cart",
-        "font_size": 14,
+        "font_size": 13,
         "text_color": "#121212",
         "link_color": "#121212",
-        "link_hover_color": "#CE7721",
+        "link_hover_color": "#ce7721",
         "color_scheme": "scheme-1",
         "padding_top": 16,
         "padding_bottom": 16
@@ -32,13 +32,16 @@
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "{{ product.title }}",
+            "text": "{{ product.metafields.custom.short_title.value.short_title.value }}",
             "text_style": "uppercase"
           }
         },
-        "title": {
-          "type": "title",
-          "settings": {}
+        "heading_37ehEM": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ product.metafields.custom.fragrance.value.label.value }} [type]",
+            "heading_tag": "h2"
+          }
         },
         "text_gnYPCG": {
           "type": "text",
@@ -80,7 +83,7 @@
       },
       "block_order": [
         "vendor",
-        "title",
+        "heading_37ehEM",
         "text_gnYPCG",
         "rating_8Ya4be",
         "price",
@@ -93,13 +96,13 @@
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "gallery_layout": "thumbnail",
-        "mobile_thumbnails": "hide",
+        "mobile_thumbnails": "show",
         "media_position": "left",
-        "image_zoom": "lightbox",
+        "image_zoom": "hover",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "padding_top": 0,
+        "padding_bottom": 72
       }
     },
     "usp_bar_bgyAdV": {
