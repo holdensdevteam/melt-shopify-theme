@@ -1,4 +1,5 @@
 /*! Compiled from src/scss/section-main-product.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
 
 body {
   background: #f6f4ee !important;
@@ -1540,4 +1541,88 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing + .product__heading {
   margin-top: 0;
+}
+
+/*
+ * ------------------------------------------------------------
+ * Melt: product gallery (main-product only — .melt-product)
+ * Replaces Dawn's Media width / Fit / Constrain to screen height settings.
+ * ------------------------------------------------------------
+ */
+
+// Space taken up above and below the main image on desktop: announcement bar, header,
+// breadcrumbs, page and section padding, thumbnail row gap and a little breathing room.
+// The thumbnail row's own height is added separately below. Tune this if the header changes.
+$gallery-fold-offset: 200px;
+
+// 55 / 45 split from 990px (Dawn's 50/50 two columns stay on tablet).
+@include bp.from(bp.$large) {
+  .product--melt-split:not(.product--no-media) {
+    .product__media-wrapper {
+      max-width: 55%;
+      width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
+    }
+
+    .product__info-wrapper {
+      padding: 0 0 0 4rem;
+      max-width: 45%;
+      width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+    }
+
+    &.product--right .product__info-wrapper {
+      padding: 0 4rem 0 0;
+    }
+
+    // 6 across, in 70% of the column — thumbnails about 30% smaller than full width.
+    .thumbnail-list {
+      grid-template-columns: repeat(6, 1fr);
+      max-width: 70%;
+    }
+  }
+}
+
+// One gap for the gallery: between thumbnails, and between the main image and the thumbnail row.
+// Replaces Dawn's .grid bottom margin (2rem) and the theme's grid spacing setting on the media list.
+@include bp.from(bp.$medium) {
+  .melt-product {
+    --melt-gallery-gap: 1rem;
+
+    .product__media-list {
+      margin-bottom: var(--melt-gallery-gap);
+      row-gap: var(--melt-gallery-gap);
+      column-gap: var(--melt-gallery-gap);
+    }
+
+    .thumbnail-list {
+      gap: var(--melt-gallery-gap);
+    }
+  }
+}
+
+// Every main image the same shape: a fixed ratio per breakpoint, cropped to fill (object-fit:
+// cover via media-fit-cover). Thumbnails stay square. calc() keeps the ratio a single value when
+// Dawn substitutes it into calc(1 / var(--aspect-ratio) * 100%).
+.melt-product .product__media-list .product-media-container {
+  --aspect-ratio: calc(10 / 9);
+
+  @include bp.from(bp.$xlarge) {
+    --aspect-ratio: calc(20 / 18.15);
+  }
+
+  @include bp.from(bp.$hd) {
+    --aspect-ratio: calc(20 / 20.57);
+  }
+}
+
+// Above the fold: on desktop, cap the main image at the screen height minus the space around it
+// and the thumbnail row (6 thumbnails in 70% of a 55% column ≈ 6.5% of the page width).
+// Tall screens get the exact ratios above; shorter ones get a slightly wider, shallower frame —
+// still the same shape for every image.
+@include bp.from(bp.$large) {
+  .melt-product .product__media-list .product-media-container .media {
+    padding-top: min(
+      var(--ratio-percent),
+      calc(100vh - #{$gallery-fold-offset} - min(6.5vw, var(--page-width) * 0.065))
+    );
+  }
 }

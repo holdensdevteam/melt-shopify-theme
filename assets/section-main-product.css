@@ -1411,3 +1411,60 @@ a.product__text {
 .product__text.caption-with-letter-spacing + .product__heading {
   margin-top: 0;
 }
+
+/*
+ * ------------------------------------------------------------
+ * Melt: product gallery (main-product only — .melt-product)
+ * Replaces Dawn's Media width / Fit / Constrain to screen height settings.
+ * ------------------------------------------------------------
+ */
+@media screen and (min-width: 990px) {
+  .product--melt-split:not(.product--no-media) .product__media-wrapper {
+    max-width: 55%;
+    width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+  .product--melt-split:not(.product--no-media) .product__info-wrapper {
+    padding: 0 0 0 4rem;
+    max-width: 45%;
+    width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+  .product--melt-split:not(.product--no-media).product--right .product__info-wrapper {
+    padding: 0 4rem 0 0;
+  }
+  .product--melt-split:not(.product--no-media) .thumbnail-list {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 70%;
+  }
+}
+@media screen and (min-width: 750px) {
+  .melt-product {
+    --melt-gallery-gap: 1rem;
+  }
+  .melt-product .product__media-list {
+    margin-bottom: var(--melt-gallery-gap);
+    row-gap: var(--melt-gallery-gap);
+    column-gap: var(--melt-gallery-gap);
+  }
+  .melt-product .thumbnail-list {
+    gap: var(--melt-gallery-gap);
+  }
+}
+.melt-product .product__media-list .product-media-container {
+  --aspect-ratio: calc(10 / 9);
+}
+@media screen and (min-width: 1200px) {
+  .melt-product .product__media-list .product-media-container {
+    --aspect-ratio: calc(20 / 18.15);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .melt-product .product__media-list .product-media-container {
+    --aspect-ratio: calc(20 / 20.57);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .melt-product .product__media-list .product-media-container .media {
+    padding-top: min(var(--ratio-percent), 100vh - 200px - min(6.5vw, var(--page-width) * 0.065));
+  }
+}

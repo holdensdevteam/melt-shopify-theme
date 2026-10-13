@@ -33,6 +33,11 @@
     assign hide_mobile_slider = true
   endif
 
+  # Melt: the product page uses a fixed 55/45 split and has no Media width setting;
+  # Featured product still has one.
+  assign media_width = 0.55
+  # Product page images always fill their frame (no Fit setting); Featured product keeps its own.
+  assign media_fit = section.settings.media_fit | default: 'cover'
   if section.settings.media_size == 'large'
     assign media_width = 0.65
   elsif section.settings.media_size == 'medium'
@@ -79,7 +84,7 @@
             modal_id: section.id,
             xr_button: true,
             media_width: media_width,
-            media_fit: section.settings.media_fit,
+            media_fit: media_fit,
             constrain_to_viewport: section.settings.constrain_to_viewport,
             lazy_load: false
           %}
@@ -117,7 +122,7 @@
               modal_id: section.id,
               xr_button: true,
               media_width: media_width,
-              media_fit: section.settings.media_fit,
+              media_fit: media_fit,
               constrain_to_viewport: section.settings.constrain_to_viewport,
               lazy_load: lazy_load
             %}
