@@ -178,8 +178,57 @@
         "padding_bottom": 0
       }
     },
+    "featured_collection_KeLjXB": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "angel",
+        "products_to_show": 8,
+        "title": "Also comes as",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 40,
+        "heading_margin_sides": 0,
+        "cta_label": "Shop all Angel",
+        "cta_link": "shopify://collections/angel",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "card_style": "card",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_name_size": "large",
+        "show_type_eyebrow": true,
+        "eyebrow_color": "#171717",
+        "price_rating_row": true,
+        "background_image": "shopify://shop_images/melt-section-bg.png",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_sides": 50
+      }
+    },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -215,6 +264,116 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "featured_collection_LAgtwX": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "floral",
+        "products_to_show": 8,
+        "title": "If you like Angel",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 40,
+        "heading_margin_sides": 0,
+        "cta_label": "Shop all floral",
+        "cta_link": "shopify://collections/floral",
+        "cta_arrow": true,
+        "cta_color_scheme": "scheme-1",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "card_style": "card",
+        "card_color_scheme": "scheme-1",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_name_size": "large",
+        "show_type_eyebrow": true,
+        "eyebrow_color": "#171717",
+        "price_rating_row": true,
+        "background_image": "shopify://shop_images/melt-section-bg.png",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_sides": 50
+      }
+    },
+    "melt_faqs_b4Tjzf": {
+      "type": "melt-faqs",
+      "blocks": {
+        "question_GiMETc": {
+          "type": "question",
+          "settings": {
+            "question": "How long does a Short & Fat candle burn?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam justo, euismod in tristique eu, rhoncus in dui. Aenean erat ex, vestibulum eu euismod eget, scelerisque vel nulla.&nbsp;</p><p>Sed sit amet tortor nec felis tempor vulputate in a dolor. Aenean nec consequat nunc, non cursus arcu. Donec iaculis faucibus fermentum.</p>"
+          }
+        },
+        "question_T7NGcw": {
+          "type": "question",
+          "settings": {
+            "question": "What is the difference between Short & Fat and Tall & Thin?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam justo, euismod in tristique eu, rhoncus in dui. Aenean erat ex, vestibulum eu euismod eget, scelerisque vel nulla.&nbsp;</p><p>Sed sit amet tortor nec felis tempor vulputate in a dolor. Aenean nec consequat nunc, non cursus arcu. Donec iaculis faucibus fermentum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec ultrices sapien, et pretium justo. Etiam rhoncus sagittis tortor.</p>"
+          }
+        },
+        "question_gHdFyk": {
+          "type": "question",
+          "settings": {
+            "question": "Can I get Angel as a reed diffuser?",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        },
+        "question_dBGdVQ": {
+          "type": "question",
+          "settings": {
+            "question": "Do you post to Ireland and Europe?",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        },
+        "question_bxRWXC": {
+          "type": "question",
+          "settings": {
+            "question": "Are your candles vegan?",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_GiMETc",
+        "question_T7NGcw",
+        "question_gHdFyk",
+        "question_dBGdVQ",
+        "question_bxRWXC"
+      ],
+      "name": "t:sections.melt_faqs.name",
+      "settings": {
+        "title": "Questions we get asked",
+        "heading_size": "h1",
+        "description": "<p>Can't find what you're after? We're a small team in Lancashire and we read every message.</p>",
+        "link_label": "Get in touch",
+        "link_url": "shopify://pages/contact",
+        "link_arrow": true,
+        "link_color_scheme": "",
+        "item_color_scheme": "scheme-2",
+        "structured_data": true,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
@@ -222,7 +381,10 @@
     "main",
     "usp_bar_bgyAdV",
     "disclosures",
+    "featured_collection_KeLjXB",
     "related-products",
-    "1792074495d96e01d2"
+    "1792074495d96e01d2",
+    "featured_collection_LAgtwX",
+    "melt_faqs_b4Tjzf"
   ]
 }
