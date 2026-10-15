@@ -43,11 +43,13 @@
             "heading_tag": "h2"
           }
         },
-        "text_gnYPCG": {
-          "type": "text",
+        "tags_qEJnDW": {
+          "type": "tags",
           "settings": {
-            "text": "{{ product.metafields.custom.scent_notes | metafield_text: field: 'name' }}",
-            "text_style": "body"
+            "tags_list": "{{ product.metafields.custom.scent_notes.value }}",
+            "tags_text": "",
+            "max_tags": 3,
+            "color_scheme": "scheme-2"
           }
         },
         "rating_8Ya4be": {
@@ -56,11 +58,29 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "price_size": "large"
+          }
         },
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "standout_text_JqaAXw": {
+          "type": "standout_text",
+          "settings": {
+            "text": "Next working day delivery on orders by 1pm",
+            "color_scheme": "scheme-2"
+          }
+        },
+        "divider_Gwcpnm": {
+          "type": "divider",
+          "settings": {
+            "thickness": 1,
+            "color": "#e5e3dc",
+            "margin_top": 20,
+            "margin_bottom": 20
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -84,10 +104,12 @@
       "block_order": [
         "vendor",
         "heading_37ehEM",
-        "text_gnYPCG",
+        "tags_qEJnDW",
         "rating_8Ya4be",
         "price",
         "description",
+        "standout_text_JqaAXw",
+        "divider_Gwcpnm",
         "variant_picker",
         "quantity_selector",
         "buy_buttons"
