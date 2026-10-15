@@ -445,6 +445,54 @@
     }
   },
   "sections": {
+    "melt_faqs": {
+      "name": "FAQs",
+      "settings": {
+        "header_intro": {
+          "content": "Intro"
+        },
+        "title": {
+          "label": "Heading",
+          "default": "Questions we get asked"
+        },
+        "description": {
+          "label": "Description",
+          "default": "<p>Can't find what you're after? Get in touch — we're happy to help.</p>"
+        },
+        "link_label": {
+          "default": "Get in touch"
+        },
+        "header_questions": {
+          "content": "Questions"
+        },
+        "item_color_scheme": {
+          "label": "Question colour scheme",
+          "info": "Box background and text. The + / − icon uses this scheme's button colour."
+        },
+        "structured_data": {
+          "label": "Add FAQ structured data",
+          "info": "Helps search engines and AI answers read these questions. Turn off if another FAQ section on the same page already has it on."
+        },
+        "header_section": {
+          "content": "Section"
+        }
+      },
+      "blocks": {
+        "question": {
+          "name": "Question",
+          "settings": {
+            "question": {
+              "label": "Question",
+              "default": "Add a question customers often ask"
+            },
+            "answer": {
+              "label": "Answer",
+              "default": "<p>Answer it plainly — the way you would in the shop.</p>"
+            }
+          }
+        }
+      }
+    },
     "melt_breadcrumbs": {
       "name": "Breadcrumbs",
       "settings": {

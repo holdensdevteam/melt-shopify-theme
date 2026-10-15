@@ -1,0 +1,265 @@
+{{ 'section-melt-faqs.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  FAQs: intro (title, description, link) on the left; questions on the right, each a <details>
+  that starts collapsed. Also outputs FAQPage JSON-LD from the same questions and answers
+  (Structured data setting) — keep it to one FAQ section per page that outputs it.
+{%- endcomment -%}
+
+{%- style -%}
+  #Faqs-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Faqs-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="Faqs-{{ section.id }}" class="melt-faqs color-{{ section.settings.color_scheme }} gradient">
+  <div class="melt-faqs__inner page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if section.settings.title != blank or section.settings.description != blank or section.settings.link_label != blank -%}
+      <div class="melt-faqs__intro">
+        {%- if section.settings.title != blank -%}
+          <h2 class="melt-faqs__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="melt-faqs__description rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+        {%- render 'melt-heading-link',
+          label: section.settings.link_label,
+          url: section.settings.link_url,
+          color_scheme: section.settings.link_color_scheme,
+          show_arrow: section.settings.link_arrow
+        -%}
+      </div>
+    {%- endif -%}
+
+    <div class="melt-faqs__list">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.question != blank -%}
+          <details class="melt-faqs__item color-{{ section.settings.item_color_scheme }}" {{ block.shopify_attributes }}>
+            <summary class="melt-faqs__summary">
+              <h3 class="melt-faqs__question">{{ block.settings.question | escape }}</h3>
+              <span class="melt-faqs__icon melt-faqs__icon--plus" aria-hidden="true">
+                <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+              </span>
+              <span class="melt-faqs__icon melt-faqs__icon--minus" aria-hidden="true">
+                <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+              </span>
+            </summary>
+            {%- if block.settings.answer != blank -%}
+              <div class="melt-faqs__answer rte">{{ block.settings.answer }}</div>
+            {%- endif -%}
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.structured_data -%}
+  {%- liquid
+    assign faq_count = 0
+    for block in section.blocks
+      if block.settings.question != blank and block.settings.answer != blank
+        assign faq_count = faq_count | plus: 1
+      endif
+    endfor
+  -%}
+  {%- if faq_count > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- assign faq_index = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.question != blank and block.settings.answer != blank -%}
+              {%- assign faq_index = faq_index | plus: 1 -%}
+              {
+                "@type": "Question",
+                "name": {{ block.settings.question | strip_html | json }},
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": {{ block.settings.answer | json }}
+                }
+              }{% if faq_index < faq_count %},{% endif %}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.melt_faqs.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.melt_faqs.settings.header_intro.content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:sections.melt_faqs.settings.title.label",
+      "default": "t:sections.melt_faqs.settings.title.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.melt_faqs.settings.description.label",
+      "default": "t:sections.melt_faqs.settings.description.default"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:sections.collection-list.settings.cta_label.label",
+      "default": "t:sections.melt_faqs.settings.link_label.default"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:sections.collection-list.settings.cta_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_arrow",
+      "default": true,
+      "label": "t:sections.collection-list.settings.cta_arrow.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "link_color_scheme",
+      "default": "scheme-2",
+      "label": "t:sections.collection-list.settings.cta_color_scheme.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_faqs.settings.header_questions.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "item_color_scheme",
+      "default": "scheme-2",
+      "label": "t:sections.melt_faqs.settings.item_color_scheme.label",
+      "info": "t:sections.melt_faqs.settings.item_color_scheme.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "structured_data",
+      "default": true,
+      "label": "t:sections.melt_faqs.settings.structured_data.label",
+      "info": "t:sections.melt_faqs.settings.structured_data.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_faqs.settings.header_section.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-1",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40,
+      "label": "t:sections.all.padding.padding_top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40,
+      "label": "t:sections.all.padding.padding_bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "t:sections.melt_faqs.blocks.question.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "t:sections.melt_faqs.blocks.question.settings.question.label",
+          "default": "t:sections.melt_faqs.blocks.question.settings.question.default"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "t:sections.melt_faqs.blocks.question.settings.answer.label",
+          "default": "t:sections.melt_faqs.blocks.question.settings.answer.default"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.melt_faqs.name",
+      "blocks": [
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

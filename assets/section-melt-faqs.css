@@ -1,0 +1,120 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-melt-faqs.scss — edit that file, not this one. */
+.melt-faqs__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.2rem;
+}
+@media screen and (min-width: 750px) {
+  .melt-faqs__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 4rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .melt-faqs__inner {
+    gap: 8rem;
+  }
+}
+
+.melt-faqs__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+
+.melt-faqs__title {
+  margin: 0;
+}
+
+.melt-faqs__description {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: rgba(var(--color-foreground), 0.8);
+}
+@media screen and (min-width: 750px) {
+  .melt-faqs__description {
+    font-size: 1.6rem;
+  }
+}
+.melt-faqs__description > *:first-child {
+  margin-top: 0;
+}
+.melt-faqs__description > *:last-child {
+  margin-bottom: 0;
+}
+
+.melt-faqs__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.melt-faqs__item {
+  border-radius: var(--text-boxes-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+}
+
+.melt-faqs__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem 2rem;
+  cursor: pointer;
+  list-style: none;
+}
+@media screen and (min-width: 750px) {
+  .melt-faqs__summary {
+    padding: 2.4rem 3.2rem;
+  }
+}
+.melt-faqs__summary::-webkit-details-marker {
+  display: none;
+}
+
+.melt-faqs__question {
+  margin: 0;
+  font-size: calc(var(--font-heading-scale) * 1.7rem);
+  line-height: 1.3;
+}
+@media screen and (min-width: 750px) {
+  .melt-faqs__question {
+    font-size: calc(var(--font-heading-scale) * 2rem);
+  }
+}
+
+.melt-faqs__icon {
+  display: flex;
+  flex-shrink: 0;
+  color: rgb(var(--color-button));
+}
+.melt-faqs__icon .svg-wrapper {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.melt-faqs__item[open] .melt-faqs__icon--plus,
+.melt-faqs__item:not([open]) .melt-faqs__icon--minus {
+  display: none;
+}
+
+.melt-faqs__answer {
+  padding: 0 2rem 2rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+@media screen and (min-width: 750px) {
+  .melt-faqs__answer {
+    padding: 0 3.2rem 2.8rem;
+    font-size: 1.6rem;
+  }
+}
+.melt-faqs__answer > *:first-child {
+  margin-top: 0;
+}
+.melt-faqs__answer > *:last-child {
+  margin-bottom: 0;
+}

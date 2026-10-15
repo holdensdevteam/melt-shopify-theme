@@ -18,9 +18,25 @@
   border-radius: var(--melt-header-radius, 0);
 }
 
-// Page width: cap the bar at the layout's page width and centre it. The side margins still apply.
+// Page width: line the bar up with the page content, which is --page-width minus Dawn's
+// .page-width side padding (1.5rem mobile, 5rem from 750px). So the bar is capped at that width,
+// and on narrower screens its side spacing is at least the same gutter — the header's left/right
+// margin settings still apply when they're larger.
+.section-header {
+  --melt-page-gutter: 1.5rem;
+
+  @include bp.from(bp.$medium) {
+    --melt-page-gutter: 5rem;
+  }
+}
+
+.section-header:has(> .header-wrapper--contained) {
+  padding-left: max(var(--melt-header-margin-left, 0px), var(--melt-page-gutter));
+  padding-right: max(var(--melt-header-margin-right, 0px), var(--melt-page-gutter));
+}
+
 .section-header .header-wrapper--contained {
-  max-width: var(--page-width);
+  max-width: calc(var(--page-width) - 2 * var(--melt-page-gutter));
   margin-inline: auto;
 }
 

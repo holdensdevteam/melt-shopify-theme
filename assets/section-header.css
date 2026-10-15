@@ -8,8 +8,22 @@
   border-radius: var(--melt-header-radius, 0);
 }
 
+.section-header {
+  --melt-page-gutter: 1.5rem;
+}
+@media screen and (min-width: 750px) {
+  .section-header {
+    --melt-page-gutter: 5rem;
+  }
+}
+
+.section-header:has(> .header-wrapper--contained) {
+  padding-left: max(var(--melt-header-margin-left, 0px), var(--melt-page-gutter));
+  padding-right: max(var(--melt-header-margin-right, 0px), var(--melt-page-gutter));
+}
+
 .section-header .header-wrapper--contained {
-  max-width: var(--page-width);
+  max-width: calc(var(--page-width) - 2 * var(--melt-page-gutter));
   margin-inline: auto;
 }
 
