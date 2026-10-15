@@ -229,7 +229,7 @@ product-info {
 /* Product info */
 
 .product__info-container > * + * {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 
 .product__info-container iframe {
@@ -239,7 +239,21 @@ product-info {
 .product__info-container .product-form,
 .product__info-container .product__description,
 .product__info-container .icon-with-text {
-  margin: 2.5rem 0;
+  margin: 1rem 0 1.5rem;
+}
+
+.product__info-container .product__description {
+  ul {
+    padding-left: 2px;
+
+    li {
+      &::marker {
+        color: #ce7721;
+        font-size: 2rem;
+        line-height: 1;
+      }
+    }
+  }
 }
 
 .product__text {
@@ -1541,6 +1555,113 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing + .product__heading {
   margin-top: 0;
+}
+
+/*
+ * ------------------------------------------------------------
+ * Melt: price in the heading font (price block only — badges keep the body font).
+ * ------------------------------------------------------------
+ */
+.melt-product .product__info-container .price .price-item {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+}
+
+// Price size (price block setting). Small is Dawn's .price--large size (16px / 18px desktop).
+.product__price--medium .price {
+  font-size: 2rem;
+
+  @include bp.from(bp.$medium) {
+    font-size: 2.4rem;
+  }
+}
+
+.product__price--large .price {
+  font-size: 2.4rem;
+
+  @include bp.from(bp.$medium) {
+    font-size: 3.2rem;
+  }
+}
+
+/*
+ * ------------------------------------------------------------
+ * Melt: Divider block (main-product "Divider") — full-width line.
+ * Thickness, colour and space above/below from the block via inline variables.
+ * ------------------------------------------------------------
+ */
+.product__info-container > .product__divider {
+  width: 100%;
+  height: var(--divider-thickness, 1px);
+  margin: var(--divider-margin-top, 1rem) 0 var(--divider-margin-bottom, 1rem);
+  border: 0;
+  background-color: var(--divider-color, rgba(var(--color-foreground), 0.15));
+}
+
+// The divider's own spacing sets the whole gap: drop the neighbouring blocks' margins on the side
+// facing it (Dawn gives every block 1rem, and vertical margins merge rather than add).
+.product__info-container > *:has(+ .product__divider) {
+  margin-bottom: 0;
+}
+
+.product__info-container > .product__divider + * {
+  margin-top: 0;
+}
+
+/*
+ * ------------------------------------------------------------
+ * Melt: Tags block (main-product "Tags") — pills, e.g. scent notes.
+ * Pill colours from the block's colour scheme (full-colour background, so transparent works).
+ * ------------------------------------------------------------
+ */
+.product__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.product__tag {
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.4rem;
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  font-size: 1.4rem;
+  line-height: 1.6;
+
+  @include bp.from(bp.$medium) {
+    font-size: 1.5rem;
+  }
+}
+
+/*
+ * ------------------------------------------------------------
+ * Melt: Standout text block (main-product "Standout text") — a full-width tinted box.
+ * Colours from the block's colour scheme (full-colour background, so transparent works).
+ * ------------------------------------------------------------
+ */
+.product__standout {
+  padding: 1.2rem 1.6rem;
+  border-radius: var(--text-boxes-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+
+  @include bp.from(bp.$medium) {
+    padding: 1.4rem 2.4rem;
+  }
+}
+
+.product__standout-text {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @include bp.from(bp.$medium) {
+    font-size: 1.6rem;
+  }
 }
 
 /*

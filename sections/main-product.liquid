@@ -103,6 +103,65 @@
                   >
                     {{- block.settings.text | replace: '[type]', placeholder_type | replace: '[title]', placeholder_title | replace: '[vendor]', placeholder_vendor -}}
                   </p>
+                {%- when 'divider' -%}
+                  {%- liquid
+                    assign divider_color = block.settings.color
+                    if divider_color != blank and divider_color.alpha != 0
+                      assign divider_style = '--divider-color: ' | append: divider_color | append: '; '
+                    else
+                      assign divider_style = ''
+                    endif
+                  -%}
+                  <hr
+                    class="product__divider"
+                    style="{{ divider_style }}--divider-thickness: {{ block.settings.thickness }}px; --divider-margin-top: {{ block.settings.margin_top }}px; --divider-margin-bottom: {{ block.settings.margin_bottom }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                {%- when 'tags' -%}
+                  {%- comment -%}
+                    Melt: pills, e.g. scent notes. "Tags (list)" connects to a list metafield of
+                    Scent Notes metaobjects (each shows its Name). "Tags (text)" is a fallback for
+                    any text source: split at commas, after turning Shopify's list formatting
+                    ("A, B, and C" / "A and B") back into commas.
+                  {%- endcomment -%}
+                  {%- liquid
+                    assign tag_max = block.settings.max_tags
+                    assign tag_text = ''
+                    if block.settings.tags_list != blank
+                      for item in block.settings.tags_list limit: tag_max
+                        assign tag_label = item.name.value | default: item.name
+                        assign tag_text = tag_text | append: tag_label | append: '|||'
+                      endfor
+                    elsif block.settings.tags_text != blank
+                      assign tag_text = block.settings.tags_text | strip_html | replace: ', and ', ',' | replace: ',', '|||'
+                      unless tag_text contains '|||'
+                        assign tag_text = tag_text | replace: ' and ', '|||'
+                      endunless
+                    endif
+                    assign tag_items = tag_text | split: '|||'
+                  -%}
+                  {%- if tag_items.size > 0 -%}
+                    <ul class="product__tags list-unstyled" role="list" {{ block.shopify_attributes }}>
+                      {%- for tag in tag_items limit: tag_max -%}
+                        {%- assign tag_label = tag | strip -%}
+                        {%- if tag_label != blank -%}
+                          <li class="product__tag color-{{ block.settings.color_scheme }}">{{ tag_label | escape }}</li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                {%- when 'standout_text' -%}
+                  {%- comment -%} Melt: highlighted line in a tinted box, e.g. a delivery promise. {%- endcomment -%}
+                  {%- if block.settings.text != blank -%}
+                    <div
+                      class="product__standout color-{{ block.settings.color_scheme }}"
+                      {{ block.shopify_attributes }}
+                    >
+                      <p class="product__standout-text inline-richtext">
+                        {{- block.settings.text | replace: '[type]', placeholder_type | replace: '[title]', placeholder_title | replace: '[vendor]', placeholder_vendor -}}
+                      </p>
+                    </div>
+                  {%- endif -%}
                 {%- when 'heading' -%}
                   {%- comment -%}
                     Melt: custom heading styled like the Title block. Text can use dynamic sources
@@ -128,7 +187,12 @@
                     </a>
                   </div>
                 {%- when 'price' -%}
-                  <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  <div
+                    id="price-{{ section.id }}"
+                    class="product__price product__price--{{ block.settings.price_size | default: 'small' }}"
+                    role="status"
+                    {{ block.shopify_attributes }}
+                  >
                     {%- render 'price',
                       product: product,
                       use_variant: true,
@@ -141,20 +205,10 @@
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
                   {%- endif -%}
-                  {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                    <div class="product__tax caption rte">
-                      {%- if cart.duties_included and cart.taxes_included -%}
-                        {{ 'products.product.duties_and_taxes_included' | t }}
-                      {%- elsif cart.taxes_included -%}
-                        {{ 'products.product.taxes_included' | t }}
-                      {%- elsif cart.duties_included -%}
-                        {{ 'products.product.duties_included' | t }}
-                      {%- endif -%}
-                      {%- if shop.shipping_policy.body != blank -%}
-                        {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
+                  {%- comment -%}
+                    Melt: Dawn's "Taxes included. Shipping calculated at checkout." line removed —
+                    prices are VAT-inclusive and delivery costs show at checkout.
+                  {%- endcomment -%}
                   <div {{ block.shopify_attributes }}>
                     {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
@@ -856,9 +910,126 @@
       ]
     },
     {
+      "type": "tags",
+      "name": "t:sections.main-product.blocks.tags.name",
+      "settings": [
+        {
+          "type": "metaobject_list",
+          "id": "tags_list",
+          "metaobject_type": "scent_notes",
+          "label": "t:sections.main-product.blocks.tags.settings.tags_list.label",
+          "info": "t:sections.main-product.blocks.tags.settings.tags_list.info"
+        },
+        {
+          "type": "text",
+          "id": "tags_text",
+          "label": "t:sections.main-product.blocks.tags.settings.tags_text.label",
+          "info": "t:sections.main-product.blocks.tags.settings.tags_text.info"
+        },
+        {
+          "type": "range",
+          "id": "max_tags",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 6,
+          "label": "t:sections.main-product.blocks.tags.settings.max_tags.label"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.main-product.blocks.tags.settings.color_scheme.label",
+          "default": "scheme-2"
+        }
+      ]
+    },
+    {
+      "type": "standout_text",
+      "name": "t:sections.main-product.blocks.standout_text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:sections.main-product.blocks.standout_text.settings.text.label",
+          "info": "t:sections.main-product.blocks.standout_text.settings.text.info",
+          "default": "t:sections.main-product.blocks.standout_text.settings.text.default"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.main-product.blocks.standout_text.settings.color_scheme.label",
+          "default": "scheme-2"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "t:sections.main-product.blocks.divider.name",
+      "settings": [
+        {
+          "type": "range",
+          "id": "thickness",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "default": 1,
+          "label": "t:sections.main-product.blocks.divider.settings.thickness.label"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "t:sections.main-product.blocks.divider.settings.color.label",
+          "info": "t:sections.main-product.blocks.divider.settings.color.info"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 10,
+          "label": "t:sections.main-product.blocks.divider.settings.margin_top.label"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 10,
+          "label": "t:sections.main-product.blocks.divider.settings.margin_bottom.label"
+        }
+      ]
+    },
+    {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "price_size",
+          "label": "t:sections.main-product.blocks.price.settings.price_size.label",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.main-product.blocks.price.settings.price_size.options__small.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-product.blocks.price.settings.price_size.options__medium.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-product.blocks.price.settings.price_size.options__large.label"
+            }
+          ],
+          "default": "small"
+        }
+      ]
     },
     {
       "type": "sku",

@@ -29,7 +29,13 @@
   assign money_price = price | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money
-  if settings.currency_code_enabled
+  # Melt: show the currency code (Theme settings → Currency format) for every currency except
+  # pounds, where "£" is unambiguous. "$" alone could be USD, CAD or AUD once Markets is on.
+  assign show_currency_code = false
+  if settings.currency_code_enabled and cart.currency.iso_code != 'GBP'
+    assign show_currency_code = true
+  endif
+  if show_currency_code
     assign money_price = price | money_with_currency
     assign money_price_min = price_min | money_with_currency
     assign money_price_max = price_max | money_with_currency
@@ -67,7 +73,7 @@
               </span>
               <span>
                 <s class="price-item price-item--regular variant-item__old-price">
-                  {% if settings.currency_code_enabled %}
+                  {% if show_currency_code %}
                     {{ compare_at_price | money_with_currency }}
                   {% else %}
                     {{ compare_at_price | money }}
@@ -95,7 +101,7 @@
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
           <span>
             <s class="price-item price-item--regular">
-              {% if settings.currency_code_enabled %}
+              {% if show_currency_code %}
                 {{ compare_at_price | money_with_currency }}
               {% else %}
                 {{ compare_at_price | money }}

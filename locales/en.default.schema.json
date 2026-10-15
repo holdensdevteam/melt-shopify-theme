@@ -2568,6 +2568,56 @@
     "main-product": {
       "name": "Product information",
       "blocks": {
+        "divider": {
+          "name": "Divider",
+          "settings": {
+            "thickness": {
+              "label": "Line thickness"
+            },
+            "color": {
+              "label": "Line colour",
+              "info": "Leave blank for a soft line in the colour scheme's text colour."
+            },
+            "margin_top": {
+              "label": "Space above"
+            },
+            "margin_bottom": {
+              "label": "Space below"
+            }
+          }
+        },
+        "tags": {
+          "name": "Tags",
+          "settings": {
+            "tags_list": {
+              "label": "Tags (list)",
+              "info": "Connect a dynamic source, e.g. Scent Notes. Each entry shows as its own tag."
+            },
+            "tags_text": {
+              "label": "Tags (text)",
+              "info": "Used when the list is empty. Separate tags with commas, or connect any text source."
+            },
+            "max_tags": {
+              "label": "Maximum tags"
+            },
+            "color_scheme": {
+              "label": "Tag colour scheme"
+            }
+          }
+        },
+        "standout_text": {
+          "name": "Standout text",
+          "settings": {
+            "text": {
+              "label": "Text",
+              "info": "A highlighted line, e.g. a delivery promise. Type [type], [title] or [vendor] to insert product details.",
+              "default": "Add a line worth noticing"
+            },
+            "color_scheme": {
+              "label": "Box colour scheme"
+            }
+          }
+        },
         "heading": {
           "name": "Heading",
           "settings": {
@@ -2617,7 +2667,21 @@
           "name": "Title"
         },
         "price": {
-          "name": "Price"
+          "name": "Price",
+          "settings": {
+            "price_size": {
+              "label": "Price size",
+              "options__small": {
+                "label": "Small"
+              },
+              "options__medium": {
+                "label": "Medium"
+              },
+              "options__large": {
+                "label": "Large"
+              }
+            }
+          }
         },
         "inventory": {
           "name": "Inventory status",
