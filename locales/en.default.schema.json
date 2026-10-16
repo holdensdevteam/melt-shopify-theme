@@ -445,6 +445,20 @@
     }
   },
   "sections": {
+    "melt_divider": {
+      "name": "Divider",
+      "settings": {
+        "width": {
+          "label": "Width",
+          "options__page": {
+            "label": "Page width"
+          },
+          "options__full": {
+            "label": "Full width"
+          }
+        }
+      }
+    },
     "melt_product_details": {
       "name": "Product details",
       "settings": {
@@ -1350,6 +1364,10 @@
     "featured-collection": {
       "name": "Featured collection",
       "settings": {
+        "heading_eyebrow": {
+          "label": "Eyebrow",
+          "info": "Small line above the heading, e.g. More in floral."
+        },
         "header_melt_cards": {
           "content": "Card style"
         },

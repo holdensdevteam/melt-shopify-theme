@@ -20,6 +20,12 @@
   margin-top: 1rem;
 }
 
+.featured-collection-section__eyebrow {
+  margin-bottom: 0.6rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
 .featured-collection-section .collection__title .featured-collection-section__heading .title {
   margin: 0;
 }

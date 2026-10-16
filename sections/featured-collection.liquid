@@ -135,6 +135,11 @@
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       <div class="featured-collection-section__heading">
+      {%- render 'melt-eyebrow',
+        text: section.settings.heading_eyebrow,
+        color: section.settings.heading_eyebrow_color,
+        class: 'featured-collection-section__eyebrow'
+      -%}
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
@@ -320,6 +325,18 @@
     {
       "type": "header",
       "content": "t:sections.featured-collection.settings.header_text.content"
+    },
+    {
+      "type": "text",
+      "id": "heading_eyebrow",
+      "label": "t:sections.featured-collection.settings.heading_eyebrow.label",
+      "info": "t:sections.featured-collection.settings.heading_eyebrow.info"
+    },
+    {
+      "type": "color",
+      "id": "heading_eyebrow_color",
+      "label": "t:sections.all.eyebrow_color.label",
+      "info": "t:sections.all.eyebrow_color.info"
     },
     {
       "type": "inline_richtext",

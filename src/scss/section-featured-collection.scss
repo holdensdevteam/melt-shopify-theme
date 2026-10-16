@@ -31,6 +31,14 @@
   }
 }
 
+// Heading eyebrow ("More in floral"): the shared eyebrow (component-eyebrow.scss, 18px) but kept
+// in the case it's typed, without the uppercase and letter-spacing — as in the design.
+.featured-collection-section__eyebrow {
+  margin-bottom: 0.6rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
 // No margins on the title, so its top lines up with the heading link. Specific enough to beat
 // template-collection.css's ".collection__title .title:not(:only-child)", which loads later.
 .featured-collection-section .collection__title .featured-collection-section__heading .title {

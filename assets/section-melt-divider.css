@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-melt-divider.scss — edit that file, not this one. */
+.melt-divider {
+  padding: var(--divider-margin-top, 1rem) 0 var(--divider-margin-bottom, 1rem);
+}
+
+.melt-divider__line {
+  width: 100%;
+  height: var(--divider-thickness, 1px);
+  margin: 0;
+  border: 0;
+  background-color: var(--divider-color, rgba(var(--color-foreground), 0.15));
+}

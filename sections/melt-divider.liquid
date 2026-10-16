@@ -1,0 +1,103 @@
+{{ 'section-melt-divider.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Divider: a horizontal line between sections — the section version of the product page's
+  Divider block, with the same options plus width and colour scheme. Space above/below is
+  padding on the wrapper, so it can't merge with neighbouring sections' margins.
+{%- endcomment -%}
+
+{%- liquid
+  assign divider_color = section.settings.color
+  assign divider_style = ''
+  if divider_color != blank and divider_color.alpha != 0
+    assign divider_style = '--divider-color: ' | append: divider_color | append: '; '
+  endif
+-%}
+
+<div
+  class="melt-divider color-{{ section.settings.color_scheme }} gradient"
+  style="{{ divider_style }}--divider-thickness: {{ section.settings.thickness }}px; --divider-margin-top: {{ section.settings.margin_top }}px; --divider-margin-bottom: {{ section.settings.margin_bottom }}px;"
+>
+  <div class="{% if section.settings.width == 'page' %}page-width{% else %}melt-divider__full{% endif %}">
+    <hr class="melt-divider__line">
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.melt_divider.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "thickness",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1,
+      "label": "t:sections.main-product.blocks.divider.settings.thickness.label"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "t:sections.main-product.blocks.divider.settings.color.label",
+      "info": "t:sections.main-product.blocks.divider.settings.color.info"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 10,
+      "label": "t:sections.main-product.blocks.divider.settings.margin_top.label"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 10,
+      "label": "t:sections.main-product.blocks.divider.settings.margin_bottom.label"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:sections.melt_divider.settings.width.label",
+      "options": [
+        {
+          "value": "page",
+          "label": "t:sections.melt_divider.settings.width.options__page.label"
+        },
+        {
+          "value": "full",
+          "label": "t:sections.melt_divider.settings.width.options__full.label"
+        }
+      ],
+      "default": "page"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-1",
+      "label": "t:sections.all.colors.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.melt_divider.name"
+    }
+  ]
+}
+{% endschema %}

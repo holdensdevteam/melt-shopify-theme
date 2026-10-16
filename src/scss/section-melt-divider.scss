@@ -1,0 +1,17 @@
+/*! Compiled from src/scss/section-melt-divider.scss — edit that file, not this one. */
+
+// Divider section (sections/melt-divider.liquid). Thickness, colour and spacing come from the
+// section via inline variables. Spacing is padding on the wrapper (not margin) so it never merges
+// with the theme's spacing between sections.
+
+.melt-divider {
+  padding: var(--divider-margin-top, 1rem) 0 var(--divider-margin-bottom, 1rem);
+}
+
+.melt-divider__line {
+  width: 100%;
+  height: var(--divider-thickness, 1px);
+  margin: 0;
+  border: 0;
+  background-color: var(--divider-color, rgba(var(--color-foreground), 0.15));
+}
