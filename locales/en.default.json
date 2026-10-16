@@ -321,6 +321,10 @@
     "breadcrumbs": {
       "label": "Breadcrumb"
     },
+    "product_details": {
+      "empty_value": "Add a value or connect a metafield",
+      "empty_content": "Add content or connect a metafield — this box is hidden on the live site until it has some."
+    },
     "footer": {
       "payment": "Payment methods",
       "copyright_html": "&copy; {{ shop_name }} {{ year }}. All rights reserved.",

@@ -445,6 +445,92 @@
     }
   },
   "sections": {
+    "melt_product_details": {
+      "name": "Product details",
+      "settings": {
+        "header_details": {
+          "content": "Details (left)"
+        },
+        "title": {
+          "label": "Heading",
+          "default": "The detail"
+        },
+        "item_color_scheme": {
+          "label": "Accordion colour scheme",
+          "info": "Box background and text. The + / − uses this scheme's button colour; an open box is outlined in its Outline colour."
+        },
+        "header_glance": {
+          "content": "At a glance (right)"
+        },
+        "glance_title": {
+          "label": "Heading",
+          "default": "At a glance"
+        },
+        "glance_color_scheme": {
+          "label": "Card colour scheme"
+        },
+        "glance_sticky": {
+          "label": "Keep in view while scrolling",
+          "info": "Desktop. The card stays beside the details as a long left column scrolls."
+        },
+        "header_section": {
+          "content": "Section"
+        }
+      },
+      "blocks": {
+        "accordion": {
+          "name": "Accordion",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Accordion heading"
+            },
+            "source": {
+              "label": "Content",
+              "options__custom": {
+                "label": "Custom content"
+              },
+              "options__description": {
+                "label": "Product description"
+              }
+            },
+            "content": {
+              "label": "Text",
+              "info": "Write here or use the dynamic source icon to connect a metafield."
+            },
+            "open": {
+              "label": "Open by default"
+            }
+          }
+        },
+        "detail": {
+          "name": "Detail",
+          "settings": {
+            "label": {
+              "label": "Label",
+              "default": "Detail"
+            },
+            "value": {
+              "label": "Value",
+              "info": "Type it, or use the dynamic source icon to connect a metafield. Rows without a value are hidden."
+            }
+          }
+        }
+      },
+      "presets": {
+        "why": "Why we love it",
+        "how": "How it is made",
+        "burn": "Burn guide & care",
+        "safety": "Safety, ingredients & allergens",
+        "delivery": "Delivery & returns",
+        "weight": "Weight",
+        "burn_time": "Burn time",
+        "wick": "Wick",
+        "wax": "Wax",
+        "vessel": "Vessel",
+        "made": "Made"
+      }
+    },
     "melt_faqs": {
       "name": "FAQs",
       "settings": {

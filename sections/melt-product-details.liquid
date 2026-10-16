@@ -1,0 +1,359 @@
+{{ 'section-melt-product-details.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Product details: accordions on the left ("The detail"), an "At a glance" card of label/value
+  rows on the right. Desktop: the card can stay in view (sticky) beside a long left column.
+  Mobile (<750px): one column with At a glance first — it's also first in the markup, so
+  screen readers get the same order on every screen size.
+  Detail values with nothing in them are hidden on the storefront (shown as a prompt in the editor).
+{%- endcomment -%}
+
+{%- style -%}
+  #ProductDetails-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ProductDetails-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign has_details = false
+  for block in section.blocks
+    if block.type == 'detail' and block.settings.label != blank
+      if block.settings.value != blank or request.design_mode
+        assign has_details = true
+      endif
+    endif
+  endfor
+-%}
+
+<div id="ProductDetails-{{ section.id }}" class="melt-details color-{{ section.settings.color_scheme }} gradient">
+  <div class="melt-details__inner page-width{% unless has_details %} melt-details__inner--single{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if has_details -%}
+      <aside class="melt-details__glance-column" aria-labelledby="ProductDetailsGlance-{{ section.id }}">
+        <div class="melt-details__glance{% if section.settings.glance_sticky %} melt-details__glance--sticky{% endif %} color-{{ section.settings.glance_color_scheme }}">
+          {%- if section.settings.glance_title != blank -%}
+            <h2 id="ProductDetailsGlance-{{ section.id }}" class="melt-details__glance-title">{{ section.settings.glance_title | escape }}</h2>
+          {%- endif -%}
+          <dl class="melt-details__list">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'detail' and block.settings.label != blank -%}
+                {%- if block.settings.value != blank -%}
+                  <div class="melt-details__row" {{ block.shopify_attributes }}>
+                    <dt class="melt-details__label">{{ block.settings.label | escape }}</dt>
+                    <dd class="melt-details__value">{{ block.settings.value | escape }}</dd>
+                  </div>
+                {%- elsif request.design_mode -%}
+                  <div class="melt-details__row melt-details__row--empty" {{ block.shopify_attributes }}>
+                    <dt class="melt-details__label">{{ block.settings.label | escape }}</dt>
+                    <dd class="melt-details__value">{{ 'sections.product_details.empty_value' | t }}</dd>
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </dl>
+        </div>
+      </aside>
+    {%- endif -%}
+
+    <div class="melt-details__main">
+      {%- if section.settings.title != blank -%}
+        <h2 class="melt-details__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      <div class="melt-details__accordions">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion' and block.settings.heading != blank -%}
+            {%- liquid
+              if block.settings.source == 'description'
+                assign accordion_content = product.description
+              else
+                assign accordion_content = block.settings.content
+              endif
+            -%}
+            {%- if accordion_content != blank or request.design_mode -%}
+              <details
+                class="melt-details__item color-{{ section.settings.item_color_scheme }}"
+                {% if block.settings.open %}
+                  open
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <summary class="melt-details__summary">
+                  <h3 class="melt-details__heading">{{ block.settings.heading | escape }}</h3>
+                  <span class="melt-details__icon melt-details__icon--plus" aria-hidden="true">
+                    <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+                  </span>
+                  <span class="melt-details__icon melt-details__icon--minus" aria-hidden="true">
+                    <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+                  </span>
+                </summary>
+                <div class="melt-details__content rte">
+                  {%- if accordion_content != blank -%}
+                    {{ accordion_content }}
+                  {%- else -%}
+                    <p>{{ 'sections.product_details.empty_content' | t }}</p>
+                  {%- endif -%}
+                </div>
+              </details>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.melt_product_details.name",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.melt_product_details.settings.header_details.content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:sections.melt_product_details.settings.title.label",
+      "default": "t:sections.melt_product_details.settings.title.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "item_color_scheme",
+      "default": "scheme-1",
+      "label": "t:sections.melt_product_details.settings.item_color_scheme.label",
+      "info": "t:sections.melt_product_details.settings.item_color_scheme.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_product_details.settings.header_glance.content"
+    },
+    {
+      "type": "text",
+      "id": "glance_title",
+      "label": "t:sections.melt_product_details.settings.glance_title.label",
+      "default": "t:sections.melt_product_details.settings.glance_title.default"
+    },
+    {
+      "type": "color_scheme",
+      "id": "glance_color_scheme",
+      "default": "scheme-1",
+      "label": "t:sections.melt_product_details.settings.glance_color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "glance_sticky",
+      "default": true,
+      "label": "t:sections.melt_product_details.settings.glance_sticky.label",
+      "info": "t:sections.melt_product_details.settings.glance_sticky.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_product_details.settings.header_section.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-2",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40,
+      "label": "t:sections.all.padding.padding_top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40,
+      "label": "t:sections.all.padding.padding_bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "t:sections.melt_product_details.blocks.accordion.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.melt_product_details.blocks.accordion.settings.heading.label",
+          "default": "t:sections.melt_product_details.blocks.accordion.settings.heading.default"
+        },
+        {
+          "type": "select",
+          "id": "source",
+          "label": "t:sections.melt_product_details.blocks.accordion.settings.source.label",
+          "options": [
+            {
+              "value": "custom",
+              "label": "t:sections.melt_product_details.blocks.accordion.settings.source.options__custom.label"
+            },
+            {
+              "value": "description",
+              "label": "t:sections.melt_product_details.blocks.accordion.settings.source.options__description.label"
+            }
+          ],
+          "default": "custom"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.melt_product_details.blocks.accordion.settings.content.label",
+          "info": "t:sections.melt_product_details.blocks.accordion.settings.content.info",
+          "visible_if": "{{ block.settings.source == 'custom' }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "open",
+          "default": false,
+          "label": "t:sections.melt_product_details.blocks.accordion.settings.open.label"
+        }
+      ]
+    },
+    {
+      "type": "detail",
+      "name": "t:sections.melt_product_details.blocks.detail.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.melt_product_details.blocks.detail.settings.label.label",
+          "default": "t:sections.melt_product_details.blocks.detail.settings.label.default"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:sections.melt_product_details.blocks.detail.settings.value.label",
+          "info": "t:sections.melt_product_details.blocks.detail.settings.value.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.melt_product_details.name",
+      "blocks": [
+        {
+          "type": "accordion",
+          "settings": {
+            "heading": "t:sections.melt_product_details.presets.why",
+            "source": "description",
+            "open": true
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "heading": "t:sections.melt_product_details.presets.how"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "heading": "t:sections.melt_product_details.presets.burn"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "heading": "t:sections.melt_product_details.presets.safety"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "heading": "t:sections.melt_product_details.presets.delivery"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "t:sections.melt_product_details.presets.weight"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "t:sections.melt_product_details.presets.burn_time"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "t:sections.melt_product_details.presets.wick"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "t:sections.melt_product_details.presets.wax"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "t:sections.melt_product_details.presets.vessel"
+          }
+        },
+        {
+          "type": "detail",
+          "settings": {
+            "label": "t:sections.melt_product_details.presets.made"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

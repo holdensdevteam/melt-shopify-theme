@@ -1,0 +1,203 @@
+/*! Compiled from src/scss/section-melt-product-details.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Product details (sections/melt-product-details.liquid).
+// Markup order: At a glance first, then the details — so mobile shows At a glance first.
+// From 750px a grid puts the details left (about two thirds) and At a glance right.
+
+.melt-details__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.2rem;
+
+  @include bp.from(bp.$medium) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 4rem;
+
+    .melt-details__main {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .melt-details__glance-column {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: stretch; // full height, so the sticky card has room to travel
+    }
+  }
+
+  @include bp.from(bp.$large) {
+    gap: 8rem;
+  }
+
+  // No details: the accordions take the full width.
+  &--single {
+    @include bp.from(bp.$medium) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+// ------------------------------------------------------------------ left: details
+
+.melt-details__title {
+  margin: 0 0 2.4rem;
+
+  @include bp.from(bp.$medium) {
+    margin-bottom: 3.2rem;
+  }
+}
+
+.melt-details__accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// Each accordion box. Full-colour background so transparent schemes work. Closed: no visible
+// border; open: outlined in the scheme's Outline colour.
+.melt-details__item {
+  border: 1px solid transparent;
+  border-radius: var(--text-boxes-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  transition: border-color var(--duration-short) ease;
+
+  &[open] {
+    border-color: rgb(var(--color-border));
+  }
+}
+
+.melt-details__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  cursor: pointer;
+  list-style: none;
+
+  @include bp.from(bp.$medium) {
+    padding: 2.4rem 3.2rem;
+  }
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.melt-details__heading {
+  margin: 0;
+  font-size: calc(var(--font-heading-scale) * 1.8rem);
+  line-height: 1.3;
+
+  @include bp.from(bp.$medium) {
+    font-size: calc(var(--font-heading-scale) * 2.2rem);
+  }
+}
+
+// + closed, − open, in the scheme's button colour.
+.melt-details__icon {
+  display: flex;
+  flex-shrink: 0;
+  color: rgb(var(--color-button));
+
+  .svg-wrapper {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.melt-details__item[open] .melt-details__icon--plus,
+.melt-details__item:not([open]) .melt-details__icon--minus {
+  display: none;
+}
+
+.melt-details__content {
+  padding: 0 2rem 2rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+
+  @include bp.from(bp.$medium) {
+    padding: 0 3.2rem 2.8rem;
+    font-size: 1.6rem;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ------------------------------------------------------------------ right: at a glance
+
+.melt-details__glance {
+  padding: 2.4rem;
+  border-radius: var(--text-boxes-radius);
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+
+  @include bp.from(bp.$medium) {
+    padding: 3.2rem 4rem 4rem;
+  }
+
+  // Stays in view below the (sticky) header while the details scroll past.
+  &--sticky {
+    @include bp.from(bp.$medium) {
+      position: sticky;
+      top: calc(var(--header-height, 0px) + 2rem);
+    }
+  }
+}
+
+.melt-details__glance-title {
+  margin: 0 0 1.6rem;
+  font-size: calc(var(--font-heading-scale) * 2rem);
+
+  @include bp.from(bp.$medium) {
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+  }
+}
+
+.melt-details__list {
+  margin: 0;
+}
+
+.melt-details__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.12);
+  font-size: 1.5rem;
+  line-height: 1.4;
+
+  @include bp.from(bp.$medium) {
+    font-size: 1.6rem;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  // Editor-only: a row waiting for a value.
+  &--empty .melt-details__value {
+    font-style: italic;
+    opacity: 0.5;
+  }
+}
+
+.melt-details__label {
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.melt-details__value {
+  margin: 0;
+  font-weight: 500;
+  text-align: right;
+}
