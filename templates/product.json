@@ -167,6 +167,123 @@
         "padding_bottom": 16
       }
     },
+    "melt_product_details_ji3FE9": {
+      "type": "melt-product-details",
+      "blocks": {
+        "accordion_hiCmzi": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Why we love it",
+            "source": "description",
+            "content": "",
+            "open": true
+          }
+        },
+        "accordion_9wR3TW": {
+          "type": "accordion",
+          "settings": {
+            "heading": "How it is made",
+            "source": "custom",
+            "content": "",
+            "open": false
+          }
+        },
+        "accordion_gNKamB": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Burn guide & care",
+            "source": "custom",
+            "content": "",
+            "open": false
+          }
+        },
+        "accordion_mUyrM7": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Safety, ingredients & allergens",
+            "source": "custom",
+            "content": "",
+            "open": false
+          }
+        },
+        "accordion_Pz3yUz": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Delivery & returns",
+            "source": "custom",
+            "content": "",
+            "open": false
+          }
+        },
+        "detail_eY8gD4": {
+          "type": "detail",
+          "settings": {
+            "label": "Weight",
+            "value": "300g"
+          }
+        },
+        "detail_fCgWmx": {
+          "type": "detail",
+          "settings": {
+            "label": "Burn time",
+            "value": "45 hours"
+          }
+        },
+        "detail_Rhxjrq": {
+          "type": "detail",
+          "settings": {
+            "label": "Wick",
+            "value": "Cotton, lead-free"
+          }
+        },
+        "detail_keFMAU": {
+          "type": "detail",
+          "settings": {
+            "label": "Wax",
+            "value": "Soy blend"
+          }
+        },
+        "detail_dEJhHb": {
+          "type": "detail",
+          "settings": {
+            "label": "Vessel",
+            "value": "Naked"
+          }
+        },
+        "detail_rgbA6q": {
+          "type": "detail",
+          "settings": {
+            "label": "Made",
+            "value": "Waddington, Lancashire"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_hiCmzi",
+        "accordion_9wR3TW",
+        "accordion_gNKamB",
+        "accordion_mUyrM7",
+        "accordion_Pz3yUz",
+        "detail_eY8gD4",
+        "detail_fCgWmx",
+        "detail_Rhxjrq",
+        "detail_keFMAU",
+        "detail_dEJhHb",
+        "detail_rgbA6q"
+      ],
+      "name": "t:sections.melt_product_details.name",
+      "settings": {
+        "title": "The detail",
+        "heading_size": "h1",
+        "item_color_scheme": "",
+        "glance_title": "At a glance",
+        "glance_color_scheme": "",
+        "glance_sticky": true,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "disclosures": {
       "type": "disclosures",
       "settings": {
@@ -380,6 +497,7 @@
     "breadcrumbs",
     "main",
     "usp_bar_bgyAdV",
+    "melt_product_details_ji3FE9",
     "disclosures",
     "featured_collection_KeLjXB",
     "related-products",
