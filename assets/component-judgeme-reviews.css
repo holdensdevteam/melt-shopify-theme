@@ -1,9 +1,5 @@
 @charset "UTF-8";
 /*! Compiled from src/scss/component-judgeme-reviews.scss — edit that file, not this one. */
-.shopify-section {
-  background-color: #fff;
-}
-
 #judgeme_product_reviews {
   padding: 1rem 0 2rem;
 }

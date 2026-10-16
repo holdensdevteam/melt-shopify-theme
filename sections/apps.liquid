@@ -1,7 +1,31 @@
-<div class="{% if section.settings.include_margins %}page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-  {%- for block in section.blocks -%}
-    {% render block %}
-  {%- endfor -%}
+{%- comment -%}
+  Melt: colour scheme, padding and an optional CSS class (e.g. "reviews" → .melt-apps--reviews)
+  so app blocks like the Judge.me review widget can sit on their own band and be targeted from
+  src/scss/component-judgeme-*.scss without relying on Shopify's generated section IDs.
+{%- endcomment -%}
+{%- style -%}
+  #Apps-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Apps-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="Apps-{{ section.id }}"
+  class="melt-apps color-{{ section.settings.color_scheme }} gradient{% if section.settings.css_class != blank %} melt-apps--{{ section.settings.css_class | handleize }}{% endif %}"
+>
+  <div class="{% if section.settings.include_margins %}page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- for block in section.blocks -%}
+      {% render block %}
+    {%- endfor -%}
+  </div>
 </div>
 
 {% schema %}
@@ -15,6 +39,38 @@
       "id": "include_margins",
       "default": true,
       "label": "t:sections.apps.settings.include_margins.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-1",
+      "label": "t:sections.all.colors.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.all.padding.padding_top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.all.padding.padding_bottom"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "t:sections.apps.settings.css_class.label",
+      "info": "t:sections.apps.settings.css_class.info"
     }
   ],
   "blocks": [

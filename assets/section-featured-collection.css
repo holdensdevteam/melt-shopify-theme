@@ -78,7 +78,7 @@
 }
 
 .featured-collection-section .card__tags + .card-information {
-  margin-top: 1.6rem;
+  padding-top: 1.6rem;
 }
 
 .featured-collection-section .underline-links-hover:hover a {

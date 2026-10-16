@@ -10,7 +10,14 @@
 // !important is sometimes the only way to win. Prefer the app's own settings
 // (Judge.me → Widgets) for anything it offers, as those survive updates.
 .shopify-section {
-  background-color: #fff;
+  //background-color: #fff;
+}
+
+// The Apps section holding the widget. In the editor, set that Apps section's
+// "CSS class name" to reviews — this targets only that section (.shopify-section above would hit
+// every section on the page). Its background is easiest set with the section's Colour scheme
+// setting; anything else can go here.
+.melt-apps--reviews {
 }
 
 #judgeme_product_reviews {

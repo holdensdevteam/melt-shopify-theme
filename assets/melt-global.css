@@ -195,3 +195,17 @@
 :root .rating-star {
   --color-rating-star: var(--melt-star-color, rgb(var(--color-foreground)));
 }
+
+.grid__item > product-component {
+  display: block;
+  height: 100%;
+}
+
+.product-card-wrapper .card__information {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-wrapper .card-information {
+  margin-top: auto;
+}

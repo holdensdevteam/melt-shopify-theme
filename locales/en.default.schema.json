@@ -993,6 +993,10 @@
     "apps": {
       "name": "Apps",
       "settings": {
+        "css_class": {
+          "label": "CSS class name",
+          "info": "Optional, for styling in code. E.g. reviews adds the class melt-apps--reviews to this section."
+        },
         "include_margins": {
           "label": "Make section margins the same as theme"
         }

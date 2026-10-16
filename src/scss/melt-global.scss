@@ -247,3 +247,23 @@
 :root .rating-star {
   --color-rating-star: var(--melt-star-color, rgb(var(--color-foreground)));
 }
+
+// ------------------------------------------------------------------ product cards: equal height
+
+// Every product card in a row is the same height, with the price pinned to the bottom — any spare
+// space sits between the tags/name and the price.
+// Dawn 16 wraps each card in <product-component> (analytics), which is inline and auto-height, so
+// the card couldn't stretch to the grid item's height. Make it fill the item.
+.grid__item > product-component {
+  display: block;
+  height: 100%;
+}
+
+.product-card-wrapper .card__information {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-wrapper .card-information {
+  margin-top: auto;
+}

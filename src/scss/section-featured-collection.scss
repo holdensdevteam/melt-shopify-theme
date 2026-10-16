@@ -105,9 +105,10 @@
   }
 }
 
-// Space the price row away from the scent notes above it.
+// Minimum space between the scent notes and the price row. Padding, not margin: the price row's
+// margin-top is auto (melt-global.scss) to pin it to the bottom of equal-height cards.
 .featured-collection-section .card__tags + .card-information {
-  margin-top: 1.6rem;
+  padding-top: 1.6rem;
 }
 
 // No underline on the product name when hovering the card (Dawn's .underline-links-hover in
