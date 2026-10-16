@@ -127,6 +127,18 @@
         "padding_bottom": 72
       }
     },
+    "melt_divider_HaphGQ": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
+      }
+    },
     "usp_bar_bgyAdV": {
       "type": "usp-bar",
       "blocks": {
@@ -134,21 +146,24 @@
           "type": "usp",
           "settings": {
             "text": "Hand-poured in the Ribble Valley",
-            "icon": "melt_valley"
+            "icon": "melt_valley",
+            "image": "shopify://shop_images/Valley-icon.svg"
           }
         },
         "usp_XwAPzy": {
           "type": "usp",
           "settings": {
             "text": "Next working day delivery. Order by 1pm",
-            "icon": "melt_next_day"
+            "icon": "melt_next_day",
+            "image": "shopify://shop_images/Next-day-icon.svg"
           }
         },
         "usp_6RgWwf": {
           "type": "usp",
           "settings": {
             "text": "Next working day delivery. Order by 1pm",
-            "icon": "melt_established"
+            "icon": "melt_established",
+            "image": "shopify://shop_images/established-icon.svg"
           }
         }
       },
@@ -163,8 +178,8 @@
         "icon_position": "top",
         "icon_height": 30,
         "text_style": "heading",
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 36,
+        "padding_bottom": 44
       }
     },
     "melt_product_details_ji3FE9": {
@@ -174,8 +189,8 @@
           "type": "accordion",
           "settings": {
             "heading": "Why we love it",
-            "source": "description",
-            "content": "",
+            "source": "custom",
+            "content": "<p>BECAUSE YOU DO! My goodness – you are a loyal bunch! When we launched our Angel fragranced scented candles back in 2002 you took her to your hearts and haven’t let her go since.<br/><br/>We’ve a hunch it has a LOT to do with the big dollop of Chocolate oil that we add to the base notes. She is still our best selling fragrance thanks to your enduring devotion – and this scented candle will cocoon you in her gorgeous scent and watch over you for many perfectly perfumed hours.<br/><br/>Beautifully presented in a stunning gift box, she is the perfect gift (or sneaky treat for yourself).</p>",
             "open": true
           }
         },
@@ -184,7 +199,7 @@
           "settings": {
             "heading": "How it is made",
             "source": "custom",
-            "content": "",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lacus rutrum, posuere justo efficitur, efficitur mauris. Phasellus a varius quam, a dignissim orci. Morbi blandit commodo arcu. Proin ac tincidunt risus.&nbsp;</p><p>Nullam sed tristique sem. Donec metus mauris, scelerisque ut turpis at, semper aliquam neque. Maecenas malesuada lacus quis metus rutrum ultricies. Nullam viverra ornare ipsum. Donec elit sapien, pulvinar a vulputate a, hendrerit ac orci. Ut vestibulum urna scelerisque auctor lacinia. Curabitur tincidunt sem nec lorem convallis malesuada. Donec massa ipsum, blandit eu rhoncus sodales, pretium et neque. Donec pretium pharetra lectus sed vehicula. Pellentesque varius dictum velit, semper rutrum lectus vulputate a. Nulla quis ante malesuada lectus fermentum dignissim.</p>",
             "open": false
           }
         },
@@ -193,7 +208,7 @@
           "settings": {
             "heading": "Burn guide & care",
             "source": "custom",
-            "content": "",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lacus rutrum, posuere justo efficitur, efficitur mauris. Phasellus a varius quam, a dignissim orci. Morbi blandit commodo arcu.</p>",
             "open": false
           }
         },
@@ -202,7 +217,7 @@
           "settings": {
             "heading": "Safety, ingredients & allergens",
             "source": "custom",
-            "content": "",
+            "content": "<p>Dewberry, Cassis, Jasmine, Rose, Vanilla, Patchouli, Amber & a hint of Chocolate.</p>",
             "open": false
           }
         },
@@ -211,7 +226,7 @@
           "settings": {
             "heading": "Delivery & returns",
             "source": "custom",
-            "content": "",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lacus rutrum, posuere justo efficitur, efficitur mauris.&nbsp;</p><p>Phasellus a varius quam, a dignissim orci. Morbi blandit commodo arcu. Proin ac tincidunt risus. Nullam sed tristique sem.&nbsp;</p><p>Donec metus mauris, scelerisque ut turpis at, semper aliquam neque.&nbsp;</p>",
             "open": false
           }
         },
@@ -275,7 +290,7 @@
       "settings": {
         "title": "The detail",
         "heading_size": "h1",
-        "item_color_scheme": "",
+        "item_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
         "glance_title": "At a glance",
         "glance_color_scheme": "",
         "glance_sticky": true,
@@ -301,6 +316,8 @@
       "settings": {
         "collection": "angel",
         "products_to_show": 8,
+        "heading_eyebrow": "Angel",
+        "heading_eyebrow_color": "",
         "title": "Also comes as",
         "heading_size": "h1",
         "description": "",
@@ -388,6 +405,8 @@
       "settings": {
         "collection": "floral",
         "products_to_show": 8,
+        "heading_eyebrow": "More in floral",
+        "heading_eyebrow_color": "",
         "title": "If you like Angel",
         "heading_size": "h1",
         "description": "",
@@ -496,6 +515,7 @@
   "order": [
     "breadcrumbs",
     "main",
+    "melt_divider_HaphGQ",
     "usp_bar_bgyAdV",
     "melt_product_details_ji3FE9",
     "disclosures",

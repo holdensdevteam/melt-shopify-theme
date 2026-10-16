@@ -305,6 +305,25 @@
           "shadow": "#121212",
           "shadow_hover": ""
         }
+      },
+      "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "background_hover": "#f6f4ee",
+          "text": "#121212",
+          "text_hover": "",
+          "button": "#CE7721",
+          "button_hover": "",
+          "button_label": "#ffffff",
+          "button_label_hover": "",
+          "secondary_button_label": "#CE7721",
+          "secondary_button_label_hover": "",
+          "border": "#CE7721",
+          "border_hover": "#ce7721",
+          "shadow": "rgba(0,0,0,0)",
+          "shadow_hover": ""
+        }
       }
     }
   },
