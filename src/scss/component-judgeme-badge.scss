@@ -1,0 +1,25 @@
+/*! Compiled from src/scss/component-judgeme-badge.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Judge.me "Star ratings" badge — app block in the product page's Product information.
+// Loaded on product pages by layout/theme.liquid.
+//
+// The class names below are Judge.me's (jdgm- prefix), written from memory: check them in the
+// browser inspector before relying on them — Judge.me can change their markup in an update.
+// Judge.me's own CSS often loads after this file; the .product__info-container scope adds
+// specificity, and !important is sometimes the only way to win. Prefer the app's own settings
+// (Judge.me → Widgets) for anything it offers, as those survive updates.
+
+.product__info-container {
+  // Whole badge: stars + "4.8 (34)"
+  .jdgm-prev-badge {
+  }
+
+  // Each star (Judge.me uses an icon font; colour with `color`)
+  .jdgm-prev-badge .jdgm-star {
+  }
+
+  // The "(34)" / review count text
+  .jdgm-prev-badge__text {
+  }
+}

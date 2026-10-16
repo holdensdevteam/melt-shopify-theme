@@ -316,6 +316,9 @@
     {{ 'melt-global.css' | asset_url | stylesheet_tag }}
     {%- if request.page_type == 'product' -%}
       {{ 'template-product.css' | asset_url | stylesheet_tag }}
+      {%- comment -%} Judge.me overrides — src/scss/component-judgeme-*.scss {%- endcomment -%}
+      {{ 'component-judgeme-badge.css' | asset_url | stylesheet_tag }}
+      {{ 'component-judgeme-reviews.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 

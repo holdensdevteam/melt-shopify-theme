@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/component-judgeme-reviews.scss — edit that file, not this one. */
+.shopify-section {
+  background-color: #fff;
+}
+
+#judgeme_product_reviews {
+  padding: 1rem 0 2rem;
+}
+#judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar {
+  display: grid;
+}
+#judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-review-widget-sidebar-header__title {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+}
+@media screen and (min-width: 750px) {
+  #judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-review-widget-sidebar-header__title {
+    font-size: 4rem;
+  }
+}
+#judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-action-buttons {
+  order: 2;
+}
+#judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-histogram {
+  order: 1;
+}
+#judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-cluster .jm-text:first-of-type {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+}
+@media screen and (min-width: 750px) {
+  #judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-cluster .jm-text:first-of-type {
+    font-size: 6rem;
+  }
+}
+@media screen and (min-width: 750px) {
+  #judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar .jm-cluster .jm-text:nth-of-type(2) {
+    font-size: 1.25rem;
+  }
+}
+#judgeme_product_reviews .jm-review-widget__body .jm-box {
+  background-color: #f6f4ee;
+  padding: 3rem 3rem 1.5rem;
+  border-bottom: none;
+  border-radius: 6px;
+}
+#judgeme_product_reviews .jm-review-widget__body .jm-box .jm-review-item__content {
+  display: grid;
+}
+#judgeme_product_reviews .jm-review-widget__body .jm-box .jm-review-item__content .jm-reviewer-info {
+  order: 2;
+}
+#judgeme_product_reviews .jm-review-widget__body .jm-box .jm-review-item__content .jm-reviewer-info .jm-reviewer-avatar {
+  display: none;
+}
+#judgeme_product_reviews .jm-review-widget__body .jm-box .jm-review-item__content .jm-reviewer-info .jm-reviewer-info__details {
+  display: flex;
+  gap: 1em;
+}
+#judgeme_product_reviews .jm-review-widget__body .jm-box .jm-review-item__content .jm-reviewer-info .jm-reviewer-info__details .jm-cluster:last-of-type {
+  margin: 0;
+}

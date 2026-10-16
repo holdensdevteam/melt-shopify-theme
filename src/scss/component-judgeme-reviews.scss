@@ -1,0 +1,115 @@
+/*! Compiled from src/scss/component-judgeme-reviews.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Judge.me "Review widget" — app block in an Apps section on the product page.
+// Loaded on product pages by layout/theme.liquid.
+//
+// The class names below are Judge.me's (jdgm- prefix), written from memory: check them in the
+// browser inspector before relying on them — Judge.me can change their markup in an update.
+// Judge.me's own CSS often loads after this file; the .jdgm-rev-widg scope adds specificity, and
+// !important is sometimes the only way to win. Prefer the app's own settings
+// (Judge.me → Widgets) for anything it offers, as those survive updates.
+.shopify-section {
+  background-color: #fff;
+}
+
+#judgeme_product_reviews {
+  padding: 1rem 0 2rem;
+
+  .jm-review-widget-sidebar-header__sidebar {
+    display: grid;
+    .jm-review-widget-sidebar-header__title {
+      font-family: var(--font-heading-family);
+      font-style: var(--font-heading-style);
+      @include bp.from(bp.$medium) {
+        font-size: 4rem;
+      }
+    }
+    .jm-action-buttons {
+      order: 2;
+    }
+    .jm-histogram {
+      order: 1;
+    }
+    .jm-cluster {
+      .jm-text {
+        &:first-of-type {
+          font-family: var(--font-heading-family);
+          font-style: var(--font-heading-style);
+          @include bp.from(bp.$medium) {
+            font-size: 6rem;
+          }
+        }
+        &:nth-of-type(2) {
+          @include bp.from(bp.$medium) {
+            font-size: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+
+  .jm-review-widget-sidebar-header__controls {
+  }
+
+  .jm-review-widget__body {
+    .jm-box {
+      background-color: #f6f4ee;
+      padding: 3rem 3rem 1.5rem;
+      border-bottom: none;
+      border-radius: 6px;
+      .jm-review-item__content {
+        display: grid;
+        .jm-reviewer-info {
+          order: 2;
+          .jm-reviewer-avatar {
+            display: none;
+          }
+          .jm-reviewer-info__details {
+            display: flex;
+            gap: 1em;
+            .jm-cluster {
+              &:last-of-type {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .jdgm-rev-widg__title {
+  }
+
+  .jdgm-rev-widg__summary {
+  }
+
+  // "Write a review" button
+  .jdgm-write-rev-link {
+  }
+
+  // Each review
+  .jdgm-rev {
+  }
+
+  .jdgm-rev__title {
+  }
+
+  .jdgm-rev__body {
+  }
+
+  .jdgm-rev__author {
+  }
+
+  .jdgm-rev__timestamp {
+  }
+
+  // Stars inside the widget
+  .jdgm-star {
+  }
+
+  // Pagination
+  .jdgm-paginate {
+  }
+}
