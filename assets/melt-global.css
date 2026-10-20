@@ -288,3 +288,24 @@
 .melt-rating__count {
   color: var(--melt-star-color, rgba(var(--color-foreground), 0.75));
 }
+
+.melt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.melt-tag {
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.4rem;
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+@media screen and (min-width: 750px) {
+  .melt-tag {
+    font-size: 1.5rem;
+  }
+}

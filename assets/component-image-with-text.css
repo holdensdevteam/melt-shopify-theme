@@ -350,3 +350,23 @@
 .image-with-text__content > .image-with-text__eyebrow + * {
   margin-top: 0.8rem;
 }
+
+.image-with-text__content--mobile-center > .image-with-text__tags {
+  justify-content: center;
+}
+
+.image-with-text__content--mobile-right > .image-with-text__tags {
+  justify-content: flex-end;
+}
+
+@media screen and (min-width: 750px) {
+  .image-with-text__content--desktop-left > .image-with-text__tags {
+    justify-content: flex-start;
+  }
+  .image-with-text__content--desktop-center > .image-with-text__tags {
+    justify-content: center;
+  }
+  .image-with-text__content--desktop-right > .image-with-text__tags {
+    justify-content: flex-end;
+  }
+}

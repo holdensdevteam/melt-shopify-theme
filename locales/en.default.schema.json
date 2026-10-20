@@ -2221,6 +2221,14 @@
         }
       },
       "blocks": {
+        "scent_notes": {
+          "name": "Scent notes",
+          "settings": {
+            "tags_list": {
+              "info": "Connect a dynamic source, e.g. Primary Scent Notes (on a collection or product template). Each note shows as its own tag."
+            }
+          }
+        },
         "eyebrow": {
           "name": "Eyebrow",
           "settings": {

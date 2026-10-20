@@ -1,0 +1,45 @@
+{% comment %}
+  Renders tags as pills, e.g. scent notes ("Bergamot · Lavender · White Musk"). Used by the
+  product page Tags block and the Image with text Scent notes block. Styles: melt-global.scss.
+
+  Accepts:
+  - list: {Array} Metaobject list setting (e.g. connected to Primary Scent Notes). Each entry
+    shows its Name field.
+  - text: {String} Fallback when the list is empty: comma-separated tags, or any text source —
+    Shopify's list formatting ("A, B, and C" / "A and B") is turned back into separate tags.
+  - max: {Number} Maximum tags. Default: 6
+  - color_scheme: {String} Colour scheme for the pills.
+  - class: {String} Optional extra classes.
+  - attributes: {String} Optional extra attributes, e.g. block.shopify_attributes.
+
+  Usage:
+  {% render 'melt-tags', list: block.settings.tags_list, text: block.settings.tags_text, max: block.settings.max_tags, color_scheme: block.settings.color_scheme, attributes: block.shopify_attributes %}
+{% endcomment %}
+
+{%- liquid
+  assign tag_max = max | default: 6
+  assign tag_text = ''
+  if list != blank
+    for item in list limit: tag_max
+      assign tag_label = item.name.value | default: item.name
+      assign tag_text = tag_text | append: tag_label | append: '|||'
+    endfor
+  elsif text != blank
+    assign tag_text = text | strip_html | replace: ', and ', ',' | replace: ',', '|||'
+    unless tag_text contains '|||'
+      assign tag_text = tag_text | replace: ' and ', '|||'
+    endunless
+  endif
+  assign tag_items = tag_text | split: '|||'
+-%}
+
+{%- if tag_items.size > 0 -%}
+  <ul class="melt-tags list-unstyled{% if class %} {{ class }}{% endif %}" role="list" {{ attributes }}>
+    {%- for tag in tag_items limit: tag_max -%}
+      {%- assign tag_label = tag | strip -%}
+      {%- if tag_label != blank -%}
+        <li class="melt-tag color-{{ color_scheme }}">{{ tag_label | escape }}</li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

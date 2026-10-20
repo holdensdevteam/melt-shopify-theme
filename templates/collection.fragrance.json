@@ -1,11 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_khfVTW": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "scheme-2",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
         "show_collection_description": true,
-        "show_collection_image": false,
-        "color_scheme": "scheme-1"
+        "show_collection_image": true,
+        "color_scheme": "scheme-2"
       }
     },
     "product-grid": {
@@ -13,6 +40,7 @@
       "settings": {
         "products_per_page": 16,
         "columns_desktop": 4,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
@@ -20,17 +48,120 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
+        "card_name_source": "title",
+        "card_name_size": "default",
+        "show_type_eyebrow": true,
+        "eyebrow_color": "",
+        "show_scent_notes": true,
+        "price_rating_row": true,
         "enable_filtering": true,
         "filter_type": "horizontal",
         "enable_sorting": true,
-        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_qjbfgR": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_H7z43N": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ collection.title }}",
+            "heading_size": "h1"
+          }
+        },
+        "text_Y7yhfM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ collection.metafields.custom.fragrance_detail | metafield_tag }}</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_H7z43N",
+        "text_Y7yhfM"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/fragrance-angel-placeholder.jpg",
+        "height": "small",
+        "image_corners": "theme",
+        "image_radius": 8,
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_9NYKPf": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_QiEF7y": {
+          "type": "column",
+          "settings": {
+            "title": "The blend",
+            "text": "<p>{{ collection.metafields.custom.the_blend | metafield_tag }}</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_tXAV6g": {
+          "type": "column",
+          "settings": {
+            "title": "Perfect for",
+            "text": "<p>{{ collection.metafields.custom.perfect_for | metafield_tag }}</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zyamGm": {
+          "type": "column",
+          "settings": {
+            "title": "Moments",
+            "text": "<p>{{ collection.metafields.custom.moments | metafield_tag }}</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_QiEF7y",
+        "column_tXAV6g",
+        "column_zyamGm"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
     }
   },
   "order": [
+    "melt_breadcrumbs_khfVTW",
     "banner",
-    "product-grid"
+    "product-grid",
+    "image_with_text_qjbfgR",
+    "multicolumn_9NYKPf"
   ]
 }

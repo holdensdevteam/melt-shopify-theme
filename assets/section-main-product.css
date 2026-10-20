@@ -1475,33 +1475,6 @@ a.product__text {
 
 /*
  * ------------------------------------------------------------
- * Melt: Tags block (main-product "Tags") — pills, e.g. scent notes.
- * Pill colours from the block's colour scheme (full-colour background, so transparent works).
- * ------------------------------------------------------------
- */
-.product__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin: 0;
-}
-
-.product__tag {
-  padding: 0.4rem 1.2rem;
-  border-radius: 0.4rem;
-  background: var(--gradient-background);
-  color: rgb(var(--color-foreground));
-  font-size: 1.4rem;
-  line-height: 1.6;
-}
-@media screen and (min-width: 750px) {
-  .product__tag {
-    font-size: 1.5rem;
-  }
-}
-
-/*
- * ------------------------------------------------------------
  * Melt: Standout text block (main-product "Standout text") — a full-width tinted box.
  * Colours from the block's colour scheme (full-colour background, so transparent works).
  * ------------------------------------------------------------

@@ -84,6 +84,15 @@
                     class: 'image-with-text__eyebrow',
                     attributes: block.shopify_attributes
                   -%}
+                {%- when 'scent_notes' -%}
+                  {%- render 'melt-tags',
+                    list: block.settings.tags_list,
+                    text: block.settings.tags_text,
+                    max: block.settings.max_tags,
+                    color_scheme: block.settings.color_scheme,
+                    class: 'image-with-text__tags',
+                    attributes: block.shopify_attributes
+                  -%}
                 {%- when 'heading' -%}
                   <h2
                     class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}"
@@ -428,6 +437,41 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "scent_notes",
+      "name": "t:sections.image-with-text.blocks.scent_notes.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "metaobject_list",
+          "id": "tags_list",
+          "metaobject_type": "scent_notes",
+          "label": "t:sections.main-product.blocks.tags.settings.tags_list.label",
+          "info": "t:sections.image-with-text.blocks.scent_notes.settings.tags_list.info"
+        },
+        {
+          "type": "text",
+          "id": "tags_text",
+          "label": "t:sections.main-product.blocks.tags.settings.tags_text.label",
+          "info": "t:sections.main-product.blocks.tags.settings.tags_text.info"
+        },
+        {
+          "type": "range",
+          "id": "max_tags",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 6,
+          "label": "t:sections.main-product.blocks.tags.settings.max_tags.label"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.main-product.blocks.tags.settings.color_scheme.label",
+          "default": "scheme-2"
         }
       ]
     },
