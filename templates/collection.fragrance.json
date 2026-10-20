@@ -71,6 +71,15 @@
             "heading_size": "h1"
           }
         },
+        "scent_notes_JYY3jY": {
+          "type": "scent_notes",
+          "settings": {
+            "tags_list": "{{ collection.metafields.custom.primary_scent_notes.value }}",
+            "tags_text": "",
+            "max_tags": 6,
+            "color_scheme": "scheme-2"
+          }
+        },
         "text_Y7yhfM": {
           "type": "text",
           "settings": {
@@ -81,6 +90,7 @@
       },
       "block_order": [
         "heading_H7z43N",
+        "scent_notes_JYY3jY",
         "text_Y7yhfM"
       ],
       "name": "t:sections.image-with-text.presets.name",
