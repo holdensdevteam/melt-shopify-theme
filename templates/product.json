@@ -62,16 +62,12 @@
             "price_size": "large"
           }
         },
-        "text_MUTwTy": {
-          "type": "text",
+        "bullet_list_KPreAr": {
+          "type": "bullet_list",
           "settings": {
-            "text": "{{ product.metafields.custom.selling_points | metafield_text: field: 'selling_point' }}",
-            "text_style": "body"
+            "metafield": "custom.selling_points",
+            "max_items": 6
           }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
         },
         "standout_text_JqaAXw": {
           "type": "standout_text",
@@ -114,8 +110,7 @@
         "tags_qEJnDW",
         "judge_me_reviews_preview_badge_k3Lxwa",
         "price",
-        "text_MUTwTy",
-        "description",
+        "bullet_list_KPreAr",
         "standout_text_JqaAXw",
         "divider_Gwcpnm",
         "variant_picker",
@@ -208,7 +203,7 @@
             "heading": "Why we love it",
             "source": "custom",
             "content": "<p>{{ product.metafields.custom.why_we_love_it | metafield_tag }}</p>",
-            "open": true
+            "open": false
           }
         },
         "accordion_9wR3TW": {
@@ -322,7 +317,7 @@
         "text_x3yCMt": {
           "type": "text",
           "settings": {
-            "text": "<p>Angel has been our best seller since 2002, and we've long since stopped being surprised by it. Rich, round and musky, with a generous dollop of chocolate oil underneath. Noticed straight away, then rather harder to name. When you light a candle, the angels always gather.</p><h2>The blend</h2><p>It opens bright and a little tart, dewberry and cassis over jasmine and rose. Underneath is the part everyone remembers: vanilla, patchouli, amber and that chocolate. Poured by hand in Waddington, with 89% of what goes into it sourced from Lancashire.</p><h2>Perfect for</h2><p>Angel carries. It's a fragrance that fills a room rather than sitting politely in a corner of it, so it works best where you want to be met by something when you walk in.</p><p><strong>Rooms:</strong> The living room, the hallway, the bedroom, open-plan kitchen & dining spaces.</p><p><strong>Occasions:</strong> Valentine's Day, anniversaries, Mother's Day, a new home.</p><h2>Moments</h2><p><strong>Winding Down:</strong> The obvious one. Rich and enveloping, best lit an hour before you intend to stop for the evening.</p><p><strong>Romance:</strong> Musk, rose and chocolate is not a subtle combination, and it isn't trying to be.</p><p></p><p><strong>Dining:</strong> Once the cooking is done.</p>",
+            "text": "<p>Angel has been our best seller since 2002, and we've long since stopped being surprised by it. Rich, round and musky, with a generous dollop of chocolate oil underneath. Noticed straight away, then rather harder to name. When you light a candle, the angels always gather.</p>",
             "text_style": "body"
           }
         }
@@ -334,7 +329,7 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/fragrance-angel-placeholder.jpg",
-        "height": "adapt",
+        "height": "medium",
         "image_corners": "theme",
         "image_radius": 8,
         "desktop_image_width": "medium",
@@ -346,6 +341,60 @@
         "mobile_content_alignment": "left",
         "section_color_scheme": "",
         "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_HXkwnz": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_ikFacF": {
+          "type": "column",
+          "settings": {
+            "title": "The blend",
+            "text": "<p>It opens bright and a little tart, dewberry and cassis over jasmine and rose. Underneath is the part everyone remembers: vanilla, patchouli, amber and that chocolate. Poured by hand in Waddington, with 89% of what goes into it sourced from Lancashire.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xBLzpw": {
+          "type": "column",
+          "settings": {
+            "title": "Perfect for",
+            "text": "<p>Angel carries. It's a fragrance that fills a room rather than sitting politely in a corner of it, so it works best where you want to be met by something when you walk in. Best used in the living room, the hallway, the bedroom, open-plan kitchen & dining spaces.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jBLTtw": {
+          "type": "column",
+          "settings": {
+            "title": "Moments",
+            "text": "<p>Winding Down - Rich and enveloping, best lit an hour before you intend to stop for the evening.</p><p>Romance - Musk, rose and chocolate is not a subtle combination, and it isn't trying to be.</p><p>Dining - Once the cooking is done.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_ikFacF",
+        "column_xBLzpw",
+        "column_jBLTtw"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -574,6 +623,7 @@
     "usp_bar_bgyAdV",
     "melt_product_details_ji3FE9",
     "image_with_text_ARHnVz",
+    "multicolumn_HXkwnz",
     "disclosures",
     "featured_collection_KeLjXB",
     "related-products",
