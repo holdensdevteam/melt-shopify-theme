@@ -1,0 +1,31 @@
+{% comment %}
+  Outputs a product's display name (HTML-escaped) for cards.
+
+  source 'fragrance_short': the Fragrance and Short Title metafields together, e.g.
+  "Angel" + "Short & Fat" → "Angel Short & Fat" (custom.fragrance and custom.short_title,
+  both metaobject references). Each entry's text is read from its name, title, fragrance,
+  short_title or value field — the first that has one. Falls back to the product title when
+  either is missing, so cards never show half a name.
+  Anything else: the product title.
+
+  Accepts:
+  - product: {Object} Product.
+  - source: {String} 'title' (default) or 'fragrance_short'.
+
+  Usage:
+  {%- capture card_name -%}{% render 'melt-product-name', product: card_product, source: name_source %}{%- endcapture -%}
+{% endcomment %}
+
+{%- liquid
+  assign display_name = product.title
+  if source == 'fragrance_short'
+    assign fragrance = product.metafields.custom.fragrance.value
+    assign short = product.metafields.custom.short_title.value
+    assign fragrance_name = fragrance.name.value | default: fragrance.title.value | default: fragrance.fragrance.value | default: fragrance.value.value
+    assign short_name = short.short_title.value | default: short.name.value | default: short.title.value | default: short.value.value
+    if fragrance_name != blank and short_name != blank
+      assign display_name = fragrance_name | append: ' ' | append: short_name
+    endif
+  endif
+-%}
+{{- display_name | escape -}}

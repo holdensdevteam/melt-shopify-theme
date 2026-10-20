@@ -1,0 +1,37 @@
+{% comment %}
+  Renders a product's star rating and review count, e.g. ★★★★½ (34), from Shopify's standard
+  reviews metafields (written by Judge.me: reviews.rating and reviews.rating_count).
+  Replaces Dawn's card rating, whose clipped-gradient stars can fail to paint and leave only
+  the count. Here a coloured row of stars sits over a grey row, cut to the rating's width.
+  Colour: Theme settings → Colours → Star rating colour (--melt-star-color). Styles: melt-global.scss.
+
+  Accepts:
+  - product: {Object} Product. Nothing renders without a rating.
+  - show: {Boolean} Render only when true (callers pass their Show rating setting straight in).
+
+  Usage:
+  {% render 'melt-rating', product: card_product, show: show_rating %}
+{% endcomment %}
+
+{%- assign rating = product.metafields.reviews.rating.value -%}
+{%- if show and rating != blank -%}
+  {%- liquid
+    assign rating_max = rating.scale_max | default: 5
+    assign rating_percent = rating.rating | times: 100.0 | divided_by: rating_max | at_most: 100
+    assign rating_count = product.metafields.reviews.rating_count | default: 0
+  -%}
+  <div class="melt-rating">
+    <span
+      class="melt-rating__stars"
+      role="img"
+      aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating.rating, rating_max: rating_max }}"
+      style="--melt-rating-percent: {{ rating_percent }}%;"
+    >
+      <span class="melt-rating__fill" aria-hidden="true"></span>
+    </span>
+    <span class="melt-rating__count">
+      <span aria-hidden="true">({{ rating_count }})</span>
+      <span class="visually-hidden">{{ rating_count }} {{ 'accessibility.total_reviews' | t }}</span>
+    </span>
+  </div>
+{%- endif -%}

@@ -2574,6 +2574,23 @@
     "main-collection-product-grid": {
       "name": "Product grid",
       "settings": {
+        "header_melt_cards": {
+          "content": "Card content"
+        },
+        "card_name_source": {
+          "label": "Product name",
+          "info": "Fragrance + short title joins the Fragrance and Short Title metafields (e.g. Angel Short & Fat). Products missing either show their title.",
+          "options__title": {
+            "label": "Product title"
+          },
+          "options__fragrance_short": {
+            "label": "Fragrance + short title"
+          }
+        },
+        "show_scent_notes": {
+          "label": "Show scent notes",
+          "info": "Up to 3, from the Primary Scent Notes metafield."
+        },
         "products_per_page": {
           "label": "Products per page"
         },

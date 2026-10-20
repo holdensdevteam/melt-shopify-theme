@@ -125,7 +125,7 @@
 
 <div
   id="FeaturedCollection-{{ section.id }}"
-  class="featured-collection-section featured-collection-section--heading-{{ section.settings.heading_alignment }} melt-section-bg melt-cards--media-radius melt-cards--name-{{ section.settings.card_name_size }}{% if section.settings.card_style != 'theme' and section.settings.card_border_width > 0 %} melt-cards--outline{% endif %}{% if section.settings.price_rating_row %} featured-collection-section--price-row{% endif %} color-{{ section.settings.color_scheme }} isolate gradient"
+  class="featured-collection-section melt-cards featured-collection-section--heading-{{ section.settings.heading_alignment }} melt-section-bg melt-cards--media-radius melt-cards--name-{{ section.settings.card_name_size }}{% if section.settings.card_style != 'theme' and section.settings.card_border_width > 0 %} melt-cards--outline{% endif %}{% if section.settings.price_rating_row %} melt-cards--price-row{% endif %} color-{{ section.settings.color_scheme }} isolate gradient"
 >
   {%- render 'melt-section-background', image: section.settings.background_image -%}
   <div

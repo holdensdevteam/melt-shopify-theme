@@ -1,6 +1,8 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-collection-product-grid.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -122,7 +124,7 @@
         {%- endif -%}
 
         <div
-          class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="product-grid-container melt-cards melt-cards--name-{{ section.settings.card_name_size }}{% if section.settings.price_rating_row %} melt-cards--price-row{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           id="ProductGridContainer"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
@@ -180,6 +182,10 @@
                       skip_styles: skip_card_product_styles,
                       quick_add: section.settings.quick_add,
                       section_id: section.id,
+                      show_type_eyebrow: section.settings.show_type_eyebrow,
+                      eyebrow_color: section.settings.eyebrow_color,
+                      show_scent_notes: section.settings.show_scent_notes,
+                      name_source: section.settings.card_name_source,
                       product_view_context: 'collection'
                     %}
                   </li>
@@ -349,6 +355,78 @@
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header_melt_cards.content"
+    },
+    {
+      "type": "select",
+      "id": "card_name_source",
+      "label": "t:sections.main-collection-product-grid.settings.card_name_source.label",
+      "info": "t:sections.main-collection-product-grid.settings.card_name_source.info",
+      "options": [
+        {
+          "value": "title",
+          "label": "t:sections.main-collection-product-grid.settings.card_name_source.options__title.label"
+        },
+        {
+          "value": "fragrance_short",
+          "label": "t:sections.main-collection-product-grid.settings.card_name_source.options__fragrance_short.label"
+        }
+      ],
+      "default": "title"
+    },
+    {
+      "type": "select",
+      "id": "card_name_size",
+      "label": "t:sections.featured-collection.settings.card_name_size.label",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__default.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__large.label"
+        },
+        {
+          "value": "xlarge",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__xlarge.label"
+        },
+        {
+          "value": "xxlarge",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__xxlarge.label"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_type_eyebrow",
+      "default": true,
+      "label": "t:sections.featured-collection.settings.show_type_eyebrow.label"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "t:sections.all.eyebrow_color.label",
+      "info": "t:sections.all.eyebrow_color.info",
+      "visible_if": "{{ section.settings.show_type_eyebrow }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scent_notes",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.show_scent_notes.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_scent_notes.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "price_rating_row",
+      "default": true,
+      "label": "t:sections.featured-collection.settings.price_rating_row.label",
+      "info": "t:sections.featured-collection.settings.price_rating_row.info"
     },
     {
       "type": "header",
