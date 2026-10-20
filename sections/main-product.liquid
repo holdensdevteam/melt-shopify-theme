@@ -267,6 +267,37 @@
                       {%- endif -%}
                     {%- endif -%}
                   </p>
+                {%- when 'bullet_list' -%}
+                  {%- comment -%}
+                    Melt: a bullet list from a product metafield that's a list (e.g. custom.selling_points,
+                    a list of Selling Points entries), styled exactly like the Description block's lists.
+                    Each entry shows its text field — selling_point, name, title, text or value, in that
+                    order — or the item itself for plain text lists.
+                  {%- endcomment -%}
+                  {%- liquid
+                    assign list_key = block.settings.metafield | strip | split: '.'
+                    assign list_items = null
+                    if list_key.size == 2
+                      assign list_items = product.metafields[list_key[0]][list_key[1]].value
+                    endif
+                  -%}
+                  {%- if list_items != blank -%}
+                    <div class="product__description product__bullet-list rte quick-add-hidden" {{ block.shopify_attributes }}>
+                      <ul>
+                        {%- for item in list_items limit: block.settings.max_items -%}
+                          {%- liquid
+                            assign item_text = item.selling_point.value | default: item.name.value | default: item.title.value | default: item.text.value | default: item.value.value
+                            if item_text == blank and item.system == blank
+                              assign item_text = item
+                            endif
+                          -%}
+                          {%- if item_text != blank -%}
+                            <li>{{ item_text | escape }}</li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
@@ -1174,6 +1205,28 @@
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
       "limit": 1
+    },
+    {
+      "type": "bullet_list",
+      "name": "t:sections.main-product.blocks.bullet_list.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "metafield",
+          "label": "t:sections.main-product.blocks.bullet_list.settings.metafield.label",
+          "info": "t:sections.main-product.blocks.bullet_list.settings.metafield.info",
+          "default": "custom.selling_points"
+        },
+        {
+          "type": "range",
+          "id": "max_items",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 6,
+          "label": "t:sections.main-product.blocks.bullet_list.settings.max_items.label"
+        }
+      ]
     },
     {
       "type": "share",

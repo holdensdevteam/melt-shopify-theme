@@ -39,7 +39,7 @@
         "heading_37ehEM": {
           "type": "heading",
           "settings": {
-            "heading": "{{ product.metafields.custom.fragrance.value.label.value }} [type]",
+            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}&nbsp;[type]",
             "heading_tag": "h2"
           }
         },
@@ -60,6 +60,13 @@
           "type": "price",
           "settings": {
             "price_size": "large"
+          }
+        },
+        "text_MUTwTy": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.selling_points | metafield_text: field: 'selling_point' }}",
+            "text_style": "body"
           }
         },
         "description": {
@@ -107,6 +114,7 @@
         "tags_qEJnDW",
         "judge_me_reviews_preview_badge_k3Lxwa",
         "price",
+        "text_MUTwTy",
         "description",
         "standout_text_JqaAXw",
         "divider_Gwcpnm",
@@ -185,12 +193,21 @@
     "melt_product_details_ji3FE9": {
       "type": "melt-product-details",
       "blocks": {
+        "accordion_XKAzje": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Description",
+            "source": "custom",
+            "content": "{{ product.description }}",
+            "open": false
+          }
+        },
         "accordion_hiCmzi": {
           "type": "accordion",
           "settings": {
             "heading": "Why we love it",
             "source": "custom",
-            "content": "<p>BECAUSE YOU DO! My goodness – you are a loyal bunch! When we launched our Angel fragranced scented candles back in 2002 you took her to your hearts and haven’t let her go since.<br/><br/>We’ve a hunch it has a LOT to do with the big dollop of Chocolate oil that we add to the base notes. She is still our best selling fragrance thanks to your enduring devotion – and this scented candle will cocoon you in her gorgeous scent and watch over you for many perfectly perfumed hours.<br/><br/>Beautifully presented in a stunning gift box, she is the perfect gift (or sneaky treat for yourself).</p>",
+            "content": "<p>{{ product.metafields.custom.why_we_love_it | metafield_tag }}</p>",
             "open": true
           }
         },
@@ -199,7 +216,7 @@
           "settings": {
             "heading": "How it is made",
             "source": "custom",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lacus rutrum, posuere justo efficitur, efficitur mauris. Phasellus a varius quam, a dignissim orci. Morbi blandit commodo arcu. Proin ac tincidunt risus.&nbsp;</p><p>Nullam sed tristique sem. Donec metus mauris, scelerisque ut turpis at, semper aliquam neque. Maecenas malesuada lacus quis metus rutrum ultricies. Nullam viverra ornare ipsum. Donec elit sapien, pulvinar a vulputate a, hendrerit ac orci. Ut vestibulum urna scelerisque auctor lacinia. Curabitur tincidunt sem nec lorem convallis malesuada. Donec massa ipsum, blandit eu rhoncus sodales, pretium et neque. Donec pretium pharetra lectus sed vehicula. Pellentesque varius dictum velit, semper rutrum lectus vulputate a. Nulla quis ante malesuada lectus fermentum dignissim.</p>",
+            "content": "<p>{{ product.metafields.custom.how_it_is_made | metafield_tag }}</p>",
             "open": false
           }
         },
@@ -208,7 +225,7 @@
           "settings": {
             "heading": "Burn guide & care",
             "source": "custom",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lacus rutrum, posuere justo efficitur, efficitur mauris. Phasellus a varius quam, a dignissim orci. Morbi blandit commodo arcu.</p>",
+            "content": "<p>{{ product.metafields.custom.burn_guide_and_care | metafield_tag }}</p>",
             "open": false
           }
         },
@@ -217,7 +234,7 @@
           "settings": {
             "heading": "Safety, ingredients & allergens",
             "source": "custom",
-            "content": "<p>Dewberry, Cassis, Jasmine, Rose, Vanilla, Patchouli, Amber & a hint of Chocolate.</p>",
+            "content": "<p>{{ product.metafields.custom.safety_ingredients_and_allergens | metafield_tag }}</p>",
             "open": false
           }
         },
@@ -226,7 +243,7 @@
           "settings": {
             "heading": "Delivery & returns",
             "source": "custom",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac lacus rutrum, posuere justo efficitur, efficitur mauris.&nbsp;</p><p>Phasellus a varius quam, a dignissim orci. Morbi blandit commodo arcu. Proin ac tincidunt risus. Nullam sed tristique sem.&nbsp;</p><p>Donec metus mauris, scelerisque ut turpis at, semper aliquam neque.&nbsp;</p>",
+            "content": "",
             "open": false
           }
         },
@@ -234,46 +251,40 @@
           "type": "detail",
           "settings": {
             "label": "Weight",
-            "value": "300g"
+            "value": "{{ product.metafields.custom.weight.value.weight_g.value }}g"
           }
         },
         "detail_fCgWmx": {
           "type": "detail",
           "settings": {
             "label": "Burn time",
-            "value": "45 hours"
+            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours"
           }
         },
         "detail_Rhxjrq": {
           "type": "detail",
           "settings": {
             "label": "Wick",
-            "value": "Cotton, lead-free"
+            "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}"
           }
         },
         "detail_keFMAU": {
           "type": "detail",
           "settings": {
             "label": "Wax",
-            "value": "Soy blend"
-          }
-        },
-        "detail_dEJhHb": {
-          "type": "detail",
-          "settings": {
-            "label": "Vessel",
-            "value": "Naked"
+            "value": "{{ product.metafields.custom.wax.value.wax_type.value }}"
           }
         },
         "detail_rgbA6q": {
           "type": "detail",
           "settings": {
             "label": "Made",
-            "value": "Waddington, Lancashire"
+            "value": "{{ product.metafields.custom.made.value.made.value }}"
           }
         }
       },
       "block_order": [
+        "accordion_XKAzje",
         "accordion_hiCmzi",
         "accordion_9wR3TW",
         "accordion_gNKamB",
@@ -283,7 +294,6 @@
         "detail_fCgWmx",
         "detail_Rhxjrq",
         "detail_keFMAU",
-        "detail_dEJhHb",
         "detail_rgbA6q"
       ],
       "name": "t:sections.melt_product_details.name",
@@ -297,6 +307,47 @@
         "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "image_with_text_ARHnVz": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_tJarBq": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}",
+            "heading_size": "h1"
+          }
+        },
+        "text_x3yCMt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Angel has been our best seller since 2002, and we've long since stopped being surprised by it. Rich, round and musky, with a generous dollop of chocolate oil underneath. Noticed straight away, then rather harder to name. When you light a candle, the angels always gather.</p><h2>The blend</h2><p>It opens bright and a little tart, dewberry and cassis over jasmine and rose. Underneath is the part everyone remembers: vanilla, patchouli, amber and that chocolate. Poured by hand in Waddington, with 89% of what goes into it sourced from Lancashire.</p><h2>Perfect for</h2><p>Angel carries. It's a fragrance that fills a room rather than sitting politely in a corner of it, so it works best where you want to be met by something when you walk in.</p><p><strong>Rooms:</strong> The living room, the hallway, the bedroom, open-plan kitchen & dining spaces.</p><p><strong>Occasions:</strong> Valentine's Day, anniversaries, Mother's Day, a new home.</p><h2>Moments</h2><p><strong>Winding Down:</strong> The obvious one. Rich and enveloping, best lit an hour before you intend to stop for the evening.</p><p><strong>Romance:</strong> Musk, rose and chocolate is not a subtle combination, and it isn't trying to be.</p><p></p><p><strong>Dining:</strong> Once the cooking is done.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tJarBq",
+        "text_x3yCMt"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/fragrance-angel-placeholder.jpg",
+        "height": "adapt",
+        "image_corners": "theme",
+        "image_radius": 8,
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "disclosures": {
@@ -396,7 +447,11 @@
         "judge_me_reviews_review_widget_FagqEG"
       ],
       "settings": {
-        "include_margins": true
+        "include_margins": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "css_class": ""
       }
     },
     "featured_collection_LAgtwX": {
@@ -518,6 +573,7 @@
     "melt_divider_HaphGQ",
     "usp_bar_bgyAdV",
     "melt_product_details_ji3FE9",
+    "image_with_text_ARHnVz",
     "disclosures",
     "featured_collection_KeLjXB",
     "related-products",

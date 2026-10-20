@@ -381,6 +381,8 @@
       "settings": {
         "collection": "best-sellers",
         "products_to_show": 8,
+        "heading_eyebrow": "",
+        "heading_eyebrow_color": "",
         "title": "Most loved",
         "heading_size": "h1",
         "description": "",

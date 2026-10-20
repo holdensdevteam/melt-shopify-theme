@@ -2724,6 +2724,18 @@
     "main-product": {
       "name": "Product information",
       "blocks": {
+        "bullet_list": {
+          "name": "Bullet list",
+          "settings": {
+            "metafield": {
+              "label": "Product metafield",
+              "info": "namespace.key of a list metafield, e.g. custom.selling_points. Styled like the Description's bullet points; hidden on products with no entries."
+            },
+            "max_items": {
+              "label": "Maximum items"
+            }
+          }
+        },
         "divider": {
           "name": "Divider",
           "settings": {
