@@ -1,10 +1,6 @@
 {%- comment -%}
-  Breadcrumbs: Home / collection / product, and equivalents for collections, pages, blogs,
-  articles, search and cart. Replaces the AI-generated "Page breadcrumbs" block.
-  Also outputs schema.org BreadcrumbList JSON-LD matching the visible trail.
-
-  Product trail: the collection the shopper came through (collection-scoped URL), otherwise the
-  product's first collection. Shopify collections have no hierarchy, so this is one level.
+  Breadcrumbs section. Trail, markup and BreadcrumbList JSON-LD come from
+  snippets/melt-breadcrumbs.liquid (shared with the collection banner's Breadcrumbs block).
 {%- endcomment -%}
 
 {%- style -%}
@@ -33,89 +29,26 @@
 
 {{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  # Build the trail as parallel lists of titles and URLs (the last item is the current page, no link).
-  assign sep = '|||'
-  assign titles = section.settings.home_label | default: 'Home'
-  assign urls = routes.root_url
-
-  case request.page_type
-    when 'product'
-      assign crumb_collection = collection
-      if crumb_collection == blank
-        assign crumb_collection = product.collections | first
-      endif
-      if crumb_collection != blank
-        assign titles = titles | append: sep | append: crumb_collection.title
-        assign urls = urls | append: sep | append: crumb_collection.url
-      endif
-      assign titles = titles | append: sep | append: product.title
-      assign urls = urls | append: sep | append: product.url
-    when 'collection'
-      assign titles = titles | append: sep | append: collection.title
-      assign urls = urls | append: sep | append: collection.url
-    when 'page'
-      assign titles = titles | append: sep | append: page.title
-      assign urls = urls | append: sep | append: page.url
-    when 'blog'
-      assign titles = titles | append: sep | append: blog.title
-      assign urls = urls | append: sep | append: blog.url
-    when 'article'
-      assign titles = titles | append: sep | append: blog.title | append: sep | append: article.title
-      assign urls = urls | append: sep | append: blog.url | append: sep | append: article.url
-    when 'search'
-      assign titles = titles | append: sep | append: section.settings.search_label
-      assign urls = urls | append: sep | append: routes.search_url
-    when 'cart'
-      assign titles = titles | append: sep | append: section.settings.cart_label
-      assign urls = urls | append: sep | append: routes.cart_url
-  endcase
-
-  assign title_list = titles | split: sep
-  assign url_list = urls | split: sep
--%}
-
-{%- if title_list.size > 1 -%}
+{%- unless request.page_type == 'index' -%}
   <div
     id="Breadcrumbs-{{ section.id }}"
     class="melt-breadcrumbs color-{{ section.settings.color_scheme }} gradient"
   >
-    <nav
-      class="melt-breadcrumbs__nav page-width{% if section.settings.width == 'full' %} melt-breadcrumbs__nav--full{% endif %}"
-      aria-label="{{ 'sections.breadcrumbs.label' | t }}"
-    >
-      <ol class="melt-breadcrumbs__list list-unstyled" role="list">
-        {%- for title in title_list -%}
-          <li class="melt-breadcrumbs__item">
-            {%- if forloop.last -%}
-              <span class="melt-breadcrumbs__current" aria-current="page">{{ title | escape }}</span>
-            {%- else -%}
-              <a class="melt-breadcrumbs__link" href="{{ url_list[forloop.index0] }}">{{ title | escape }}</a>
-              <span class="melt-breadcrumbs__separator" aria-hidden="true">{{ section.settings.separator | escape }}</span>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ol>
-    </nav>
+    {%- liquid
+      assign nav_class = 'page-width'
+      if section.settings.width == 'full'
+        assign nav_class = 'page-width melt-breadcrumbs__nav--full'
+      endif
+    -%}
+    {%- render 'melt-breadcrumbs',
+      home_label: section.settings.home_label,
+      separator: section.settings.separator,
+      search_label: section.settings.search_label,
+      cart_label: section.settings.cart_label,
+      class: nav_class
+    -%}
   </div>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {%- for title in title_list -%}
-          {
-            "@type": "ListItem",
-            "position": {{ forloop.index }},
-            "name": {{ title | json }},
-            "item": {{ request.origin | append: url_list[forloop.index0] | json }}
-          }{% unless forloop.last %},{% endunless %}
-        {%- endfor -%}
-      ]
-    }
-  </script>
-{%- endif -%}
+{%- endunless -%}
 
 {% schema %}
 {

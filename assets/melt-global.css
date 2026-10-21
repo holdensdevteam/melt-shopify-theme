@@ -309,3 +309,8 @@
     font-size: 1.5rem;
   }
 }
+
+.melt-tags--button .melt-tag {
+  background: var(--melt-button-color, rgb(var(--color-button)));
+  color: rgb(var(--color-button-text));
+}

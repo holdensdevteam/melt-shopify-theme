@@ -389,3 +389,12 @@
     font-size: 1.5rem;
   }
 }
+
+// Pill variant (snippets/melt-tags.liquid "colors" input).
+// Button colours: the scheme's solid button background and label (each pill carries the scheme).
+// --melt-button-color is the full colour (theme.liquid) — Dawn's --color-button is "r,g,b" with
+// no alpha, so a transparent button colour would otherwise render black.
+.melt-tags--button .melt-tag {
+  background: var(--melt-button-color, rgb(var(--color-button)));
+  color: rgb(var(--color-button-text));
+}

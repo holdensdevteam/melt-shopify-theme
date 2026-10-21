@@ -1,0 +1,108 @@
+{% comment %}
+  Renders one block of the collection banner (sections/main-collection-banner.liquid):
+  breadcrumbs, heading, text, image or video. Styles: src/scss/section-main-collection-banner.scss.
+
+  Accepts:
+  - block: {Object} The section block.
+
+  Usage:
+  {% render 'melt-collection-banner-block', block: block %}
+{% endcomment %}
+
+{%- case block.type -%}
+  {%- when 'image' -%}
+    {%- liquid
+      if block.settings.source == 'custom'
+        assign banner_image = block.settings.image
+      else
+        assign banner_image = collection.image
+      endif
+    -%}
+    {%- if banner_image != blank or request.design_mode -%}
+      <div class="melt-banner__media melt-banner__media--{{ block.settings.ratio }}" {{ block.shopify_attributes }}>
+        {%- if banner_image != blank -%}
+          {%- liquid
+            assign focal_style = nil
+            if banner_image.presentation.focal_point != blank
+              assign focal_style = 'object-position: ' | append: banner_image.presentation.focal_point
+            endif
+          -%}
+          {{
+            banner_image
+            | image_url: width: 2400
+            | image_tag:
+              widths: '375, 550, 750, 1100, 1500, 1800, 2400',
+              sizes: '(min-width: 990px) 50vw, 100vw',
+              fetchpriority: 'high',
+              style: focal_style,
+              class: 'melt-banner__image'
+          }}
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg melt-banner__image' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- when 'video' -%}
+    {%- if block.settings.video != blank -%}
+      <div class="melt-banner__media melt-banner__media--{{ block.settings.ratio }}" {{ block.shopify_attributes }}>
+        {%- if block.settings.playback == 'ambient' -%}
+          {{
+            block.settings.video
+            | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              playsinline: true,
+              controls: false,
+              class: 'melt-banner__video',
+              image_size: '1200x'
+          }}
+        {%- else -%}
+          {{
+            block.settings.video
+            | video_tag: controls: true, playsinline: true, class: 'melt-banner__video', image_size: '1200x'
+          }}
+        {%- endif -%}
+        {%- if block.settings.description != blank -%}
+          <p class="visually-hidden">{{ block.settings.description | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- elsif request.design_mode -%}
+      <div class="melt-banner__media melt-banner__media--{{ block.settings.ratio }}" {{ block.shopify_attributes }}>
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg melt-banner__image' }}
+      </div>
+    {%- endif -%}
+  {%- when 'breadcrumbs' -%}
+    {%- render 'melt-breadcrumbs',
+      home_label: block.settings.home_label,
+      separator: block.settings.separator,
+      structured_data: block.settings.structured_data,
+      class: 'melt-banner__breadcrumbs',
+      attributes: block.shopify_attributes
+    -%}
+  {%- when 'heading' -%}
+    {%- liquid
+      assign heading_tag = block.settings.heading_tag | default: 'h1'
+      if block.settings.source == 'custom' and block.settings.heading != blank
+        assign heading_html = block.settings.heading
+      else
+        assign heading_html = collection.title | escape
+      endif
+    -%}
+    <{{ heading_tag }} class="melt-banner__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+      {{- heading_html -}}
+    </{{ heading_tag }}>
+  {%- when 'text' -%}
+    {%- liquid
+      if block.settings.source == 'custom'
+        assign banner_text = block.settings.text
+      else
+        assign banner_text = collection.description
+      endif
+    -%}
+    {%- if banner_text != blank -%}
+      <div class="melt-banner__text rte{% if block.settings.text_style == 'subtitle' %} melt-banner__text--subtitle{% endif %}" {{ block.shopify_attributes }}>
+        {{ banner_text }}
+      </div>
+    {%- endif -%}
+{%- endcase -%}

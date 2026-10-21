@@ -1,0 +1,122 @@
+/*! Compiled from src/scss/section-main-collection-banner.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Collection banner blocks (sections/main-collection-banner.liquid + snippets/melt-collection-banner-block.liquid).
+// With no blocks the section renders Dawn's banner, styled by component-collection-hero.css.
+
+.melt-banner__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.4rem;
+}
+
+.melt-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+
+// Side by side from 750px: text one column, image/video the other.
+.melt-banner--split .melt-banner__inner {
+  @include bp.from(bp.$medium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 4rem;
+  }
+
+  @include bp.from(bp.$large) {
+    gap: 8rem;
+  }
+}
+
+.melt-banner--split.melt-banner--media-left .melt-banner__media-column {
+  @include bp.from(bp.$medium) {
+    order: -1;
+  }
+}
+
+// Text alignment
+.melt-banner--align-center {
+  .melt-banner__content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .melt-breadcrumbs__list {
+    justify-content: center;
+  }
+}
+
+// ------------------------------------------------------------------ blocks
+
+.melt-banner__heading {
+  margin: 0;
+}
+
+.melt-banner__text {
+  max-width: 72rem; // 720px body copy measure
+  font-size: 1.5rem;
+  line-height: 1.6;
+
+  @include bp.from(bp.$medium) {
+    font-size: 1.6rem;
+  }
+
+  &--subtitle {
+    font-size: 1.7rem;
+
+    @include bp.from(bp.$medium) {
+      font-size: 2rem;
+    }
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.melt-banner__breadcrumbs {
+  font-size: 1.4rem;
+}
+
+// Image / video: fixed shapes crop to fill (centred on the image's focal point).
+.melt-banner__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--media-radius);
+
+  &--landscape {
+    aspect-ratio: 16 / 9;
+  }
+
+  &--square {
+    aspect-ratio: 1 / 1;
+  }
+
+  &--portrait {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.melt-banner__image,
+.melt-banner__video {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  .melt-banner__media:not(.melt-banner__media--adapt) & {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.melt-banner__content .melt-banner__media {
+  // Stacked layout: media sits in the content flow at full width.
+  align-self: stretch;
+}

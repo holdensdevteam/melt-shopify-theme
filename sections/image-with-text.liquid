@@ -73,7 +73,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="image-with-text__content{% if section.settings.content_side_padding == 'flush-left' or section.settings.content_side_padding == 'flush-right' %} image-with-text__content--{{ section.settings.content_side_padding }}{% endif %} image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               {% case block.type %}
@@ -90,6 +90,7 @@
                     text: block.settings.tags_text,
                     max: block.settings.max_tags,
                     color_scheme: block.settings.color_scheme,
+                    colors: 'button',
                     class: 'image-with-text__tags',
                     attributes: block.shopify_attributes
                   -%}
@@ -320,6 +321,27 @@
     },
     {
       "type": "select",
+      "id": "content_side_padding",
+      "label": "t:sections.image-with-text.settings.content_side_padding.label",
+      "info": "t:sections.image-with-text.settings.content_side_padding.info",
+      "options": [
+        {
+          "value": "both",
+          "label": "t:sections.image-with-text.settings.content_side_padding.options__both.label"
+        },
+        {
+          "value": "flush-left",
+          "label": "t:sections.image-with-text.settings.content_side_padding.options__flush_left.label"
+        },
+        {
+          "value": "flush-right",
+          "label": "t:sections.image-with-text.settings.content_side_padding.options__flush_right.label"
+        }
+      ],
+      "default": "both"
+    },
+    {
+      "type": "select",
       "id": "mobile_content_alignment",
       "options": [
         {
@@ -471,7 +493,8 @@
           "type": "color_scheme",
           "id": "color_scheme",
           "label": "t:sections.main-product.blocks.tags.settings.color_scheme.label",
-          "default": "scheme-2"
+          "default": "scheme-2",
+          "info": "t:sections.image-with-text.blocks.scent_notes.settings.color_scheme.info"
         }
       ]
     },

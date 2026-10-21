@@ -108,6 +108,7 @@
         --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
         --color-border: {{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }};
         --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
+        --melt-button-color: {{ scheme.settings.button }};
         --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
         --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
@@ -319,6 +320,9 @@
       {%- comment -%} Judge.me overrides — src/scss/component-judgeme-*.scss {%- endcomment -%}
       {{ 'component-judgeme-badge.css' | asset_url | stylesheet_tag }}
       {{ 'component-judgeme-reviews.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+    {%- if request.page_type == 'collection' -%}
+      {{ 'template-collection-page.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 

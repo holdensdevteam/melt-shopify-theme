@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /*! Compiled from src/scss/template-product.scss — edit that file, not this one. */
+body {
+  background: #f6f4ee !important;
+}
+
 #MainContent {
   margin-top: 8px;
 }

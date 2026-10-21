@@ -9,6 +9,8 @@
     Shopify's list formatting ("A, B, and C" / "A and B") is turned back into separate tags.
   - max: {Number} Maximum tags. Default: 6
   - color_scheme: {String} Colour scheme for the pills.
+  - colors: {String} 'scheme' (default): the scheme's background and text. 'button': the scheme's
+    solid button background and label colours.
   - class: {String} Optional extra classes.
   - attributes: {String} Optional extra attributes, e.g. block.shopify_attributes.
 
@@ -34,7 +36,11 @@
 -%}
 
 {%- if tag_items.size > 0 -%}
-  <ul class="melt-tags list-unstyled{% if class %} {{ class }}{% endif %}" role="list" {{ attributes }}>
+  <ul
+    class="melt-tags list-unstyled{% if colors == 'button' %} melt-tags--button{% endif %}{% if class %} {{ class }}{% endif %}"
+    role="list"
+    {{ attributes }}
+  >
     {%- for tag in tag_items limit: tag_max -%}
       {%- assign tag_label = tag | strip -%}
       {%- if tag_label != blank -%}

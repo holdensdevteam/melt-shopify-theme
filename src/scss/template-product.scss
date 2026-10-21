@@ -6,6 +6,10 @@
 // but that file is also loaded by Featured product and the quick-add popup, so page-level rules
 // like this one live here instead.
 
+body {
+  background: #f6f4ee !important;
+}
+
 #MainContent {
   margin-top: 8px;
   @include bp.from(bp.$medium) {

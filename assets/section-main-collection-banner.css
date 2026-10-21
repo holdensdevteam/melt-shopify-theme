@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-main-collection-banner.scss — edit that file, not this one. */
+.melt-banner__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.4rem;
+}
+
+.melt-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .melt-banner--split .melt-banner__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 4rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .melt-banner--split .melt-banner__inner {
+    gap: 8rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .melt-banner--split.melt-banner--media-left .melt-banner__media-column {
+    order: -1;
+  }
+}
+
+.melt-banner--align-center .melt-banner__content {
+  align-items: center;
+  text-align: center;
+}
+.melt-banner--align-center .melt-breadcrumbs__list {
+  justify-content: center;
+}
+
+.melt-banner__heading {
+  margin: 0;
+}
+
+.melt-banner__text {
+  max-width: 72rem;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+@media screen and (min-width: 750px) {
+  .melt-banner__text {
+    font-size: 1.6rem;
+  }
+}
+.melt-banner__text--subtitle {
+  font-size: 1.7rem;
+}
+@media screen and (min-width: 750px) {
+  .melt-banner__text--subtitle {
+    font-size: 2rem;
+  }
+}
+.melt-banner__text > *:first-child {
+  margin-top: 0;
+}
+.melt-banner__text > *:last-child {
+  margin-bottom: 0;
+}
+
+.melt-banner__breadcrumbs {
+  font-size: 1.4rem;
+}
+
+.melt-banner__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--media-radius);
+}
+.melt-banner__media--landscape {
+  aspect-ratio: 16/9;
+}
+.melt-banner__media--square {
+  aspect-ratio: 1/1;
+}
+.melt-banner__media--portrait {
+  aspect-ratio: 4/5;
+}
+
+.melt-banner__image,
+.melt-banner__video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.melt-banner__media:not(.melt-banner__media--adapt) .melt-banner__image,
+.melt-banner__media:not(.melt-banner__media--adapt) .melt-banner__video {
+  height: 100%;
+  object-fit: cover;
+}
+
+.melt-banner__content .melt-banner__media {
+  align-self: stretch;
+}

@@ -1,9 +1,5 @@
 @charset "UTF-8";
 /*! Compiled from src/scss/section-main-product.scss — edit that file, not this one. */
-body {
-  background: #f6f4ee !important;
-}
-
 product-info {
   display: block;
 }

@@ -1,0 +1,14 @@
+/*! Compiled from src/scss/template-collection-page.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Collection page template only — layout/theme.liquid loads this when request.page_type is
+// 'collection' (the default and any alternate templates, e.g. collection.fragrance).
+//
+// Not template-collection.scss: Dawn already ships assets/template-collection.css (grid and facet
+// styles), which this would overwrite — and Dawn's file is also loaded by Featured collection and
+// search, so page-level rules there would leak onto other pages. Section-specific styles belong
+// in the section's own file, e.g. section-main-collection-product-grid.scss.
+
+body {
+  background: #f6f4ee !important;
+}

@@ -2116,6 +2116,19 @@
     "image-with-text": {
       "name": "Image with text",
       "settings": {
+        "content_side_padding": {
+          "label": "Text side padding",
+          "info": "Remove the padding on one side of the text so it lines up with that edge.",
+          "options__both": {
+            "label": "Both sides"
+          },
+          "options__flush_left": {
+            "label": "No left padding"
+          },
+          "options__flush_right": {
+            "label": "No right padding"
+          }
+        },
         "image_corners": {
           "label": "Image corners",
           "info": "Theme default follows Theme settings → Media → Corner radius.",
@@ -2226,6 +2239,9 @@
           "settings": {
             "tags_list": {
               "info": "Connect a dynamic source, e.g. Primary Scent Notes (on a collection or product template). Each note shows as its own tag."
+            },
+            "color_scheme": {
+              "info": "Pills use this scheme's solid button background and label colours."
             }
           }
         },
@@ -2566,8 +2582,149 @@
       "name": "Items"
     },
     "main-collection-banner": {
+      "blocks": {
+        "breadcrumbs": {
+          "name": "Breadcrumbs",
+          "settings": {
+            "structured_data": {
+              "label": "Add breadcrumb structured data",
+              "info": "Turn off if a Breadcrumbs section on the same page already adds it."
+            }
+          }
+        },
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "source": {
+              "label": "Heading text",
+              "options__collection": {
+                "label": "Collection title"
+              },
+              "options__custom": {
+                "label": "Custom"
+              }
+            },
+            "heading": {
+              "label": "Custom heading",
+              "info": "Type it, or use the dynamic source icon to connect a collection metafield."
+            },
+            "heading_tag": {
+              "info": "The collection page's main heading should be H1 — keep one H1 per page."
+            }
+          }
+        },
+        "text": {
+          "name": "Text",
+          "settings": {
+            "source": {
+              "label": "Text",
+              "options__description": {
+                "label": "Collection description"
+              },
+              "options__custom": {
+                "label": "Custom"
+              }
+            },
+            "text": {
+              "label": "Custom text",
+              "info": "Type it, or use the dynamic source icon to connect a collection metafield."
+            },
+            "text_style": {
+              "label": "Style",
+              "options__body": {
+                "label": "Body"
+              },
+              "options__subtitle": {
+                "label": "Subtitle (larger)"
+              }
+            }
+          }
+        },
+        "image": {
+          "name": "Image",
+          "settings": {
+            "source": {
+              "label": "Image",
+              "options__collection": {
+                "label": "Collection image"
+              },
+              "options__custom": {
+                "label": "Choose an image"
+              }
+            },
+            "image": {
+              "label": "Image"
+            },
+            "ratio": {
+              "label": "Shape",
+              "options__adapt": {
+                "label": "Adapt to image"
+              },
+              "options__landscape": {
+                "label": "Landscape (16:9)"
+              },
+              "options__square": {
+                "label": "Square"
+              },
+              "options__portrait": {
+                "label": "Portrait (4:5)"
+              }
+            }
+          }
+        },
+        "video": {
+          "name": "Video",
+          "settings": {
+            "video": {
+              "label": "Video"
+            },
+            "playback": {
+              "label": "Playback",
+              "info": "Ambient plays silently on a loop with no controls — keep it short and decorative.",
+              "options__ambient": {
+                "label": "Ambient (autoplay, muted, loop)"
+              },
+              "options__controls": {
+                "label": "With controls"
+              }
+            },
+            "description": {
+              "label": "Video description",
+              "info": "For screen readers — a sentence on what the video shows."
+            }
+          }
+        }
+      },
       "name": "Collection banner",
       "settings": {
+        "legacy": {
+          "info": "Only used while this section has no blocks. Add blocks to build the banner yourself."
+        },
+        "header_layout": {
+          "content": "Blocks layout",
+          "info": "Applies once you've added blocks."
+        },
+        "layout": {
+          "label": "Layout",
+          "options__stacked": {
+            "label": "Stacked"
+          },
+          "options__split": {
+            "label": "Side by side (text and image/video)"
+          }
+        },
+        "media_position": {
+          "label": "Image/video position",
+          "options__right": {
+            "label": "Right"
+          },
+          "options__left": {
+            "label": "Left"
+          }
+        },
+        "text_alignment": {
+          "label": "Text alignment"
+        },
         "paragraph": {
           "content": "Collection details are [managed in your admin](https://help.shopify.com/manual/products/collections/collection-layout)"
         },
@@ -3388,6 +3545,9 @@
     "multicolumn": {
       "name": "Multicolumn",
       "settings": {
+        "column_heading_size": {
+          "label": "Column heading size"
+        },
         "title": {
           "label": "Heading",
           "default": "Multicolumn"
@@ -3480,6 +3640,12 @@
         "column": {
           "name": "Column",
           "settings": {
+            "heading_size": {
+              "label": "Heading size",
+              "options__section": {
+                "label": "Use section setting"
+              }
+            },
             "image": {
               "label": "Image"
             },
