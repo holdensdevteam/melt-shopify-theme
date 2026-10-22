@@ -1,4 +1,6 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'component-melt-image-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'melt-image-slider.js' | asset_url }}" defer="defer"></script>
 {{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -33,35 +35,162 @@
   if section.settings.color_scheme == section.settings.section_color_scheme and section.settings.content_layout == 'no-overlap'
     assign remove_color_classes = true
   endif
+  # Melt: remove_color_classes also means the text box has no visible background, so there's no
+  # panel for the image to join — the class below then skips Dawn's collapse-corners, which squares
+  # off the image's corners next to the text, and the image keeps all four rounded corners.
 -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
-    <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless remove_color_classes %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+          {%- comment -%}
+            Melt: up to four images (Image + Image 2–4), or — Image source: Automatic — the viewed
+            collection's/product's Additional images metafield (custom.additional_images), falling
+            back to the manual images when it's empty. Fragrance pages read their Fragrance entry first. One image renders as before; two or more
+            become a one-at-a-time slider with dots (melt-image-slider).
+          {%- endcomment -%}
+          {%- liquid
+            assign auto_images = nil
+            if section.settings.image_source == 'automatic'
+              # The page's Fragrance entry (field additional_images; linked by custom.fragrance on
+              # products, custom.fragrance_details on collections) first, then the page's own
+              # Additional images metafield — for non-fragrance products/collections.
+              assign page_resource = nil
+              if request.page_type == 'collection'
+                assign page_resource = collection
+              elsif request.page_type == 'product'
+                assign page_resource = product
+              endif
+              if page_resource != nil
+                assign page_fragrance = page_resource.metafields.custom.fragrance.value | default: page_resource.metafields.custom.fragrance_details.value
+                assign auto_images = page_fragrance.additional_images.value
+                if auto_images == blank
+                  assign auto_images = page_resource.metafields.custom.additional_images.value
+                endif
+              endif
+            endif
+
+            assign use_auto = false
+            if auto_images != blank and auto_images.size > 0
+              assign use_auto = true
+              assign image_count = auto_images.size
+              assign first_media = auto_images | first
+              assign first_image = first_media.preview_image | default: first_media
+            else
+              assign image_count = 0
+              assign first_image = nil
+              assign image_keys = 'image,image_2,image_3,image_4' | split: ','
+              for key in image_keys
+                if section.settings[key] != blank
+                  assign image_count = image_count | plus: 1
+                  if first_image == nil
+                    assign first_image = section.settings[key]
+                  endif
+                endif
+              endfor
+            endif
+
+            if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in'
+              assign widths = '198, 432, 642, 900, 1284, 1800'
+            else
+              assign widths = '165, 360, 535, 750, 1070, 1500'
+            endif
+          -%}
+          {%- capture sizes -%}
+            {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px, (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+            {%- else -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+            {%- endif -%}
+          {%- endcapture -%}
           <div
-            class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
-            {% if section.settings.height == 'adapt' and section.settings.image != blank %}
-              style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
+            class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if first_image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' and image_count <= 1 %} animate--{{ section.settings.image_behavior }}{% endif %}"
+            {% if section.settings.height == 'adapt' and first_image != blank %}
+              style="padding-bottom: {{ 1 | divided_by: first_image.aspect_ratio | times: 100 }}%;"
             {% endif %}
           >
-            {%- if section.settings.image != blank -%}
-              {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
-                {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
-                {%- capture sizes -%}
-              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-              (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-            {%- endcapture -%}
-              {%- else -%}
-                {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
-                {%- capture sizes -%}
-              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-            {%- endcapture -%}
-              {%- endif -%}
+            {%- if image_count > 1 -%}
+              <melt-image-slider
+                class="melt-image-slider"
+                role="region"
+                aria-roledescription="{{ 'sections.image_slider.carousel' | t }}"
+                aria-label="{{ 'sections.image_slider.label' | t }}"
+              >
+                <div class="melt-image-slider__track" tabindex="0">
+                  {%- if use_auto -%}
+                    {%- for media in auto_images -%}
+                      {%- assign slide_image = media.preview_image | default: media -%}
+                      <div
+                        class="melt-image-slider__slide"
+                        role="group"
+                        aria-roledescription="{{ 'sections.image_slider.slide' | t }}"
+                        aria-label="{{ 'sections.image_slider.slide_of' | t: index: forloop.index, count: image_count }}"
+                      >
+                        {%- liquid
+                          if forloop.first
+                            assign slide_priority = fetch_priority
+                            assign slide_loading = 'eager'
+                          else
+                            assign slide_priority = 'auto'
+                            assign slide_loading = 'lazy'
+                          endif
+                        -%}
+                        {{
+                          slide_image
+                          | image_url: width: 1800
+                          | image_tag: sizes: sizes, widths: widths, loading: slide_loading, fetchpriority: slide_priority
+                        }}
+                      </div>
+                    {%- endfor -%}
+                  {%- else -%}
+                    {%- assign slide_index = 0 -%}
+                    {%- for key in image_keys -%}
+                      {%- assign slide_image = section.settings[key] -%}
+                      {%- if slide_image != blank -%}
+                        {%- assign slide_index = slide_index | plus: 1 -%}
+                        <div
+                          class="melt-image-slider__slide"
+                          role="group"
+                          aria-roledescription="{{ 'sections.image_slider.slide' | t }}"
+                          aria-label="{{ 'sections.image_slider.slide_of' | t: index: slide_index, count: image_count }}"
+                        >
+                          {%- liquid
+                            if slide_index == 1
+                              assign slide_priority = fetch_priority
+                              assign slide_loading = 'eager'
+                            else
+                              assign slide_priority = 'auto'
+                              assign slide_loading = 'lazy'
+                            endif
+                          -%}
+                          {{
+                            slide_image
+                            | image_url: width: 1800
+                            | image_tag: sizes: sizes, widths: widths, loading: slide_loading, fetchpriority: slide_priority
+                          }}
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
+                <div class="melt-image-slider__dots">
+                  {%- for i in (1..image_count) -%}
+                    <button
+                      type="button"
+                      class="melt-image-slider__dot"
+                      aria-label="{{ 'sections.image_slider.show_slide' | t: index: i, count: image_count }}"
+                      {% if forloop.first %}
+                        aria-current="true"
+                      {% endif %}
+                    ></button>
+                  {%- endfor -%}
+                </div>
+              </melt-image-slider>
+            {%- elsif first_image != blank -%}
               {{
-                section.settings.image
+                first_image
                 | image_url: width: 1500
                 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
               }}
@@ -147,9 +276,42 @@
   },
   "settings": [
     {
+      "type": "select",
+      "id": "image_source",
+      "label": "t:sections.image-with-text.settings.image_source.label",
+      "info": "t:sections.image-with-text.settings.image_source.info",
+      "options": [
+        {
+          "value": "manual",
+          "label": "t:sections.image-with-text.settings.image_source.options__manual.label"
+        },
+        {
+          "value": "automatic",
+          "label": "t:sections.image-with-text.settings.image_source.options__automatic.label"
+        }
+      ],
+      "default": "manual"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-with-text.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "t:sections.image-with-text.settings.image_2.label",
+      "info": "t:sections.image-with-text.settings.image_2.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "t:sections.image-with-text.settings.image_3.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "t:sections.image-with-text.settings.image_4.label"
     },
     {
       "type": "select",

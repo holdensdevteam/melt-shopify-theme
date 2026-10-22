@@ -17,7 +17,13 @@
   {% render 'melt-scent-notes', product: card_product, show: true %}
 {% endcomment %}
 
-{%- assign notes = product.metafields.custom.scent_notes.value -%}
+{%- liquid
+  # The product's own Primary Scent Notes, else its Fragrance entry's (field primary_scent_notes).
+  assign notes = product.metafields.custom.scent_notes.value
+  if notes == blank
+    assign notes = product.metafields.custom.fragrance.value.primary_scent_notes.value
+  endif
+-%}
 {%- if show and notes != blank -%}
   {%- assign notes_max = limit | default: 3 -%}
   <ul class="card__tags list-unstyled" role="list" aria-label="{{ 'products.product.scent_notes' | t }}">

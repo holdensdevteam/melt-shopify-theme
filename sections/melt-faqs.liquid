@@ -4,10 +4,21 @@
   assign use_list = false
   assign faq_list = nil
   if section.settings.source == 'automatic'
+    # The page's Fragrance entry (Fragrance metaobject, field faqs) first — linked by
+    # custom.fragrance on products, custom.fragrance_details on collections — then the page's
+    # own FAQs metafield (custom.faqs), for non-fragrance products/collections.
+    assign page_resource = nil
     if request.page_type == 'product'
-      assign faq_list = product.metafields.custom.faqs.value
+      assign page_resource = product
     elsif request.page_type == 'collection'
-      assign faq_list = collection.metafields.custom.faqs.value
+      assign page_resource = collection
+    endif
+    if page_resource != nil
+      assign page_fragrance = page_resource.metafields.custom.fragrance.value | default: page_resource.metafields.custom.fragrance_details.value
+      assign faq_list = page_fragrance.faqs.value
+      if faq_list == blank
+        assign faq_list = page_resource.metafields.custom.faqs.value
+      endif
     endif
     if faq_list != blank and faq_list.size > 0
       assign use_list = true

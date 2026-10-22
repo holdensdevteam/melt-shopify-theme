@@ -321,6 +321,13 @@
     "breadcrumbs": {
       "label": "Breadcrumb"
     },
+    "image_slider": {
+      "carousel": "carousel",
+      "label": "Image gallery",
+      "slide": "slide",
+      "slide_of": "{{ index }} of {{ count }}",
+      "show_slide": "Show image {{ index }} of {{ count }}"
+    },
     "faqs": {
       "automatic_empty": "FAQs (automatic): this page has no FAQ entries, so the section is hidden on your store. Add entries to the page's FAQs metafield, or switch Questions to Manual."
     },
