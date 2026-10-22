@@ -40,9 +40,9 @@
         "video_4jbgL8": {
           "type": "video",
           "settings": {
-            "video": "{{ collection.metafields.custom.collection_video.value }}",
-            "playback": "ambient",
-            "ratio": "square",
+            "video": "{{ collection.metafields.custom.fragrance_details.value.video.value }}",
+            "playback": "controls",
+            "ratio": "landscape",
             "description": ""
           }
         }
@@ -103,7 +103,7 @@
         "scent_notes_JYY3jY": {
           "type": "scent_notes",
           "settings": {
-            "tags_list": "{{ collection.metafields.custom.primary_scent_notes.value }}",
+            "tags_list": "{{ collection.metafields.custom.fragrance_details.value.primary_scent_notes.value }}",
             "tags_text": "",
             "max_tags": 6,
             "color_scheme": "scheme-4"
@@ -112,7 +112,7 @@
         "text_Y7yhfM": {
           "type": "text",
           "settings": {
-            "text": "<p>{{ collection.metafields.custom.fragrance_detail | metafield_tag }}</p>",
+            "text": "<p>{{ collection.metafields.custom.fragrance_details.value.detail | metafield_tag }}</p>",
             "text_style": "body"
           }
         }
@@ -124,7 +124,9 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "height": "small",
+        "image_source": "automatic",
+        "image": "{{ collection.image }}",
+        "height": "medium",
         "image_corners": "theme",
         "image_radius": 8,
         "desktop_image_width": "medium",
@@ -149,7 +151,7 @@
           "settings": {
             "title": "The blend",
             "heading_size": "h2",
-            "text": "<p>{{ collection.metafields.custom.the_blend | metafield_tag }}</p>",
+            "text": "<p>{{ collection.metafields.custom.fragrance_details.value.the_blend | metafield_tag }}</p>",
             "link_label": "",
             "link": ""
           }
@@ -159,7 +161,7 @@
           "settings": {
             "title": "Perfect for",
             "heading_size": "h2",
-            "text": "<p>{{ collection.metafields.custom.perfect_for | metafield_tag }}</p>",
+            "text": "<p>{{ collection.metafields.custom.fragrance_details.value.perfect_for | metafield_tag }}</p>",
             "link_label": "",
             "link": ""
           }
@@ -169,7 +171,7 @@
           "settings": {
             "title": "Moments",
             "heading_size": "h2",
-            "text": "<p>{{ collection.metafields.custom.moments | metafield_tag }}</p>",
+            "text": "<p>{{ collection.metafields.custom.fragrance_details.value.moments | metafield_tag }}</p>",
             "link_label": "",
             "link": ""
           }
@@ -201,34 +203,6 @@
     },
     "melt_faqs_P3jRxM": {
       "type": "melt-faqs",
-      "blocks": {
-        "question_EwJLxe": {
-          "type": "question",
-          "settings": {
-            "question": "{{ collection.metafields.custom.faqs | metafield_text: field: 'question' }}",
-            "answer": "{{ collection.metafields.custom.faqs | metafield_tag: field: 'question' }}"
-          }
-        },
-        "question_9akCRz": {
-          "type": "question",
-          "settings": {
-            "question": "Add a question customers often ask",
-            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
-          }
-        },
-        "question_VtLf8z": {
-          "type": "question",
-          "settings": {
-            "question": "Add a question customers often ask",
-            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "question_EwJLxe",
-        "question_9akCRz",
-        "question_VtLf8z"
-      ],
       "name": "t:sections.melt_faqs.name",
       "settings": {
         "title": "Questions we get asked",
@@ -238,11 +212,12 @@
         "link_url": "",
         "link_arrow": true,
         "link_color_scheme": "",
+        "source": "automatic",
         "item_color_scheme": "",
         "structured_data": true,
         "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     }
   },

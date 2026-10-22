@@ -46,7 +46,7 @@
         "tags_qEJnDW": {
           "type": "tags",
           "settings": {
-            "tags_list": "{{ product.metafields.custom.scent_notes.value }}",
+            "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
             "tags_text": "",
             "max_tags": 3,
             "color_scheme": "scheme-2"
@@ -238,7 +238,7 @@
           "settings": {
             "heading": "Delivery & returns",
             "source": "custom",
-            "content": "",
+            "content": "<p><strong>Standard Delivery</strong></p><p>You can take advantage of our Standard delivery service.</p><p>Smaller orders are sent first class with Royal Mail, whilst larger orders are despatched with courier. Both methods are on a signed for service to ensure safe delivery of your goods.</p><p><strong>Next Working Day</strong></p><p>If your order is urgent we offer a Next Working Day UK Mainland delivery service for orders placed by 1pm. Your goods will be sent via courier.</p><p>Next Day UK Mainland Single charge of £9.00</p><p><strong>Outside UK</strong></p><p>If you have any queries regarding carriage, please contact us at <a href=\"mailto:hello@melt.co.uk\" title=\"mailto:hello@melt.co.uk\">hello@melt.co.uk</a></p>",
             "open": false
           }
         },
@@ -263,13 +263,6 @@
             "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}"
           }
         },
-        "detail_keFMAU": {
-          "type": "detail",
-          "settings": {
-            "label": "Wax",
-            "value": "{{ product.metafields.custom.wax.value.wax_type.value }}"
-          }
-        },
         "detail_rgbA6q": {
           "type": "detail",
           "settings": {
@@ -288,7 +281,6 @@
         "detail_eY8gD4",
         "detail_fCgWmx",
         "detail_Rhxjrq",
-        "detail_keFMAU",
         "detail_rgbA6q"
       ],
       "name": "t:sections.melt_product_details.name",
@@ -314,21 +306,31 @@
             "heading_size": "h1"
           }
         },
+        "scent_notes_9dWTRT": {
+          "type": "scent_notes",
+          "settings": {
+            "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
+            "tags_text": "",
+            "max_tags": 6,
+            "color_scheme": "scheme-07ffbc8b-f381-4fa5-bb0d-50e31039397e"
+          }
+        },
         "text_x3yCMt": {
           "type": "text",
           "settings": {
-            "text": "<p>Angel has been our best seller since 2002, and we've long since stopped being surprised by it. Rich, round and musky, with a generous dollop of chocolate oil underneath. Noticed straight away, then rather harder to name. When you light a candle, the angels always gather.</p>",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.detail | metafield_tag }}</p>",
             "text_style": "body"
           }
         }
       },
       "block_order": [
         "heading_tJarBq",
+        "scent_notes_9dWTRT",
         "text_x3yCMt"
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/fragrance-angel-placeholder.jpg",
+        "image_source": "automatic",
         "height": "medium",
         "image_corners": "theme",
         "image_radius": 8,
@@ -338,6 +340,7 @@
         "content_layout": "no-overlap",
         "desktop_content_position": "top",
         "desktop_content_alignment": "left",
+        "content_side_padding": "flush-left",
         "mobile_content_alignment": "left",
         "section_color_scheme": "",
         "color_scheme": "",
@@ -351,8 +354,9 @@
         "column_ikFacF": {
           "type": "column",
           "settings": {
-            "title": "The blend",
-            "text": "<p>It opens bright and a little tart, dewberry and cassis over jasmine and rose. Underneath is the part everyone remembers: vanilla, patchouli, amber and that chocolate. Poured by hand in Waddington, with 89% of what goes into it sourced from Lancashire.</p>",
+            "title": "The Blend",
+            "heading_size": "h2",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.the_blend | metafield_tag }}</p>",
             "link_label": "",
             "link": ""
           }
@@ -361,7 +365,8 @@
           "type": "column",
           "settings": {
             "title": "Perfect for",
-            "text": "<p>Angel carries. It's a fragrance that fills a room rather than sitting politely in a corner of it, so it works best where you want to be met by something when you walk in. Best used in the living room, the hallway, the bedroom, open-plan kitchen & dining spaces.</p>",
+            "heading_size": "h2",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.perfect_for | metafield_tag }}</p>",
             "link_label": "",
             "link": ""
           }
@@ -370,7 +375,8 @@
           "type": "column",
           "settings": {
             "title": "Moments",
-            "text": "<p>Winding Down - Rich and enveloping, best lit an hour before you intend to stop for the evening.</p><p>Romance - Musk, rose and chocolate is not a subtle combination, and it isn't trying to be.</p><p>Dining - Once the cooking is done.</p>",
+            "heading_size": "h2",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.moments | metafield_tag }}</p>",
             "link_label": "",
             "link": ""
           }
@@ -385,6 +391,7 @@
       "settings": {
         "title": "",
         "heading_size": "h1",
+        "column_heading_size": "h3",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
@@ -608,11 +615,12 @@
         "link_url": "shopify://pages/contact",
         "link_arrow": true,
         "link_color_scheme": "",
+        "source": "automatic",
         "item_color_scheme": "scheme-2",
         "structured_data": true,
         "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     }
   },
