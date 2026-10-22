@@ -128,3 +128,11 @@
     margin-bottom: 0;
   }
 }
+
+// Editor-only note when Automatic finds no FAQ entries (the section is hidden on the storefront).
+.melt-faqs__empty-note {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-style: italic;
+  opacity: 0.6;
+}

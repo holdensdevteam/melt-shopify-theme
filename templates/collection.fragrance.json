@@ -40,8 +40,9 @@
         "video_4jbgL8": {
           "type": "video",
           "settings": {
+            "video": "{{ collection.metafields.custom.collection_video.value }}",
             "playback": "ambient",
-            "ratio": "landscape",
+            "ratio": "square",
             "description": ""
           }
         }
@@ -123,7 +124,6 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/fragrance-angel-placeholder.jpg",
         "height": "small",
         "image_corners": "theme",
         "image_radius": 8,
@@ -198,12 +198,59 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "melt_faqs_P3jRxM": {
+      "type": "melt-faqs",
+      "blocks": {
+        "question_EwJLxe": {
+          "type": "question",
+          "settings": {
+            "question": "{{ collection.metafields.custom.faqs | metafield_text: field: 'question' }}",
+            "answer": "{{ collection.metafields.custom.faqs | metafield_tag: field: 'question' }}"
+          }
+        },
+        "question_9akCRz": {
+          "type": "question",
+          "settings": {
+            "question": "Add a question customers often ask",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        },
+        "question_VtLf8z": {
+          "type": "question",
+          "settings": {
+            "question": "Add a question customers often ask",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_EwJLxe",
+        "question_9akCRz",
+        "question_VtLf8z"
+      ],
+      "name": "t:sections.melt_faqs.name",
+      "settings": {
+        "title": "Questions we get asked",
+        "heading_size": "h1",
+        "description": "<p>Can't find what you're after? Get in touch, we're happy to help.</p>",
+        "link_label": "Get in touch",
+        "link_url": "",
+        "link_arrow": true,
+        "link_color_scheme": "",
+        "item_color_scheme": "",
+        "structured_data": true,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
     "image_with_text_qjbfgR",
-    "multicolumn_9NYKPf"
+    "multicolumn_9NYKPf",
+    "melt_faqs_P3jRxM"
   ]
 }

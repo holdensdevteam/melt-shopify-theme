@@ -1,0 +1,31 @@
+{% comment %}
+  Renders one FAQs question: a <details> that starts collapsed, question as an <h3> in the
+  <summary>, answer below. Used by sections/melt-faqs.liquid for both Question blocks and
+  metafield entries. Styles: src/scss/section-melt-faqs.scss.
+
+  Accepts:
+  - question: {String} Plain text.
+  - answer: {String} HTML (already formatted). Optional.
+  - color_scheme: {String} Colour scheme for the box.
+  - attributes: {String} Optional, e.g. block.shopify_attributes.
+
+  Usage:
+  {% render 'melt-faq-item', question: block.settings.question, answer: block.settings.answer, color_scheme: section.settings.item_color_scheme %}
+{% endcomment %}
+
+{%- if question != blank -%}
+  <details class="melt-faqs__item color-{{ color_scheme }}" {{ attributes }}>
+    <summary class="melt-faqs__summary">
+      <h3 class="melt-faqs__question">{{ question | escape }}</h3>
+      <span class="melt-faqs__icon melt-faqs__icon--plus" aria-hidden="true">
+        <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+      </span>
+      <span class="melt-faqs__icon melt-faqs__icon--minus" aria-hidden="true">
+        <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+      </span>
+    </summary>
+    {%- if answer != blank -%}
+      <div class="melt-faqs__answer rte">{{ answer }}</div>
+    {%- endif -%}
+  </details>
+{%- endif -%}

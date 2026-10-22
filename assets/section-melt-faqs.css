@@ -118,3 +118,10 @@
 .melt-faqs__answer > *:last-child {
   margin-bottom: 0;
 }
+
+.melt-faqs__empty-note {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-style: italic;
+  opacity: 0.6;
+}

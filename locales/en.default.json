@@ -321,6 +321,9 @@
     "breadcrumbs": {
       "label": "Breadcrumb"
     },
+    "faqs": {
+      "automatic_empty": "FAQs (automatic): this page has no FAQ entries, so the section is hidden on your store. Add entries to the page's FAQs metafield, or switch Questions to Manual."
+    },
     "product_details": {
       "empty_value": "Add a value or connect a metafield",
       "empty_content": "Add content or connect a metafield — this box is hidden on the live site until it has some."

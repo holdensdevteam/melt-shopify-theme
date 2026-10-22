@@ -1,11 +1,39 @@
 {{ 'section-melt-faqs.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign use_list = false
+  assign faq_list = nil
+  if section.settings.source == 'automatic'
+    if request.page_type == 'product'
+      assign faq_list = product.metafields.custom.faqs.value
+    elsif request.page_type == 'collection'
+      assign faq_list = collection.metafields.custom.faqs.value
+    endif
+    if faq_list != blank and faq_list.size > 0
+      assign use_list = true
+    endif
+  endif
+  assign hide_section = false
+  if section.settings.source == 'automatic' and use_list == false
+    assign hide_section = true
+  endif
+-%}
+
 {%- comment -%}
   FAQs: intro (title, description, link) on the left; questions on the right, each a <details>
-  that starts collapsed. Also outputs FAQPage JSON-LD from the same questions and answers
-  (Structured data setting) — keep it to one FAQ section per page that outputs it.
+  that starts collapsed. Questions setting: Manual (Question blocks) or Automatic (the viewed
+  collection's or product's custom.faqs metafield, one question per entry; section hidden if none).
+  Also outputs FAQPage JSON-LD from the same questions and answers (Structured data setting) —
+  keep it to one FAQ section per page that outputs it.
 {%- endcomment -%}
 
+{%- if hide_section -%}
+  {%- if request.design_mode -%}
+    <div class="page-width melt-faqs__empty-note">
+      <p>{{ 'sections.faqs.automatic_empty' | t }}</p>
+    </div>
+  {%- endif -%}
+{%- else -%}
 {%- style -%}
   #Faqs-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -39,62 +67,60 @@
       </div>
     {%- endif -%}
 
+    {%- comment -%}
+      Questions: "Manual" uses the Question blocks; "Automatic" reads the page's own FAQs metafield
+      (custom.faqs — a list of FAQs metaobjects with question and answer fields) from the collection
+      or product being viewed, one question per entry. The FAQPage JSON-LD is built in the same
+      pass, so it always matches what's shown.
+    {%- endcomment -%}
+    {%- assign faq_json = '' -%}
     <div class="melt-faqs__list">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.question != blank -%}
-          <details class="melt-faqs__item color-{{ section.settings.item_color_scheme }}" {{ block.shopify_attributes }}>
-            <summary class="melt-faqs__summary">
-              <h3 class="melt-faqs__question">{{ block.settings.question | escape }}</h3>
-              <span class="melt-faqs__icon melt-faqs__icon--plus" aria-hidden="true">
-                <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
-              </span>
-              <span class="melt-faqs__icon melt-faqs__icon--minus" aria-hidden="true">
-                <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
-              </span>
-            </summary>
-            {%- if block.settings.answer != blank -%}
-              <div class="melt-faqs__answer rte">{{ block.settings.answer }}</div>
-            {%- endif -%}
-          </details>
-        {%- endif -%}
-      {%- endfor -%}
+      {%- if use_list -%}
+        {%- comment -%} faq_list is set at the top of the section (Automatic). {%- endcomment -%}
+        {%- for item in faq_list -%}
+          {%- liquid
+            assign faq_question = item.question.value
+            assign faq_answer_text = item.answer.value
+            assign faq_answer = ''
+            if faq_answer_text != blank
+              assign faq_answer = faq_answer_text | escape | newline_to_br | prepend: '<p>' | append: '</p>'
+            endif
+          -%}
+          {%- render 'melt-faq-item',
+            question: faq_question,
+            answer: faq_answer,
+            color_scheme: section.settings.item_color_scheme
+          -%}
+          {%- if faq_question != blank and faq_answer != blank -%}
+            {%- capture faq_entry -%}{"@type":"Question","name":{{ faq_question | json }},"acceptedAnswer":{"@type":"Answer","text":{{ faq_answer_text | json }}}}{%- endcapture -%}
+            {%- if faq_json != blank -%}{%- assign faq_json = faq_json | append: ',' -%}{%- endif -%}
+            {%- assign faq_json = faq_json | append: faq_entry -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- render 'melt-faq-item',
+            question: block.settings.question,
+            answer: block.settings.answer,
+            color_scheme: section.settings.item_color_scheme,
+            attributes: block.shopify_attributes
+          -%}
+          {%- if block.settings.question != blank and block.settings.answer != blank -%}
+            {%- capture faq_entry -%}{"@type":"Question","name":{{ block.settings.question | strip_html | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.answer | json }}}}{%- endcapture -%}
+            {%- if faq_json != blank -%}{%- assign faq_json = faq_json | append: ',' -%}{%- endif -%}
+            {%- assign faq_json = faq_json | append: faq_entry -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </div>
 
-{%- if section.settings.structured_data -%}
-  {%- liquid
-    assign faq_count = 0
-    for block in section.blocks
-      if block.settings.question != blank and block.settings.answer != blank
-        assign faq_count = faq_count | plus: 1
-      endif
-    endfor
-  -%}
-  {%- if faq_count > 0 -%}
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {%- assign faq_index = 0 -%}
-          {%- for block in section.blocks -%}
-            {%- if block.settings.question != blank and block.settings.answer != blank -%}
-              {%- assign faq_index = faq_index | plus: 1 -%}
-              {
-                "@type": "Question",
-                "name": {{ block.settings.question | strip_html | json }},
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": {{ block.settings.answer | json }}
-                }
-              }{% if faq_index < faq_count %},{% endif %}
-            {%- endif -%}
-          {%- endfor -%}
-        ]
-      }
-    </script>
-  {%- endif -%}
+{%- if section.settings.structured_data and faq_json != blank -%}
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_json }}]}
+  </script>
+{%- endif -%}
 {%- endif -%}
 
 {% schema %}
@@ -179,6 +205,23 @@
     {
       "type": "header",
       "content": "t:sections.melt_faqs.settings.header_questions.content"
+    },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "t:sections.melt_faqs.settings.source.label",
+      "info": "t:sections.melt_faqs.settings.source.info",
+      "options": [
+        {
+          "value": "manual",
+          "label": "t:sections.melt_faqs.settings.source.options__manual.label"
+        },
+        {
+          "value": "automatic",
+          "label": "t:sections.melt_faqs.settings.source.options__automatic.label"
+        }
+      ],
+      "default": "manual"
     },
     {
       "type": "color_scheme",

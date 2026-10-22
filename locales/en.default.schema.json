@@ -565,6 +565,16 @@
         "header_questions": {
           "content": "Questions"
         },
+        "source": {
+          "label": "Questions",
+          "info": "Automatic shows the FAQs saved on the collection or product being viewed (its FAQs metafield) — each page shows its own, and the section hides if it has none. Manual uses the Question blocks below.",
+          "options__manual": {
+            "label": "Manual (Question blocks)"
+          },
+          "options__automatic": {
+            "label": "Automatic (page's FAQs metafield)"
+          }
+        },
         "item_color_scheme": {
           "label": "Question colour scheme",
           "info": "Box background and text. The + / − icon uses this scheme's button colour."
