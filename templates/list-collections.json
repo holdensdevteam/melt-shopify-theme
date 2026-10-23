@@ -9,18 +9,87 @@
  */
 {
   "sections": {
+    "melt_collection_list_banner_d9hJjJ": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "image_Mai7W8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/collection-morning-hero.jpg",
+            "ratio": "landscape"
+          }
+        },
+        "breadcrumbs_pqB3jN": {
+          "type": "breadcrumbs",
+          "settings": {
+            "home_label": "Home",
+            "separator": "/",
+            "structured_data": true
+          }
+        },
+        "heading_Y9kpUh": {
+          "type": "heading",
+          "settings": {
+            "source": "custom",
+            "heading": "24 Fragrances",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text_gyxaE9": {
+          "type": "text",
+          "settings": {
+            "source": "custom",
+            "text": "<p>Every scent we make, in one place. Each one is poured into candles, blended into reed diffusers and pressed into wax melts — so pick the fragrance first and the format second. Some have been with us since 1999. A few arrived last year. None of them smell like anybody else’s.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "image_Mai7W8",
+        "breadcrumbs_pqB3jN",
+        "heading_Y9kpUh",
+        "text_gyxaE9"
+      ],
+      "name": "t:sections.melt_collection_list_banner.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "layout": "split",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "title": "Collections",
+        "title": "",
         "sort": "alphabetical",
+        "collection_filter": "fragrance",
         "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "card_style": "card",
+        "card_color_scheme": "scheme-2",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 0,
+        "card_text_alignment": "left",
+        "card_heading_size": "large",
+        "card_eyebrow_source": "scent_type",
+        "card_eyebrow": "Scent Type",
+        "card_eyebrow_color": "#ce7721",
+        "card_tags": "scent_notes",
+        "card_tag_color_scheme": "",
+        "show_arrow": false,
+        "padding_top": 60,
+        "padding_bottom": 80
       }
     }
   },
   "order": [
+    "melt_collection_list_banner_d9hJjJ",
     "main"
   ]
 }
