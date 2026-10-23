@@ -1,0 +1,15 @@
+/*! Compiled from src/scss/section-melt-fragrance-list.scss — edit that file, not this one. */
+
+// Fragrance list (sections/melt-fragrance-list.liquid). Cards, heading and link share the
+// Collection list's styles (section-collection-list.scss, melt-global.scss); add page-specific
+// styles here.
+
+.melt-fragrance-list__eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+// Editor-only note when no fragrance collections are found.
+.melt-fragrance-list__empty {
+  font-style: italic;
+  opacity: 0.6;
+}

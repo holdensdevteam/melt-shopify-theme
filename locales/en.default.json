@@ -328,6 +328,9 @@
       "slide_of": "{{ index }} of {{ count }}",
       "show_slide": "Show image {{ index }} of {{ count }}"
     },
+    "fragrance_list": {
+      "empty": "No fragrance collections yet — link a collection to a Fragrance entry (Fragrance Details), or give it the fragrance template, and it appears here A–Z."
+    },
     "faqs": {
       "automatic_empty": "FAQs (automatic): this page has no FAQ entries, so the section is hidden on your store. Add entries to the page's FAQs metafield, or switch Questions to Manual."
     },

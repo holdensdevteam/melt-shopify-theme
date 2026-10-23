@@ -1,0 +1,559 @@
+{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-fragrance-list.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Fragrance list ("All Fragrances"): every collection that's a fragrance — linked to a Fragrance
+  entry (custom.fragrance_details / custom.fragrance) or using the "fragrance" collection template —
+  A–Z, as collection cards. Tags on each card are the Fragrance entry's Primary Scent Notes.
+  Uses the Collection list section's markup and styles, so the cards match it exactly.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #FragranceList-{{ section.id }} .title-wrapper-with-link {
+    margin: {{ section.settings.heading_margin_top | times: 0.75 | round: 0 }}px {{ section.settings.heading_margin_sides | times: 0.75 | round: 0 }}px {{ section.settings.heading_margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #FragranceList-{{ section.id }} .title-wrapper-with-link {
+      margin: {{ section.settings.heading_margin_top }}px {{ section.settings.heading_margin_sides }}px {{ section.settings.heading_margin_bottom }}px;
+    }
+
+    #FragranceList-{{ section.id }} .collection-list-wrapper {
+      padding-left: {{ section.settings.padding_sides }}px;
+      padding-right: {{ section.settings.padding_sides }}px;
+      {%- if section.settings.content_width == 'full' %}
+        max-width: none;
+      {%- endif %}
+    }
+  }
+
+  {%- if section.settings.card_style != 'theme' %}
+    #FragranceList-{{ section.id }} {
+      --collection-card-image-padding: {{ section.settings.card_image_padding | divided_by: 10.0 }}rem;
+      --collection-card-corner-radius: {{ section.settings.card_radius | divided_by: 10.0 }}rem;
+      {%- if section.settings.card_border_width > 0 %}
+        --collection-card-border-width: {{ section.settings.card_border_width | divided_by: 10.0 }}rem;
+        --collection-card-border-opacity: 1;
+      {%- endif %}
+    }
+  {%- endif %}
+  {%- if section.settings.card_text_alignment != 'theme' %}
+    #FragranceList-{{ section.id }} {
+      --collection-card-text-alignment: {{ section.settings.card_text_alignment }};
+    }
+  {%- endif %}
+{%- endstyle -%}
+
+{%- liquid
+  assign card_style = settings.collection_card_style
+  assign card_style_override = ''
+  assign card_color_scheme_override = ''
+  if section.settings.card_style != 'theme'
+    assign card_style = section.settings.card_style
+    assign card_style_override = section.settings.card_style
+    if section.settings.card_style == 'card'
+      assign card_color_scheme_override = section.settings.card_color_scheme
+    endif
+  endif
+  assign columns = section.settings.columns_desktop | at_most: 3
+-%}
+
+<div
+  id="FragranceList-{{ section.id }}"
+  class="collection-list-section melt-section-bg melt-cards--media-radius melt-cards--name-{{ section.settings.card_heading_size }} collection-list-section--heading-{{ section.settings.heading_alignment }}{% unless section.settings.show_arrow %} collection-list-section--no-arrow{% endunless %}{% if section.settings.card_style != 'theme' and section.settings.card_border_width > 0 %} melt-cards--outline{% endif %} color-{{ section.settings.color_scheme }} gradient"
+>
+  {%- render 'melt-section-background', image: section.settings.background_image -%}
+  <div class="collection-list-wrapper page-width isolate section-{{ section.id }}-padding">
+    {%- if section.settings.heading_eyebrow != blank or section.settings.title != blank or section.settings.description != blank or section.settings.cta_label != blank -%}
+      <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
+        <div class="collection-list-section__heading">
+          {%- render 'melt-eyebrow',
+            text: section.settings.heading_eyebrow,
+            color: section.settings.heading_eyebrow_color,
+            class: 'melt-fragrance-list__eyebrow'
+          -%}
+          {%- if section.settings.title != blank -%}
+            <h2 class="collection-list-title inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <div class="collection-list-section__description rte">{{ section.settings.description }}</div>
+          {%- endif -%}
+        </div>
+        {%- render 'melt-heading-link',
+          label: section.settings.cta_label,
+          url: section.settings.cta_link,
+          color_scheme: section.settings.cta_color_scheme,
+          show_arrow: section.settings.cta_arrow
+        -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} collections loops cap at 50 without paginate; 250 covers every fragrance. {%- endcomment -%}
+    {%- paginate collections by 250 -%}
+      {%- assign sorted_collections = collections | sort: 'title' -%}
+      {%- assign fragrance_count = 0 -%}
+      <ul
+        class="collection-list contains-card contains-card--collection{% if card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+        role="list"
+      >
+        {%- for fragrance_collection in sorted_collections -%}
+          {%- liquid
+            assign fragrance = fragrance_collection.metafields.custom.fragrance_details.value | default: fragrance_collection.metafields.custom.fragrance.value
+            assign is_fragrance = false
+            if fragrance != blank or fragrance_collection.template_suffix == 'fragrance'
+              assign is_fragrance = true
+            endif
+          -%}
+          {%- if is_fragrance -%}
+            {%- liquid
+              assign fragrance_count = fragrance_count | plus: 1
+              assign notes = ''
+              if section.settings.show_scent_notes
+                assign note_list = fragrance.primary_scent_notes.value | default: fragrance_collection.metafields.custom.primary_scent_notes.value
+                for note in note_list limit: 3
+                  assign note_name = note.name.value | default: note.name
+                  if notes != ''
+                    assign notes = notes | append: ','
+                  endif
+                  assign notes = notes | append: note_name
+                endfor
+              endif
+            -%}
+            <li
+              class="collection-list__item grid__item{% if fragrance_collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ fragrance_count }};"
+              {% endif %}
+            >
+              {% render 'card-collection',
+                card_collection: fragrance_collection,
+                media_aspect_ratio: section.settings.image_ratio,
+                columns: columns,
+                card_style_override: card_style_override,
+                card_color_scheme_override: card_color_scheme_override,
+                tags: notes
+              %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      {%- if fragrance_count == 0 and request.design_mode -%}
+        <p class="melt-fragrance-list__empty">{{ 'sections.fragrance_list.empty' | t }}</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.melt_fragrance_list.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_eyebrow",
+      "label": "t:sections.featured-collection.settings.heading_eyebrow.label",
+      "info": "t:sections.featured-collection.settings.heading_eyebrow.info"
+    },
+    {
+      "type": "color",
+      "id": "heading_eyebrow_color",
+      "label": "t:sections.all.eyebrow_color.label",
+      "info": "t:sections.all.eyebrow_color.info"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "t:sections.melt_fragrance_list.settings.title.default",
+      "label": "t:sections.collection-list.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.collection-list.settings.description.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.collection-list.settings.heading_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.collection-list.settings.heading_alignment.options__left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.collection-list.settings.heading_alignment.options__center.label"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.collection-list.settings.heading_margin_top.label",
+      "info": "t:sections.collection-list.settings.heading_margin_top.info"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30,
+      "label": "t:sections.collection-list.settings.heading_margin_bottom.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_sides",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.collection-list.settings.heading_margin_sides.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection-list.settings.header_cta.content",
+      "info": "t:sections.collection-list.settings.header_cta.info"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.collection-list.settings.cta_label.label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:sections.collection-list.settings.cta_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_arrow",
+      "default": true,
+      "label": "t:sections.collection-list.settings.cta_arrow.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "cta_color_scheme",
+      "default": "scheme-2",
+      "label": "t:sections.collection-list.settings.cta_color_scheme.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection-list.settings.header_layout.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.collection-list.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.collection-list.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.collection-list.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:sections.collection-list.settings.image_ratio.options__landscape.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sections.collection-list.settings.image_ratio.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection-list.settings.header_cards.content",
+      "info": "t:sections.collection-list.settings.header_cards.info"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "t:sections.collection-list.settings.card_style.label",
+      "options": [
+        {
+          "value": "theme",
+          "label": "t:sections.collection-list.settings.card_style.options__theme.label"
+        },
+        {
+          "value": "standard",
+          "label": "t:sections.collection-list.settings.card_style.options__standard.label"
+        },
+        {
+          "value": "card",
+          "label": "t:sections.collection-list.settings.card_style.options__card.label"
+        }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "card_color_scheme",
+      "label": "t:sections.collection-list.settings.card_color_scheme.label",
+      "default": "scheme-1",
+      "visible_if": "{{ section.settings.card_style == 'card' }}"
+    },
+    {
+      "type": "range",
+      "id": "card_image_padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12,
+      "label": "t:sections.collection-list.settings.card_image_padding.label",
+      "visible_if": "{{ section.settings.card_style != 'theme' }}"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "label": "t:sections.collection-list.settings.card_radius.label",
+      "visible_if": "{{ section.settings.card_style != 'theme' }}"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "label": "t:sections.collection-list.settings.card_border_width.label",
+      "info": "t:sections.collection-list.settings.card_border_width.info",
+      "visible_if": "{{ section.settings.card_style != 'theme' }}"
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "label": "t:sections.collection-list.settings.card_text_alignment.label",
+      "options": [
+        {
+          "value": "theme",
+          "label": "t:sections.collection-list.settings.card_style.options__theme.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.collection-list.settings.heading_alignment.options__left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.collection-list.settings.heading_alignment.options__center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.collection-list.settings.card_text_alignment.options__right.label"
+        }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "select",
+      "id": "card_heading_size",
+      "label": "t:sections.collection-list.settings.card_heading_size.label",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__default.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__large.label"
+        },
+        {
+          "value": "xlarge",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__xlarge.label"
+        },
+        {
+          "value": "xxlarge",
+          "label": "t:sections.collection-list.settings.card_heading_size.options__xxlarge.label"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "default": true,
+      "label": "t:sections.collection-list.settings.show_arrow.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scent_notes",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.show_scent_notes.label",
+      "info": "t:sections.melt_fragrance_list.settings.show_scent_notes.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection-list.settings.header_background.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.collection-list.settings.background_image.label",
+      "info": "t:sections.collection-list.settings.background_image.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection-list.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.collection-list.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.collection-list.settings.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "2",
+      "label": "t:sections.collection-list.settings.columns_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_sides",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 50,
+      "label": "t:sections.collection-list.settings.padding_sides.label",
+      "info": "t:sections.collection-list.settings.padding_sides.info"
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "t:sections.collection-list.settings.content_width.label",
+      "info": "t:sections.collection-list.settings.content_width.info",
+      "options": [
+        {
+          "value": "page",
+          "label": "t:sections.collection-list.settings.content_width.options__page.label"
+        },
+        {
+          "value": "full",
+          "label": "t:sections.collection-list.settings.content_width.options__full.label"
+        }
+      ],
+      "default": "page"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.melt_fragrance_list.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-melt-fragrance-list.scss — edit that file, not this one. */
+.melt-fragrance-list__eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+.melt-fragrance-list__empty {
+  font-style: italic;
+  opacity: 0.6;
+}

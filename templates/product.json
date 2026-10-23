@@ -330,7 +330,6 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image_source": "automatic",
         "height": "medium",
         "image_corners": "theme",
         "image_radius": 8,
@@ -615,7 +614,6 @@
         "link_url": "shopify://pages/contact",
         "link_arrow": true,
         "link_color_scheme": "",
-        "source": "automatic",
         "item_color_scheme": "scheme-2",
         "structured_data": true,
         "color_scheme": "",

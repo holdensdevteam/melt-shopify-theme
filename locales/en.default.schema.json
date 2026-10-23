@@ -445,6 +445,17 @@
     }
   },
   "sections": {
+    "melt_fragrance_list": {
+      "name": "Fragrance list",
+      "settings": {
+        "title": {
+          "default": "All fragrances"
+        },
+        "show_scent_notes": {
+          "info": "Up to 3 per fragrance, from its Fragrance entry's Primary Scent Notes."
+        }
+      }
+    },
     "melt_divider": {
       "name": "Divider",
       "settings": {

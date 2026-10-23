@@ -151,6 +151,11 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "341186785192672687": {
+        "type": "shopify://apps/seal-subscriptions/blocks/subscription-script-append/13b25004-a140-4ab7-b5fe-29918f759699",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -320,25 +325,6 @@
           "secondary_button_label": "#ce7721",
           "secondary_button_label_hover": "",
           "border": "#ce7721",
-          "border_hover": "#ce7721",
-          "shadow": "rgba(0,0,0,0)",
-          "shadow_hover": ""
-        }
-      },
-      "scheme-07ffbc8b-f381-4fa5-bb0d-50e31039397e": {
-        "settings": {
-          "background": "#ffffff",
-          "background_gradient": "",
-          "background_hover": "#f6f4ee",
-          "text": "#121212",
-          "text_hover": "",
-          "button": "#F6F4EE",
-          "button_hover": "",
-          "button_label": "#171717",
-          "button_label_hover": "",
-          "secondary_button_label": "#000000",
-          "secondary_button_label_hover": "",
-          "border": "#121212",
           "border_hover": "#ce7721",
           "shadow": "rgba(0,0,0,0)",
           "shadow_hover": ""
