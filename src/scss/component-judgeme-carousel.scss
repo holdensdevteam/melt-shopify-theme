@@ -1,0 +1,109 @@
+/*! Compiled from src/scss/component-judgeme-carousel.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Judge.me "Cards Carousel" — app block in an Apps section (home page "In your words").
+// Loaded by sections/apps.liquid.
+//
+// Judge.me's script builds the cards, so they're not in the page source. Class names checked
+// against its carousels.css (Oct 2026): .jdgm-cards-carousel > .jdgm-header, .jdgm-content >
+// .jdgm-arrow / .jdgm-cards-wrapper > .jdgm-card(.jdgm-media-card) > .jdgm-text,
+// .jdgm-rating-section > .jdgm-stars, .jdgm-reviewer-info > .jdgm-reviewer-name.
+// Judge.me can change these in an update. The .melt-apps scope out-specifies Judge.me's own
+// rules (up to three classes). Colours, card count, text size and corners stay in the app's
+// block settings.
+
+.melt-apps .jdgm-cards-carousel {
+  // ------------------------------------------------------------------ heading
+
+  .jdgm-header {
+    text-align: left;
+  }
+
+  // Same as the other home page section titles (Dawn's h1: 30px, 40px from 750px).
+  .jdgm-title {
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    font-size: calc(var(--font-heading-scale) * 3rem);
+    letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+    line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+
+    @include bp.from(bp.$medium) {
+      font-size: calc(var(--font-heading-scale) * 4rem);
+    }
+  }
+
+  // ------------------------------------------------------------------ cards: left aligned
+
+  .jdgm-card,
+  .jdgm-card-content,
+  .jdgm-rating-section,
+  .jdgm-media-card .jdgm-rating-section {
+    align-items: flex-start;
+  }
+
+  .jdgm-text {
+    place-items: start;
+    text-align: left;
+  }
+
+  .jdgm-stars,
+  .jdgm-reviewer-info,
+  .jdgm-media-card .jdgm-rating-section .jdgm-reviewer-info {
+    justify-content: flex-start;
+  }
+
+  .jdgm-media-card .jdgm-text {
+    padding: 2.4rem 2.4rem 0;
+  }
+
+  .jdgm-media-card .jdgm-rating-section {
+    padding: 1.2rem 2.4rem 2.4rem;
+  }
+
+  // Stars: 18px, a quarter smaller than Judge.me's 24px.
+  .jdgm-media-card .jdgm-rating-section .jdgm-stars {
+    gap: 0.3rem;
+  }
+
+  .jdgm-media-card .jdgm-rating-section .jdgm-star {
+    font-size: 1.8rem;
+  }
+
+  // Reviewer name: regular weight, softened like the site's other secondary text.
+  .jdgm-reviewer-name,
+  .jdgm-media-card .jdgm-rating-section .jdgm-reviewer-name {
+    font-weight: 400;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  // ------------------------------------------------------------------ full content width
+
+  // From 750px the cards span the content width, and the arrows sit outside it in the page
+  // gutter (5rem from 750px). Judge.me sizes cards from its "Maximum width" setting; this
+  // overrides that: card width = (block width − gaps) ÷ cards shown. 100cqw is the app block's
+  // width — Judge.me makes the block a size container. Below 750px Judge.me's own layout stays.
+  @include bp.from(bp.$medium) {
+    max-width: none;
+    --card-width: calc((100cqw - (var(--visible-cards) - 1) * var(--jm-card-gap)) / var(--visible-cards)) !important;
+
+    .jdgm-content > .jdgm-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      transform: translateY(-50%);
+    }
+
+    .jdgm-content > .jdgm-arrow:first-child {
+      left: -4.8rem;
+    }
+
+    .jdgm-content > .jdgm-arrow:last-child {
+      right: -4.8rem;
+    }
+
+    .jdgm-cards-wrapper {
+      max-width: none;
+    }
+  }
+}

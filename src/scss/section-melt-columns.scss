@@ -102,6 +102,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  border-radius: var(--media-radius); // Theme settings → Media → Corner radius
 
   &--landscape {
     aspect-ratio: 16 / 9;

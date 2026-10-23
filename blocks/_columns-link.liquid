@@ -1,6 +1,44 @@
+{%- comment -%}
+  Link: a text link with Dawn's arrow ("Find out more →"), or a button with the long arrow, like
+  the collection card buttons ("SHOP MOMENT →", .melt-arrow-button in melt-global.scss).
+  Button colours: blank uses the colour scheme's button colours.
+{%- endcomment -%}
 {%- if block.settings.label != blank -%}
-  <div class="melt-columns__link" {{ block.shopify_attributes }}>
-    {%- render 'melt-arrow-link', label: block.settings.label, url: block.settings.url -%}
+  <div class="melt-columns__link melt-columns__link--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+    {%- if block.settings.style == 'button' -%}
+      {%- liquid
+        assign button_background = block.settings.button_background_color
+        assign button_text = block.settings.button_text_color
+        capture button_style
+          if button_background != blank and button_background.alpha != 0
+            echo '--color-button: ' | append: button_background.red | append: ',' | append: button_background.green | append: ',' | append: button_background.blue | append: '; '
+            echo '--color-button-hover: ' | append: button_background.red | append: ',' | append: button_background.green | append: ',' | append: button_background.blue | append: '; '
+          endif
+          if button_text != blank and button_text.alpha != 0
+            echo '--color-button-text: ' | append: button_text.red | append: ',' | append: button_text.green | append: ',' | append: button_text.blue | append: '; '
+            echo '--color-button-text-hover: ' | append: button_text.red | append: ',' | append: button_text.green | append: ',' | append: button_text.blue | append: ';'
+          endif
+        endcapture
+      -%}
+      <a
+        class="button button--primary melt-arrow-button"
+        {% if block.settings.url == blank %}
+          role="link" aria-disabled="true"
+        {% else %}
+          href="{{ block.settings.url }}"
+        {% endif %}
+        {% if button_style != blank %}
+          style="{{ button_style | strip }}"
+        {% endif %}
+      >
+        <span>{{ block.settings.label | escape }}</span>
+        {%- if block.settings.button_arrow -%}
+          <span class="melt-arrow-button__arrow">{{ 'icon-arrow-long.svg' | inline_asset_content }}</span>
+        {%- endif -%}
+      </a>
+    {%- else -%}
+      {%- render 'melt-arrow-link', label: block.settings.label, url: block.settings.url -%}
+    {%- endif -%}
   </div>
 {%- endif -%}
 
@@ -18,6 +56,42 @@
       "type": "url",
       "id": "url",
       "label": "t:blocks.columns_link.settings.url.label"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:blocks.columns_link.settings.style.label",
+      "options": [
+        {
+          "value": "link",
+          "label": "t:blocks.columns_link.settings.style.options__link.label"
+        },
+        {
+          "value": "button",
+          "label": "t:blocks.columns_link.settings.style.options__button.label"
+        }
+      ],
+      "default": "link"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:sections.collection-list.blocks.featured_collection.settings.button_text_color.label",
+      "visible_if": "{{ block.settings.style == 'button' }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:sections.collection-list.blocks.featured_collection.settings.button_background_color.label",
+      "info": "t:sections.collection-list.blocks.featured_collection.settings.button_background_color.info",
+      "visible_if": "{{ block.settings.style == 'button' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_arrow",
+      "default": true,
+      "label": "t:sections.collection-list.blocks.featured_collection.settings.button_arrow.label",
+      "visible_if": "{{ block.settings.style == 'button' }}"
     }
   ],
   "presets": [

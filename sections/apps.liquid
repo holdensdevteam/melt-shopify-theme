@@ -3,6 +3,7 @@
   so app blocks like the Judge.me review widget can sit on their own band and be targeted from
   src/scss/component-judgeme-*.scss without relying on Shopify's generated section IDs.
 {%- endcomment -%}
+{{ 'component-judgeme-carousel.css' | asset_url | stylesheet_tag }}
 {%- style -%}
   #Apps-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;

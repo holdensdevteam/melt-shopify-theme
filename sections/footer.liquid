@@ -360,7 +360,7 @@
       <div class="footer__legal">
         {%- liquid
           assign copyright_year = 'now' | date: '%Y'
-          assign copyright_name = shop.name | escape
+          assign copyright_name = section.settings.copyright_name | default: shop.name | escape
         -%}
         <small class="footer__copyright-text">
           {{- 'sections.footer.copyright_html' | t: shop_name: copyright_name, year: copyright_year -}}
@@ -564,6 +564,12 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "text",
+      "id": "copyright_name",
+      "label": "t:sections.footer.settings.copyright_name.label",
+      "info": "t:sections.footer.settings.copyright_name.info"
     },
     {
       "type": "link_list",

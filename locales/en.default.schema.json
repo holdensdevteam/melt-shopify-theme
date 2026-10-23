@@ -1771,6 +1771,10 @@
           "label": "Policy links",
           "info": "[Manage policies](/admin/settings/legal)"
         },
+        "copyright_name": {
+          "label": "Copyright name",
+          "info": "Shown after © and the year, e.g. Melt Ltd. Leave blank to use your store name."
+        },
         "legal_menu": {
           "label": "Legal links menu",
           "info": "Shown beside the copyright line, e.g. Privacy · Cookies · Terms · Accessibility. Replaces the automatic policy links when set."
@@ -4683,6 +4687,15 @@
         },
         "url": {
           "label": "Link"
+        },
+        "style": {
+          "label": "Style",
+          "options__link": {
+            "label": "Text link"
+          },
+          "options__button": {
+            "label": "Button"
+          }
         }
       }
     }
