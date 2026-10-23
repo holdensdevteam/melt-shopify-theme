@@ -445,6 +445,36 @@
     }
   },
   "sections": {
+    "melt_collection_list_banner": {
+      "name": "Collection list banner",
+      "blocks": {
+        "heading": {
+          "source": {
+            "options__page": {
+              "label": "Page title"
+            }
+          },
+          "heading_tag": {
+            "info": "The page's main heading should be H1 — keep one H1 per page."
+          }
+        },
+        "text": {
+          "source": {
+            "options__page": {
+              "label": "Page content"
+            }
+          }
+        },
+        "custom": {
+          "info": "Type it, or use the dynamic source icon to connect a page metafield."
+        },
+        "image": {
+          "image": {
+            "info": "Pages have no image of their own — choose one, or connect a page metafield."
+          }
+        }
+      }
+    },
     "melt_fragrance_list": {
       "name": "Fragrance list",
       "settings": {
@@ -2876,6 +2906,46 @@
     "main-list-collections": {
       "name": "Collections list page",
       "settings": {
+        "card_eyebrow_source": {
+          "label": "Eyebrow",
+          "options__scent_type": {
+            "label": "Scent type (from the Fragrance entry)"
+          },
+          "options__custom": {
+            "label": "Custom text"
+          }
+        },
+        "card_eyebrow": {
+          "label": "Eyebrow text",
+          "info": "Shown on every card — or, with Scent type, only on cards whose fragrance has none. Don't connect a dynamic source here: it picks one entry for every card."
+        },
+        "card_tags": {
+          "label": "Pills under the name",
+          "info": "Up to 3 per card.",
+          "options__none": {
+            "label": "None"
+          },
+          "options__types": {
+            "label": "Product types in the collection"
+          },
+          "options__scent_notes": {
+            "label": "Scent notes (from the Fragrance entry)"
+          }
+        },
+        "card_tag_color_scheme": {
+          "label": "Pill colour scheme",
+          "info": "Uses the scheme's background and text colours."
+        },
+        "collection_filter": {
+          "label": "Show",
+          "info": "Fragrance collections are those linked to a Fragrance entry (Fragrance Details) or using the fragrance template.",
+          "options__all": {
+            "label": "All collections"
+          },
+          "options__fragrance": {
+            "label": "Fragrance collections only"
+          }
+        },
         "title": {
           "label": "Heading",
           "default": "Collections"

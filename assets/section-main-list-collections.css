@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-main-list-collections.scss — edit that file, not this one. */
+.melt-cards .card__eyebrow {
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+@media screen and (min-width: 1600px) {
+  .melt-cards .card__eyebrow {
+    font-size: 1.25rem;
+  }
+}
+
+.melt-cards .card__tags {
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.melt-cards .card__tag {
+  padding: 0.3rem 1rem;
+  border-radius: 0.2rem;
+}
+
+.card__tag--scheme {
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+}

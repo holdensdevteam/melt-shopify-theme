@@ -12,6 +12,9 @@
   - card_color_scheme_override: {String} Colour scheme for this card, overriding the theme setting (optional, Melt)
   - subtitle: {String} Short line under the collection name, e.g. "From 10 November" (optional, Melt)
   - tags: {String} Comma-separated labels shown as pills under the name, max 4, e.g. "Citrus, Green, Clean" (optional, Melt)
+  - tag_color_scheme: {String} Colour scheme for the pills: its background and text. Blank uses a light tint of the card's text colour (optional, Melt)
+  - eyebrow: {String} Small uppercase line above the name, e.g. the scent type (optional, Melt)
+  - eyebrow_color: {Color} Eyebrow colour; blank uses the default eyebrow colour (optional, Melt). Load component-eyebrow.css in the section.
   - button_label: {String} Button under the text, e.g. "Shop candles". Nothing renders if blank (optional, Melt)
   - button_link: {String} Button link. Defaults to the collection (optional, Melt)
   - button_text_color / button_background_color: {Color} Button colours; blank uses the colour
@@ -48,6 +51,10 @@
   endif
 -%}
 
+{%- capture card_eyebrow -%}
+  {%- render 'melt-eyebrow', text: eyebrow, color: eyebrow_color, class: 'card__eyebrow' -%}
+{%- endcapture -%}
+
 {%- capture card_extras -%}
   {%- if subtitle != blank -%}
     <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
@@ -58,7 +65,7 @@
       {%- for tag in tag_list limit: 4 -%}
         {%- assign tag_text = tag | strip -%}
         {%- if tag_text != blank -%}
-          <li class="card__tag">{{ tag_text | escape }}</li>
+          <li class="card__tag{% if tag_color_scheme != blank %} card__tag--scheme color-{{ tag_color_scheme }}{% endif %}">{{ tag_text | escape }}</li>
         {%- endif -%}
       {%- endfor -%}
     </ul>
@@ -150,6 +157,7 @@
       {%- else -%}
         <div class="card__content">
           <div class="card__information">
+            {{- card_eyebrow -}}
             <h3 class="card__heading">
               <a
                 {% if card_collection == blank %}
@@ -187,6 +195,7 @@
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
         <div class="card__information">
+          {{- card_eyebrow -}}
           <h3 class="card__heading">
             <a
               {% if card_collection == blank %}

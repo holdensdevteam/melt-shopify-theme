@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {}
+        },
+        "text": {
+          "type": "text",
+          "settings": {}
+        }
+      },
+      "block_order": ["breadcrumbs", "heading", "text"],
+      "settings": {
+        "layout": "stacked"
+      }
+    },
+    "fragrances": {
+      "type": "melt-fragrance-list",
+      "settings": {}
+    }
+  },
+  "order": ["banner", "fragrances"]
+}

@@ -1,21 +1,28 @@
 {% comment %}
-  Renders one block of the collection banner (sections/main-collection-banner.liquid):
-  breadcrumbs, heading, text, image or video. Styles: src/scss/section-main-collection-banner.scss.
+  Renders one block of the collection banner (sections/main-collection-banner.liquid) or the
+  collection list banner (sections/melt-collection-list-banner.liquid): breadcrumbs, heading,
+  text, image or video. Styles: src/scss/section-main-collection-banner.scss.
 
   Accepts:
   - block: {Object} The section block.
+  - title: {String} The page's own heading when the Heading block isn't Custom (optional, defaults to the collection title).
+  - description: {String} The page's own text when the Text block isn't Custom (optional, defaults to the collection description).
+
+  The Image block uses the collection image only when its source is 'collection'; otherwise
+  (Custom, or a block with no source setting) it uses the block's image picker.
 
   Usage:
   {% render 'melt-collection-banner-block', block: block %}
+  {% render 'melt-collection-banner-block', block: block, title: page.title, description: page.content %}
 {% endcomment %}
 
 {%- case block.type -%}
   {%- when 'image' -%}
     {%- liquid
-      if block.settings.source == 'custom'
-        assign banner_image = block.settings.image
-      else
+      if block.settings.source == 'collection'
         assign banner_image = collection.image
+      else
+        assign banner_image = block.settings.image
       endif
     -%}
     {%- if banner_image != blank or request.design_mode -%}
@@ -86,7 +93,7 @@
       if block.settings.source == 'custom' and block.settings.heading != blank
         assign heading_html = block.settings.heading
       else
-        assign heading_html = collection.title | escape
+        assign heading_html = title | default: collection.title | escape
       endif
     -%}
     <{{ heading_tag }} class="melt-banner__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
@@ -97,7 +104,7 @@
       if block.settings.source == 'custom'
         assign banner_text = block.settings.text
       else
-        assign banner_text = collection.description
+        assign banner_text = description | default: collection.description
       endif
     -%}
     {%- if banner_text != blank -%}

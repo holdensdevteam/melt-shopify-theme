@@ -1,0 +1,32 @@
+/*! Compiled from src/scss/section-main-list-collections.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Collections list page (sections/main-list-collections.liquid) — the /collections page.
+// Card options come from melt-global.scss (.melt-cards*) and section-collection-list.scss;
+// these are the page's own card details.
+
+// Eyebrow above the name: smaller than the product-card eyebrow.
+.melt-cards .card__eyebrow {
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+
+  @include bp.from(bp.$xxxlarge) {
+    font-size: 1.25rem;
+  }
+}
+
+.melt-cards .card__tags {
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.melt-cards .card__tag {
+  padding: 0.3rem 1rem;
+  border-radius: 0.2rem;
+}
+
+// Pill colour scheme set: its solid background and text.
+.card__tag--scheme {
+  background: var(--gradient-background);
+  color: rgb(var(--color-foreground));
+}

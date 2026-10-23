@@ -42,6 +42,9 @@
     when 'page'
       assign titles = titles | append: sep | append: page.title
       assign urls = urls | append: sep | append: page.url
+    when 'list-collections'
+      assign titles = titles | append: sep | append: page_title
+      assign urls = urls | append: sep | append: routes.collections_url
     when 'blog'
       assign titles = titles | append: sep | append: blog.title
       assign urls = urls | append: sep | append: blog.url
