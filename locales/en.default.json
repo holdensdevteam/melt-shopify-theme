@@ -321,6 +321,13 @@
     "breadcrumbs": {
       "label": "Breadcrumb"
     },
+    "banner_media": {
+      "label": "Banner",
+      "show_slide": "Show slide {{ index }} of {{ count }}",
+      "pause": "Pause",
+      "play": "Play",
+      "badge_alt": "Customer reviews"
+    },
     "image_slider": {
       "carousel": "carousel",
       "label": "Image gallery",

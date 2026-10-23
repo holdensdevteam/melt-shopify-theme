@@ -1,6 +1,41 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  # Melt: Slide blocks (image or video). With any Slide blocks, they replace the Image / Image 2
+  # settings: one slide fills the banner, two or more become a slider (melt-banner-media).
+  # Without them the banner works as before.
+  assign slide_blocks = section.blocks | where: 'type', 'slide'
+  assign slide_count = slide_blocks.size
+  assign has_slides = false
+  assign has_video = false
+  if slide_count > 0
+    assign has_slides = true
+    for slide in slide_blocks
+      if slide.settings.media_type == 'video' and slide.settings.video != blank
+        assign has_video = true
+      endif
+    endfor
+  endif
+
+  # "Adapt to first image" follows the first slide (its image, or its video's shape), or Image.
+  assign adapt_ratio = nil
+  if has_slides
+    assign first_slide = slide_blocks | first
+    if first_slide.settings.media_type == 'video' and first_slide.settings.video != blank
+      assign adapt_ratio = first_slide.settings.video.aspect_ratio
+    elsif first_slide.settings.image != blank
+      assign adapt_ratio = first_slide.settings.image.aspect_ratio
+    endif
+  elsif section.settings.image != blank
+    assign adapt_ratio = section.settings.image.aspect_ratio
+  endif
+-%}
+
+{%- if has_slides -%}
+  <script src="{{ 'melt-banner-media.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- liquid
   # Min/max height (0 = off). For "Adapt to first image" they clamp the image-ratio height, so the
   # image crops to fit (object-fit: cover, centred on the image's focal point). For the fixed
   # presets the minimum replaces the preset height; the maximum doesn't apply, as those heights
@@ -11,9 +46,9 @@
   assign max_mobile = section.settings.max_height_mobile
 -%}
 
-{%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
+{%- if section.settings.image_height == 'adapt' and adapt_ratio != blank -%}
   {%- liquid
-    assign ratio_height = 1 | divided_by: section.settings.image.aspect_ratio | times: 100 | append: '%'
+    assign ratio_height = 1 | divided_by: adapt_ratio | times: 100 | append: '%'
 
     assign height_mobile = ratio_height
     if min_mobile > 0 and max_mobile > 0
@@ -103,78 +138,188 @@
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if has_slides == false and section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and adapt_ratio != blank %} banner--adapt{% endif %}{% if has_slides %} banner--slides{% endif %}{% if section.settings.badge_image != blank %} banner--has-badge{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
-  {%- if section.settings.image != blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
-        # Crop around the focal point set on the image in Shopify admin (Content → Files, or the image picker).
-        assign focal_style = nil
-        if section.settings.image.presentation.focal_point != blank
-          assign focal_style = 'object-position: ' | append: section.settings.image.presentation.focal_point
-        endif
-        if section.settings.image_2 != blank
-          assign image_class = 'banner__media-image-half'
-        endif
-        if section.settings.image_2 != blank and section.settings.stack_images_on_mobile
-          assign sizes = stacked_sizes
-        elsif section.settings.image_2 != blank
-          assign sizes = half_width
-        else
-          assign sizes = full_width
-        endif
-      -%}
-      {{
-        section.settings.image
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image.width,
-          height: image_height,
-          class: image_class,
-          style: focal_style,
-          sizes: sizes,
-          widths: widths,
-          fetchpriority: fetch_priority
-      }}
+  {%- if has_slides -%}
+    <div class="banner__media media banner__media--slides{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <melt-banner-media
+        class="banner-media{% if slide_count == 1 %} banner-media--single{% endif %}"
+        data-autoplay="{{ section.settings.slider_autoplay }}"
+        data-speed="{{ section.settings.slider_speed }}"
+        {% if slide_count > 1 %}
+          role="region"
+          aria-roledescription="{{ 'sections.image_slider.carousel' | t }}"
+          aria-label="{{ 'sections.banner_media.label' | t }}"
+        {% endif %}
+      >
+        <div class="banner-media__track"{% if slide_count > 1 %} tabindex="0"{% endif %}>
+          {%- for slide in slide_blocks -%}
+            {%- liquid
+              assign slide_fetch = 'auto'
+              assign slide_loading = 'lazy'
+              if forloop.first
+                assign slide_fetch = fetch_priority
+                assign slide_loading = 'eager'
+              endif
+            -%}
+            <div
+              class="banner-media__slide"
+              {% if slide_count > 1 %}
+                role="group"
+                aria-roledescription="{{ 'sections.image_slider.slide' | t }}"
+                aria-label="{{ 'sections.image_slider.slide_of' | t: index: forloop.index, count: slide_count }}"
+              {% endif %}
+              {{ slide.shopify_attributes }}
+            >
+              {%- if slide.settings.media_type == 'video' and slide.settings.video != blank -%}
+                {%- comment -%} Decorative background video: silent, looping, no controls — the pause button below stops it. {%- endcomment -%}
+                <div class="banner-media__video" aria-hidden="true">
+                  {{
+                    slide.settings.video
+                    | video_tag:
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      playsinline: true,
+                      controls: false,
+                      preload: 'metadata',
+                      image_size: '1920x'
+                  }}
+                </div>
+              {%- elsif slide.settings.media_type != 'video' and slide.settings.image != blank -%}
+                {%- liquid
+                  assign slide_image = slide.settings.image
+                  assign slide_focal = nil
+                  if slide_image.presentation.focal_point != blank
+                    assign slide_focal = 'object-position: ' | append: slide_image.presentation.focal_point
+                  endif
+                -%}
+                {{
+                  slide_image
+                  | image_url: width: 3840
+                  | image_tag:
+                    sizes: '100vw',
+                    widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                    style: slide_focal,
+                    loading: slide_loading,
+                    fetchpriority: slide_fetch
+                }}
+              {%- else -%}
+                {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if slide_count > 1 or has_video -%}
+          <div class="banner-media__controls">
+            {%- if slide_count > 1 -%}
+              <div class="banner-media__dots">
+                {%- for slide in slide_blocks -%}
+                  <button
+                    type="button"
+                    class="banner-media__dot"
+                    aria-label="{{ 'sections.banner_media.show_slide' | t: index: forloop.index, count: slide_count }}"
+                    {% if forloop.first %}
+                      aria-current="true"
+                    {% endif %}
+                  ></button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- if has_video or section.settings.slider_autoplay and slide_count > 1 -%}
+              <button
+                type="button"
+                class="banner-media__toggle"
+                aria-label="{{ 'sections.banner_media.pause' | t }}"
+                data-label-pause="{{ 'sections.banner_media.pause' | t }}"
+                data-label-play="{{ 'sections.banner_media.play' | t }}"
+              >
+                <svg class="banner-media__icon-pause" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+                  <rect x="4" y="3" width="2.5" height="10" rx="0.5" fill="currentColor"/>
+                  <rect x="9.5" y="3" width="2.5" height="10" rx="0.5" fill="currentColor"/>
+                </svg>
+                <svg class="banner-media__icon-play" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+                  <path d="M5 3.2v9.6a.5.5 0 0 0 .77.42l7.2-4.8a.5.5 0 0 0 0-.84l-7.2-4.8A.5.5 0 0 0 5 3.2Z" fill="currentColor"/>
+                </svg>
+              </button>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </melt-banner-media>
     </div>
-  {%- elsif section.settings.image_2 == blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
-  {%- endif -%}
-  {%- if section.settings.image_2 != blank -%}
-    <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {%- liquid
-        assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
-        assign focal_style_2 = nil
-        if section.settings.image_2.presentation.focal_point != blank
-          assign focal_style_2 = 'object-position: ' | append: section.settings.image_2.presentation.focal_point
-        endif
-        if section.settings.image != blank
-          assign image_class_2 = 'banner__media-image-half'
-        endif
-        if section.settings.image != blank and section.settings.stack_images_on_mobile
-          assign sizes = stacked_sizes
-        elsif section.settings.image_2 != blank
-          assign sizes = half_width
-        else
-          assign sizes = full_width
-        endif
-      -%}
-      {{
-        section.settings.image_2
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image_2.width,
-          height: image_height_2,
-          class: image_class_2,
-          style: focal_style_2,
-          sizes: sizes,
-          widths: widths,
-          fetchpriority: fetch_priority
-      }}
-    </div>
+  {%- else -%}
+    {%- if section.settings.image != blank -%}
+      <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {%- liquid
+          assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
+          # Crop around the focal point set on the image in Shopify admin (Content → Files, or the image picker).
+          assign focal_style = nil
+          if section.settings.image.presentation.focal_point != blank
+            assign focal_style = 'object-position: ' | append: section.settings.image.presentation.focal_point
+          endif
+          if section.settings.image_2 != blank
+            assign image_class = 'banner__media-image-half'
+          endif
+          if section.settings.image_2 != blank and section.settings.stack_images_on_mobile
+            assign sizes = stacked_sizes
+          elsif section.settings.image_2 != blank
+            assign sizes = half_width
+          else
+            assign sizes = full_width
+          endif
+        -%}
+        {{
+          section.settings.image
+          | image_url: width: 3840
+          | image_tag:
+            width: section.settings.image.width,
+            height: image_height,
+            class: image_class,
+            style: focal_style,
+            sizes: sizes,
+            widths: widths,
+            fetchpriority: fetch_priority
+        }}
+      </div>
+    {%- elsif section.settings.image_2 == blank -%}
+      <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.image_2 != blank -%}
+      <div class="banner__media media{% if section.settings.image != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {%- liquid
+          assign image_height_2 = section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio
+          assign focal_style_2 = nil
+          if section.settings.image_2.presentation.focal_point != blank
+            assign focal_style_2 = 'object-position: ' | append: section.settings.image_2.presentation.focal_point
+          endif
+          if section.settings.image != blank
+            assign image_class_2 = 'banner__media-image-half'
+          endif
+          if section.settings.image != blank and section.settings.stack_images_on_mobile
+            assign sizes = stacked_sizes
+          elsif section.settings.image_2 != blank
+            assign sizes = half_width
+          else
+            assign sizes = full_width
+          endif
+        -%}
+        {{
+          section.settings.image_2
+          | image_url: width: 3840
+          | image_tag:
+            width: section.settings.image_2.width,
+            height: image_height_2,
+            class: image_class_2,
+            style: focal_style_2,
+            sizes: sizes,
+            widths: widths,
+            fetchpriority: fetch_priority
+        }}
+      </div>
+    {%- endif -%}
   {%- endif -%}
   {%- comment -%} Button style settings — output outside .banner__box so the <style> tag doesn't affect Dawn's sibling spacing rules. {%- endcomment -%}
   {%- for block in section.blocks -%}
@@ -280,6 +425,44 @@
       {%- endfor -%}
     </div>
   </div>
+  {%- comment -%}
+    Melt: review badge — an image (e.g. a reviews award), bottom right of the banner, lined up
+    with the content's right edge and 3rem from the bottom. It sits over every slide.
+  {%- endcomment -%}
+  {%- assign badge = section.settings.badge_image -%}
+  {%- if badge != blank -%}
+    {%- liquid
+      assign badge_width = section.settings.badge_width
+      assign badge_width_mobile = section.settings.badge_width_mobile
+      assign badge_sizes = '(min-width: 750px) ' | append: badge_width | append: 'px, ' | append: badge_width_mobile | append: 'px'
+      assign badge_alt = badge.alt | default: 'sections.banner_media.badge_alt' | t
+    -%}
+    {%- style -%}
+      #Banner-{{ section.id }} {
+        --banner-badge-width: {{ badge_width_mobile }}px;
+      }
+
+      @media screen and (min-width: 750px) {
+        #Banner-{{ section.id }} {
+          --banner-badge-width: {{ badge_width }}px;
+        }
+      }
+    {%- endstyle -%}
+    <div class="banner__badge-wrapper page-width">
+      {%- if section.settings.badge_link != blank -%}<a href="{{ section.settings.badge_link }}" class="banner__badge">{%- else -%}<div class="banner__badge">{%- endif -%}
+      {{
+        badge
+        | image_url: width: 900
+        | image_tag:
+          widths: '150, 300, 450, 600, 900',
+          sizes: badge_sizes,
+          alt: badge_alt,
+          loading: 'eager',
+          class: 'banner__badge-image'
+      }}
+      {%- if section.settings.badge_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+    </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -361,6 +544,64 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-banner.settings.header_slides.content",
+      "info": "t:sections.image-banner.settings.header_slides.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "slider_autoplay",
+      "default": false,
+      "label": "t:sections.image-banner.settings.slider_autoplay.label",
+      "info": "t:sections.image-banner.settings.slider_autoplay.info"
+    },
+    {
+      "type": "range",
+      "id": "slider_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 6,
+      "label": "t:sections.image-banner.settings.slider_speed.label",
+      "visible_if": "{{ section.settings.slider_autoplay }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-banner.settings.header_badge.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "t:sections.image-banner.settings.badge_image.label",
+      "info": "t:sections.image-banner.settings.badge_image.info"
+    },
+    {
+      "type": "url",
+      "id": "badge_link",
+      "label": "t:sections.image-banner.settings.badge_link.label"
+    },
+    {
+      "type": "range",
+      "id": "badge_width",
+      "min": 40,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 120,
+      "label": "t:sections.image-banner.settings.badge_width.label"
+    },
+    {
+      "type": "range",
+      "id": "badge_width_mobile",
+      "min": 30,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 90,
+      "label": "t:sections.image-banner.settings.badge_width_mobile.label"
     },
     {
       "type": "header",
@@ -737,6 +978,43 @@
           "unit": "px",
           "default": 0,
           "label": "t:sections.image-banner.blocks.buttons.settings.button_margin_bottom.label"
+        }
+      ]
+    },
+    {
+      "type": "slide",
+      "name": "t:sections.image-banner.blocks.slide.name",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "t:sections.image-banner.blocks.slide.settings.media_type.label",
+          "options": [
+            {
+              "value": "image",
+              "label": "t:sections.image-banner.blocks.slide.settings.media_type.options__image.label"
+            },
+            {
+              "value": "video",
+              "label": "t:sections.image-banner.blocks.slide.settings.media_type.options__video.label"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-banner.blocks.slide.settings.image.label",
+          "info": "t:sections.image-banner.blocks.slide.settings.image.info",
+          "visible_if": "{{ block.settings.media_type == 'image' }}"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.image-banner.blocks.slide.settings.video.label",
+          "info": "t:sections.image-banner.blocks.slide.settings.video.info",
+          "visible_if": "{{ block.settings.media_type == 'video' }}"
         }
       ]
     }

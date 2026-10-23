@@ -1,4 +1,5 @@
 /*! Compiled from src/scss/section-image-banner.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
 .banner {
   display: flex;
   position: relative;
@@ -514,3 +515,237 @@
     font-size: inherit;
   }
 }
+
+/*
+ * ------------------------------------------------------------
+ * Melt: Slide blocks — images and silent looping videos (assets/melt-banner-media.js)
+ * Each slide fills the banner like a background image: object-fit: cover, so it crops to the
+ * banner's height and width. Two or more slides scroll one at a time with dots below.
+ * ------------------------------------------------------------
+ */
+
+// The banner's content layer and Dawn's overlay sit above the media and would swallow swipes and
+// clicks on the dots; let them through everywhere except the text box itself.
+.banner--slides::after,
+.banner--slides .banner__media::after {
+  pointer-events: none;
+}
+
+.banner--slides .banner__content {
+  pointer-events: none;
+}
+
+.banner--slides .banner__box {
+  pointer-events: auto;
+}
+
+.banner-media {
+  display: block;
+}
+
+.banner-media__track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid rgba(255, 255, 255, 0.8);
+    outline-offset: -0.4rem;
+  }
+
+  .banner-media--single & {
+    overflow: hidden;
+  }
+}
+
+.banner-media__slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+  scroll-snap-align: start;
+
+  > img,
+  > .placeholder-svg,
+  .banner-media__video,
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  > img,
+  video {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+// ------------------------------------------------------------------ dots and pause button
+
+// Bottom centre, over the media (and above Dawn's overlay). The pause button sits at the right.
+.banner-media__controls {
+  position: absolute;
+  right: 0;
+  bottom: 1.2rem;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  pointer-events: none;
+
+  @include bp.from(bp.$medium) {
+    bottom: 2rem;
+    padding: 0 5rem;
+  }
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.banner-media__dots {
+  display: flex;
+}
+
+// Each dot is a 2.4rem target around an 0.8rem dot.
+.banner-media__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.25);
+    transition:
+      background-color var(--duration-short) ease,
+      transform var(--duration-short) ease;
+  }
+
+  &[aria-current='true']::before {
+    background-color: #fff;
+    transform: scale(1.25);
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid #fff;
+    outline-offset: -0.2rem;
+    border-radius: 50%;
+  }
+}
+
+.banner-media__toggle {
+  position: absolute;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--duration-short) ease;
+
+  @include bp.from(bp.$medium) {
+    right: 5rem;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.55);
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid #fff;
+    outline-offset: 0.2rem;
+  }
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.banner-media__icon-play,
+.banner-media--paused .banner-media__icon-pause {
+  display: none;
+}
+
+.banner-media--paused .banner-media__icon-play {
+  display: block;
+}
+
+/*
+ * ------------------------------------------------------------
+ * Melt: review badge (Review badge settings)
+ * Bottom right, 3rem from the bottom, its right edge on the content's right edge (.page-width:
+ * --page-width wide, with the same side padding). Above the media, overlay and text.
+ * ------------------------------------------------------------
+ */
+.banner__badge-wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 3rem;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.banner__badge {
+  display: block;
+  width: var(--banner-badge-width, 12rem);
+  pointer-events: auto;
+
+  &:focus-visible {
+    outline: 0.2rem solid #fff;
+    outline-offset: 0.3rem;
+  }
+}
+
+.banner__badge-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// "Show content below image on mobile": the text box sits under the image there, so the badge
+// joins the flow after it, on the right, rather than covering the text.
+@include bp.below(bp.$medium) {
+  .banner--mobile-bottom .banner__badge-wrapper {
+    position: static;
+    padding-bottom: 3rem;
+  }
+}
+
+// The pause button normally sits bottom right too; with a badge it moves beside the dots.
+.banner--has-badge .banner-media__toggle {
+  position: static;
+  margin-left: 0.8rem;
+}
+
