@@ -12,6 +12,13 @@
     "image_banner": {
       "type": "image-banner",
       "blocks": {
+        "slide_WTexM9": {
+          "type": "slide",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/12713779_1920_1080_24fps-shopify.mp4"
+          }
+        },
         "heading": {
           "type": "heading",
           "settings": {
@@ -47,6 +54,7 @@
         }
       },
       "block_order": [
+        "slide_WTexM9",
         "heading",
         "text_wtRGxp",
         "button"
@@ -56,6 +64,12 @@
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
+        "slider_autoplay": false,
+        "slider_speed": 6,
+        "badge_image": "shopify://shop_images/trustpilot-badge-white.png",
+        "badge_link": "https://www.trustpilot.com/review/themeltco.com",
+        "badge_width": 120,
+        "badge_width_mobile": 90,
         "min_height_desktop": 440,
         "max_height_desktop": 580,
         "min_height_mobile": 520,
@@ -153,6 +167,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
+        "image_source": "manual",
         "image": "shopify://shop_images/Autumn-lounge.jpg",
         "height": "adapt",
         "image_corners": "theme",
@@ -163,6 +178,7 @@
         "content_layout": "no-overlap",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
+        "content_side_padding": "both",
         "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-2",
         "color_scheme": "scheme-2",
@@ -712,7 +728,11 @@
               "type": "_columns-link",
               "settings": {
                 "label": "Find out more",
-                "url": ""
+                "url": "",
+                "style": "link",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
               },
               "blocks": {}
             }
@@ -764,7 +784,11 @@
               "type": "_columns-link",
               "settings": {
                 "label": "Find out more",
-                "url": ""
+                "url": "",
+                "style": "link",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
               },
               "blocks": {}
             }
