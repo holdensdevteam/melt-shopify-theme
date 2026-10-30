@@ -186,6 +186,56 @@
         "padding_bottom": 36
       }
     },
+    "17927738092bb092d4": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_GyUTPU": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "all",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": false,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 5,
+            "show_reviewer_name": true,
+            "show_product_name": false,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "",
+            "arrows_color": "#ce7721",
+            "transition_speed": 5,
+            "header_text": "In your words",
+            "show_average_rating": false,
+            "rating_display": "default"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_GyUTPU"
+      ],
+      "settings": {
+        "include_margins": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "css_class": ""
+      }
+    },
     "collection_list_aEkfbC": {
       "type": "collection-list",
       "blocks": {
@@ -693,19 +743,11 @@
           "name": "t:blocks.columns_column.name",
           "settings": {},
           "blocks": {
-            "columns_eyebrow_aaYLRN": {
-              "type": "_columns-eyebrow",
-              "settings": {
-                "text": "Come and see us",
-                "eyebrow_color": ""
-              },
-              "blocks": {}
-            },
             "columns_heading_zR9PBz": {
               "type": "_columns-heading",
               "settings": {
                 "text": "The shop on the farm",
-                "heading_size": "h2"
+                "heading_size": "h3"
               },
               "blocks": {}
             },
@@ -728,17 +770,16 @@
               "type": "_columns-link",
               "settings": {
                 "label": "Find out more",
-                "url": "",
-                "style": "link",
-                "button_text_color": "",
-                "button_background_color": "",
+                "url": "shopify://pages/the-shop-on-the-farm",
+                "style": "button",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#ce7721",
                 "button_arrow": true
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "columns_eyebrow_aaYLRN",
             "columns_heading_zR9PBz",
             "columns_image_RDFjKM",
             "columns_text_xUqwYG",
@@ -749,19 +790,11 @@
           "type": "_columns-column",
           "settings": {},
           "blocks": {
-            "columns_eyebrow_JAXpJN": {
-              "type": "_columns-eyebrow",
-              "settings": {
-                "text": "A small heading",
-                "eyebrow_color": ""
-              },
-              "blocks": {}
-            },
             "columns_heading_LWcfyW": {
               "type": "_columns-heading",
               "settings": {
                 "text": "Made in Lancashire",
-                "heading_size": "h2"
+                "heading_size": "h3"
               },
               "blocks": {}
             },
@@ -776,7 +809,7 @@
             "columns_text_dWzFjU": {
               "type": "_columns-text",
               "settings": {
-                "text": "<p>Hand-poured since 2000, with 89% of what goes into a Melt candle sourced inside the county. We deliver next working day if you order by 1pm, and worldwide if you are further afield.</p>"
+                "text": "<p>Hand-poured since 2000, with 89% of what goes into a Melt candle sourced inside the county.</p>"
               },
               "blocks": {}
             },
@@ -784,17 +817,16 @@
               "type": "_columns-link",
               "settings": {
                 "label": "Find out more",
-                "url": "",
-                "style": "link",
-                "button_text_color": "",
-                "button_background_color": "",
+                "url": "shopify://pages/made-in-lancashire",
+                "style": "button",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#ce7721",
                 "button_arrow": true
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "columns_eyebrow_JAXpJN",
             "columns_heading_LWcfyW",
             "columns_image_PQJXjA",
             "columns_text_dWzFjU",
@@ -810,7 +842,7 @@
       "settings": {
         "eyebrow": "",
         "eyebrow_color": "",
-        "title": "",
+        "title": "About us",
         "heading_size": "h1",
         "intro": "",
         "custom_code": "",
@@ -942,6 +974,7 @@
         "columns_column_GFd3Ez",
         "columns_column_DF8h34"
       ],
+      "disabled": true,
       "name": "t:sections.melt_columns.presets.columns.name",
       "settings": {
         "eyebrow": "Reviews",
@@ -1021,6 +1054,7 @@
     "image_banner",
     "usp_bar_fVNHrU",
     "image_with_text_WxeKV7",
+    "17927738092bb092d4",
     "collection_list_aEkfbC",
     "collection_list_QWnBJJ",
     "featured_collection_d7RLwX",
