@@ -26,7 +26,8 @@
   assign has_details = false
   for block in section.blocks
     if block.type == 'detail' and block.settings.label != blank
-      if block.settings.value != blank or request.design_mode
+      assign detail_value = block.settings.value | strip
+      if detail_value != blank or request.design_mode
         assign has_details = true
       endif
     endif
@@ -44,10 +45,15 @@
           <dl class="melt-details__list">
             {%- for block in section.blocks -%}
               {%- if block.type == 'detail' and block.settings.label != blank -%}
-                {%- if block.settings.value != blank -%}
+                {%- comment -%}
+                  The unit lives in its own setting so an empty metafield hides the row,
+                  rather than leaving the unit on its own (e.g. "g" with no weight).
+                {%- endcomment -%}
+                {%- assign detail_value = block.settings.value | strip -%}
+                {%- if detail_value != blank -%}
                   <div class="melt-details__row" {{ block.shopify_attributes }}>
                     <dt class="melt-details__label">{{ block.settings.label | escape }}</dt>
-                    <dd class="melt-details__value">{{ block.settings.value | escape }}</dd>
+                    <dd class="melt-details__value">{{ detail_value | append: block.settings.suffix | escape }}</dd>
                   </div>
                 {%- elsif request.design_mode -%}
                   <div class="melt-details__row melt-details__row--empty" {{ block.shopify_attributes }}>
@@ -276,6 +282,12 @@
           "id": "value",
           "label": "t:sections.melt_product_details.blocks.detail.settings.value.label",
           "info": "t:sections.melt_product_details.blocks.detail.settings.value.info"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Unit after the value",
+          "info": "Added after the value, e.g. \"g\" or \" hours\". Keep the unit here rather than in the value, so the row hides when the value is empty."
         }
       ]
     }

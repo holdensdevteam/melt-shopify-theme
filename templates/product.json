@@ -246,14 +246,16 @@
           "type": "detail",
           "settings": {
             "label": "Weight",
-            "value": "{{ product.metafields.custom.weight.value.weight_g.value }}g"
+            "value": "{{ product.metafields.custom.weight.value.weight_g.value }}",
+            "suffix": "g"
           }
         },
         "detail_fCgWmx": {
           "type": "detail",
           "settings": {
             "label": "Burn time",
-            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours"
+            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }}",
+            "suffix": " hours"
           }
         },
         "detail_Rhxjrq": {
@@ -422,8 +424,9 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "angel",
+        "collection_source": "product_fragrance",
         "products_to_show": 8,
-        "heading_eyebrow": "Angel",
+        "heading_eyebrow": "[fragrance]",
         "heading_eyebrow_color": "",
         "title": "Also comes as",
         "heading_size": "h1",
@@ -434,7 +437,7 @@
         "heading_margin_top": 0,
         "heading_margin_bottom": 40,
         "heading_margin_sides": 0,
-        "cta_label": "Shop all Angel",
+        "cta_label": "Shop all [fragrance]",
         "cta_link": "shopify://collections/angel",
         "cta_arrow": true,
         "cta_color_scheme": "",
@@ -515,10 +518,11 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "floral",
+        "collection_source": "product_scent_family",
         "products_to_show": 8,
-        "heading_eyebrow": "More in floral",
+        "heading_eyebrow": "More in [family]",
         "heading_eyebrow_color": "",
-        "title": "If you like Angel",
+        "title": "If you like [fragrance]",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
@@ -527,7 +531,7 @@
         "heading_margin_top": 0,
         "heading_margin_bottom": 40,
         "heading_margin_sides": 0,
-        "cta_label": "Shop all floral",
+        "cta_label": "Shop all [family]",
         "cta_link": "shopify://collections/floral",
         "cta_arrow": true,
         "cta_color_scheme": "scheme-1",

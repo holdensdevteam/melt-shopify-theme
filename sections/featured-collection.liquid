@@ -85,12 +85,123 @@
 
 {%- endstyle -%}
 
+{%- comment -%}
+  Collection source. "Collection selected above" uses the picker as normal. On product pages the
+  section can follow the product instead:
+    product_fragrance     - the product's fragrance collection ("Also comes as")
+    product_scent_family  - the fragrance's scent family collection ("If you like"),
+                            one product per fragrance, leaving out the product's own fragrance,
+                            preferring the same format as the product being viewed
+  Either way the product being viewed is never shown. In the eyebrow, heading and link label,
+  [fragrance] and [family] are replaced with the product's fragrance and scent family names.
+  If a product has no fragrance (e.g. holders), a section following the product is not shown.
+{%- endcomment -%}
 {%- liquid
-  assign products_to_display = section.settings.collection.all_products_count
+  assign fc_collection = section.settings.collection
+  assign fc_source = section.settings.collection_source | default: 'manual'
+  assign fc_current_id = 0
+  assign fc_fragrance = nil
+  if product
+    assign fc_current_id = product.id
+    assign fc_fragrance = product.metafields.custom.fragrance.value
+  endif
+  assign fc_fragrance_name = fc_fragrance.fragrance.value | default: ''
+  assign fc_fragrance_handle = fc_fragrance.system.handle | default: ''
 
-  if section.settings.collection.all_products_count > section.settings.products_to_show
-    assign products_to_display = section.settings.products_to_show
+  assign fc_hide = false
+  if fc_source == 'product_fragrance' and product
+    if fc_fragrance_handle != blank
+      assign fc_collection = collections[fc_fragrance_handle]
+    else
+      assign fc_hide = true
+    endif
+  elsif fc_source == 'product_scent_family' and product
+    assign fc_family_handle = fc_fragrance.scent_type.value.system.handle | default: ''
+    if fc_family_handle != blank
+      assign fc_collection = collections[fc_family_handle]
+    else
+      assign fc_hide = true
+    endif
+  endif
+  if fc_collection == blank or fc_collection.products_count == 0
+    if fc_source != 'manual' and product
+      assign fc_hide = true
+    endif
+  endif
+  assign fc_family_name = ''
+  if fc_source == 'product_scent_family'
+    assign fc_family_name = fc_collection.title
+  endif
+
+  assign fc_eyebrow = section.settings.heading_eyebrow | replace: '[fragrance]', fc_fragrance_name | replace: '[family]', fc_family_name
+  assign fc_title = section.settings.title | replace: '[fragrance]', fc_fragrance_name | replace: '[family]', fc_family_name
+  assign fc_cta_label = section.settings.cta_label | replace: '[fragrance]', fc_fragrance_name | replace: '[family]', fc_family_name
+  assign fc_cta_link = section.settings.cta_link
+  if fc_source != 'manual' and product and fc_collection != blank
+    assign fc_cta_link = fc_collection.url
+  endif
+
+  # Pick the products first, so the slider counts and "View all" match what is shown.
+  # Product IDs are kept in a comma-wrapped string (",123,456,") so the render loop can test membership.
+  assign fc_ids = ','
+  assign fc_seen = ','
+  assign products_to_display = 0
+  assign fc_eligible = 0
+  if fc_source == 'product_scent_family'
+    # One product per other fragrance in the family. Pass 1 takes each fragrance's product in the
+    # same format as the page (Short & Fat -> other Short & Fats); pass 2 fills in any fragrance
+    # that has no product in that format with its first product instead.
+    assign fc_format = ''
+    if product
+      assign fc_format = product.metafields.custom.short_title.value.system.handle | default: ''
+    endif
+    for fc_pass in (1..2)
+      if fc_pass == 1 and fc_format == blank
+        continue
+      endif
+      for item in fc_collection.products limit: 50
+        if item.id == fc_current_id
+          continue
+        endif
+        assign item_fragrance = item.metafields.custom.fragrance.value.system.handle | default: item.handle
+        if item_fragrance == fc_fragrance_handle
+          continue
+        endif
+        if fc_pass == 1
+          assign item_format = item.metafields.custom.short_title.value.system.handle | default: ''
+          if item_format != fc_format
+            continue
+          endif
+        endif
+        assign seen_key = ',' | append: item_fragrance | append: ','
+        if fc_seen contains seen_key
+          continue
+        endif
+        assign fc_seen = fc_seen | append: item_fragrance | append: ','
+        assign fc_eligible = fc_eligible | plus: 1
+        if products_to_display < section.settings.products_to_show
+          assign fc_ids = fc_ids | append: item.id | append: ','
+          assign products_to_display = products_to_display | plus: 1
+        endif
+      endfor
+    endfor
+  else
+    for item in fc_collection.products limit: 50
+      if item.id == fc_current_id
+        continue
+      endif
+      assign fc_eligible = fc_eligible | plus: 1
+      if products_to_display < section.settings.products_to_show
+        assign fc_ids = fc_ids | append: item.id | append: ','
+        assign products_to_display = products_to_display | plus: 1
+      endif
+    endfor
+  endif
+  if fc_eligible > products_to_display
     assign more_in_collection = true
+  endif
+  if products_to_display == 0 and fc_source != 'manual' and product
+    assign fc_hide = true
   endif
 
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
@@ -123,6 +234,7 @@
   endif
 -%}
 
+{%- unless fc_hide -%}
 <div
   id="FeaturedCollection-{{ section.id }}"
   class="featured-collection-section melt-cards featured-collection-section--heading-{{ section.settings.heading_alignment }} melt-section-bg melt-cards--media-radius melt-cards--name-{{ section.settings.card_name_size }}{% if section.settings.card_style != 'theme' and section.settings.card_border_width > 0 %} melt-cards--outline{% endif %}{% if section.settings.price_rating_row %} melt-cards--price-row{% endif %} color-{{ section.settings.color_scheme }} isolate gradient"
@@ -136,22 +248,22 @@
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       <div class="featured-collection-section__heading">
       {%- render 'melt-eyebrow',
-        text: section.settings.heading_eyebrow,
+        text: fc_eyebrow,
         color: section.settings.heading_eyebrow_color,
         class: 'featured-collection-section__eyebrow'
       -%}
-      {%- if section.settings.title != blank -%}
+      {%- if fc_title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
+          {{ fc_title }}
         </h2>
       {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
-        and section.settings.collection.description != empty
+        and fc_collection.description != empty
       -%}
         <div class="collection__description {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {%- if section.settings.show_description -%}
-            {{ section.settings.collection.description }}
+            {{ fc_collection.description }}
           {%- else -%}
             {{ section.settings.description -}}
           {%- endif %}
@@ -159,8 +271,8 @@
       {%- endif -%}
       </div>
       {%- render 'melt-heading-link',
-        label: section.settings.cta_label,
-        url: section.settings.cta_link,
+        label: fc_cta_label,
+        url: fc_cta_link,
         color_scheme: section.settings.cta_color_scheme,
         show_arrow: section.settings.cta_arrow
       -%}
@@ -170,29 +282,34 @@
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
+        class="grid product-grid contains-card contains-card--product{% if card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if fc_collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
         {% assign skip_card_product_styles = false %}
 
-        {%- if section.settings.collection.products.size > 0 -%}
+        {%- if products_to_display > 0 -%}
           {% assign lazy_load = false %}
-          {% paginate section.settings.collection.products by section.settings.products_to_show %}
-            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-              {% if lazy_load == false and forloop.index > max_columns_to_show %}
+          {% assign fc_index = 0 %}
+            {%- for item in fc_collection.products limit: 50 -%}
+              {%- assign item_key = ',' | append: item.id | append: ',' -%}
+              {%- unless fc_ids contains item_key -%}
+                {%- continue -%}
+              {%- endunless -%}
+              {%- assign fc_index = fc_index | plus: 1 -%}
+              {% if lazy_load == false and fc_index > max_columns_to_show %}
                 {% assign lazy_load = true %}
               {% endif %}
               <li
-                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                id="Slide-{{ section.id }}-{{ fc_index }}"
                 class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
-                  style="--animation-order: {{ forloop.index }};"
+                  style="--animation-order: {{ fc_index }};"
                 {% endif %}
               >
                 {% render 'card-product',
-                  card_product: product,
+                  card_product: item,
                   media_aspect_ratio: section.settings.image_ratio,
                   image_shape: section.settings.image_shape,
                   lazy_load: lazy_load,
@@ -212,7 +329,6 @@
               </li>
               {%- assign skip_card_product_styles = true -%}
             {%- endfor -%}
-          {% endpaginate %}
         {%- else -%}
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li
@@ -282,9 +398,9 @@
     {%- if section.settings.show_view_all and more_in_collection -%}
       <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <a
-          href="{{ section.settings.collection.url }}"
+          href="{{ fc_collection.url }}"
           class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
+          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: fc_collection.title | escape }}"
         >
           {{ 'sections.featured_collection.view_all' | t }}
         </a>
@@ -295,6 +411,8 @@
     {%- endif -%}
   </div>
 </div>
+
+{%- endunless -%}
 
 {% schema %}
 {
@@ -312,6 +430,18 @@
       "type": "collection",
       "id": "collection",
       "label": "t:sections.featured-collection.settings.collection.label"
+    },
+    {
+      "type": "select",
+      "id": "collection_source",
+      "label": "Collection source",
+      "options": [
+        { "value": "manual", "label": "Collection selected above" },
+        { "value": "product_fragrance", "label": "Product's fragrance" },
+        { "value": "product_scent_family", "label": "Product's scent family" }
+      ],
+      "default": "manual",
+      "info": "Product pages only. The product being viewed is left out. Use [fragrance] or [family] in the eyebrow, heading and link label."
     },
     {
       "type": "range",
