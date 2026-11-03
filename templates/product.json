@@ -164,7 +164,7 @@
         "usp_6RgWwf": {
           "type": "usp",
           "settings": {
-            "text": "Next working day delivery. Order by 1pm",
+            "text": "Making candles since 1999",
             "icon": "melt_established",
             "image": "shopify://shop_images/established-icon.svg"
           }
@@ -615,7 +615,7 @@
         "link_url": "shopify://pages/contact",
         "link_arrow": true,
         "link_color_scheme": "",
-        "source": "manual",
+        "source": "automatic",
         "item_color_scheme": "scheme-2",
         "structured_data": true,
         "color_scheme": "",

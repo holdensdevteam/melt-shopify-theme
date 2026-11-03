@@ -32,7 +32,12 @@
       "settings": {
         "show_collection_description": true,
         "show_collection_image": true,
-        "color_scheme": "scheme-2"
+        "color_scheme": "scheme-2",
+        "layout": "split",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     },
     "product-grid": {
@@ -100,6 +105,7 @@
         "link_url": "",
         "link_arrow": true,
         "link_color_scheme": "",
+        "source": "automatic",
         "item_color_scheme": "",
         "structured_data": true,
         "color_scheme": "",

@@ -154,7 +154,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop autumn",
-            "button_link": "shopify://collections/autumn",
+            "button_link": "shopify://collections/autumn-collection",
             "button_style_secondary": false
           }
         }
@@ -242,7 +242,7 @@
         "featured_collection_ryhnRJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "christmas",
+            "collection": "christmas-candles",
             "subtitle": "From 10 November",
             "tags": "",
             "button_label": "",
@@ -268,7 +268,7 @@
         "featured_collection_ky33Br": {
           "type": "featured_collection",
           "settings": {
-            "collection": "mothers-day-1",
+            "collection": "mothers-day",
             "subtitle": "From 10 March",
             "tags": "",
             "button_label": "",
