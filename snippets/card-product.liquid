@@ -19,7 +19,7 @@
   Melt additions (all optional — other sections don't pass them and render as Dawn did):
   - card_style_override: {String} 'standard' or 'card', overriding Theme settings → Product cards
   - card_color_scheme_override: {String} Colour scheme for the card, overriding the theme setting
-  - show_type_eyebrow: {Boolean} Show the product type as an eyebrow above the name
+  - show_type_eyebrow: {Boolean} Show an eyebrow above the name (see snippets/melt-card-label.liquid)
   - eyebrow_color: {Color} Eyebrow colour (blank uses the default eyebrow colour)
   - show_scent_notes: {Boolean} Show up to 3 scent notes (custom.scent_notes metafield) under the name
   - name_source: {String} 'title' (default) or 'fragrance_short' — Fragrance + Short Title metafields,
@@ -59,14 +59,26 @@
     endif
   -%}
 
+  {%- comment -%}
+    Melt: name and eyebrow come from snippets/melt-card-label.liquid, which mirrors the product
+    page for fragrance products (Short Title eyebrow, Fragrance + Product type name).
+  {%- endcomment -%}
   {%- capture card_name -%}
-    {%- render 'melt-product-name', product: card_product, source: name_source -%}
+    {%- render 'melt-card-label',
+      part: 'name',
+      product: card_product,
+      show_eyebrow: show_type_eyebrow,
+      name_source: name_source
+    -%}
   {%- endcapture -%}
 
   {%- capture card_eyebrow -%}
-    {%- if show_type_eyebrow and card_product.type != blank -%}
-      {%- render 'melt-eyebrow', text: card_product.type, color: eyebrow_color, class: 'card__eyebrow' -%}
-    {%- endif -%}
+    {%- render 'melt-card-label',
+      part: 'eyebrow',
+      product: card_product,
+      show_eyebrow: show_type_eyebrow,
+      eyebrow_color: eyebrow_color
+    -%}
   {%- endcapture -%}
 
 
