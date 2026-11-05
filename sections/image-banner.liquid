@@ -173,18 +173,60 @@
             >
               {%- if slide.settings.media_type == 'video' and slide.settings.video != blank -%}
                 {%- comment -%} Decorative background video: silent, looping, no controls — the pause button below stops it. {%- endcomment -%}
+                {%- comment -%}
+                  Optional Mobile video for screens up to 599px. The desktop source is listed first with
+                  media="(min-width: 600px)" so the browser loads only the file for its screen size; older
+                  browsers that ignore media take the desktop video. Each video uses its best MP4 rendition
+                  up to 1080px (desktop) or 1280px (mobile, usually portrait).
+                {%- endcomment -%}
+                {%- liquid
+                  assign desktop_video = slide.settings.video
+                  assign mobile_video = slide.settings.video_mobile
+                  assign desktop_src = nil
+                  assign desktop_h = 0
+                  for source in desktop_video.sources
+                    if source.format == 'mp4' and source.height <= 1080 and source.height > desktop_h
+                      assign desktop_src = source
+                      assign desktop_h = source.height
+                    endif
+                  endfor
+                  assign mobile_src = nil
+                  assign mobile_h = 0
+                  if mobile_video != blank
+                    for source in mobile_video.sources
+                      if source.format == 'mp4' and source.height <= 1280 and source.height > mobile_h
+                        assign mobile_src = source
+                        assign mobile_h = source.height
+                      endif
+                    endfor
+                  endif
+                -%}
                 <div class="banner-media__video" aria-hidden="true">
-                  {{
-                    slide.settings.video
-                    | video_tag:
-                      autoplay: true,
-                      loop: true,
-                      muted: true,
-                      playsinline: true,
-                      controls: false,
-                      preload: 'metadata',
-                      image_size: '1920x'
-                  }}
+                  {%- if mobile_src and desktop_src -%}
+                    <video
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      preload="metadata"
+                      poster="{{ desktop_video.preview_image | image_url: width: 1920 }}"
+                    >
+                      <source media="(min-width: 600px)" src="{{ desktop_src.url }}" type="{{ desktop_src.mime_type }}">
+                      <source src="{{ mobile_src.url }}" type="{{ mobile_src.mime_type }}">
+                    </video>
+                  {%- else -%}
+                    {{
+                      desktop_video
+                      | video_tag:
+                        autoplay: true,
+                        loop: true,
+                        muted: true,
+                        playsinline: true,
+                        controls: false,
+                        preload: 'metadata',
+                        image_size: '1920x'
+                    }}
+                  {%- endif -%}
                 </div>
               {%- elsif slide.settings.media_type != 'video' and slide.settings.image != blank -%}
                 {%- liquid
@@ -1014,6 +1056,13 @@
           "id": "video",
           "label": "t:sections.image-banner.blocks.slide.settings.video.label",
           "info": "t:sections.image-banner.blocks.slide.settings.video.info",
+          "visible_if": "{{ block.settings.media_type == 'video' }}"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "t:sections.image-banner.blocks.slide.settings.video_mobile.label",
+          "info": "t:sections.image-banner.blocks.slide.settings.video_mobile.info",
           "visible_if": "{{ block.settings.media_type == 'video' }}"
         }
       ]

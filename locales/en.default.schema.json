@@ -2122,6 +2122,10 @@
             "video": {
               "label": "Video",
               "info": "Plays silently on a loop and crops to fill the banner. Keep it short — under 30 seconds and 10MB — with nothing important near the edges."
+            },
+            "video_mobile": {
+              "label": "Mobile video",
+              "info": "Optional. Plays instead of the video above on screens narrower than 600px, so phones download only this file. Portrait (9:16 or 4:5), under 30 seconds and 10MB."
             }
           }
         },

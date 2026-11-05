@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "video": "shopify://files/videos/12713779_1920_1080_24fps-shopify.mp4"
+            "video": "shopify://files/videos/16X9_Melt_Homepage_Video_V02-1.mp4"
           }
         },
         "heading": {
@@ -61,7 +61,7 @@
       ],
       "settings": {
         "image": "shopify://shop_images/Home-hero.jpg",
-        "image_overlay_opacity": 0,
+        "image_overlay_opacity": 50,
         "image_height": "adapt",
         "image_behavior": "none",
         "slider_autoplay": false,
@@ -446,6 +446,7 @@
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "best-sellers",
+        "collection_source": "manual",
         "products_to_show": 8,
         "heading_eyebrow": "",
         "heading_eyebrow_color": "",
