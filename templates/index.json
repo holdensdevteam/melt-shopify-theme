@@ -16,7 +16,8 @@
           "type": "slide",
           "settings": {
             "media_type": "video",
-            "video": "shopify://files/videos/16X9_Melt_Homepage_Video_V02-1.mp4"
+            "video": "shopify://files/videos/16X9_Melt_Homepage_Video_V02-1.mp4",
+            "video_mobile": "shopify://files/videos/9X16_Melt_Homepage_Video_V02-1.mp4"
           }
         },
         "heading": {
