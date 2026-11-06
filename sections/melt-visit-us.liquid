@@ -22,22 +22,38 @@
 {%- endstyle -%}
 
 <style>
-  .melt-visit__inner { display: grid; gap: 3.2rem; align-items: stretch; }
-  @media screen and (min-width: 750px) { .melt-visit__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 4.8rem; } }
+  /* Details panel + full-bleed map (map first on mobile), per the wireframe */
+  .melt-visit__inner { display: grid; align-items: stretch; }
+  .melt-visit__content { padding: 3.2rem 2rem 4rem; }
+  .melt-visit__map { order: -1; min-height: 22rem; }
+  @media screen and (min-width: 750px) {
+    .melt-visit__inner { grid-template-columns: minmax(0, 57fr) minmax(0, 43fr); }
+    .melt-visit__content { padding: 6.4rem 5rem 6.4rem max(5rem, calc((100vw - var(--page-width, 120rem)) / 2 + 5rem)); }
+    .melt-visit__map { order: 0; min-height: 56rem; }
+  }
   .melt-visit__eyebrow { margin: 0 0 1.2rem; }
   .melt-visit__heading { margin: 0 0 2.4rem; }
   .melt-visit__group { margin-bottom: 2.4rem; }
   .melt-visit__label { margin: 0 0 0.6rem; font-size: 1.3rem; letter-spacing: 0.1rem; text-transform: uppercase; }
   .melt-visit__group .rte p, .melt-visit__address { margin: 0; line-height: 1.7; font-style: normal; }
-  .melt-visit__map { position: relative; min-height: 32rem; border-radius: var(--media-radius, 0); overflow: hidden; background: rgba(var(--color-foreground), 0.04); display: flex; align-items: center; justify-content: center; text-align: center; }
+  .melt-visit__map { position: relative; border-radius: 0; overflow: hidden; background: rgba(var(--color-foreground), 0.04); display: flex; align-items: center; justify-content: center; text-align: center; }
   .melt-visit__map img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .melt-visit__map-inner { position: relative; padding: 2.4rem; }
   .melt-visit__map-note { margin: 1.2rem 0 0; font-size: 1.3rem; opacity: 0.75; }
+  .melt-visit__hours { margin: 0 0 1.2rem; }
+  .melt-visit__hours-row { display: flex; justify-content: space-between; gap: 1.6rem; padding: 0.8rem 0; border-bottom: 1px solid rgba(var(--color-foreground), 0.15); }
+  .melt-visit__hours dt { font-weight: 600; }
+  .melt-visit__hours dd { margin: 0; }
+  .melt-visit__status { display: flex; align-items: center; gap: 0.8rem; margin: 0; font-size: 1.4rem; }
+  .melt-visit__status::before { content: ''; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: currentColor; opacity: 0.4; }
+  .melt-visit__status.is-open::before { background: #3a8a4a; opacity: 1; }
+  .melt-visit__note { margin: 0.6rem 0 0; font-size: 1.4rem; opacity: 0.8; }
+  .melt-visit__buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
   .melt-visit__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 </style>
 
 <div class="melt-visit color-{{ s.color_scheme }} gradient">
-  <div class="page-width melt-visit__inner section-{{ section.id }}-padding">
+  <div class="melt-visit__inner section-{{ section.id }}-padding">
     <div class="melt-visit__content">
       {%- if s.eyebrow != blank -%}
         <p class="melt-visit__eyebrow caption-with-letter-spacing">{{ s.eyebrow | escape }}</p>
@@ -46,33 +62,44 @@
         <h2 class="melt-visit__heading {{ s.heading_size }}">{{ s.heading }}</h2>
       {%- endif -%}
 
-      {%- if s.hours != blank -%}
+      {%- if section.blocks.size > 0 -%}
         <div class="melt-visit__group">
-          <h3 class="melt-visit__label">{{ s.hours_label | escape }}</h3>
-          <div class="rte">{{ s.hours }}</div>
+          {%- if s.hours_label != blank -%}<h3 class="melt-visit__label">{{ s.hours_label | escape }}</h3>{%- endif -%}
+          <dl class="melt-visit__hours">
+            {%- for block in section.blocks -%}
+              <div class="melt-visit__hours-row" {{ block.shopify_attributes }}>
+                <dt>{{ block.settings.days | escape }}</dt>
+                <dd>{{ block.settings.times | escape }}</dd>
+              </div>
+            {%- endfor -%}
+          </dl>
+          {%- if s.show_open_status -%}
+            <p class="melt-visit__status" data-open-status data-hours="{{ s.opening_hours_schema | escape }}" hidden></p>
+          {%- endif -%}
         </div>
       {%- endif -%}
 
       <div class="melt-visit__group">
-        <h3 class="melt-visit__label">{{ s.address_label | escape }}</h3>
+        {%- if s.address_label != blank -%}<h3 class="melt-visit__label">{{ s.address_label | escape }}</h3>{%- endif -%}
         <address class="melt-visit__address">
-          {{- s.business_name | escape }}<br>
-          {{ s.street_address | escape }}<br>
-          {{ s.locality | escape }}{% if s.region != blank %}, {{ s.region | escape }}{% endif %}<br>
-          {{ s.postcode | escape -}}
+          {{- s.business_name | escape }}, {{ s.street_address | escape }}, {{ s.locality | escape }}{% if s.region != blank %}, {{ s.region | escape }}{% endif %} {{ s.postcode | escape -}}
         </address>
+        {%- if s.address_note != blank or s.telephone != blank -%}
+          <p class="melt-visit__note">
+            {{- s.address_note | escape -}}
+            {%- if s.telephone != blank %} {{ s.phone_label | escape }} <a href="tel:{{ s.telephone | remove: ' ' }}" class="link">{{ s.telephone | escape }}</a>{%- endif -%}
+          </p>
+        {%- endif -%}
       </div>
 
-      {%- if s.telephone != blank -%}
-        <div class="melt-visit__group">
-          <h3 class="melt-visit__label">{{ s.phone_label | escape }}</h3>
-          <p class="melt-visit__address"><a href="tel:{{ s.telephone | remove: ' ' }}" class="link">{{ s.telephone | escape }}</a></p>
-        </div>
-      {%- endif -%}
-
-      {%- if s.directions_label != blank -%}
-        <a href="{{ directions_href | strip }}" class="button" target="_blank" rel="noopener">{{ s.directions_label | escape }}</a>
-      {%- endif -%}
+      <div class="melt-visit__buttons">
+        {%- if s.directions_label != blank -%}
+          <a href="{{ directions_href | strip }}" class="button" target="_blank" rel="noopener">{{ s.directions_label | escape }}</a>
+        {%- endif -%}
+        {%- if s.button_2_label != blank and s.button_2_link != blank -%}
+          <a href="{{ s.button_2_link }}" class="button button--secondary">{{ s.button_2_label | escape }}</a>
+        {%- endif -%}
+      </div>
     </div>
 
     <div class="melt-visit__map" data-map-src="https://www.google.com/maps?q={{ map_query | url_encode }}&output=embed">
@@ -90,6 +117,40 @@
 <script>
   (function () {
     var root = document.currentScript.previousElementSibling;
+    var status = root.querySelector('[data-open-status]');
+    if (status) {
+      var days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+      var spec = {};
+      status.getAttribute('data-hours').split(',').forEach(function (part) {
+        var m = part.trim().match(/^(\w\w)(?:-(\w\w))?\s+(\d\d):(\d\d)-(\d\d):(\d\d)$/);
+        if (!m) return;
+        var a = days.indexOf(m[1]), b = m[2] ? days.indexOf(m[2]) : a;
+        for (var d = a; d <= b; d++) spec[d] = [m[3] * 60 + +m[4], m[5] * 60 + +m[6]];
+      });
+      var fmt = function (mins) {
+        var h = Math.floor(mins / 60), mm = mins % 60, h12 = h % 12 || 12;
+        if (h === 12 && mm === 0) return 'noon';
+        return h12 + (mm ? '.' + String(mm).padStart(2, '0') : '') + (h < 12 ? 'am' : 'pm');
+      };
+      var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+      var get = function (t) { return (parts.find(function (p) { return p.type === t; }) || {}).value; };
+      var today = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(get('weekday'));
+      var now = +get('hour') * 60 + +get('minute');
+      var names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      var text = '';
+      if (spec[today] && now >= spec[today][0] && now < spec[today][1]) {
+        text = {{ s.open_now_text | json }}.replace('[time]', fmt(spec[today][1]));
+        status.classList.add('is-open');
+      } else if (spec[today] && now < spec[today][0]) {
+        text = {{ s.opens_today_text | json }}.replace('[time]', fmt(spec[today][0]));
+      } else {
+        for (var i = 1; i <= 7; i++) {
+          var d = (today + i) % 7;
+          if (spec[d]) { text = {{ s.opens_later_text | json }}.replace('[day]', i === 1 ? 'tomorrow' : names[d]).replace('[time]', fmt(spec[d][0])); break; }
+        }
+      }
+      if (text) { status.textContent = text; status.hidden = false; }
+    }
     var map = root.querySelector('[data-map-src]');
     var btn = root.querySelector('[data-map-load]');
     if (!map || !btn) return;
@@ -156,24 +217,30 @@
       "options": [ { "value": "h2", "label": "Small" }, { "value": "h1", "label": "Medium" }, { "value": "h0", "label": "Large" } ]
     },
     { "type": "header", "content": "Opening hours" },
-    { "type": "text", "id": "hours_label", "label": "Label", "default": "Opening hours" },
-    { "type": "richtext", "id": "hours", "label": "Hours", "default": "<p>Monday to Saturday, 10am to 5pm</p><p>Sunday, noon to 4.30pm</p>" },
+    { "type": "text", "id": "hours_label", "label": "Label", "info": "Optional heading above the hours. Add each row of hours as a block." },
+    { "type": "checkbox", "id": "show_open_status", "label": "Show 'Open now' status", "default": true, "info": "Worked out in UK time from the hours for search engines below." },
+    { "type": "text", "id": "open_now_text", "label": "Open now text", "default": "Open now – until [time] today" },
+    { "type": "text", "id": "opens_today_text", "label": "Opens later today text", "default": "Closed – opens at [time] today" },
+    { "type": "text", "id": "opens_later_text", "label": "Closed text", "default": "Closed – opens [day] at [time]" },
     {
       "type": "text", "id": "opening_hours_schema", "label": "Hours for search engines",
       "default": "Mo-Sa 10:00-17:00, Su 12:00-16:30",
       "info": "Same hours in schema.org format, separated by commas. Keep in step with the hours above."
     },
     { "type": "header", "content": "Address" },
-    { "type": "text", "id": "address_label", "label": "Label", "default": "Find us" },
+    { "type": "text", "id": "address_label", "label": "Label" },
     { "type": "text", "id": "business_name", "label": "Business name", "default": "Melt" },
     { "type": "text", "id": "street_address", "label": "Street", "default": "Backridge Farm, Twitter Lane" },
     { "type": "text", "id": "locality", "label": "Town", "default": "Waddington" },
     { "type": "text", "id": "region", "label": "County", "default": "Lancashire" },
     { "type": "text", "id": "postcode", "label": "Postcode", "default": "BB7 3LQ" },
-    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Call the shop" },
+    { "type": "text", "id": "address_note", "label": "Note under the address", "default": "Parking directly outside the entrance." },
+    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Shop" },
     { "type": "text", "id": "telephone", "label": "Phone", "default": "01200 443412" },
     { "type": "header", "content": "Directions and map" },
     { "type": "text", "id": "directions_label", "label": "Directions button label", "default": "Get directions" },
+    { "type": "text", "id": "button_2_label", "label": "Second button label", "default": "Contact us" },
+    { "type": "url", "id": "button_2_link", "label": "Second button link" },
     { "type": "url", "id": "directions_url", "label": "Directions link", "info": "Optional. Leave empty to link Google Maps directions to the address." },
     { "type": "text", "id": "map_query", "label": "Map search", "info": "What Google Maps searches for. Leave empty to use the name and address." },
     { "type": "image_picker", "id": "map_image", "label": "Image behind the map button", "info": "Shown until the visitor loads the map. Also used as the image in structured data." },
@@ -193,6 +260,24 @@
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
   ],
-  "presets": [ { "name": "Visit us" } ]
+  "blocks": [
+    {
+      "type": "hours",
+      "name": "Opening hours row",
+      "settings": [
+        { "type": "text", "id": "days", "label": "Days", "default": "Monday to Saturday" },
+        { "type": "text", "id": "times", "label": "Times", "default": "10am – 5pm" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Visit us",
+      "blocks": [
+        { "type": "hours", "settings": { "days": "Monday to Saturday", "times": "10am – 5pm" } },
+        { "type": "hours", "settings": { "days": "Sunday", "times": "12pm – 4.30pm" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

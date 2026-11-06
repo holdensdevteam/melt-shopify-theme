@@ -37,7 +37,7 @@
         "image"
       ],
       "settings": {
-        "layout": "split",
+        "layout": "stacked",
         "media_position": "right",
         "text_alignment": "left",
         "padding_top": 24,
@@ -47,13 +47,6 @@
     "intro": {
       "type": "rich-text",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "In the heart of the Ribble Valley",
-            "heading_size": "h1"
-          }
-        },
         "text": {
           "type": "text",
           "settings": {
@@ -62,7 +55,6 @@
         }
       },
       "block_order": [
-        "heading",
         "text"
       ],
       "settings": {
@@ -107,7 +99,7 @@
         "image_height": "medium",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "text_style": "body",
         "button_style": "secondary",
         "desktop_content_position": "middle",
@@ -119,9 +111,254 @@
     },
     "visit": {
       "type": "melt-visit-us",
+      "blocks": {
+        "mon_sat": {
+          "type": "hours",
+          "settings": {
+            "days": "Monday to Saturday",
+            "times": "10am – 5pm"
+          }
+        },
+        "sun": {
+          "type": "hours",
+          "settings": {
+            "days": "Sunday",
+            "times": "12pm – 4.30pm"
+          }
+        }
+      },
+      "block_order": [
+        "mon_sat",
+        "sun"
+      ],
       "settings": {
-        "heading": "Visit our shop",
-        "map_image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg"
+        "eyebrow": "Come and see us",
+        "heading": "Open six and a half days a week",
+        "heading_size": "h2",
+        "button_2_label": "Contact us",
+        "button_2_link": "shopify://pages/contact",
+        "map_image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "statement": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Each one is hand-poured using traditional methods and fine fragrance blends, crafted to burn slowly and fill your space with a rich, lasting scent.",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 24
+      }
+    },
+    "gallery": {
+      "type": "melt-columns",
+      "blocks": {
+        "g1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "i1": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/melt-chandlery-festive-image.jpg",
+                "ratio": "portrait"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "i1"
+          ]
+        },
+        "g2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "i2": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/festive-books-featured-image.jpg",
+                "ratio": "portrait"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "i2"
+          ]
+        },
+        "g3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "i3": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
+                "ratio": "portrait"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "i3"
+          ]
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 12,
+        "padding_bottom": 36
+      }
+    },
+    "keep_reading": {
+      "type": "melt-columns",
+      "blocks": {
+        "k1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im1": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/our-story-hero.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/our-story\">Our Story</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Twenty-five years of it, most of them down this lane.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im1",
+            "h1",
+            "t1"
+          ]
+        },
+        "k2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im2": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/candle-manufacturing.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/made-in-lancashire\">Made in Lancashire</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Why 89% of what goes into a Melt candle comes from within the county.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im2",
+            "h2",
+            "t2"
+          ]
+        },
+        "k3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im3": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/what-we-do.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Twenty-four fragrances, in every format.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im3",
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "eyebrow": "Keep reading",
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     }
   },
@@ -129,6 +366,9 @@
     "banner",
     "intro",
     "rooms",
-    "visit"
+    "statement",
+    "gallery",
+    "visit",
+    "keep_reading"
   ]
 }
