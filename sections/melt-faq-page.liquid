@@ -1,0 +1,140 @@
+{%- comment -%}
+  Melt: FAQ page (Wireframes — FAQ + 404 · FAQ).
+  Title + intro in a 760px measure, then grouped questions with a sticky "On this page" rail on
+  desktop and jump-link chips on mobile. Blocks, in order: "Group" starts a new group, "Question"
+  belongs to the group above it. The first question is open by default. Outputs FAQPage
+  structured data for every question — keep product and collection FAQs different from these
+  so they don't compete for the same result.
+{%- endcomment -%}
+{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign groups = section.blocks | where: 'type', 'group'
+  assign questions = section.blocks | where: 'type', 'question'
+  assign first_question_id = questions.first.id
+-%}
+
+<div class="melt-faqpage color-{{ section.settings.color_scheme }} gradient">
+  <header class="page-width melt-faqpage__header">
+    {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-faqpage__breadcrumbs' -%}
+    <div class="melt-faqpage__measure">
+      <h1 class="h1 melt-faqpage__title">{{ section.settings.heading | default: page.title }}</h1>
+      {%- if section.settings.intro != blank -%}<div class="melt-faqpage__intro">{{ section.settings.intro }}</div>{%- endif -%}
+    </div>
+  </header>
+
+  <div class="page-width melt-faqpage__body">
+    {%- if groups.size > 0 -%}
+      <nav class="melt-faqpage__rail" aria-label="{{ section.settings.rail_label | escape }}">
+        <p class="melt-faqpage__rail-title">{{ section.settings.rail_label | escape }}</p>
+        <ul class="list-unstyled" role="list">
+          {%- for g in groups -%}
+            <li><a href="#faq-{{ g.settings.title | handleize }}">{{ g.settings.title | escape }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="melt-faqpage__questions">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'group' -%}
+            {%- unless forloop.first -%}</div>{%- endunless -%}
+            <div class="melt-faqpage__group" {{ block.shopify_attributes }}>
+              <h2 class="h3 melt-faqpage__group-title" id="faq-{{ block.settings.title | handleize }}">{{ block.settings.title | escape }}</h2>
+          {%- when 'question' -%}
+            {%- if forloop.first -%}<div class="melt-faqpage__group">{%- endif -%}
+            <details class="melt-faqpage__item" {{ block.shopify_attributes }}{% if block.id == first_question_id and section.settings.open_first %} open{% endif %}>
+              <summary class="melt-faqpage__question">
+                <span>{{ block.settings.question | escape }}</span>
+                <span class="melt-faqpage__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="melt-faqpage__answer rte">{{ block.settings.answer }}</div>
+            </details>
+        {%- endcase -%}
+        {%- if forloop.last -%}</div>{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.structured_data and questions.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for q in questions -%}
+          {
+            "@type": "Question",
+            "name": {{ q.settings.question | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ q.settings.answer | strip_html | strip | json }} }
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% stylesheet %}
+  .melt-faqpage__header { padding-top: 3.2rem; padding-bottom: 2.4rem; }
+  @media screen and (min-width: 990px) { .melt-faqpage__header { padding-top: 6.4rem; padding-bottom: 4rem; } }
+  .melt-faqpage__breadcrumbs { margin-bottom: 1.6rem; }
+  .melt-faqpage__measure { max-width: 76rem; }
+  .melt-faqpage__title { margin: 0 0 1.2rem; }
+  .melt-faqpage__intro p { margin: 0; font-size: 1.7rem; }
+  .melt-faqpage__body { display: grid; gap: 2.4rem; padding-bottom: 6.4rem; }
+  @media screen and (min-width: 990px) { .melt-faqpage__body { grid-template-columns: 24rem minmax(0, 1fr); gap: 6.4rem; padding-bottom: 8rem; } }
+  .melt-faqpage__rail-title { margin: 0 0 1.4rem; font-size: 1.2rem; letter-spacing: 0.12rem; text-transform: uppercase; opacity: 0.7; }
+  .melt-faqpage__rail ul { margin: 0; }
+  .melt-faqpage__rail a { color: inherit; text-decoration: none; }
+  .melt-faqpage__rail a:hover { text-decoration: underline; text-underline-offset: 0.3rem; }
+  @media screen and (min-width: 990px) {
+    .melt-faqpage__rail { position: sticky; top: calc(var(--header-height, 0px) + 2.4rem); align-self: start; }
+    .melt-faqpage__rail li + li { margin-top: 1.1rem; }
+  }
+  @media screen and (max-width: 989px) {
+    .melt-faqpage__rail-title { display: none; }
+    .melt-faqpage__rail ul { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .melt-faqpage__rail a { display: inline-block; padding: 0.7rem 1.2rem; border: 1px solid rgba(var(--color-foreground), 0.25); border-radius: 10rem; font-size: 1.3rem; }
+  }
+  .melt-faqpage__group + .melt-faqpage__group { margin-top: 5.2rem; }
+  .melt-faqpage__group-title { margin: 0 0 1.4rem; scroll-margin-top: calc(var(--header-height, 0px) + 2.4rem); }
+  .melt-faqpage__item { border-bottom: 1px solid rgba(var(--color-foreground), 0.15); }
+  .melt-faqpage__item:first-of-type { border-top: 1px solid rgba(var(--color-foreground), 0.15); }
+  .melt-faqpage__question { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 1.8rem 0; cursor: pointer; list-style: none; font-size: 1.6rem; }
+  .melt-faqpage__question::-webkit-details-marker { display: none; }
+  .melt-faqpage__icon { position: relative; width: 1.2rem; height: 1.2rem; flex: none; }
+  .melt-faqpage__icon::before, .melt-faqpage__icon::after { content: ''; position: absolute; left: 0; top: 50%; width: 100%; height: 1.5px; background: currentColor; transition: transform 0.2s; }
+  .melt-faqpage__icon::after { transform: rotate(90deg); }
+  .melt-faqpage__item[open] .melt-faqpage__icon::after { transform: rotate(0deg); }
+  .melt-faqpage__answer { max-width: 68rem; padding: 0 0 2rem; }
+  .melt-faqpage__answer p { margin: 0 0 1rem; line-height: 1.7; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the page title." },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "rail_label", "label": "Contents label", "default": "On this page" },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first question", "default": true },
+    { "type": "checkbox", "id": "structured_data", "label": "Output FAQPage structured data", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    { "type": "group", "name": "Group", "settings": [ { "type": "text", "id": "title", "label": "Group title", "default": "Orders & delivery" } ] },
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "FAQ page" } ]
+}
+{% endschema %}

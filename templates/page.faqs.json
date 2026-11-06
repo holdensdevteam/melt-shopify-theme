@@ -1,0 +1,350 @@
+{
+  "sections": {
+    "main": {
+      "type": "melt-faq-page",
+      "blocks": {
+        "group1": {
+          "type": "group",
+          "settings": {
+            "title": "Orders & delivery"
+          }
+        },
+        "g1q1": {
+          "type": "question",
+          "settings": {
+            "question": "How much is delivery?",
+            "answer": "<p>Standard UK delivery is £5 on orders up to £49.99, and free on orders of £50 or more.</p><p>Need it sooner? Next Working Day delivery is £9 on any order, placed by 1pm, to UK mainland addresses.</p>"
+          }
+        },
+        "g1q2": {
+          "type": "question",
+          "settings": {
+            "question": "How long will my order take?",
+            "answer": "<p>Order by 1pm for Next Working Day delivery (£9) to UK mainland addresses. Smaller orders are sent first class with Royal Mail and larger ones by courier, both on a signed-for service.</p>"
+          }
+        },
+        "g1q3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver outside the UK?",
+            "answer": "<p>Yes. For carriage outside the UK, email us at <a href=\"mailto:hello@themeltco.com\">hello@themeltco.com</a> and we will let you know the options.</p>"
+          }
+        },
+        "g1q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I collect from the farm shop?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "g1q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I track my order?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "g1q6": {
+          "type": "question",
+          "settings": {
+            "question": "What is the last order date for Christmas?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "group2": {
+          "type": "group",
+          "settings": {
+            "title": "Returns"
+          }
+        },
+        "g2q1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return a candle I have burned?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "g2q2": {
+          "type": "question",
+          "settings": {
+            "question": "How long do I have to return something?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "g2q3": {
+          "type": "question",
+          "settings": {
+            "question": "Who pays for return postage?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "g2q4": {
+          "type": "question",
+          "settings": {
+            "question": "My order arrived damaged",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "group3": {
+          "type": "group",
+          "settings": {
+            "title": "Subscribe & Save"
+          }
+        },
+        "g3q1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I cancel at any time?",
+            "answer": "<p>Yes. Cancel from your account whenever you like, up to 48 hours before your next delivery.</p>"
+          }
+        },
+        "g3q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I keep the 10% on every delivery?",
+            "answer": "<p>Yes, on every delivery for as long as your subscription runs.</p>"
+          }
+        },
+        "g3q3": {
+          "type": "question",
+          "settings": {
+            "question": "What if I am away when one is due?",
+            "answer": "<p>Skip that delivery or push it back from your account, up to 48 hours before it is due.</p>"
+          }
+        },
+        "g3q4": {
+          "type": "question",
+          "settings": {
+            "question": "Which products can I subscribe to?",
+            "answer": "<p>Any product with the Subscribe &amp; Save option on its page. <a href=\"/pages/subscribe\">See how Subscribe &amp; Save works</a>.</p>"
+          }
+        },
+        "group4": {
+          "type": "group",
+          "settings": {
+            "title": "Our candles"
+          }
+        },
+        "g4q1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does each size burn for?",
+            "answer": "<p>Roughly: Travel Tin 22 hours, Room Scenter 22 hours, Short &amp; Fat 70 hours, Tall &amp; Thin 75 hours, Luxury Glass Jar 80 hours and Tall &amp; Fat 160 hours.</p>"
+          }
+        },
+        "g4q2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I look after a candle?",
+            "answer": "<p>Keep the wick trimmed to around 4mm before and during burning. If the flame is large and the candle starts to smoke, the wick has grown too long – put it out and trim it before relighting. Never leave a burning candle unattended, in a draught or near another heat source, and always burn it on a heatproof surface out of reach of children and pets.</p>"
+          }
+        },
+        "g4q3": {
+          "type": "question",
+          "settings": {
+            "question": "Are your candles vegan?",
+            "answer": "<p>Yes. All our handmade candles are vegan and never tested on animals. We don’t use palm wax, and we avoid beeswax too.</p>"
+          }
+        },
+        "g4q4": {
+          "type": "question",
+          "settings": {
+            "question": "What wax do you use?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "g4q5": {
+          "type": "question",
+          "settings": {
+            "question": "Why does the first burn matter?",
+            "answer": "<p>Let the first burn go on until the melted wax reaches the edge of the candle. That sets how it burns for the rest of its life, and helps stop it tunnelling down the middle.</p>"
+          }
+        },
+        "g4q6": {
+          "type": "question",
+          "settings": {
+            "question": "Can I buy samples before committing?",
+            "answer": "<p>Yes – see our <a href=\"/collections/samples\">samples</a>, or come and try every fragrance at our shop on the farm.</p>"
+          }
+        },
+        "group5": {
+          "type": "group",
+          "settings": {
+            "title": "The Shop on the Farm"
+          }
+        },
+        "g5q1": {
+          "type": "question",
+          "settings": {
+            "question": "Where exactly are you?",
+            "answer": "<p>Backridge Farm, Twitter Lane, Waddington, Lancashire BB7 3LQ – down a country lane, a mile from the nearest village. <a href=\"/pages/the-shop-on-the-farm\">Directions and map</a>.</p>"
+          }
+        },
+        "g5q2": {
+          "type": "question",
+          "settings": {
+            "question": "What are your opening hours?",
+            "answer": "<p>Monday to Saturday 10am to 5pm, and Sunday noon to 4.30pm.</p>"
+          }
+        },
+        "g5q3": {
+          "type": "question",
+          "settings": {
+            "question": "Is there parking?",
+            "answer": "<p>Yes, right outside the door.</p>"
+          }
+        },
+        "g5q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I smell everything before I buy?",
+            "answer": "<p>Yes. The display tables around our fragrance bar in the Chandlery let you try every fragrance before you choose.</p>"
+          }
+        },
+        "group6": {
+          "type": "group",
+          "settings": {
+            "title": "Trade & corporate"
+          }
+        },
+        "g6q1": {
+          "type": "question",
+          "settings": {
+            "question": "What is the minimum order for branded gifts?",
+            "answer": "<p>Branded orders start from 20 units. <a href=\"/pages/corporate-gifting\">Start a corporate gifting enquiry</a>.</p>"
+          }
+        },
+        "g6q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do you do white label?",
+            "answer": "<p>Yes – candles and reed diffusers with your label and packaging. <a href=\"/pages/white-label\">More about white label</a>.</p>"
+          }
+        },
+        "g6q3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I become a stockist?",
+            "answer": "<p>Tell us about your shop on our <a href=\"/pages/become-a-stockist\">stockist page</a> and we will be in touch.</p>"
+          }
+        },
+        "group7": {
+          "type": "group",
+          "settings": {
+            "title": "Your account"
+          }
+        },
+        "g7q1": {
+          "type": "question",
+          "settings": {
+            "question": "I cannot sign in",
+            "answer": "<p>There is no password: enter your email address and we send you a one-time code to sign in with. If it hasn’t arrived, check your spam folder.</p>"
+          }
+        },
+        "g7q2": {
+          "type": "question",
+          "settings": {
+            "question": "Where are my orders?",
+            "answer": "<p>Sign in to <a href=\"/account\">your account</a> to see your orders and their status.</p>"
+          }
+        },
+        "g7q3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I change my address?",
+            "answer": "<p>Sign in to <a href=\"/account\">your account</a> to update your saved addresses. If an order has already been placed, get in touch as soon as you can.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "group1",
+        "g1q1",
+        "g1q2",
+        "g1q3",
+        "g1q4",
+        "g1q5",
+        "g1q6",
+        "group2",
+        "g2q1",
+        "g2q2",
+        "g2q3",
+        "g2q4",
+        "group3",
+        "g3q1",
+        "g3q2",
+        "g3q3",
+        "g3q4",
+        "group4",
+        "g4q1",
+        "g4q2",
+        "g4q3",
+        "g4q4",
+        "g4q5",
+        "g4q6",
+        "group5",
+        "g5q1",
+        "g5q2",
+        "g5q3",
+        "g5q4",
+        "group6",
+        "g6q1",
+        "g6q2",
+        "g6q3",
+        "group7",
+        "g7q1",
+        "g7q2",
+        "g7q3"
+      ],
+      "settings": {
+        "heading": "Questions we get asked",
+        "intro": "<p>Most things are answered here. If yours is not, there is a real person at the end of the form at the bottom.</p>"
+      }
+    },
+    "still_stuck": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Not in there?",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tell us what it is about and it goes to the right person first time. We reply within one working day, Monday to Friday. Or call us on 01200 443377.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact us",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": true,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "main",
+    "still_stuck"
+  ]
+}

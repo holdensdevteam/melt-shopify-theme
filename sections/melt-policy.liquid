@@ -1,0 +1,64 @@
+{%- comment -%}
+  Melt: policy / long-text page (Wireframes — FAQ + 404 notes: policy pages use the FAQ layout,
+  with the accordions as open headed sections). Renders the page's own content in a 720px
+  measure, with an "On this page" rail built from its H2 headings. No FAQPage markup.
+  Use for Cookies, Accessibility and any page written in the page editor with H2 headings.
+{%- endcomment -%}
+{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign parts = page.content | split: '<h2'
+-%}
+<div class="melt-policy color-{{ section.settings.color_scheme }} gradient">
+  <header class="page-width melt-faqpage__header">
+    {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-faqpage__breadcrumbs' -%}
+    <div class="melt-faqpage__measure">
+      <h1 class="h1 melt-faqpage__title">{{ page.title | escape }}</h1>
+      {%- if section.settings.show_updated -%}<p class="melt-policy__updated">Last updated {{ page.updated_at | date: '%-d %B %Y' }}</p>{%- endif -%}
+    </div>
+  </header>
+  <div class="page-width melt-faqpage__body">
+    {%- if parts.size > 2 -%}
+      <nav class="melt-faqpage__rail" aria-label="{{ section.settings.rail_label | escape }}">
+        <p class="melt-faqpage__rail-title">{{ section.settings.rail_label | escape }}</p>
+        <ul class="list-unstyled" role="list">
+          {%- for part in parts offset: 1 -%}
+            {%- assign h = part | split: '</h2>' | first | split: '>' | last | strip_html | strip -%}
+            <li><a href="#{{ h | handleize }}">{{ h }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+    <div class="melt-policy__content rte">
+      {%- for part in parts -%}
+        {%- if forloop.first -%}
+          {{ part }}
+        {%- else -%}
+          {%- assign h = part | split: '</h2>' | first | split: '>' | last | strip_html | strip -%}
+          <h2 id="{{ h | handleize }}"{{ part }}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .melt-policy__updated { margin: 0; font-size: 1.4rem; opacity: 0.7; }
+  .melt-policy__content { max-width: 72rem; }
+  .melt-policy__content h2 { margin: 4rem 0 1.2rem; scroll-margin-top: calc(var(--header-height, 0px) + 2.4rem); }
+  .melt-policy__content h2:first-child { margin-top: 0; }
+  .melt-policy__content p, .melt-policy__content li { line-height: 1.75; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Policy page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "rail_label", "label": "Contents label", "default": "On this page" },
+    { "type": "checkbox", "id": "show_updated", "label": "Show 'Last updated' date", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "presets": [ { "name": "Policy page" } ]
+}
+{% endschema %}

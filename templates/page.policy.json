@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "melt-policy",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,20 +1,259 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "main-404",
-      "settings": {}
+    "recovery": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "404",
+            "text_style": "subtitle",
+            "text_size": "large"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "This one has gone out",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The page you were after is not here. It may have moved or never have existed. Try a search, or <a href=\"/collections/scented-candles\">carry on shopping</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "caption",
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": false,
+        "padding_top": 64,
+        "padding_bottom": 12
+      }
+    },
+    "search": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<form action=\"{{ routes.search_url }}\" method=\"get\" role=\"search\" style=\"max-width:56rem;margin:0 auto;display:flex;gap:1rem;padding:0 2rem;\"><label for=\"Search404\" class=\"visually-hidden\">Search</label><input id=\"Search404\" type=\"search\" name=\"q\" placeholder=\"Search for a fragrance or product\" style=\"flex:1;min-height:5rem;padding:0 1.6rem;font:inherit;border:1px solid rgba(var(--color-foreground),0.3);\"><input type=\"hidden\" name=\"options[prefix]\" value=\"last\"><button type=\"submit\" class=\"button\">Search</button></form>",
+        "padding_top": 12,
+        "padding_bottom": 48
+      }
+    },
+    "routes": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Shop all candles",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Twenty-four fragrances, every format</p>"
+              },
+              "blocks": {}
+            },
+            "l1": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Go",
+                "url": "shopify://collections/scented-candles",
+                "style": "link",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h1",
+            "t1",
+            "l1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Fragrances",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Browse by scent, A to Z</p>"
+              },
+              "blocks": {}
+            },
+            "l2": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Go",
+                "url": "shopify://pages/fragrances",
+                "style": "link",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h2",
+            "t2",
+            "l2"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Shop by Moment",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Unwind, romance, celebrate</p>"
+              },
+              "blocks": {}
+            },
+            "l3": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Go",
+                "url": "shopify://collections/unwind",
+                "style": "link",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h3",
+            "t3",
+            "l3"
+          ]
+        },
+        "col4": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h4": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Gifts & hampers",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t4": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Ready to send</p>"
+              },
+              "blocks": {}
+            },
+            "l4": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Go",
+                "url": "shopify://collections/hampers-gift-sets",
+                "style": "link",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h4",
+            "t4",
+            "l4"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3",
+        "col4"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "intro": "",
+        "columns_desktop": 4,
+        "column_style": "card",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 48,
+        "eyebrow": "Or start here"
+      }
+    },
+    "loved": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "scented-candles",
+        "collection_source": "manual",
+        "products_to_show": 8,
+        "heading_eyebrow": "Most loved",
+        "title": "Where most people start",
+        "heading_size": "h2",
+        "show_description": false,
+        "heading_alignment": "left",
+        "heading_margin_bottom": 32,
+        "cta_label": "",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "show_view_all": false,
+        "image_ratio": "portrait",
+        "card_style": "card",
+        "show_type_eyebrow": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 56
+      }
     }
   },
   "order": [
-    "main"
+    "recovery",
+    "search",
+    "routes",
+    "loved"
   ]
 }
