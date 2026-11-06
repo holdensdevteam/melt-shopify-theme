@@ -1,0 +1,446 @@
+{
+  "sections": {
+    "hero": {
+      "type": "melt-proposition-hero",
+      "blocks": {
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "value": "From 20",
+            "label": "units"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "value": "24",
+            "label": "fragrances"
+          }
+        },
+        "f3": {
+          "type": "fact",
+          "settings": {
+            "value": "89%",
+            "label": "sourced in Lancashire"
+          }
+        },
+        "f4": {
+          "type": "fact",
+          "settings": {
+            "value": "25+ years",
+            "label": "hand-pouring"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "eyebrow": "White label",
+        "heading": "Your brand, our candles",
+        "standfirst": "<p>British made. Fine fragrance. Hand-poured. For over 25 years we have quietly created handmade candles and reed diffusers for other brands, helping them, big and small, find their own signature scent.</p>",
+        "primary_label": "Start an enquiry",
+        "primary_link": "",
+        "secondary_label": "Call 01200 443377",
+        "secondary_link": "tel:01200443377",
+        "note": "",
+        "image": "shopify://shop_images/private-label-hero.png"
+      }
+    },
+    "logos": {
+      "type": "melt-logo-strip",
+      "blocks": {
+        "l1": {
+          "type": "logo",
+          "settings": {
+            "name": "Coutts"
+          }
+        },
+        "l2": {
+          "type": "logo",
+          "settings": {
+            "name": "UNICEF"
+          }
+        },
+        "l3": {
+          "type": "logo",
+          "settings": {
+            "name": "BBC"
+          }
+        },
+        "l4": {
+          "type": "logo",
+          "settings": {
+            "name": "ITV Studios"
+          }
+        },
+        "l5": {
+          "type": "logo",
+          "settings": {
+            "name": "Liverpool ONE"
+          }
+        },
+        "l6": {
+          "type": "logo",
+          "settings": {
+            "name": "Universal Stage Productions"
+          }
+        },
+        "l7": {
+          "type": "logo",
+          "settings": {
+            "name": "The X Factor"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5",
+        "l6",
+        "l7"
+      ],
+      "settings": {
+        "eyebrow": "We have worked with",
+        "footnote": "And a number who would rather we did not say – which we always respect.",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "story": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Building something beautiful together",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>There’s something special about sharing what we do with others. Fragrance has always been at the heart of Melt, and seeing it find a place within someone else’s brand feels like a natural extension of that. That’s very much how we approach our white-label service. Not as a transaction, but as a process of building something beautiful together.</p><p>Everything we produce meets current industry standards and legal requirements. All raw materials are responsibly sourced and carefully tested, and every finished product carries the correct CLP and Health &amp; Safety labelling, approved by Trading Standards.</p><p>If you have an idea taking shape, or even just the beginnings of one, we’d love to hear about it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 48,
+        "padding_bottom": 24
+      }
+    },
+    "products": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/white-label-candles.png",
+            "caption": "",
+            "heading": "White label candles",
+            "text": "<p>There’s a certain satisfaction in creating a candle that feels like your own. The weight of the glass, the first time it’s lit, the way the fragrance settles into a room. Our white-label candles are created in the same way as our own range of luxury fragranced candles: poured slowly, finished by hand, and given the time they need to develop into something beautifully balanced.</p><p>You’re welcome to use our glassware, or we can pour into your own containers if that works better for you. All of our handmade candles are vegan and never tested on animals. We don’t use palm wax, and we avoid beeswax too.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/white-label-reed-diffusers.png",
+            "caption": "",
+            "heading": "White label reed diffusers",
+            "text": "<p>Reed diffusers have a slightly different presence. No flame, no moment of lighting, just a gentle, continuous fragrance that quietly becomes part of the room.</p><p>Our white-label reed diffusers use the same fragrance library as our candles, so you can build a collection that feels cohesive and considered. The diffuser base is a vegan, bio-based solvent derived from renewable sources, chosen so the fragrance performs beautifully while remaining safe to use around the home.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "steps": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "e1": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "01"
+              },
+              "blocks": {}
+            },
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Tell us your idea",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Even just the beginnings of one. Use the form below, call 01200 443377 or email us.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "e1",
+            "h1",
+            "t1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "e2": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "02"
+              },
+              "blocks": {}
+            },
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Choose your fragrance",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Pick from our library, and our glassware or your own containers.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "e2",
+            "h2",
+            "t2"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "e3": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "03"
+              },
+              "blocks": {}
+            },
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Design your label and packaging",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Your logo label on the vessel and your box, with the CLP labelling handled.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "e3",
+            "h3",
+            "t3"
+          ]
+        },
+        "col4": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "e4": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "04"
+              },
+              "blocks": {}
+            },
+            "h4": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "We pour and deliver",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t4": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Hand-poured at Backridge Farm, labelled and sent to you.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "e4",
+            "h4",
+            "t4"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3",
+        "col4"
+      ],
+      "settings": {
+        "title": "How it works",
+        "heading_size": "h2",
+        "intro": "",
+        "columns_desktop": 4,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "enquiry": {
+      "type": "melt-enquiry-form",
+      "blocks": {
+        "q1": {
+          "type": "select",
+          "settings": {
+            "label": "What are you after?",
+            "options": "White label candles\nWhite label reed diffusers\nBoth\nNot sure yet",
+            "required": true
+          }
+        },
+        "q2": {
+          "type": "select",
+          "settings": {
+            "label": "How many?",
+            "options": "20–49\n50–99\n100–249\n250 or more\nNot sure yet",
+            "required": true
+          }
+        },
+        "q3": {
+          "type": "select",
+          "settings": {
+            "label": "Containers",
+            "options": "Melt glassware\nOur own containers\nNot sure yet",
+            "required": true
+          }
+        },
+        "q4": {
+          "type": "select",
+          "settings": {
+            "label": "When do you need them?",
+            "options": "Within a month\nIn 1–2 months\nMore than 2 months away\nNo fixed date",
+            "required": false
+          }
+        },
+        "p1": {
+          "type": "point",
+          "settings": {
+            "text": "Vessel supplied with your logo label"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "text": "Premium box packaging"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "text": "CLP and health and safety labels included, approved by Trading Standards"
+          }
+        },
+        "p4": {
+          "type": "point",
+          "settings": {
+            "text": "Vegan, never tested on animals"
+          }
+        },
+        "p5": {
+          "type": "point",
+          "settings": {
+            "text": "No palm wax, no beeswax"
+          }
+        },
+        "p6": {
+          "type": "point",
+          "settings": {
+            "text": "Minimum order 20 units"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "settings": {
+        "heading": "Start an enquiry",
+        "intro": "Tell us a little about your project and we will come back to you.",
+        "enquiry_type": "White label",
+        "consent_label": "Send me the trade letter – a few times a year, nothing else.",
+        "button_label": "Send enquiry",
+        "reply_note": "We reply within one working day. Sample requests are usually posted the same week.",
+        "email": "hello@themeltco.com"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "logos",
+    "story",
+    "products",
+    "steps",
+    "enquiry"
+  ]
+}

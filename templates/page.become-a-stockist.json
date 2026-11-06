@@ -1,0 +1,280 @@
+{
+  "sections": {
+    "hero": {
+      "type": "melt-proposition-hero",
+      "blocks": {
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "value": "24",
+            "label": "fragrances"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "value": "89%",
+            "label": "sourced in Lancashire"
+          }
+        },
+        "f3": {
+          "type": "fact",
+          "settings": {
+            "value": "25+ years",
+            "label": "hand-pouring"
+          }
+        },
+        "f4": {
+          "type": "fact",
+          "settings": {
+            "value": "Ribble Valley",
+            "label": "made by hand"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "eyebrow": "Wholesale",
+        "heading": "Become a Melt stockist",
+        "standfirst": "<p>If you’re an independent retailer looking for wholesale prices on unique, British-made, high-end candles that use the finest fragrances, then Melt is for you.</p>",
+        "primary_label": "Apply for a trade account",
+        "primary_link": "",
+        "secondary_label": "Call 01200 443377",
+        "secondary_link": "tel:01200443377",
+        "note": "",
+        "image": "shopify://shop_images/becoming-a-melt-stockist-hero.png"
+      }
+    },
+    "why": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Made by hand",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Every candle is hand-poured at Backridge Farm in Waddington, in the heart of the Ribble Valley.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h1",
+            "t1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Fragrances you won’t find elsewhere",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>We step outside the conventional fragrance arena to seek out more unusual combinations, all unique to Melt.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h2",
+            "t2"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Local by choice",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Over 89% of our ingredients and packaging comes from Lancashire companies, and the rest from within the UK.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3"
+      ],
+      "settings": {
+        "title": "Why stock Melt",
+        "heading_size": "h2",
+        "intro": "",
+        "columns_desktop": 3,
+        "column_style": "card",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "steps": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "e1": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "01"
+              },
+              "blocks": {}
+            },
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Tell us about your business",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>The type of shop you run, how long you have been established and a few words about what you stock.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "e1",
+            "h1",
+            "t1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "e2": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "02"
+              },
+              "blocks": {}
+            },
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "We get in touch",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>We will come back to you to talk it through.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "e2",
+            "h2",
+            "t2"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2"
+      ],
+      "settings": {
+        "title": "How it works",
+        "heading_size": "h2",
+        "intro": "",
+        "columns_desktop": 2,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "enquiry": {
+      "type": "melt-enquiry-form",
+      "blocks": {
+        "q1": {
+          "type": "select",
+          "settings": {
+            "label": "Type of business",
+            "options": "Independent gift shop\nInteriors or homeware\nSalon or spa\nFarm shop or garden centre\nOnline retailer\nOther",
+            "required": true
+          }
+        },
+        "q2": {
+          "type": "select",
+          "settings": {
+            "label": "How long have you been established?",
+            "options": "Not yet open\nUnder a year\n1–3 years\n3–10 years\nOver 10 years",
+            "required": true
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2"
+      ],
+      "settings": {
+        "heading": "Start an enquiry",
+        "intro": "Tell us about your business and we will be in touch.",
+        "enquiry_type": "Become a stockist",
+        "consent_label": "Send me the trade letter – a few times a year, nothing else.",
+        "button_label": "Send enquiry",
+        "reply_note": "We reply within one working day. Sample requests are usually posted the same week.",
+        "email": "hello@themeltco.com"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "steps",
+    "enquiry"
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "sections": {
+    "hero": {
+      "type": "melt-proposition-hero",
+      "blocks": {
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "value": "24",
+            "label": "fragrances"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "value": "89%",
+            "label": "sourced in Lancashire"
+          }
+        },
+        "f3": {
+          "type": "fact",
+          "settings": {
+            "value": "From 20",
+            "label": "units, white label"
+          }
+        },
+        "f4": {
+          "type": "fact",
+          "settings": {
+            "value": "25+ years",
+            "label": "hand-pouring"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "eyebrow": "Trade",
+        "heading": "Working with Melt",
+        "standfirst": "<p>Stock our candles in your shop, put your own name on them, or send them to your clients. Whatever brings you here, we have been doing it from Backridge Farm for over 25 years.</p>",
+        "primary_label": "Get in touch",
+        "primary_link": "",
+        "secondary_label": "Call 01200 443377",
+        "secondary_link": "tel:01200443377",
+        "note": ""
+      }
+    },
+    "routes": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Become a stockist",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Wholesale prices for independent retailers on our own range of candles and reed diffusers.</p>"
+              },
+              "blocks": {}
+            },
+            "l1": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Become a stockist",
+                "url": "shopify://pages/become-a-stockist",
+                "style": "button",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#ce7721",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h1",
+            "t1",
+            "l1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "White label",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Our candles and reed diffusers with your label and your packaging.</p><p><strong>From 20 units</strong></p>"
+              },
+              "blocks": {}
+            },
+            "l2": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "White label",
+                "url": "shopify://pages/white-label",
+                "style": "button",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#ce7721",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h2",
+            "t2",
+            "l2"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Corporate gifting",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Client and staff gifts, ready-made or branded with your logo.</p>"
+              },
+              "blocks": {}
+            },
+            "l3": {
+              "type": "_columns-link",
+              "settings": {
+                "label": "Corporate gifting",
+                "url": "shopify://pages/corporate-gifting",
+                "style": "button",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#ce7721",
+                "button_arrow": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h3",
+            "t3",
+            "l3"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3"
+      ],
+      "settings": {
+        "title": "Three ways to work with us",
+        "heading_size": "h2",
+        "intro": "",
+        "columns_desktop": 3,
+        "column_style": "card",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "logos": {
+      "type": "melt-logo-strip",
+      "blocks": {
+        "l1": {
+          "type": "logo",
+          "settings": {
+            "name": "Coutts"
+          }
+        },
+        "l2": {
+          "type": "logo",
+          "settings": {
+            "name": "UNICEF"
+          }
+        },
+        "l3": {
+          "type": "logo",
+          "settings": {
+            "name": "BBC"
+          }
+        },
+        "l4": {
+          "type": "logo",
+          "settings": {
+            "name": "ITV Studios"
+          }
+        },
+        "l5": {
+          "type": "logo",
+          "settings": {
+            "name": "Liverpool ONE"
+          }
+        },
+        "l6": {
+          "type": "logo",
+          "settings": {
+            "name": "Universal Stage Productions"
+          }
+        },
+        "l7": {
+          "type": "logo",
+          "settings": {
+            "name": "The X Factor"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5",
+        "l6",
+        "l7"
+      ],
+      "settings": {
+        "eyebrow": "We have worked with",
+        "footnote": "And a number who would rather we did not say – which we always respect.",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "enquiry": {
+      "type": "melt-enquiry-form",
+      "blocks": {
+        "q1": {
+          "type": "select",
+          "settings": {
+            "label": "What are you after?",
+            "options": "Stocking Melt in my shop\nWhite label\nCorporate gifts\nSomething else",
+            "required": true
+          }
+        }
+      },
+      "block_order": [
+        "q1"
+      ],
+      "settings": {
+        "heading": "Start an enquiry",
+        "intro": "Not sure which is right? Tell us what you have in mind.",
+        "enquiry_type": "Trade",
+        "consent_label": "Send me the trade letter – a few times a year, nothing else.",
+        "button_label": "Send enquiry",
+        "reply_note": "We reply within one working day. Sample requests are usually posted the same week.",
+        "email": "hello@themeltco.com"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "routes",
+    "logos",
+    "enquiry"
+  ]
+}
