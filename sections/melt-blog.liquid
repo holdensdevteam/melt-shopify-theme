@@ -57,7 +57,13 @@
       {%- if blog.articles.size > 0 -%}
         <ul class="melt-blog__grid list-unstyled" role="list">
           {%- for article in blog.articles -%}
-            <li>{% render 'melt-article-card', article: article, categories: category_tags, lazy: forloop.index > 3 %}</li>
+            {%- liquid
+              assign card_lazy = true
+              if forloop.index <= 3
+                assign card_lazy = false
+              endif
+            -%}
+            <li>{% render 'melt-article-card', article: article, categories: category_tags, lazy: card_lazy %}</li>
           {%- endfor -%}
         </ul>
       {%- else -%}
