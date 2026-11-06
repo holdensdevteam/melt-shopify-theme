@@ -1,0 +1,254 @@
+{%- comment -%}
+  Melt: Contact page (Wireframes — Contact).
+  Hero (breadcrumbs, H1, intro, reply promise) · "Most questions are answered here" deflection
+  cards (blocks) · message form with the reason first and an order-number field that only
+  appears for order and delivery questions · direct contact column (call office / shop, email,
+  find us, follow). On mobile the call/email routes sit above the form.
+  Submits through Shopify's contact form to the store contact email. Outputs Organization
+  ContactPoint structured data (LocalBusiness lives on the Shop on the Farm page).
+{%- endcomment -%}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign s = section.settings
+  assign reasons = s.reasons | newline_to_br | split: '<br />'
+  assign order_reasons = s.order_reasons | downcase
+  assign form_id = 'ContactForm-' | append: section.id
+-%}
+
+<div class="melt-contact color-{{ s.color_scheme }} gradient">
+  <header class="page-width melt-contact__hero">
+    <div>
+      {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-contact__breadcrumbs' -%}
+      <h1 class="h1 melt-contact__title">{{ s.heading | default: page.title }}</h1>
+      {%- if s.intro != blank -%}<div class="melt-contact__intro">{{ s.intro }}</div>{%- endif -%}
+    </div>
+    {%- if s.promise_title != blank -%}
+      <div class="melt-contact__promise">
+        <p class="melt-contact__promise-title">{{ s.promise_title | escape }}</p>
+        {%- if s.promise_text != blank -%}<p class="melt-contact__promise-text">{{ s.promise_text | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </header>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="page-width melt-contact__deflect">
+      {%- render 'melt-eyebrow', text: s.cards_eyebrow -%}
+      <ul class="list-unstyled melt-contact__cards" role="list">
+        {%- for block in section.blocks -%}
+          <li class="melt-contact__card" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link }}">
+              <span class="melt-contact__card-title">{{ block.settings.title | escape }}</span>
+              {%- if block.settings.text != blank -%}<span class="melt-contact__card-text">{{ block.settings.text | escape }}</span>{%- endif -%}
+              <span class="melt-contact__card-link">{{ block.settings.link_label | escape }} →</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+
+  <div class="page-width melt-contact__main">
+    <div class="melt-contact__form" id="contact-form">
+      <h2 class="h2 melt-contact__form-title">{{ s.form_heading | escape }}</h2>
+      {%- form 'contact', id: form_id -%}
+        {%- if form.posted_successfully? -%}
+          <div class="melt-contact__success" tabindex="-1" autofocus>
+            <h3 class="h3">{{ s.success_heading | escape }}</h3>
+            <p>{{ s.success_text | escape }}</p>
+            <a href="{{ routes.collections_url }}/scented-candles" class="button">Keep shopping</a>
+            <p><a href="/pages/faqs" class="link">Read our FAQs while you wait</a></p>
+          </div>
+        {%- else -%}
+          {%- if form.errors -%}<div class="melt-contact__errors" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+          <div class="melt-contact__grid">
+            <div class="melt-contact__field melt-contact__field--full">
+              <label for="{{ form_id }}-reason">What is it about?</label>
+              <select id="{{ form_id }}-reason" name="contact[What is it about]" required data-reason data-order-reasons="{{ order_reasons | escape }}">
+                <option value="">Please choose…</option>
+                {%- for r in reasons -%}{%- assign rc = r | strip -%}{%- if rc != blank -%}<option value="{{ rc | escape }}">{{ rc | escape }}</option>{%- endif -%}{%- endfor -%}
+              </select>
+            </div>
+            <div class="melt-contact__field melt-contact__field--full" data-order-field hidden>
+              <label for="{{ form_id }}-order">Order number <span class="melt-contact__optional">optional</span></label>
+              <input id="{{ form_id }}-order" type="text" name="contact[Order number]" placeholder="{{ s.order_placeholder | escape }}">
+            </div>
+            <div class="melt-contact__field">
+              <label for="{{ form_id }}-first">First name</label>
+              <input id="{{ form_id }}-first" type="text" name="contact[First name]" autocomplete="given-name" required>
+            </div>
+            <div class="melt-contact__field">
+              <label for="{{ form_id }}-last">Last name</label>
+              <input id="{{ form_id }}-last" type="text" name="contact[Last name]" autocomplete="family-name" required>
+            </div>
+            <div class="melt-contact__field melt-contact__field--full">
+              <label for="{{ form_id }}-email">Email</label>
+              <input id="{{ form_id }}-email" type="email" name="contact[email]" autocomplete="email" required value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+            </div>
+            <div class="melt-contact__field melt-contact__field--full">
+              <label for="{{ form_id }}-phone">Phone <span class="melt-contact__optional">optional</span></label>
+              <input id="{{ form_id }}-phone" type="tel" name="contact[phone]" autocomplete="tel" placeholder="Only if you would rather we rang">
+            </div>
+            <div class="melt-contact__field melt-contact__field--full">
+              <label for="{{ form_id }}-msg">Your message</label>
+              <textarea id="{{ form_id }}-msg" name="contact[Message]" rows="6" required placeholder="Tell us what you need…"></textarea>
+            </div>
+          </div>
+          {%- if s.consent_label != blank -%}
+            <label class="melt-contact__consent">
+              <input type="checkbox" name="contact[Newsletter opt-in]" value="Yes">
+              <span>{{ s.consent_label | escape }}{% if s.consent_note != blank %}<small>{{ s.consent_note | escape }}</small>{% endif %}</span>
+            </label>
+          {%- endif -%}
+          <button type="submit" class="button">{{ s.button_label | escape }}</button>
+          {%- if s.reply_note != blank -%}<p class="melt-contact__reply">{{ s.reply_note | escape }}</p>{%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+
+    <aside class="melt-contact__aside">
+      <div class="melt-contact__panel">
+        {%- render 'melt-eyebrow', text: 'Call us' -%}
+        <p class="melt-contact__line"><strong>Office · <a href="tel:{{ s.office_phone | remove: ' ' }}">{{ s.office_phone | escape }}</a></strong><br>{{ s.office_hours | escape }}</p>
+        <p class="melt-contact__line"><strong>Shop · <a href="tel:{{ s.shop_phone | remove: ' ' }}">{{ s.shop_phone | escape }}</a></strong><br>{{ s.shop_hours | escape }}</p>
+      </div>
+      {%- if s.email != blank -%}
+        <div class="melt-contact__panel">
+          {%- render 'melt-eyebrow', text: 'Email' -%}
+          <p class="melt-contact__line"><strong><a href="mailto:{{ s.email }}">{{ s.email | escape }}</a></strong><br>{{ s.email_note | escape }}</p>
+        </div>
+      {%- endif -%}
+      <div class="melt-contact__panel">
+        {%- render 'melt-eyebrow', text: 'Find us' -%}
+        <p class="melt-contact__line"><strong>{{ s.address_line_1 | escape }}</strong><br>{{ s.address_line_2 | escape }}</p>
+        <a class="melt-contact__more" href="https://www.google.com/maps/dir/?api=1&destination={{ s.address_line_1 | append: ', ' | append: s.address_line_2 | url_encode }}" target="_blank" rel="noopener">Get directions →</a>
+      </div>
+      <div class="melt-contact__panel">
+        {%- render 'melt-eyebrow', text: 'Follow' -%}
+        {%- render 'social-icons', class: 'melt-contact__social' -%}
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-reason]').forEach(function (select) {
+      var form = select.closest('form');
+      var field = form && form.querySelector('[data-order-field]');
+      if (!field) return;
+      var match = select.getAttribute('data-order-reasons').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+      var update = function () { field.hidden = match.indexOf(select.value.toLowerCase()) === -1; };
+      select.addEventListener('change', update);
+      update();
+    });
+  })();
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ request.origin | json }},
+    {%- if s.email != blank -%}"email": {{ s.email | json }},{%- endif -%}
+    "contactPoint": [
+      { "@type": "ContactPoint", "telephone": {{ s.office_phone | replace: ' ', '' | replace_first: '0', '+44' | json }}, "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" },
+      { "@type": "ContactPoint", "telephone": {{ s.shop_phone | replace: ' ', '' | replace_first: '0', '+44' | json }}, "contactType": "sales", "areaServed": "GB", "availableLanguage": "English" }
+    ]
+  }
+</script>
+
+{% stylesheet %}
+  .melt-contact__hero { display: grid; gap: 2.4rem; padding-top: 2.4rem; padding-bottom: 3.2rem; }
+  @media screen and (min-width: 990px) { .melt-contact__hero { grid-template-columns: minmax(0, 874fr) minmax(0, 340fr); gap: 6.4rem; align-items: start; padding-top: 4rem; padding-bottom: 4.8rem; } }
+  .melt-contact__breadcrumbs { margin-bottom: 1.6rem; }
+  .melt-contact__title { margin: 0 0 1.2rem; }
+  .melt-contact__intro p { margin: 0; font-size: 1.7rem; line-height: 1.55; }
+  .melt-contact__promise { padding: 2rem 2.2rem; background: rgba(var(--color-foreground), 0.04); }
+  .melt-contact__promise-title { margin: 0 0 0.6rem; font-weight: 600; }
+  .melt-contact__promise-text { margin: 0; font-size: 1.4rem; opacity: 0.8; }
+  .melt-contact__deflect { padding-bottom: 4rem; }
+  .melt-contact__cards { display: grid; gap: 1.2rem; margin: 1.6rem 0 0; }
+  @media screen and (min-width: 750px) { .melt-contact__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; } }
+  @media screen and (min-width: 990px) { .melt-contact__cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .melt-contact__card a { display: flex; flex-direction: column; gap: 0.6rem; height: 100%; padding: 2rem; border: 1px solid rgba(var(--color-foreground), 0.15); color: inherit; text-decoration: none; }
+  .melt-contact__card a:hover { border-color: rgb(var(--color-foreground)); }
+  .melt-contact__card-title { font-weight: 600; font-size: 1.6rem; }
+  .melt-contact__card-text { font-size: 1.4rem; opacity: 0.8; }
+  .melt-contact__card-link { margin-top: auto; padding-top: 0.6rem; font-size: 1.4rem; }
+  .melt-contact__main { display: grid; gap: 3.2rem; padding-bottom: 6.4rem; }
+  @media screen and (min-width: 990px) { .melt-contact__main { grid-template-columns: minmax(0, 814fr) minmax(0, 400fr); gap: 6.4rem; padding-bottom: 8rem; } }
+  @media screen and (max-width: 989px) { .melt-contact__aside { order: -1; } }
+  .melt-contact__form-title { margin: 0 0 2rem; }
+  .melt-contact__grid { display: grid; gap: 1.8rem 2rem; grid-template-columns: 1fr; margin-bottom: 2.4rem; }
+  @media screen and (min-width: 750px) { .melt-contact__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .melt-contact__field--full { grid-column: 1 / -1; }
+  .melt-contact__field[hidden] { display: none; }
+  .melt-contact__field label { display: block; margin-bottom: 0.7rem; font-size: 1.4rem; }
+  .melt-contact__optional { margin-left: 0.6rem; font-size: 1.2rem; opacity: 0.6; }
+  .melt-contact__field input, .melt-contact__field select, .melt-contact__field textarea { width: 100%; min-height: 5rem; padding: 1.2rem 1.6rem; font: inherit; color: rgb(var(--color-foreground)); background: rgb(var(--color-background)); border: 1px solid rgba(var(--color-foreground), 0.3); border-radius: 0; }
+  .melt-contact__field textarea { min-height: 15rem; resize: vertical; }
+  .melt-contact__consent { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 2.4rem; font-size: 1.4rem; }
+  .melt-contact__consent small { display: block; font-size: 1.3rem; opacity: 0.7; }
+  .melt-contact__reply { margin: 1.4rem 0 0; font-size: 1.3rem; opacity: 0.75; }
+  .melt-contact__errors { margin-bottom: 2rem; padding: 1.2rem 1.6rem; border: 1px solid rgb(var(--color-foreground)); }
+  .melt-contact__success { padding: 2.4rem; background: rgba(var(--color-foreground), 0.04); }
+  .melt-contact__aside { display: grid; gap: 1.4rem; align-content: start; }
+  .melt-contact__panel { padding: 2.2rem; border: 1px solid rgba(var(--color-foreground), 0.15); }
+  .melt-contact__line { margin: 1.2rem 0 0; font-size: 1.4rem; line-height: 1.6; }
+  .melt-contact__line strong { font-size: 1.6rem; font-weight: 600; }
+  .melt-contact__line a, .melt-contact__more { color: inherit; text-decoration: none; }
+  .melt-contact__more { display: inline-block; margin-top: 1.2rem; font-size: 1.4rem; }
+  .melt-contact__social { justify-content: flex-start; margin-top: 1rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Contact us" },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "promise_title", "label": "Reply promise", "default": "We reply within one working day" },
+    { "type": "text", "id": "promise_text", "label": "Reply promise detail" },
+    { "type": "text", "id": "cards_eyebrow", "label": "Cards eyebrow", "default": "Most questions are answered here" },
+    { "type": "header", "content": "Form" },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Send us a message" },
+    { "type": "textarea", "id": "reasons", "label": "'What is it about?' options", "info": "One per line. Trade, white label and corporate gifting have their own pages.", "default": "An order\nDelivery or returns\nThe shop on the farm\nA fragrance question\nPress\nSomething else" },
+    { "type": "text", "id": "order_reasons", "label": "Options that show the order number field", "info": "Comma-separated, matching the options above.", "default": "An order, Delivery or returns" },
+    { "type": "text", "id": "order_placeholder", "label": "Order number placeholder", "default": "e.g. #1001" },
+    { "type": "text", "id": "consent_label", "label": "Newsletter opt-in", "default": "Send me the occasional letter from the farm." },
+    { "type": "text", "id": "consent_note", "label": "Newsletter opt-in note", "default": "Never more than monthly, and never your details anywhere else." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Send message" },
+    { "type": "text", "id": "reply_note", "label": "Note under the button", "default": "We reply within one working day." },
+    { "type": "text", "id": "success_heading", "label": "Thank-you heading", "default": "Thank you – that is with us" },
+    { "type": "text", "id": "success_text", "label": "Thank-you text", "default": "Someone will reply within one working day." },
+    { "type": "header", "content": "Direct contact" },
+    { "type": "text", "id": "office_phone", "label": "Office phone", "default": "01200 443377" },
+    { "type": "text", "id": "office_hours", "label": "Office hours", "default": "Monday to Friday, 9am – 5pm" },
+    { "type": "text", "id": "shop_phone", "label": "Shop phone", "default": "01200 443412" },
+    { "type": "text", "id": "shop_hours", "label": "Shop hours", "default": "Mon–Sat 10am – 5pm · Sun 12pm – 4.30pm" },
+    { "type": "text", "id": "email", "label": "Email" },
+    { "type": "text", "id": "email_note", "label": "Email note", "default": "We answer within one working day" },
+    { "type": "text", "id": "address_line_1", "label": "Address line 1", "default": "Melt Candles, Twitter Lane" },
+    { "type": "text", "id": "address_line_2", "label": "Address line 2", "default": "Waddington, Lancashire BB7 3LQ" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Help card",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "text", "label": "Text" },
+        { "type": "text", "id": "link_label", "label": "Link label" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Contact page" } ]
+}
+{% endschema %}
