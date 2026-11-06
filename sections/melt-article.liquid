@@ -1,0 +1,250 @@
+{%- comment -%}
+  Melt: Blog article (Wireframes — Blog · Blog article).
+  Header in a 720px measure (breadcrumbs, category, H1, standfirst, date · read time) · full-bleed
+  16:9 hero · body capped at 720px · optional collection callout and "Mentioned in this piece"
+  product row, which break out wider (860px) so they read as interruptions · share and
+  "More in <category>" · Keep reading (same category first) · BlogPosting structured data.
+
+  Article metafields (Settings › Custom data › Blog posts):
+  - custom.callout_collection  Collection        The "Shop the moment" callout.
+  - custom.callout_text        Single line text  Optional line under the collection name.
+  - custom.mentioned_products  List of products  The "Mentioned in this piece" row.
+  The callout sits where the article has its first horizontal rule (<hr>), so editors place it
+  from the post editor; with no rule it follows the body.
+{%- endcomment -%}
+{%- liquid
+  assign category_tags = section.settings.category_tags | split: ','
+  assign category = ''
+  for cat in category_tags
+    assign cat_clean = cat | strip
+    if article.tags contains cat_clean
+      assign category = cat_clean
+      break
+    endif
+  endfor
+  if category == blank
+    assign category = article.tags | first
+  endif
+
+  assign words = article.content | strip_html | split: ' ' | size
+  assign read_mins = words | divided_by: 200.0 | ceil
+  if read_mins < 1
+    assign read_mins = 1
+  endif
+
+  assign standfirst = article.excerpt | strip_html | strip
+  assign callout_collection = article.metafields.custom.callout_collection.value
+  assign mentioned = article.metafields.custom.mentioned_products.value
+
+  assign content_parts = article.content | replace: '<hr/>', '<hr>' | replace: '<hr />', '<hr>' | split: '<hr>'
+-%}
+
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- capture callout -%}
+  {%- if callout_collection != blank -%}
+    <aside class="melt-article__callout" aria-label="{{ callout_collection.title | escape }}">
+      <div class="melt-article__callout-media">
+        {%- assign callout_image = callout_collection.image | default: callout_collection.featured_image -%}
+        {%- if callout_image -%}
+          {{ callout_image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 280px, 100vw', widths: '375, 560, 900', alt: callout_collection.title }}
+        {%- endif -%}
+      </div>
+      <div class="melt-article__callout-copy">
+        {%- render 'melt-eyebrow', text: section.settings.callout_eyebrow -%}
+        <h2 class="h3 melt-article__callout-title">{{ callout_collection.title | escape }}</h2>
+        {%- assign callout_text = article.metafields.custom.callout_text.value | default: callout_collection.description | strip_html | truncatewords: 24 -%}
+        {%- if callout_text != blank -%}<p>{{ callout_text }}</p>{%- endif -%}
+        <a href="{{ callout_collection.url }}" class="button">{{ section.settings.callout_button | replace: '[collection]', callout_collection.title | escape }}</a>
+      </div>
+    </aside>
+  {%- endif -%}
+{%- endcapture -%}
+
+<article class="melt-article color-{{ section.settings.color_scheme }} gradient">
+  <header class="melt-article__header page-width">
+    <div class="melt-article__measure">
+      {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-article__breadcrumbs' -%}
+      {%- if category != blank -%}
+        {%- render 'melt-eyebrow', text: category, class: 'melt-article__category' -%}
+      {%- endif -%}
+      <h1 class="melt-article__title h1">{{ article.title | escape }}</h1>
+      {%- if standfirst != blank -%}
+        <p class="melt-article__standfirst">{{ standfirst }}</p>
+      {%- endif -%}
+      <p class="melt-article__byline">
+        {%- if section.settings.byline != blank -%}<span>{{ section.settings.byline | escape }}</span> · {% endif -%}
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d %B %Y' }}</time> · {{ read_mins }} min read
+      </p>
+    </div>
+  </header>
+
+  {%- if article.image -%}
+    <div class="melt-article__hero">
+      {{ article.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750, 1100, 1500, 1920, 2400', alt: article.image.alt | default: article.title }}
+    </div>
+  {%- endif -%}
+
+  <div class="melt-article__body page-width">
+    {%- for part in content_parts -%}
+      <div class="melt-article__measure rte">{{ part }}</div>
+      {%- if forloop.first -%}
+        {%- if content_parts.size > 1 and callout != blank -%}
+          <div class="melt-article__wide">{{ callout }}</div>
+        {%- endif -%}
+      {%- elsif forloop.last == false -%}
+        <div class="melt-article__measure rte"><hr></div>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if content_parts.size == 1 and callout != blank -%}
+      <div class="melt-article__wide">{{ callout }}</div>
+    {%- endif -%}
+
+    {%- if mentioned != blank and mentioned.size > 0 -%}
+      <div class="melt-article__wide melt-article__products">
+        {%- render 'melt-eyebrow', text: section.settings.products_eyebrow -%}
+        <ul class="melt-article__product-track list-unstyled" role="list">
+          {%- for p in mentioned limit: 8 -%}
+            <li>{% render 'card-product', card_product: p, media_aspect_ratio: 'portrait', show_type_eyebrow: true, show_scent_notes: true, lazy_load: true, skip_styles: true %}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    <div class="melt-article__measure melt-article__footer">
+      {%- if category != blank -%}
+        <a href="{{ blog.url }}/tagged/{{ category | handleize }}" class="melt-article__more link">More in {{ category | escape }} →</a>
+      {%- else -%}
+        <a href="{{ blog.url }}" class="melt-article__more link">More from the {{ blog.title | escape }} →</a>
+      {%- endif -%}
+      <button type="button" class="melt-article__share link" data-share-url="{{ request.origin }}{{ article.url }}" data-share-title="{{ article.title | escape }}">
+        <span data-share-label>{{ section.settings.share_label | escape }}</span>
+      </button>
+    </div>
+  </div>
+
+  {%- if section.settings.show_related -%}
+    {%- assign related_ids = '' -%}
+    {%- assign related_count = 0 -%}
+    {%- capture related_cards -%}
+      {%- if category != blank -%}
+        {%- for a in blog.articles limit: 50 -%}
+          {%- if related_count >= 3 -%}{%- break -%}{%- endif -%}
+          {%- if a.id != article.id and a.tags contains category -%}
+            <li>{% render 'melt-article-card', article: a, categories: section.settings.category_tags, show_excerpt: false %}</li>
+            {%- assign related_ids = related_ids | append: ',' | append: a.id | append: ',' -%}
+            {%- assign related_count = related_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- for a in blog.articles limit: 50 -%}
+        {%- if related_count >= 3 -%}{%- break -%}{%- endif -%}
+        {%- assign key = ',' | append: a.id | append: ',' -%}
+        {%- unless a.id == article.id or related_ids contains key -%}
+          <li>{% render 'melt-article-card', article: a, categories: section.settings.category_tags, show_excerpt: false %}</li>
+          {%- assign related_count = related_count | plus: 1 -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if related_count > 0 -%}
+      <section class="melt-article__related page-width" aria-label="{{ section.settings.related_eyebrow | escape }}">
+        {%- render 'melt-eyebrow', text: section.settings.related_eyebrow -%}
+        <ul class="melt-blog__grid list-unstyled" role="list">{{ related_cards }}</ul>
+      </section>
+    {%- endif -%}
+  {%- endif -%}
+</article>
+
+<script>
+  document.querySelectorAll('[data-share-url]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = btn.getAttribute('data-share-url');
+      var label = btn.querySelector('[data-share-label]');
+      if (navigator.share) { navigator.share({ title: btn.getAttribute('data-share-title'), url: url }).catch(function () {}); return; }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function () {
+          var old = label.textContent; label.textContent = {{ section.settings.copied_label | json }};
+          setTimeout(function () { label.textContent = old; }, 2000);
+        });
+      }
+    });
+  });
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ request.origin | append: article.url | json }} },
+    "headline": {{ article.title | json }},
+    {%- if standfirst != blank -%}"description": {{ standfirst | json }},{%- endif -%}
+    {%- if article.image -%}"image": [{{ article.image | image_url: width: 1920 | prepend: 'https:' | json }}],{%- endif -%}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+    "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+    {%- if category != blank -%}"articleSection": {{ category | json }},{%- endif -%}
+    "wordCount": {{ words }},
+    "author": { "@type": "Organization", "name": {{ shop.name | json }}, "url": {{ request.origin | json }} },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+      {%- if settings.logo -%},"logo": { "@type": "ImageObject", "url": {{ settings.logo | image_url: width: 600 | prepend: 'https:' | json }} }{%- endif -%}
+    }
+  }
+</script>
+
+{% stylesheet %}
+  .melt-article__header { padding-top: 2.4rem; padding-bottom: 3.2rem; }
+  @media screen and (min-width: 750px) { .melt-article__header { padding-top: 4rem; padding-bottom: 4rem; } }
+  .melt-article__measure { max-width: 72rem; margin-left: auto; margin-right: auto; }
+  .melt-article__wide { max-width: 86rem; margin: 4.4rem auto; }
+  .melt-article__breadcrumbs { margin-bottom: 1.8rem; }
+  .melt-article__category { margin: 0 0 1rem; }
+  .melt-article__title { margin: 0 0 1.4rem; }
+  .melt-article__standfirst { margin: 0 0 2rem; font-size: 1.9rem; line-height: 1.5; }
+  .melt-article__byline { margin: 0; font-size: 1.3rem; opacity: 0.75; }
+  .melt-article__hero img { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; max-height: 54rem; object-fit: cover; }
+  .melt-article__body { padding-top: 4.8rem; padding-bottom: 2.4rem; }
+  .melt-article__body .rte h2 { margin: 3.6rem 0 1.4rem; }
+  .melt-article__body .rte p { line-height: 1.75; }
+  .melt-article__body .rte blockquote { margin: 2.4rem 0; padding: 0.4rem 0 0.4rem 2.4rem; border-left: 2px solid rgb(var(--color-foreground)); font-size: 2.2rem; line-height: 1.4; font-family: var(--font-heading-family); font-style: normal; }
+  .melt-article__callout { display: grid; background: rgba(var(--color-foreground), 0.04); }
+  @media screen and (min-width: 750px) { .melt-article__callout { grid-template-columns: 28rem minmax(0, 1fr); } }
+  .melt-article__callout-media { min-height: 18rem; background: rgba(var(--color-foreground), 0.06); }
+  .melt-article__callout-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .melt-article__callout-copy { padding: 2.4rem 2rem; align-self: center; }
+  @media screen and (min-width: 750px) { .melt-article__callout-copy { padding: 3.2rem; } }
+  .melt-article__callout-title { margin: 0.6rem 0 0.8rem; }
+  .melt-article__callout-copy p { margin: 0 0 1.6rem; }
+  .melt-article__product-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(15rem, 1fr); gap: 1.4rem; overflow-x: auto; scroll-snap-type: x mandatory; margin: 1.6rem 0 0; padding-bottom: 0.8rem; }
+  @media screen and (min-width: 750px) { .melt-article__product-track { grid-auto-columns: calc((100% - 6rem) / 4); gap: 2rem; } }
+  .melt-article__product-track > li { scroll-snap-align: start; }
+  .melt-article__footer { display: flex; justify-content: space-between; align-items: center; gap: 1.6rem; padding: 2.4rem 0; border-top: 1px solid rgba(var(--color-foreground), 0.15); margin-top: 4rem; }
+  .melt-article__share { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 0.3rem; }
+  .melt-article__related { padding-top: 4.8rem; padding-bottom: 6.4rem; }
+  .melt-article__related .melt-eyebrow { margin-bottom: 2rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog article",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "category_tags", "label": "Category tags", "default": "Candle Care,Scent Notes,Moments & Occasions,Life Down the Lane", "info": "Comma-separated, matching the Blog overview chips. The first one an article has is its category." },
+    { "type": "text", "id": "byline", "label": "Byline", "info": "Optional, e.g. 'Written by the chandlery'." },
+    { "type": "header", "content": "Embeds" },
+    { "type": "text", "id": "callout_eyebrow", "label": "Collection callout eyebrow", "default": "Shop the moment" },
+    { "type": "text", "id": "callout_button", "label": "Collection callout button", "default": "Shop [collection]" },
+    { "type": "text", "id": "products_eyebrow", "label": "Product row eyebrow", "default": "Mentioned in this piece" },
+    { "type": "header", "content": "Footer" },
+    { "type": "text", "id": "share_label", "label": "Share label", "default": "Share" },
+    { "type": "text", "id": "copied_label", "label": "Link copied label", "default": "Link copied" },
+    { "type": "checkbox", "id": "show_related", "label": "Show Keep reading", "default": true },
+    { "type": "text", "id": "related_eyebrow", "label": "Keep reading eyebrow", "default": "Keep reading" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

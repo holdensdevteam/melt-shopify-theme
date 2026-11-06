@@ -1,24 +1,47 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
-      "type": "main-blog",
+      "type": "melt-blog",
+      "blocks": {
+        "cat_care": {
+          "type": "category",
+          "settings": {
+            "tag": "Candle Care",
+            "label": ""
+          }
+        },
+        "cat_notes": {
+          "type": "category",
+          "settings": {
+            "tag": "Scent Notes",
+            "label": ""
+          }
+        },
+        "cat_moments": {
+          "type": "category",
+          "settings": {
+            "tag": "Moments & Occasions",
+            "label": ""
+          }
+        },
+        "cat_lane": {
+          "type": "category",
+          "settings": {
+            "tag": "Life Down the Lane",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "cat_care",
+        "cat_notes",
+        "cat_moments",
+        "cat_lane"
+      ],
       "settings": {
-        "layout": "collage",
-        "show_image": true,
-        "image_height": "medium",
-        "show_date": true,
-        "show_author": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "",
+        "standfirst": "<p>Candle care, scent notes, what to light and when, and news from down the lane.</p>",
+        "per_page": 9
       }
     }
   },
