@@ -1,0 +1,503 @@
+{
+  "sections": {
+    "hero": {
+      "type": "melt-proposition-hero",
+      "blocks": {
+        "chip1": {
+          "type": "chip",
+          "settings": {
+            "text": "10% off every order"
+          }
+        },
+        "chip2": {
+          "type": "chip",
+          "settings": {
+            "text": "Timed to suit the product"
+          }
+        },
+        "chip3": {
+          "type": "chip",
+          "settings": {
+            "text": "Pause, skip or cancel any time"
+          }
+        }
+      },
+      "block_order": [
+        "chip1",
+        "chip2",
+        "chip3"
+      ],
+      "settings": {
+        "eyebrow": "Subscribe & Save",
+        "heading": "Never run out of the one you like",
+        "standfirst": "<p>Pick a fragrance, choose roughly how often you get through one, and it arrives without you having to think about it. Ten percent off every time, and you can stop whenever you like.</p>",
+        "primary_label": "Choose a fragrance",
+        "primary_link": "#available",
+        "secondary_label": "How it works",
+        "secondary_link": "#how-it-works",
+        "note": ""
+      }
+    },
+    "why": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c1_0": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Ten percent, every time",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c1_1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Not just the first order. The discount holds for as long as the subscription runs, on every delivery.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c1_0",
+            "c1_1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c2_0": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Timed to the product, not a default",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c2_1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>We suggest a candle every eight weeks, a diffuser every twelve and melts every six. A diffuser arriving monthly would just pile up.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c2_0",
+            "c2_1"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c3_0": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Nothing is locked in",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c3_1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Skip one, push it back, change how often it comes or stop altogether. All of it from your account, in a couple of taps.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c3_0",
+            "c3_1"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "intro": "",
+        "custom_code": "",
+        "columns_desktop": 3,
+        "column_style": "card",
+        "card_color_scheme": "scheme-1",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "how_anchor": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div id=\"how-it-works\" style=\"position:relative;top:calc(-1 * var(--header-height, 0px));\"></div>",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "how": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c1_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "01"
+              },
+              "blocks": {}
+            },
+            "c1_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Choose it on the product",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c1_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>On any eligible product, pick Subscribe &amp; Save instead of one-time purchase and choose how often you would like it.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c1_0",
+            "c1_1",
+            "c1_2"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c2_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "02"
+              },
+              "blocks": {}
+            },
+            "c2_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "It arrives, discounted",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c2_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Ten percent comes off every delivery, sent on the schedule you chose.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c2_0",
+            "c2_1",
+            "c2_2"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c3_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "03"
+              },
+              "blocks": {}
+            },
+            "c3_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Change it whenever",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c3_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Skip, delay, change the frequency or cancel from your account, up to 48 hours before your next delivery. No phone call needed.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c3_0",
+            "c3_1",
+            "c3_2"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3"
+      ],
+      "settings": {
+        "title": "How it works",
+        "heading_size": "h2",
+        "intro": "<p>There is nothing to sign up to here. It happens on the product.</p>",
+        "custom_code": "",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "card_color_scheme": "scheme-1",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "available_anchor": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div id=\"available\" style=\"position:relative;top:calc(-1 * var(--header-height, 0px));\"></div>",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "available": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "subscribe-save",
+        "collection_source": "manual",
+        "products_to_show": 8,
+        "heading_eyebrow": "Available on",
+        "title": "Subscribe to any of these",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "heading_alignment": "left",
+        "heading_margin_bottom": 32,
+        "cta_label": "",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "show_view_all": false,
+        "image_ratio": "portrait",
+        "card_style": "card",
+        "show_type_eyebrow": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 56,
+        "padding_bottom": 24
+      }
+    },
+    "price_note": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Prices shown are the one-time price. Your 10% comes off when you choose Subscribe &amp; Save on the product.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 0,
+        "padding_bottom": 48
+      }
+    },
+    "often": {
+      "type": "melt-spec-table",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "title": "Scented candles",
+            "note": "A Short & Fat burns for about 70 hours",
+            "value": "Every 8 weeks"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "title": "Reed diffusers",
+            "note": "They last roughly three months",
+            "value": "Every 12 weeks"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "title": "Wax melts",
+            "note": "[Burn time per melt to confirm]",
+            "value": "Every 6 weeks"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "heading": "How often is up to you",
+        "text": "<p>Here is what we suggest for each kind of thing, based on how long it actually lasts. Choose whatever suits you on the product, and change it any time.</p>"
+      }
+    },
+    "manage": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "All of it lives in your account",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sign in with a code sent to your email – there is no password to forget. From there you can:</p><ul><li>Skip the next delivery</li><li>Change how often it comes</li><li>Update your address or card</li><li>Pause for a while, or cancel outright</li></ul>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Manage my subscription",
+            "button_link": "/account",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "image_source": "manual",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "faqs": {
+      "type": "melt-faqs",
+      "blocks": {
+        "faq1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I cancel at any time?",
+            "answer": "<p>Yes. Cancel from your account whenever you like, up to 48 hours before your next delivery. There is no minimum number of orders.</p>"
+          }
+        },
+        "faq2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I keep the 10% on every delivery, or just the first?",
+            "answer": "<p>Every delivery. The discount holds for as long as your subscription runs.</p>"
+          }
+        },
+        "faq3": {
+          "type": "question",
+          "settings": {
+            "question": "What if I am away when one is due?",
+            "answer": "<p>Skip that delivery or push it back from your account, up to 48 hours before it is due.</p>"
+          }
+        },
+        "faq4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I change to a different fragrance?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq5": {
+          "type": "question",
+          "settings": {
+            "question": "Which products can I subscribe to?",
+            "answer": "<p>Any product showing the Subscribe &amp; Save option on its page. The ones available are shown above.</p>"
+          }
+        },
+        "faq6": {
+          "type": "question",
+          "settings": {
+            "question": "Is delivery included?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq7": {
+          "type": "question",
+          "settings": {
+            "question": "When am I charged?",
+            "answer": "<p>For your first delivery when you place the order, then automatically on each delivery date after that.</p>"
+          }
+        },
+        "faq8": {
+          "type": "question",
+          "settings": {
+            "question": "What happens if the price changes?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3",
+        "faq4",
+        "faq5",
+        "faq6",
+        "faq7",
+        "faq8"
+      ],
+      "settings": {
+        "title": "Questions we get asked",
+        "heading_size": "h2",
+        "description": "<p>The ones that stop people subscribing, answered.</p>",
+        "link_label": "",
+        "source": "manual",
+        "structured_data": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "how_anchor",
+    "how",
+    "available_anchor",
+    "available",
+    "price_note",
+    "often",
+    "manage",
+    "faqs"
+  ]
+}

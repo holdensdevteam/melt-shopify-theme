@@ -1,0 +1,58 @@
+{%- comment -%}
+  Melt: heading + text on the left, a simple two-column table on the right
+  (Wireframes — Subscribe & Save · 05 How often). Rows are blocks: title, small note, value.
+{%- endcomment -%}
+<div class="melt-spec color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width melt-spec__inner">
+    <div class="melt-spec__copy">
+      {%- if section.settings.heading != blank -%}<h2 class="h2">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <dl class="melt-spec__table">
+      {%- for block in section.blocks -%}
+        <div class="melt-spec__row" {{ block.shopify_attributes }}>
+          <dt><span class="melt-spec__title">{{ block.settings.title | escape }}</span>{%- if block.settings.note != blank -%}<span class="melt-spec__note">{{ block.settings.note | escape }}</span>{%- endif -%}</dt>
+          <dd>{{ block.settings.value | escape }}</dd>
+        </div>
+      {%- endfor -%}
+    </dl>
+  </div>
+</div>
+
+{% stylesheet %}
+  .melt-spec__inner { display: grid; gap: 2.4rem; padding-top: 4rem; padding-bottom: 4rem; }
+  @media screen and (min-width: 990px) { .melt-spec__inner { grid-template-columns: minmax(0, 380fr) minmax(0, 834fr); gap: 6.4rem; padding-top: 7.2rem; padding-bottom: 7.2rem; } }
+  .melt-spec__copy h2 { margin: 0 0 1.2rem; }
+  .melt-spec__table { margin: 0; }
+  .melt-spec__row { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(var(--color-foreground), 0.15); }
+  .melt-spec__row:first-child { padding-top: 0; }
+  .melt-spec__row:last-child { border-bottom: 0; }
+  .melt-spec__title { display: block; font-weight: 600; font-size: 1.7rem; }
+  .melt-spec__note { display: block; margin-top: 0.4rem; font-size: 1.3rem; opacity: 0.7; }
+  .melt-spec__row dd { margin: 0; white-space: nowrap; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Spec table",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "note", "label": "Note" },
+        { "type": "text", "id": "value", "label": "Value" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Spec table" } ]
+}
+{% endschema %}
