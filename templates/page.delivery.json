@@ -1,0 +1,300 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "layout": "stacked",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "rates": {
+      "type": "melt-spec-table",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "title": "Standard delivery",
+            "note": "Royal Mail first class or courier, signed for",
+            "value": "£5 · free over £50"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "title": "Next working day",
+            "note": "Order by 1pm · UK mainland · by courier",
+            "value": "£9"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2"
+      ],
+      "settings": {
+        "heading": "Delivery",
+        "text": ""
+      }
+    },
+    "standard": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Standard delivery",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Smaller orders are sent first class with Royal Mail, whilst larger orders are despatched with courier. Both methods are on a signed-for service to ensure safe delivery of your goods.</p><p>The courier will send updates about your delivery to the mobile number or email you gave when ordering. Special delivery requests can then be arranged directly with the courier.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "next_day": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Next working day",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If your order is urgent, we offer a Next Working Day UK Mainland delivery service for orders placed by 1pm. Your goods will be sent by courier, for a single charge of £9.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "outside_uk": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Outside the UK",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you have any queries about carriage outside the UK, please email us at <a href=\"mailto:info@themeltco.com\">info@themeltco.com</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "returns": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Returns",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>[Returns policy to confirm with Ted]</p><p><a href=\"/policies/refund-policy\">Read our full returns policy</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "keep_reading": {
+      "type": "melt-columns",
+      "blocks": {
+        "k1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/faqs\">FAQs</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Delivery, returns, Subscribe & Save and more.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h1",
+            "t1"
+          ]
+        },
+        "k2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/contact\">Contact us</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>A real person, within one working day.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h2",
+            "t2"
+          ]
+        },
+        "k3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im3": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/round-pillar-candles.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/candle-sizes\">Candle Sizes</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Every format, its size and how long it burns.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im3",
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "eyebrow": "Keep reading",
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "rates",
+    "standard",
+    "next_day",
+    "outside_uk",
+    "returns",
+    "keep_reading"
+  ]
+}

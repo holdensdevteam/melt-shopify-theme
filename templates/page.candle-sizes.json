@@ -1,0 +1,278 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        },
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/candle-sizes-hero.png",
+            "ratio": "landscape"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text",
+        "image"
+      ],
+      "settings": {
+        "layout": "stacked",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "rows": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/round-pillar-candles.png",
+            "caption": "",
+            "heading": "Round pillar candles",
+            "text": "<p>Our original product, our round pillar candles remain our best-selling range.</p><p>Hand-poured at Backridge Farm in Waddington, each candle takes around 36 hours to make before it is trimmed, tagged and sent on its way.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/luxury-glass-jar-candles.png",
+            "caption": "",
+            "heading": "Glass jar candles",
+            "text": "<p>Our Luxury Glass Jar candle is a rounded crystal glass jar filled with fragranced ivory-coloured wax.</p><p>The Room Scenter is its little sister: a shot glass of beautifully fragranced ivory wax, packaged in a simple black gift box with a gift card tucked inside.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "sizes": {
+      "type": "melt-spec-table",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "title": "Travel Tin",
+            "note": "[Size to confirm]",
+            "value": "About 22 hours"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "title": "Short & Fat",
+            "note": "4″ × 4″ round pillar",
+            "value": "About 70 hours"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "title": "Tall & Thin",
+            "note": "7″ × 2.5″ round pillar",
+            "value": "About 75 hours"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "title": "Tall & Fat",
+            "note": "8″ × 4″ round pillar",
+            "value": "About 160 hours"
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "title": "Luxury Glass Jar",
+            "note": "9cm high glass jar",
+            "value": "About 80 hours"
+          }
+        },
+        "r6": {
+          "type": "row",
+          "settings": {
+            "title": "Room Scenter",
+            "note": "6cm high shot glass",
+            "value": "About 22 hours"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {
+        "heading": "Sizes and burn times",
+        "text": "<p>Approximate, and every candle burns a little differently depending on where it sits and how it is looked after.</p>"
+      }
+    },
+    "keep_reading": {
+      "type": "melt-columns",
+      "blocks": {
+        "k1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im1": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/take-care-of-your-candles.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/candle-care\">Candle Care</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Trimming, first burns and getting every hour out of a candle.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im1",
+            "h1",
+            "t1"
+          ]
+        },
+        "k2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im2": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/round-pillar-candles.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Twenty-four fragrances, in every format.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im2",
+            "h2",
+            "t2"
+          ]
+        },
+        "k3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/faqs\">FAQs</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Delivery, returns, Subscribe & Save and more.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "eyebrow": "Keep reading",
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "rows",
+    "sizes",
+    "keep_reading"
+  ]
+}

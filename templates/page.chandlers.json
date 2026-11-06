@@ -1,0 +1,231 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        },
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/the-chandlers-hero.png",
+            "ratio": "landscape"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text",
+        "image"
+      ],
+      "settings": {
+        "layout": "stacked",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We accept that we are rather a diverse and motley crew. Ranging from the young and vibrant, to the more middle aged and NOT so sedate (that would be Trevor!)</p><p>From true Lancastrians to mad Scots, to multi-linguists. Dive masters to computer boffins, and the ex-head boy. The dance teacher, the intrepid travellers, the textile designer and the ex-cricketer (now current golfer of course).</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "team": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/the-melt-chandlers.png",
+            "caption": "",
+            "heading": "We’re sure you get the picture…",
+            "text": "<p>The mums, the dads, the animal lovers, the nature lovers. The two legged, the four legged, the hairy, the not so hairy… and the positively furry! (And not forgetting the ones with the questionable taste in jewellery!)</p><p>Enough now! As we said, a rather varied bunch with a collective love of candles, fragrances and hot wax!</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "keep_reading": {
+      "type": "melt-columns",
+      "blocks": {
+        "k1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im1": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/our-story-hero.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/our-story\">Our Story</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Twenty-five years of it, most of them down this lane.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im1",
+            "h1",
+            "t1"
+          ]
+        },
+        "k2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im2": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/the-shop-on-the-farm\">The Shop on the Farm</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Every fragrance to try, open six and a half days a week.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im2",
+            "h2",
+            "t2"
+          ]
+        },
+        "k3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im3": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/candle-manufacturing.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/made-in-lancashire\">Made in Lancashire</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Why 89% of what goes into a Melt candle comes from within the county.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im3",
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "eyebrow": "Keep reading",
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "intro",
+    "team",
+    "keep_reading"
+  ]
+}

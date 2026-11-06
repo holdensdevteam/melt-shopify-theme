@@ -1,0 +1,287 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        },
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/wick-management-hero.jpg",
+            "ratio": "landscape"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text",
+        "image"
+      ],
+      "settings": {
+        "layout": "stacked",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Keep the wick trimmed to 4mm, before and during lighting. Assuming you follow the advice below, the longer you burn our candles at any one time, the better they burn: long burning encourages a wide wax pool, which uses as much of the fragranced wax as possible.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "rows": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/take-care-of-your-candles.jpg",
+            "caption": "",
+            "heading": "Wick management",
+            "text": "<p>Candle wick has a tendency to curl over at the top. Be sure to nip this curl off (to 4mm) before re-lighting to help your candle burn evenly.</p><p>If a candle is smoking slightly with a large flame, the wick is too long. Extinguish the candle and trim it as above.</p><p>A low, small flame means the wick has been trimmed too short. Digging around in the wax won’t help, honest! Extinguish, gently tip out any molten wax and re-light.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/making-your-candles-last-longer.jpg",
+            "caption": "",
+            "heading": "Making your candles last longer",
+            "text": "<p>Please don’t add additional oils. They are not necessary, as Melt candles are already highly fragranced. We add fragrance in controlled quantities so it is present throughout the wax, and as the candle burns the fragrance is gently released. Any added oil would be burnt off very quickly and increases the risk of fire or spluttering.</p><p>Candles of varied sizes grouped together do look good, but leave a little space between them, otherwise they become unstable and can collapse.</p><p>Candles are a little like real fires – they need to be tended occasionally. In a draughty spot, such as a hall, a candle will burn more heavily on one side; turning it occasionally means it burns evenly and for longer.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "safety": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Please remember",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Never leave candles unattended, in a draught, or near a secondary heat source such as a radiator or fireplace – the extra heat, coupled with the heat from the flame, will make your candle unstable, resulting in rapid burning or collapse. Keep them out of reach of children and pets, and place them on a suitable holder, large enough to collect any molten wax.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "quote": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "The longer you burn our candles at any one time, the better they burn.",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 24
+      }
+    },
+    "keep_reading": {
+      "type": "melt-columns",
+      "blocks": {
+        "k1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im1": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/round-pillar-candles.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/candle-sizes\">Candle Sizes</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Every format, its size and how long it burns.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im1",
+            "h1",
+            "t1"
+          ]
+        },
+        "k2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/pages/faqs\">FAQs</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Delivery, returns, Subscribe & Save and more.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h2",
+            "t2"
+          ]
+        },
+        "k3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "im3": {
+              "type": "_columns-image",
+              "settings": {
+                "image": "shopify://shop_images/round-pillar-candles.png",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Twenty-four fragrances, in every format.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "im3",
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "eyebrow": "Keep reading",
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "intro",
+    "rows",
+    "safety",
+    "quote",
+    "keep_reading"
+  ]
+}
