@@ -1,0 +1,134 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        },
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
+            "ratio": "landscape"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text",
+        "image"
+      ],
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "In the heart of the Ribble Valley",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our journey at Backridge Farm began in 2002, when we moved into the old stable block and set up a dedicated workshop. Before that, we had been carefully pouring our luxury handmade candles in kitchens and basements since 1999, one batch at a time. But once we settled in, something lovely started to happen – curious visitors began turning up at the door, hoping to take a candle home. We weren’t sure if our tucked-away spot in the Ribble Valley was quite right for a shop, but their warmth and enthusiasm nudged us to give it a try. And so, our little shop was born – which over the decades, has expanded and grown into the beautiful, calming, retail retreat it is today.</p><p>As word spread, more and more visitors found their way to our door, drawn by the distinctive fragrances, gentle flicker, and long-lasting quality of our handmade fragranced candles. We quickly realised we needed to create a space where you could fully explore the range in true Melt style. So, alongside our signature collection of luxury handmade candles, we introduced a curated selection of organic skincare, niche perfumes, cashmere, leather goods and jewellery – all chosen to complement the calm, welcoming atmosphere we’ve become known for.</p><p>Now, we’ve been proudly making our handmade luxury scented candles for over 25 years. Each one is hand-poured using traditional methods and fine fragrance blends, crafted to burn slowly and fill your space with a rich, lasting scent.</p><p>No matter the season or the changeable Ribble Valley weather, you can always expect a warm and smiley welcome when you visit us. Plus, with parking right outside the door, it means you can scamper in very quickly when it’s raining. Which, being in the Ribble Valley, it does a lot!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "rooms": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/melt-chandlery-festive-image.jpg",
+            "caption": "",
+            "heading": "The Chandlery",
+            "text": "<p>A chandlery was originally the office in a medieval household responsible for the storage and distribution of candles and wax.</p><p>Melt’s chandlery is a quiet and peaceful room dedicated to our unique range of fragranced candles – which are all hand made at Backridge Farm. The display tables around a central fragrance bar allow you to sample our full range of fragrances before you select your final choice from the shelves. You can read more about our essential oils and their properties in Melt’s ‘Bible of Ingredients’, which is on display.</p><p>All our candles are beautifully gift boxed – and can be placed in a gift bag along with a care card and gift card, making them the perfect present.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/festive-books-featured-image.jpg",
+            "caption": "",
+            "heading": "The Reading Room",
+            "text": "<p>Alongside the candles is an imaginative ‘library of books’ that cover a range of genres from comical to quirky, unusual to whimsical – and those oh so beautifully illustrated editions from our childhood.</p><p>Grab yourself a glass of wine as you browse the shelves – or take a seat whilst you read.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "visit": {
+      "type": "melt-visit-us",
+      "settings": {
+        "heading": "Visit our shop",
+        "map_image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "intro",
+    "rooms",
+    "visit"
+  ]
+}

@@ -1,0 +1,198 @@
+{%- comment -%}
+  Melt: Visit us panel for a physical location (Shop on the Farm).
+  Opening hours, address, phone and directions on one side; a Google map on the other.
+  The map only loads when the visitor clicks "Show map", so no Google cookies are set
+  before they choose to see it. Outputs Store (LocalBusiness) structured data from the
+  same settings, so the page and the schema can't disagree.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign address_query = s.business_name | append: ', ' | append: s.street_address | append: ', ' | append: s.locality | append: ', ' | append: s.postcode
+  assign map_query = s.map_query | default: address_query
+-%}
+{%- capture directions_href -%}
+  {%- if s.directions_url != blank -%}{{ s.directions_url }}{%- else -%}https://www.google.com/maps/dir/?api=1&destination={{ map_query | url_encode }}{%- endif -%}
+{%- endcapture -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding { padding-top: {{ s.padding_top | times: 0.75 | round: 0 }}px; padding-bottom: {{ s.padding_bottom | times: 0.75 | round: 0 }}px; }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding { padding-top: {{ s.padding_top }}px; padding-bottom: {{ s.padding_bottom }}px; }
+  }
+{%- endstyle -%}
+
+<style>
+  .melt-visit__inner { display: grid; gap: 3.2rem; align-items: stretch; }
+  @media screen and (min-width: 750px) { .melt-visit__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 4.8rem; } }
+  .melt-visit__eyebrow { margin: 0 0 1.2rem; }
+  .melt-visit__heading { margin: 0 0 2.4rem; }
+  .melt-visit__group { margin-bottom: 2.4rem; }
+  .melt-visit__label { margin: 0 0 0.6rem; font-size: 1.3rem; letter-spacing: 0.1rem; text-transform: uppercase; }
+  .melt-visit__group .rte p, .melt-visit__address { margin: 0; line-height: 1.7; font-style: normal; }
+  .melt-visit__map { position: relative; min-height: 32rem; border-radius: var(--media-radius, 0); overflow: hidden; background: rgba(var(--color-foreground), 0.04); display: flex; align-items: center; justify-content: center; text-align: center; }
+  .melt-visit__map img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .melt-visit__map-inner { position: relative; padding: 2.4rem; }
+  .melt-visit__map-note { margin: 1.2rem 0 0; font-size: 1.3rem; opacity: 0.75; }
+  .melt-visit__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+</style>
+
+<div class="melt-visit color-{{ s.color_scheme }} gradient">
+  <div class="page-width melt-visit__inner section-{{ section.id }}-padding">
+    <div class="melt-visit__content">
+      {%- if s.eyebrow != blank -%}
+        <p class="melt-visit__eyebrow caption-with-letter-spacing">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="melt-visit__heading {{ s.heading_size }}">{{ s.heading }}</h2>
+      {%- endif -%}
+
+      {%- if s.hours != blank -%}
+        <div class="melt-visit__group">
+          <h3 class="melt-visit__label">{{ s.hours_label | escape }}</h3>
+          <div class="rte">{{ s.hours }}</div>
+        </div>
+      {%- endif -%}
+
+      <div class="melt-visit__group">
+        <h3 class="melt-visit__label">{{ s.address_label | escape }}</h3>
+        <address class="melt-visit__address">
+          {{- s.business_name | escape }}<br>
+          {{ s.street_address | escape }}<br>
+          {{ s.locality | escape }}{% if s.region != blank %}, {{ s.region | escape }}{% endif %}<br>
+          {{ s.postcode | escape -}}
+        </address>
+      </div>
+
+      {%- if s.telephone != blank -%}
+        <div class="melt-visit__group">
+          <h3 class="melt-visit__label">{{ s.phone_label | escape }}</h3>
+          <p class="melt-visit__address"><a href="tel:{{ s.telephone | remove: ' ' }}" class="link">{{ s.telephone | escape }}</a></p>
+        </div>
+      {%- endif -%}
+
+      {%- if s.directions_label != blank -%}
+        <a href="{{ directions_href | strip }}" class="button" target="_blank" rel="noopener">{{ s.directions_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="melt-visit__map" data-map-src="https://www.google.com/maps?q={{ map_query | url_encode }}&output=embed">
+      {%- if s.map_image != blank -%}
+        {{ s.map_image | image_url: width: 1500 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 55vw, 100vw', widths: '375, 750, 1100, 1500', alt: s.map_image.alt }}
+      {%- endif -%}
+      <div class="melt-visit__map-inner">
+        <button type="button" class="button button--secondary" data-map-load>{{ s.map_button_label | escape }}</button>
+        <p class="melt-visit__map-note">{{ s.map_note | escape }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    var map = root.querySelector('[data-map-src]');
+    var btn = root.querySelector('[data-map-load]');
+    if (!map || !btn) return;
+    btn.addEventListener('click', function () {
+      var frame = document.createElement('iframe');
+      frame.src = map.getAttribute('data-map-src');
+      frame.title = {{ s.business_name | append: ' map' | json }};
+      frame.loading = 'lazy';
+      frame.referrerPolicy = 'no-referrer-when-downgrade';
+      map.innerHTML = '';
+      map.appendChild(frame);
+    });
+  })();
+</script>
+
+{%- if s.structured_data -%}
+  {%- liquid
+    assign hours_list = s.opening_hours_schema | split: ','
+    assign same_as = s.same_as | newline_to_br | split: '<br />'
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {{ s.business_type | default: 'Store' | json }},
+      "name": {{ s.business_name | json }},
+      "url": {{ canonical_url | json }},
+      {%- if s.map_image != blank -%}
+        "image": {{ s.map_image | image_url: width: 1200 | prepend: 'https:' | json }},
+      {%- elsif settings.logo != blank -%}
+        "image": {{ settings.logo | image_url: width: 600 | prepend: 'https:' | json }},
+      {%- endif -%}
+      {%- if s.telephone != blank -%}
+        "telephone": {{ s.telephone | json }},
+      {%- endif -%}
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ s.street_address | json }},
+        "addressLocality": {{ s.locality | json }},
+        "addressRegion": {{ s.region | json }},
+        "postalCode": {{ s.postcode | json }},
+        "addressCountry": "GB"
+      },
+      {%- if s.latitude != blank and s.longitude != blank -%}
+        "geo": { "@type": "GeoCoordinates", "latitude": {{ s.latitude | json }}, "longitude": {{ s.longitude | json }} },
+      {%- endif -%}
+      {%- if same_as.size > 0 and s.same_as != blank -%}
+        "sameAs": [{%- for u in same_as -%}{{ u | strip | json }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}],
+      {%- endif -%}
+      "openingHours": [{%- for h in hours_list -%}{{ h | strip | json }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Visit us",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Visit our shop" },
+    {
+      "type": "select", "id": "heading_size", "label": "Heading size", "default": "h1",
+      "options": [ { "value": "h2", "label": "Small" }, { "value": "h1", "label": "Medium" }, { "value": "h0", "label": "Large" } ]
+    },
+    { "type": "header", "content": "Opening hours" },
+    { "type": "text", "id": "hours_label", "label": "Label", "default": "Opening hours" },
+    { "type": "richtext", "id": "hours", "label": "Hours", "default": "<p>Monday to Saturday, 10am to 5pm</p><p>Sunday, noon to 4.30pm</p>" },
+    {
+      "type": "text", "id": "opening_hours_schema", "label": "Hours for search engines",
+      "default": "Mo-Sa 10:00-17:00, Su 12:00-16:30",
+      "info": "Same hours in schema.org format, separated by commas. Keep in step with the hours above."
+    },
+    { "type": "header", "content": "Address" },
+    { "type": "text", "id": "address_label", "label": "Label", "default": "Find us" },
+    { "type": "text", "id": "business_name", "label": "Business name", "default": "Melt" },
+    { "type": "text", "id": "street_address", "label": "Street", "default": "Backridge Farm, Twitter Lane" },
+    { "type": "text", "id": "locality", "label": "Town", "default": "Waddington" },
+    { "type": "text", "id": "region", "label": "County", "default": "Lancashire" },
+    { "type": "text", "id": "postcode", "label": "Postcode", "default": "BB7 3LQ" },
+    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Call the shop" },
+    { "type": "text", "id": "telephone", "label": "Phone", "default": "01200 443412" },
+    { "type": "header", "content": "Directions and map" },
+    { "type": "text", "id": "directions_label", "label": "Directions button label", "default": "Get directions" },
+    { "type": "url", "id": "directions_url", "label": "Directions link", "info": "Optional. Leave empty to link Google Maps directions to the address." },
+    { "type": "text", "id": "map_query", "label": "Map search", "info": "What Google Maps searches for. Leave empty to use the name and address." },
+    { "type": "image_picker", "id": "map_image", "label": "Image behind the map button", "info": "Shown until the visitor loads the map. Also used as the image in structured data." },
+    { "type": "text", "id": "map_button_label", "label": "Map button label", "default": "Show map" },
+    { "type": "text", "id": "map_note", "label": "Note under the map button", "default": "Loads Google Maps" },
+    { "type": "header", "content": "Structured data" },
+    { "type": "checkbox", "id": "structured_data", "label": "Output LocalBusiness structured data", "default": true, "info": "Use on one page only, the location's own page." },
+    {
+      "type": "select", "id": "business_type", "label": "Business type", "default": "Store",
+      "options": [ { "value": "Store", "label": "Store" }, { "value": "LocalBusiness", "label": "Local business" } ]
+    },
+    { "type": "text", "id": "latitude", "label": "Latitude", "default": "53.8798168" },
+    { "type": "text", "id": "longitude", "label": "Longitude", "default": "-2.4295273" },
+    { "type": "textarea", "id": "same_as", "label": "Social profiles", "info": "One URL per line.", "default": "https://www.instagram.com/themeltco/\nhttps://www.facebook.com/meltcandles" },
+    { "type": "header", "content": "Layout" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "presets": [ { "name": "Visit us" } ]
+}
+{% endschema %}

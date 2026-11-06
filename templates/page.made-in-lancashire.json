@@ -1,0 +1,235 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        },
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/candle-manufacturing.jpg",
+            "ratio": "landscape"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text",
+        "image"
+      ],
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "facts": {
+      "type": "melt-columns",
+      "blocks": {
+        "c1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "89%",
+                "heading_size": "h2"
+              },
+              "blocks": {}
+            },
+            "t1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>of our ingredients and packaging comes from Lancashire companies. The rest comes from elsewhere in the UK.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h1",
+            "t1"
+          ]
+        },
+        "c2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h2": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Hand-poured",
+                "heading_size": "h2"
+              },
+              "blocks": {}
+            },
+            "t2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Every candle is poured by hand in the Open Barn at Backridge Farm, Waddington, where all our candle making is done.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h2",
+            "t2"
+          ]
+        },
+        "c3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "h3": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "25+ years",
+                "heading_size": "h2"
+              },
+              "blocks": {}
+            },
+            "t3": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>We have been making candles in the Ribble Valley for over 25 years, from a kitchen table to a barn down Twitter Lane.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "h3",
+            "t3"
+          ]
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "story": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/what-we-do.jpg",
+            "caption": "",
+            "heading": "A mile from the nearest village",
+            "text": "<p>Melt is made at Backridge Farm, down Twitter Lane in Waddington, in the heart of the Ribble Valley. We moved into our first barn here in 2001 and have been here ever since – the llamas, geese, rescue hens and beehives in the fields outside the workshop doors give a rhythm to our working day.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/in-the-beginning.jpg",
+            "caption": "",
+            "heading": "Local by choice",
+            "text": "<p>We have worked hard to source our raw materials close to home. Over 89% of what goes into a Melt candle, from the ingredients to the packaging, comes from Lancashire companies, with the balance from the UK.</p><p>Our fragrances are blended for Melt, and you won’t find them anywhere else.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "visit_cta": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Come and see us",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our shop on the farm is open seven days a week, with every fragrance ready to try before you buy.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Visit the shop on the farm",
+            "button_link": "shopify://pages/the-shop-on-the-farm",
+            "button_style_secondary": false,
+            "button_label_2": "Shop all candles",
+            "button_link_2": "shopify://collections/scented-candles",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "facts",
+    "story",
+    "visit_cta"
+  ]
+}

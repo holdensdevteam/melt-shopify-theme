@@ -1,0 +1,150 @@
+{
+  "sections": {
+    "banner": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "breadcrumbs": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text_style": "subtitle"
+          }
+        },
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/our-story-hero.jpg",
+            "ratio": "landscape"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumbs",
+        "heading",
+        "text",
+        "image"
+      ],
+      "settings": {
+        "layout": "split",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "story": {
+      "type": "multirow",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/in-the-beginning.jpg",
+            "caption": "",
+            "heading": "In the beginning",
+            "text": "<p>It was December 2000. The last year had seen us migrate from the kitchen, to the garage, to a small basement unit in the local town – and now seemed like the right time to commit to bigger premises more suitable to lugging bags of heavy wax around. We knew it had to be practical; but in an ideal world – and being country bumpkins – we also wanted somewhere idyllic, and peaceful, and rural. The list went on… so; information was collected, newspapers scoured, properties visited – but we quickly realised that practical and idyllic don’t often go hand in hand. Practical was easily found, but as for the rest… well!</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/candle-manufacturing.jpg",
+            "caption": "",
+            "heading": "A few weeks later",
+            "text": "<p>…the village pub beckoned and in we piled for a spirit lifting beer. The local farmer followed us in soon after and found us gathered in a corner of the bar discussing what we could do next. He quietly ear-wigged for 10 minutes (the beauty of living in a village), coughed discreetly, and casually mentioned that he had a spare barn for rent. Once we’d established that the barn did indeed have both walls and a roof, we shot off down Twitter Lane (which conveniently runs from the pub door to the farm gate) for a look. It was perfect. It was idyllic. It was peaceful… it was lovely!</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/what-we-do.jpg",
+            "caption": "",
+            "heading": "April 2001",
+            "text": "<p>We moved onto Backridge Farm and have happily rumbled around the yard ever since. Obligingly, the farmer converted more barns at roughly the same pace as we needed bigger premises and so, we’re still here. Our last, and final, move saw us take up residence in the Open Barn in 2007 where all our candle manufacturing is now done – and we have slowly gathered the llamas, geese, rescue hens and beehives in the fields outside the workshop doors, which give a wonderful rhythm and heartbeat to our working day.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "what_we_do": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "What we do",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Melt specialises in producing hand-made, fine fragrance candles of fabulous quality and it is our willingness to step out of the conventional fragrance arena, in order to seek out more unusual perfume combinations for which we are now known. We have worked hard to source our raw materials locally and over 89% of our ingredients and packaging comes from Lancashire companies – with the balance being from the UK.</p><p>We now quietly supply the “melt” brand into independent retailers worldwide, as well as producing branded corporate gifts for a select group of clients. You can purchase through an exclusive group of stockists, online, or by visiting our shop on the farm in the heart of the beautiful Ribble Valley.</p><p>With our very best wishes – melt x</p><p><em>P.S. The village pub still beckons…!</em></p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Visit the shop on the farm",
+            "button_link": "shopify://pages/the-shop-on-the-farm",
+            "button_style_secondary": false,
+            "button_label_2": "Shop all candles",
+            "button_link_2": "shopify://collections/scented-candles",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "story",
+    "what_we_do"
+  ]
+}
