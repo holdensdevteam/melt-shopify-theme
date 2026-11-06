@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -35,7 +44,8 @@
         "primary_link": "#available",
         "secondary_label": "How it works",
         "secondary_link": "#how-it-works",
-        "note": ""
+        "note": "",
+        "color_scheme": ""
       }
     },
     "why": {
@@ -123,17 +133,22 @@
         "col3"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "",
         "heading_size": "h2",
         "intro": "",
         "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "card",
         "card_color_scheme": "scheme-1",
         "column_alignment": "left",
+        "color_scheme": "scheme-2",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "color_scheme": "scheme-2",
         "padding_top": 56,
         "padding_bottom": 56
       }
@@ -142,6 +157,7 @@
       "type": "custom-liquid",
       "settings": {
         "custom_liquid": "<div id=\"how-it-works\" style=\"position:relative;top:calc(-1 * var(--header-height, 0px));\"></div>",
+        "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -156,7 +172,8 @@
             "c1_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "01"
+                "text": "01",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -189,7 +206,8 @@
             "c2_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "02"
+                "text": "02",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -222,7 +240,8 @@
             "c3_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "03"
+                "text": "03",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -255,17 +274,22 @@
         "col3"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "How it works",
         "heading_size": "h2",
         "intro": "<p>There is nothing to sign up to here. It happens on the product.</p>",
         "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "plain",
         "card_color_scheme": "scheme-1",
         "column_alignment": "left",
+        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
         "padding_top": 56,
         "padding_bottom": 56
       }
@@ -274,6 +298,7 @@
       "type": "custom-liquid",
       "settings": {
         "custom_liquid": "<div id=\"available\" style=\"position:relative;top:calc(-1 * var(--header-height, 0px));\"></div>",
+        "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -285,23 +310,46 @@
         "collection_source": "manual",
         "products_to_show": 8,
         "heading_eyebrow": "Available on",
+        "heading_eyebrow_color": "",
         "title": "Subscribe to any of these",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
+        "description_style": "body",
         "heading_alignment": "left",
+        "heading_margin_top": 0,
         "heading_margin_bottom": 32,
+        "heading_margin_sides": 0,
         "cta_label": "",
+        "cta_link": "",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
         "columns_desktop": 4,
         "enable_desktop_slider": true,
+        "full_width": false,
         "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "",
         "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
         "card_style": "card",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 0,
+        "card_name_size": "default",
         "show_type_eyebrow": true,
+        "eyebrow_color": "",
+        "price_rating_row": false,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 56,
-        "padding_bottom": 24
+        "padding_bottom": 24,
+        "padding_sides": 50
       }
     },
     "price_note": {
@@ -320,6 +368,7 @@
       "settings": {
         "desktop_content_position": "left",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 0,
         "padding_bottom": 48
@@ -360,7 +409,8 @@
       ],
       "settings": {
         "heading": "How often is up to you",
-        "text": "<p>Here is what we suggest for each kind of thing, based on how long it actually lasts. Choose whatever suits you on the product, and change it any time.</p>"
+        "text": "<p>Here is what we suggest for each kind of thing, based on how long it actually lasts. Choose whatever suits you on the product, and change it any time.</p>",
+        "color_scheme": ""
       }
     },
     "manage": {
@@ -397,11 +447,16 @@
       "settings": {
         "image_source": "manual",
         "height": "adapt",
+        "image_corners": "theme",
+        "image_radius": 8,
         "desktop_image_width": "medium",
         "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
+        "content_side_padding": "both",
+        "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-2",
         "color_scheme": "scheme-2",
         "padding_top": 56,
@@ -483,8 +538,15 @@
         "heading_size": "h2",
         "description": "<p>The ones that stop people subscribing, answered.</p>",
         "link_label": "",
+        "link_url": "",
+        "link_arrow": true,
+        "link_color_scheme": "",
         "source": "manual",
-        "structured_data": true
+        "item_color_scheme": "",
+        "structured_data": false,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
