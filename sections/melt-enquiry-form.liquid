@@ -1,0 +1,191 @@
+{%- comment -%}
+  Melt: Enquiry form (Wireframes — Proposition + form · 05 Enquiry form).
+  Qualifying questions first (select blocks), then contact details, an optional message and a
+  newsletter opt-in. Submits through Shopify's contact form, so enquiries arrive by email at the
+  store's contact address, with every answer labelled and the page's enquiry type attached.
+  The right-hand column holds "What you get" points and an "Or skip the form" contact panel.
+  Anchor: #enquiry (the hero's primary button jumps here).
+{%- endcomment -%}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{%- assign form_id = 'EnquiryForm-' | append: section.id -%}
+
+<div id="enquiry" class="melt-enquiry color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width melt-enquiry__inner">
+    <div class="melt-enquiry__form">
+      <h2 class="h2 melt-enquiry__heading">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.intro != blank -%}<p class="melt-enquiry__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+
+      {%- form 'contact', id: form_id -%}
+        {%- if form.posted_successfully? -%}
+          <div class="melt-enquiry__success" tabindex="-1" autofocus>
+            <h3 class="h3">{{ section.settings.success_heading | escape }}</h3>
+            <p>{{ section.settings.success_text | escape }}</p>
+          </div>
+        {%- else -%}
+          {%- if form.errors -%}
+            <div class="melt-enquiry__errors" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+
+          <input type="hidden" name="contact[Enquiry type]" value="{{ section.settings.enquiry_type | default: page.title | escape }}">
+
+          <div class="melt-enquiry__grid">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'select' -%}
+                {%- assign field_id = form_id | append: '-' | append: block.id -%}
+                {%- assign opts = block.settings.options | newline_to_br | split: '<br />' -%}
+                <div class="melt-enquiry__field" {{ block.shopify_attributes }}>
+                  <label for="{{ field_id }}">{{ block.settings.label | escape }}{% unless block.settings.required %} <span class="melt-enquiry__optional">optional</span>{% endunless %}</label>
+                  <select id="{{ field_id }}" name="contact[{{ block.settings.label | escape }}]"{% if block.settings.required %} required{% endif %}>
+                    <option value="">Please choose…</option>
+                    {%- for o in opts -%}
+                      {%- assign o_clean = o | strip -%}
+                      {%- if o_clean != blank -%}<option value="{{ o_clean | escape }}">{{ o_clean | escape }}</option>{%- endif -%}
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          <div class="melt-enquiry__grid melt-enquiry__grid--details">
+            <div class="melt-enquiry__field melt-enquiry__field--full">
+              <label for="{{ form_id }}-company">Company{% unless section.settings.company_required %} <span class="melt-enquiry__optional">optional</span>{% endunless %}</label>
+              <input id="{{ form_id }}-company" type="text" name="contact[Company]" autocomplete="organization" placeholder="Acme Ltd"{% if section.settings.company_required %} required{% endif %}>
+            </div>
+            <div class="melt-enquiry__field">
+              <label for="{{ form_id }}-first">First name</label>
+              <input id="{{ form_id }}-first" type="text" name="contact[First name]" autocomplete="given-name" required>
+            </div>
+            <div class="melt-enquiry__field">
+              <label for="{{ form_id }}-last">Last name</label>
+              <input id="{{ form_id }}-last" type="text" name="contact[Last name]" autocomplete="family-name" required>
+            </div>
+            <div class="melt-enquiry__field">
+              <label for="{{ form_id }}-email">Email</label>
+              <input id="{{ form_id }}-email" type="email" name="contact[email]" autocomplete="email" required value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+            </div>
+            <div class="melt-enquiry__field">
+              <label for="{{ form_id }}-phone">Phone <span class="melt-enquiry__optional">optional</span></label>
+              <input id="{{ form_id }}-phone" type="tel" name="contact[phone]" autocomplete="tel" placeholder="Only if you would rather we rang">
+            </div>
+            <div class="melt-enquiry__field melt-enquiry__field--full">
+              <label for="{{ form_id }}-body">{{ section.settings.message_label | escape }} <span class="melt-enquiry__optional">optional</span></label>
+              <textarea id="{{ form_id }}-body" name="contact[body]" rows="5" placeholder="{{ section.settings.message_placeholder | escape }}">{{ form.body }}</textarea>
+            </div>
+          </div>
+
+          {%- if section.settings.consent_label != blank -%}
+            <label class="melt-enquiry__consent">
+              <input type="checkbox" name="contact[Newsletter opt-in]" value="Yes">
+              <span>{{ section.settings.consent_label | escape }}</span>
+            </label>
+          {%- endif -%}
+
+          <button type="submit" class="button">{{ section.settings.button_label | escape }}</button>
+          {%- if section.settings.reply_note != blank -%}<p class="melt-enquiry__reply">{{ section.settings.reply_note | escape }}</p>{%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+
+    <aside class="melt-enquiry__aside">
+      {%- assign has_points = false -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'point' -%}{%- assign has_points = true -%}{%- endif -%}{%- endfor -%}
+      {%- if has_points -%}
+        <div class="melt-enquiry__panel melt-enquiry__panel--tint">
+          {%- render 'melt-eyebrow', text: section.settings.points_eyebrow -%}
+          <ul class="list-unstyled melt-enquiry__points" role="list">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'point' -%}<li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.phone != blank or section.settings.email != blank -%}
+        <div class="melt-enquiry__panel melt-enquiry__panel--outline">
+          {%- render 'melt-eyebrow', text: section.settings.contact_eyebrow -%}
+          {%- if section.settings.phone != blank -%}<p class="melt-enquiry__phone"><a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone | escape }}</a></p>{%- endif -%}
+          {%- if section.settings.hours != blank -%}<p class="melt-enquiry__hours">{{ section.settings.hours | escape }}</p>{%- endif -%}
+          {%- if section.settings.email != blank -%}<p class="melt-enquiry__email"><a href="mailto:{{ section.settings.email }}">{{ section.settings.email | escape }}</a></p>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </aside>
+  </div>
+</div>
+
+{% stylesheet %}
+  .melt-enquiry { scroll-margin-top: var(--header-height, 0px); }
+  .melt-enquiry__inner { display: grid; gap: 3.2rem; padding-top: 4rem; padding-bottom: 4rem; }
+  @media screen and (min-width: 990px) { .melt-enquiry__inner { grid-template-columns: minmax(0, 834fr) minmax(0, 380fr); gap: 6.4rem; padding-top: 8rem; padding-bottom: 8rem; } }
+  .melt-enquiry__heading { margin: 0 0 1rem; }
+  .melt-enquiry__intro { margin: 0 0 2.6rem; }
+  .melt-enquiry__grid { display: grid; gap: 1.6rem 2rem; grid-template-columns: 1fr; margin-bottom: 2.6rem; }
+  @media screen and (min-width: 750px) { .melt-enquiry__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .melt-enquiry__field--full { grid-column: 1 / -1; }
+  .melt-enquiry__field label { display: block; margin-bottom: 0.7rem; font-size: 1.4rem; }
+  .melt-enquiry__optional { margin-left: 0.6rem; font-size: 1.2rem; opacity: 0.6; }
+  .melt-enquiry__field input, .melt-enquiry__field select, .melt-enquiry__field textarea { width: 100%; min-height: 5rem; padding: 1.2rem 1.6rem; font: inherit; color: rgb(var(--color-foreground)); background: rgb(var(--color-background)); border: 1px solid rgba(var(--color-foreground), 0.3); border-radius: 0; }
+  .melt-enquiry__field textarea { min-height: 14rem; resize: vertical; }
+  .melt-enquiry__field input:focus-visible, .melt-enquiry__field select:focus-visible, .melt-enquiry__field textarea:focus-visible { outline: 2px solid rgb(var(--color-foreground)); outline-offset: 1px; }
+  .melt-enquiry__consent { display: flex; gap: 1rem; align-items: flex-start; margin: 0 0 2.4rem; font-size: 1.4rem; }
+  .melt-enquiry__consent input { margin-top: 0.3rem; }
+  .melt-enquiry__reply { margin: 1.4rem 0 0; font-size: 1.3rem; opacity: 0.75; }
+  .melt-enquiry__errors { margin-bottom: 2rem; padding: 1.2rem 1.6rem; border: 1px solid rgb(var(--color-foreground)); }
+  .melt-enquiry__success { padding: 2.4rem; background: rgba(var(--color-foreground), 0.04); }
+  .melt-enquiry__aside { display: grid; gap: 1.4rem; align-content: start; }
+  .melt-enquiry__panel { padding: 2.2rem; }
+  .melt-enquiry__panel--tint { background: rgba(var(--color-foreground), 0.04); }
+  .melt-enquiry__panel--outline { border: 1px solid rgba(var(--color-foreground), 0.2); }
+  .melt-enquiry__points { margin: 1.4rem 0 0; display: grid; gap: 1.1rem; }
+  .melt-enquiry__points li { position: relative; padding-left: 2.8rem; font-size: 1.5rem; }
+  .melt-enquiry__points li::before { content: ''; position: absolute; left: 0; top: 0.3rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: rgb(var(--color-foreground)); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.2 3.3 8l1-1 2.2 2.2 5.2-5.2 1 1z' fill='%23000'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.2 3.3 8l1-1 2.2 2.2 5.2-5.2 1 1z' fill='%23000'/%3E%3C/svg%3E") center / contain no-repeat; }
+  .melt-enquiry__phone { margin: 1.4rem 0 0.2rem; font-size: 2.2rem; }
+  .melt-enquiry__phone a, .melt-enquiry__email a { color: inherit; text-decoration: none; }
+  .melt-enquiry__hours { margin: 0 0 1.2rem; font-size: 1.4rem; opacity: 0.75; }
+  .melt-enquiry__email { margin: 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Enquiry form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Start an enquiry" },
+    { "type": "text", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "enquiry_type", "label": "Enquiry type", "info": "Sent with every enquiry so you can tell which page it came from. Defaults to the page title." },
+    { "type": "checkbox", "id": "company_required", "label": "Company is required", "default": true },
+    { "type": "text", "id": "message_label", "label": "Message label", "default": "Anything else we should know?" },
+    { "type": "text", "id": "message_placeholder", "label": "Message placeholder", "default": "Branding, packaging, a deadline, an idea…" },
+    { "type": "text", "id": "consent_label", "label": "Newsletter opt-in label", "info": "Leave empty to hide. Ticked enquiries are flagged in the email; add the address to the mailing list by hand or via your email platform." },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Send enquiry" },
+    { "type": "text", "id": "reply_note", "label": "Note under the button" },
+    { "type": "text", "id": "success_heading", "label": "Thank-you heading", "default": "Thank you, we have your enquiry" },
+    { "type": "text", "id": "success_text", "label": "Thank-you text", "default": "We reply within one working day." },
+    { "type": "header", "content": "Right-hand column" },
+    { "type": "text", "id": "points_eyebrow", "label": "Points eyebrow", "default": "What you get" },
+    { "type": "text", "id": "contact_eyebrow", "label": "Contact eyebrow", "default": "Or skip the form" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "01200 443377" },
+    { "type": "text", "id": "hours", "label": "Hours", "default": "Monday to Friday, 9am – 5pm" },
+    { "type": "text", "id": "email", "label": "Email" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Qualifying question",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Question", "default": "How many?" },
+        { "type": "textarea", "id": "options", "label": "Options", "info": "One per line.", "default": "1–19\n20–49\n50–99\n100+" },
+        { "type": "checkbox", "id": "required", "label": "Required", "default": true }
+      ]
+    },
+    {
+      "type": "point",
+      "name": "What you get point",
+      "settings": [ { "type": "text", "id": "text", "label": "Text" } ]
+    }
+  ],
+  "presets": [ { "name": "Enquiry form" } ]
+}
+{% endschema %}

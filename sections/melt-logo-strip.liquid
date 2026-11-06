@@ -1,0 +1,60 @@
+{%- comment -%}
+  Melt: Proof strip (Wireframes — Proposition + form · 02 Who we have made for).
+  A row of client logos (image, or the name as text until a logo is uploaded) with a footnote.
+{%- endcomment -%}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+<div class="melt-logos color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width melt-logos__inner">
+    {%- render 'melt-eyebrow', text: section.settings.eyebrow, class: 'melt-logos__eyebrow' -%}
+    <ul class="melt-logos__list list-unstyled" role="list">
+      {%- for block in section.blocks -%}
+        <li class="melt-logos__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            {{ block.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 400', sizes: '200px', alt: block.settings.name }}
+          {%- else -%}
+            <span>{{ block.settings.name | escape }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if section.settings.footnote != blank -%}
+      <p class="melt-logos__footnote">{{ section.settings.footnote | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .melt-logos__inner { padding-top: 4rem; padding-bottom: 4rem; text-align: center; }
+  @media screen and (min-width: 750px) { .melt-logos__inner { padding-top: 5.6rem; padding-bottom: 5.6rem; } }
+  .melt-logos__eyebrow { margin: 0 0 2rem; }
+  .melt-logos__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0; }
+  @media screen and (min-width: 750px) { .melt-logos__list { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2rem; } }
+  .melt-logos__item { display: flex; align-items: center; justify-content: center; min-height: 5.6rem; padding: 1rem 1.6rem; background: rgb(var(--color-background)); filter: grayscale(1); }
+  .melt-logos__item span { font-size: 1.3rem; letter-spacing: 0.1rem; text-transform: uppercase; opacity: 0.7; }
+  .melt-logos__item img { max-height: 3.6rem; width: auto; max-width: 100%; }
+  .melt-logos__footnote { margin: 1.8rem 0 0; font-size: 1.4rem; opacity: 0.8; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Logo strip",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "We have made gifts for" },
+    { "type": "text", "id": "footnote", "label": "Footnote" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "info": "Shown as text until a logo is uploaded; used as the logo's alt text." },
+        { "type": "image_picker", "id": "logo", "label": "Logo" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Logo strip" } ]
+}
+{% endschema %}

@@ -1,0 +1,112 @@
+{%- comment -%}
+  Melt: Proposition hero (Wireframes — Proposition + form · 01 Hero).
+  Breadcrumbs, eyebrow, H1, standfirst, key facts (blocks), primary + secondary CTA, a short
+  deadline note, and an image on the right (above the copy on mobile).
+  Used by Corporate Gifting, Trade, Become a Stockist and White Label.
+{%- endcomment -%}
+{{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+
+<div class="melt-prop-hero color-{{ section.settings.color_scheme }} gradient">
+  <div class="melt-prop-hero__copy">
+    {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-prop-hero__breadcrumbs' -%}
+    {%- render 'melt-eyebrow', text: section.settings.eyebrow, class: 'melt-prop-hero__eyebrow' -%}
+    <h1 class="melt-prop-hero__title h1">{{ section.settings.heading | default: page.title }}</h1>
+    {%- if section.settings.standfirst != blank -%}
+      <div class="melt-prop-hero__standfirst">{{ section.settings.standfirst }}</div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <dl class="melt-prop-hero__facts">
+        {%- for block in section.blocks -%}
+          <div class="melt-prop-hero__fact" {{ block.shopify_attributes }}>
+            <dt>{{ block.settings.value | escape }}</dt>
+            <dd>{{ block.settings.label | escape }}</dd>
+          </div>
+        {%- endfor -%}
+      </dl>
+    {%- endif -%}
+
+    <div class="melt-prop-hero__ctas">
+      {%- if section.settings.primary_label != blank -%}
+        <a href="{{ section.settings.primary_link | default: '#enquiry' }}" class="button">{{ section.settings.primary_label | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.secondary_label != blank -%}
+        <a href="{{ section.settings.secondary_link }}" class="button button--secondary">{{ section.settings.secondary_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.note != blank -%}
+      <p class="melt-prop-hero__note">{{ section.settings.note | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="melt-prop-hero__media">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 40vw, 100vw', widths: '375, 750, 1100, 1600', alt: section.settings.image.alt }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .melt-prop-hero { display: grid; }
+  .melt-prop-hero__media { order: -1; min-height: 26rem; background: rgba(var(--color-foreground), 0.06); position: relative; }
+  .melt-prop-hero__media img, .melt-prop-hero__media svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .melt-prop-hero__copy { padding: 2.4rem 2rem 4rem; }
+  @media screen and (min-width: 990px) {
+    .melt-prop-hero { grid-template-columns: minmax(0, 61fr) minmax(0, 39fr); min-height: 62rem; }
+    .melt-prop-hero__media { order: 0; min-height: 0; }
+    .melt-prop-hero__copy { padding: 12rem 8rem 8rem max(5rem, calc((100vw - var(--page-width, 120rem)) / 2 + 5rem)); max-width: 88rem; }
+  }
+  .melt-prop-hero__breadcrumbs { margin-bottom: 1.6rem; }
+  .melt-prop-hero__eyebrow { margin: 0 0 1rem; }
+  .melt-prop-hero__title { margin: 0 0 1.4rem; }
+  .melt-prop-hero__standfirst p { margin: 0; font-size: 1.8rem; line-height: 1.5; }
+  .melt-prop-hero__facts { display: grid; grid-template-columns: 1fr; margin: 2.4rem 0; }
+  .melt-prop-hero__fact { display: flex; justify-content: space-between; align-items: baseline; gap: 1.6rem; padding: 1rem 0; border-bottom: 1px solid rgba(var(--color-foreground), 0.12); }
+  .melt-prop-hero__fact dt { font-size: 2rem; font-weight: 600; }
+  .melt-prop-hero__fact dd { margin: 0; font-size: 1.3rem; opacity: 0.75; }
+  @media screen and (min-width: 750px) {
+    .melt-prop-hero__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .melt-prop-hero__fact { display: block; padding: 0 2.2rem; border-bottom: 0; border-left: 1px solid rgba(var(--color-foreground), 0.15); }
+    .melt-prop-hero__fact:first-child { padding-left: 0; border-left: 0; }
+    .melt-prop-hero__fact dt { font-size: 2.4rem; margin-bottom: 0.4rem; }
+  }
+  .melt-prop-hero__ctas { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  @media screen and (max-width: 749px) { .melt-prop-hero__ctas .button { width: 100%; } }
+  .melt-prop-hero__note { margin: 1.8rem 0 0; font-size: 1.4rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Proposition hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "info": "Leave empty to use the page title." },
+    { "type": "richtext", "id": "standfirst", "label": "Standfirst" },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Start an enquiry" },
+    { "type": "text", "id": "primary_link", "label": "Primary button link", "info": "Leave empty to jump to the enquiry form on this page (#enquiry)." },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Call 01200 443377" },
+    { "type": "text", "id": "secondary_link", "label": "Secondary button link", "default": "tel:01200443377", "info": "A page link, or tel:01200443377 for a phone number." },
+    { "type": "text", "id": "note", "label": "Note under the buttons", "info": "e.g. a Christmas deadline." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Key fact",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "From 20" },
+        { "type": "text", "id": "label", "label": "Label", "default": "units, branded" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Proposition hero" } ]
+}
+{% endschema %}

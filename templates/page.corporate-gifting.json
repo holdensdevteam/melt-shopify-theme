@@ -1,0 +1,526 @@
+{
+  "sections": {
+    "hero": {
+      "type": "melt-proposition-hero",
+      "blocks": {
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "value": "From 20",
+            "label": "units, branded"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "value": "3–4 weeks",
+            "label": "typical lead time"
+          }
+        },
+        "f3": {
+          "type": "fact",
+          "settings": {
+            "value": "24",
+            "label": "fragrances"
+          }
+        },
+        "f4": {
+          "type": "fact",
+          "settings": {
+            "value": "89%",
+            "label": "sourced in Lancashire"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "eyebrow": "Corporate gifting",
+        "heading": "Client gifts that get kept",
+        "standfirst": "<p>Hand-poured in Lancashire, boxed properly, and with your name on them if you would like. We have been making gifts for other people’s customers for over twenty-five years – including a few you would recognise.</p>",
+        "primary_label": "Start an enquiry",
+        "primary_link": "",
+        "secondary_label": "Call 01200 443377",
+        "secondary_link": "tel:01200443377",
+        "note": "Branded orders for Christmas: enquire by 31 October"
+      }
+    },
+    "logos": {
+      "type": "melt-logo-strip",
+      "blocks": {
+        "l1": {
+          "type": "logo",
+          "settings": {
+            "name": "Coutts"
+          }
+        },
+        "l2": {
+          "type": "logo",
+          "settings": {
+            "name": "UNICEF"
+          }
+        },
+        "l3": {
+          "type": "logo",
+          "settings": {
+            "name": "BBC"
+          }
+        },
+        "l4": {
+          "type": "logo",
+          "settings": {
+            "name": "ITV Studios"
+          }
+        },
+        "l5": {
+          "type": "logo",
+          "settings": {
+            "name": "Liverpool ONE"
+          }
+        },
+        "l6": {
+          "type": "logo",
+          "settings": {
+            "name": "Universal"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5",
+        "l6"
+      ],
+      "settings": {
+        "eyebrow": "We have made gifts for",
+        "footnote": "And a number who would rather we did not say.",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "ways": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c1_0": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Ready-made",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c1_1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Our hampers and gift sets, sent out as they are. No minimum, no lead time beyond stock.</p><p><strong>Any quantity · ships in days</strong></p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c1_0",
+            "c1_1"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c2_0": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Your logo on ours",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c2_1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Our candles and diffusers, your label on the vessel and your box. Twenty-four fragrances to pick from.</p><p><strong>From 20 units · 3–4 weeks</strong></p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c2_0",
+            "c2_1"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c3_0": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Made for you",
+                "heading_size": "h3"
+              },
+              "blocks": {}
+            },
+            "c3_1": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>A fragrance blended for you, your own glassware if you have it, CLP labelling handled.</p><p><strong>Larger runs · 6–8 weeks</strong></p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c3_0",
+            "c3_1"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3"
+      ],
+      "settings": {
+        "title": "Three ways to do this",
+        "heading_size": "h2",
+        "intro": "<p>Most people arrive knowing roughly the number and roughly the budget. Start wherever you are.</p>",
+        "columns_desktop": 3,
+        "column_style": "card",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "steps": {
+      "type": "melt-columns",
+      "blocks": {
+        "col1": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c1_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "01"
+              },
+              "blocks": {}
+            },
+            "c1_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "Tell us what you need",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "c1_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Numbers, budget, and when you need them by. Two minutes on the form below.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c1_0",
+            "c1_1",
+            "c1_2"
+          ]
+        },
+        "col2": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c2_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "02"
+              },
+              "blocks": {}
+            },
+            "c2_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "We come back with options",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "c2_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Usually same day, always within one working day, with indicative pricing.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c2_0",
+            "c2_1",
+            "c2_2"
+          ]
+        },
+        "col3": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c3_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "03"
+              },
+              "blocks": {}
+            },
+            "c3_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "You approve a sample",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "c3_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>We send the real thing to smell and look at before anything is made in quantity.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c3_0",
+            "c3_1",
+            "c3_2"
+          ]
+        },
+        "col4": {
+          "type": "_columns-column",
+          "settings": {},
+          "blocks": {
+            "c4_0": {
+              "type": "_columns-eyebrow",
+              "settings": {
+                "text": "04"
+              },
+              "blocks": {}
+            },
+            "c4_1": {
+              "type": "_columns-heading",
+              "settings": {
+                "text": "We make and deliver",
+                "heading_size": "h4"
+              },
+              "blocks": {}
+            },
+            "c4_2": {
+              "type": "_columns-text",
+              "settings": {
+                "text": "<p>Hand-poured here, boxed, labelled to CLP, and sent where you need them.</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "c4_0",
+            "c4_1",
+            "c4_2"
+          ]
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3",
+        "col4"
+      ],
+      "settings": {
+        "title": "How it works",
+        "heading_size": "h2",
+        "intro": "",
+        "columns_desktop": 4,
+        "column_style": "plain",
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "enquiry": {
+      "type": "melt-enquiry-form",
+      "blocks": {
+        "q1": {
+          "type": "select",
+          "settings": {
+            "label": "What are you after?",
+            "options": "Ready-made gifts (hampers and gift sets)\nOur candles with your logo\nA fragrance made for you\nNot sure yet",
+            "required": true
+          }
+        },
+        "q2": {
+          "type": "select",
+          "settings": {
+            "label": "How many?",
+            "options": "Under 20\n20–49\n50–99\n100–249\n250 or more",
+            "required": true
+          }
+        },
+        "q3": {
+          "type": "select",
+          "settings": {
+            "label": "When do you need them?",
+            "options": "Within 2 weeks\nIn 2–4 weeks\nIn 1–2 months\nMore than 2 months away",
+            "required": true
+          }
+        },
+        "q4": {
+          "type": "select",
+          "settings": {
+            "label": "Budget per gift",
+            "options": "Under £20\n£20–£35\n£35–£50\n£50 or more",
+            "required": false
+          }
+        },
+        "p1": {
+          "type": "point",
+          "settings": {
+            "text": "Vessel supplied with your logo label"
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "text": "Premium box packaging"
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "text": "CLP labels included, Trading Standards approved"
+          }
+        },
+        "p4": {
+          "type": "point",
+          "settings": {
+            "text": "Vegan, never tested on animals"
+          }
+        },
+        "p5": {
+          "type": "point",
+          "settings": {
+            "text": "No palm wax, no beeswax"
+          }
+        },
+        "p6": {
+          "type": "point",
+          "settings": {
+            "text": "Minimum order 20 units"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "settings": {
+        "heading": "Start an enquiry",
+        "intro": "Four quick questions and we can price it. Nothing here commits you to anything.",
+        "enquiry_type": "Corporate gifting",
+        "consent_label": "Send me the trade letter – a few times a year, nothing else.",
+        "button_label": "Send enquiry",
+        "reply_note": "We reply within one working day. Sample requests are usually posted the same week.",
+        "email": "hello@themeltco.com"
+      }
+    },
+    "faqs": {
+      "type": "melt-faqs",
+      "blocks": {
+        "faq1": {
+          "type": "question",
+          "settings": {
+            "question": "What is the minimum order for branded gifts?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq2": {
+          "type": "question",
+          "settings": {
+            "question": "Can you put our logo on the candle itself?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq3": {
+          "type": "question",
+          "settings": {
+            "question": "How long does a branded order take?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq4": {
+          "type": "question",
+          "settings": {
+            "question": "Can we use our own glassware?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq5": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver to multiple addresses?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        },
+        "faq6": {
+          "type": "question",
+          "settings": {
+            "question": "What is the last date for Christmas?",
+            "answer": "<p>[Answer to confirm with Ted]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3",
+        "faq4",
+        "faq5",
+        "faq6"
+      ],
+      "settings": {
+        "title": "Questions we get asked",
+        "heading_size": "h2",
+        "description": "<p>Can’t see yours? Call us on 01200 443377 or use the form above.</p>",
+        "link_label": "",
+        "source": "manual",
+        "structured_data": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "logos",
+    "ways",
+    "steps",
+    "enquiry",
+    "faqs"
+  ]
+}
