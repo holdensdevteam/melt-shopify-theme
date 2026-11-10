@@ -9,6 +9,24 @@
  */
 {
   "sections": {
+    "melt_breadcrumbs_39M7W6": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "hero": {
       "type": "melt-proposition-hero",
       "blocks": {
@@ -37,6 +55,7 @@
         "chip3"
       ],
       "settings": {
+        "show_breadcrumbs": false,
         "eyebrow": "Subscribe & Save",
         "heading": "Never run out of the one you like",
         "standfirst": "<p>Pick a fragrance, choose roughly how often you get through one, and it arrives without you having to think about it. Ten percent off every time, and you can stop whenever you like.</p>",
@@ -45,6 +64,7 @@
         "secondary_label": "How it works",
         "secondary_link": "#how-it-works",
         "note": "",
+        "image": "shopify://shop_images/all-candles-nov-26.jpg",
         "color_scheme": ""
       }
     },
@@ -551,6 +571,7 @@
     }
   },
   "order": [
+    "melt_breadcrumbs_39M7W6",
     "hero",
     "why",
     "how_anchor",
