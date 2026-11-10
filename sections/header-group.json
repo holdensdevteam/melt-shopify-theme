@@ -42,6 +42,8 @@
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
+        "menu_column_links": 8,
+        "menu_media": true,
         "menu_alignment": "right",
         "menu_text_transform": "uppercase",
         "menu_item_spacing": 40,
