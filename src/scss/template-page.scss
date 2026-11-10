@@ -1,0 +1,20 @@
+/*! Compiled from src/scss/template-page.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Page templates — layout/theme.liquid loads this when request.page_type is 'page', so it applies
+// to every page: the default template (page.json) and all the alternates (page.subscribe,
+// page.corporate-gifting, page.trade, page.contact, page.faqs, page.policy, …).
+//
+// Page-level rules go here. Styles for a section belong in that section's own stylesheet
+// (e.g. section-melt-proposition-hero.scss for the Proposition hero).
+
+body {
+  background: #f6f4ee !important;
+}
+
+#MainContent {
+  margin-top: 8px;
+  @include bp.from(bp.$medium) {
+    margin-top: 1em;
+  }
+}

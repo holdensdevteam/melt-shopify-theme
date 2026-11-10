@@ -839,6 +839,10 @@
     "melt_proposition_hero": {
       "name": "Proposition hero",
       "settings": {
+        "show_breadcrumbs": {
+          "label": "Show breadcrumbs",
+          "info": "Switch off if the page has a separate Breadcrumbs section, so they don't appear twice."
+        },
         "eyebrow": {
           "label": "Eyebrow"
         },

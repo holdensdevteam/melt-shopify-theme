@@ -139,6 +139,17 @@
   font-weight: var(--melt-menu-hover-weight);
 }
 
+.section-header .header__active-menu-item,
+.section-header .mega-menu__link--active {
+  color: #000000;
+  text-decoration: none;
+}
+
+.section-header .header__menu-item:hover .header__active-menu-item,
+.section-header .mega-menu__link--active:hover {
+  text-decoration-thickness: auto;
+}
+
 .header__menu-item:hover {
   font-weight: var(--melt-menu-hover-weight, 600);
 }

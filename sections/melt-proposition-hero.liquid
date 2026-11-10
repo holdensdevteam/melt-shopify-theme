@@ -2,16 +2,21 @@
   Melt: Proposition hero (Wireframes — Proposition + form · 01 Hero).
   Breadcrumbs, eyebrow, H1, standfirst, key facts (blocks), primary + secondary CTA, a short
   deadline note, and an image on the right (above the copy on mobile).
-  Used by Corporate Gifting, Trade, Become a Stockist and White Label.
+  Used by Corporate Gifting, Trade, Become a Stockist, White Label and Subscribe & Save.
+  Breadcrumbs can be switched off when the template has a separate Breadcrumbs section.
 {%- endcomment -%}
 {{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
-{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.show_breadcrumbs -%}
+  {{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 {{ 'section-melt-proposition-hero.css' | asset_url | stylesheet_tag }}
 
 <div class="melt-prop-hero color-{{ section.settings.color_scheme }} gradient">
   <div class="melt-prop-hero__copy">
-    {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
-    {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-prop-hero__breadcrumbs' -%}
+    {%- if section.settings.show_breadcrumbs -%}
+      {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
+      {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-prop-hero__breadcrumbs' -%}
+    {%- endif -%}
     {%- render 'melt-eyebrow', text: section.settings.eyebrow, class: 'melt-prop-hero__eyebrow' -%}
     <h1 class="melt-prop-hero__title h1">{{ section.settings.heading | default: page.title }}</h1>
     {%- if section.settings.standfirst != blank -%}
@@ -67,6 +72,13 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "t:sections.melt_proposition_hero.settings.show_breadcrumbs.label",
+      "info": "t:sections.melt_proposition_hero.settings.show_breadcrumbs.info",
+      "default": true
+    },
     {
       "type": "text",
       "id": "eyebrow",

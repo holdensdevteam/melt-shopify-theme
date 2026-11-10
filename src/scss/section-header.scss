@@ -197,6 +197,22 @@
   }
 }
 
+// ------------------------------------------------------------------ current page
+
+// The menu item for the page you're on (top level, and in the mega menu) is black instead of
+// underlined. Hovering it still underlines like any other item, at the normal thickness (Dawn
+// makes the current item's hover underline thicker).
+.section-header .header__active-menu-item,
+.section-header .mega-menu__link--active {
+  color: #000000;
+  text-decoration: none;
+}
+
+.section-header .header__menu-item:hover .header__active-menu-item,
+.section-header .mega-menu__link--active:hover {
+  text-decoration-thickness: auto;
+}
+
 // ------------------------------------------------------------------ custom
 
 .header__menu-item:hover {

@@ -1,0 +1,19 @@
+/*! Compiled from src/scss/template-cart.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Cart page template only — layout/theme.liquid loads this when request.page_type is 'cart'
+// (the /cart page, not the cart drawer or cart notification, which appear on every page).
+//
+// Page-level rules go here. Styles for the cart's own sections (main-cart-items,
+// main-cart-footer) belong in their component stylesheets.
+
+body {
+  background: #f6f4ee !important;
+}
+
+#MainContent {
+  margin-top: 8px;
+  @include bp.from(bp.$medium) {
+    margin-top: 1em;
+  }
+}
