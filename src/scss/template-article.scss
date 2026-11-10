@@ -1,0 +1,20 @@
+/*! Compiled from src/scss/template-article.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Blog article template only — layout/theme.liquid loads this when request.page_type is 'article'
+// (individual blog posts, not the blog overview: that's template-blog.scss).
+//
+// Page-level rules go here. Styles for the article section itself (header, featured image, body,
+// callout, product row) belong in section-melt-article.scss, and the "Keep reading" cards in
+// component-melt-article-grid.scss, which the blog overview also uses.
+
+body {
+  background: #f6f4ee !important;
+}
+
+#MainContent {
+  margin-top: 8px;
+  @include bp.from(bp.$medium) {
+    margin-top: 1em;
+  }
+}

@@ -22,10 +22,6 @@
   margin: 4.4rem auto;
 }
 
-.melt-article__breadcrumbs {
-  margin-bottom: 1.8rem;
-}
-
 .melt-article__category {
   margin: 0 0 1rem;
 }
@@ -48,6 +44,7 @@
 
 .melt-article__hero img {
   display: block;
+  border-radius: var(--media-radius);
   width: 100%;
   aspect-ratio: 16/9;
   height: auto;

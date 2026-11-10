@@ -27,10 +27,6 @@
   margin: 4.4rem auto;
 }
 
-.melt-article__breadcrumbs {
-  margin-bottom: 1.8rem;
-}
-
 .melt-article__category {
   margin: 0 0 1rem;
 }
@@ -51,8 +47,11 @@
   opacity: 0.75;
 }
 
+// Featured image: full width or page width (section setting). Corner radius from Theme settings →
+// Media → Corner radius, like the body's images (Dawn's .rte img).
 .melt-article__hero img {
   display: block;
+  border-radius: var(--media-radius);
   width: 100%;
   aspect-ratio: 16/9;
   height: auto;

@@ -1,7 +1,7 @@
 {%- comment -%}
   Melt: Blog article (Wireframes — Blog · Blog article).
-  Header in a 720px measure (breadcrumbs, category, H1, standfirst, date · read time) · full-bleed
-  16:9 hero · body capped at 720px · optional collection callout and "Mentioned in this piece"
+  Header in a 720px measure (category, H1, standfirst, date · read time) · 16:9 hero, full width
+  or page width (setting) · body capped at 720px · optional collection callout and "Mentioned in this piece"
   product row, which break out wider (860px) so they read as interruptions · share and
   "More in <category>" · Keep reading (same category first) · BlogPosting structured data.
 
@@ -11,6 +11,8 @@
   - custom.mentioned_products  List of products  The "Mentioned in this piece" row.
   The callout sits where the article has its first horizontal rule (<hr>), so editors place it
   from the post editor; with no rule it follows the body.
+
+  Breadcrumbs: add the Breadcrumbs section above this one in the template.
 {%- endcomment -%}
 {%- liquid
   assign category_tags = section.settings.category_tags | split: ','
@@ -40,7 +42,6 @@
 -%}
 
 {{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
-{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-melt-article-grid.css' | asset_url | stylesheet_tag }}
@@ -69,8 +70,6 @@
 <article class="melt-article color-{{ section.settings.color_scheme }} gradient">
   <header class="melt-article__header page-width">
     <div class="melt-article__measure">
-      {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
-      {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-article__breadcrumbs' -%}
       {%- if category != blank -%}
         {%- render 'melt-eyebrow', text: category, class: 'melt-article__category' -%}
       {%- endif -%}
@@ -86,8 +85,15 @@
   </header>
 
   {%- if article.image -%}
-    <div class="melt-article__hero">
-      {{ article.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750, 1100, 1500, 1920, 2400', alt: article.image.alt | default: article.title }}
+    {%- liquid
+      if section.settings.image_width == 'page'
+        assign hero_sizes = '(min-width: ' | append: settings.page_width | append: 'px) ' | append: settings.page_width | append: 'px, (min-width: 750px) calc(100vw - 10rem), calc(100vw - 3rem)'
+      else
+        assign hero_sizes = '100vw'
+      endif
+    -%}
+    <div class="melt-article__hero melt-article__hero--{{ section.settings.image_width }}{% if section.settings.image_width == 'page' %} page-width{% endif %}">
+      {{ article.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: hero_sizes, widths: '750, 1100, 1500, 1920, 2400', alt: article.image.alt | default: article.title }}
     </div>
   {%- endif -%}
 
@@ -210,6 +216,16 @@
       "label": "t:sections.melt_article.settings.category_tags.label",
       "default": "Candles,Fragrances,Tips & Advice,Melt News",
       "info": "t:sections.melt_article.settings.category_tags.info"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "label": "t:sections.melt_article.settings.image_width.label",
+      "options": [
+        { "value": "full", "label": "t:sections.melt_article.settings.image_width.options__full.label" },
+        { "value": "page", "label": "t:sections.melt_article.settings.image_width.options__page.label" }
+      ],
+      "default": "full"
     },
     {
       "type": "text",

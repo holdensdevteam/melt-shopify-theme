@@ -461,6 +461,15 @@
           "label": "Category tags",
           "info": "Comma-separated, matching the Blog overview chips. The first one an article has is its category."
         },
+        "image_width": {
+          "label": "Featured image width",
+          "options__full": {
+            "label": "Full width"
+          },
+          "options__page": {
+            "label": "Page width"
+          }
+        },
         "byline": {
           "label": "Byline",
           "info": "Optional, e.g. 'Written by the chandlery'."
