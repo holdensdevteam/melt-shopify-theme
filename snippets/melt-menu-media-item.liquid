@@ -1,0 +1,39 @@
+{%- comment -%}
+  One image or video in the mega menu's media panel (snippets/header-mega-menu.liquid). Renders
+  nothing when the link has no media, so the caller can test the output for blank.
+
+  Where the media comes from, first match wins:
+  1. The linked resource's "Menu media" metafield (custom.menu_media, file: image or video).
+     Works for collections, products, pages, blogs and articles once the definition exists.
+  2. The collection's image, the product's featured image or the article's image.
+
+  Accepts:
+  - link: {Object} Menu link.
+  - key: {String} Unique key; the link points at it with data-menu-media-target.
+{%- endcomment -%}
+{%- liquid
+  assign obj = link.object
+  assign media = obj.metafields.custom.menu_media.value
+  if media == blank
+    case link.type
+      when 'collection_link'
+        assign media = obj.image
+      when 'product_link'
+        assign media = obj.featured_image
+      when 'article_link'
+        assign media = obj.image
+    endcase
+  endif
+-%}
+{%- if media != blank -%}
+  {%- if media.media_type == 'video' -%}
+    <div class="melt-menu-media__item" data-menu-media="{{ key }}">
+      {{ media | video_tag: image_size: '800x', loop: true, muted: true, playsinline: true, controls: false, preload: 'none' }}
+    </div>
+  {%- elsif media.width -%}
+    {%- comment -%} Images: a collection's image has no media_type, so test for a width (files that aren't images or videos have none). {%- endcomment -%}
+    <div class="melt-menu-media__item" data-menu-media="{{ key }}">
+      {{ media | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 990px) 33vw, 0px', alt: '' }}
+    </div>
+  {%- endif -%}
+{%- endif -%}

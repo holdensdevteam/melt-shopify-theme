@@ -134,6 +134,9 @@
 
   .section-header {
     --melt-header-opacity: {{ section.settings.bar_opacity | divided_by: 100.0 }};
+    {%- if section.settings.bar_hover_color != blank and section.settings.bar_hover_color.alpha != 0 %}
+      --melt-header-hover-bg: {{ section.settings.bar_hover_color }};
+    {%- endif %}
     --melt-header-radius: {{ section.settings.bar_radius }}px;
     --melt-menu-gap: {{ section.settings.menu_item_spacing }}px;
     --melt-header-margin-top: {{ section.settings.bar_margin_top | divided_by: 2 }}px;
@@ -153,6 +156,9 @@
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- if section.settings.menu_type_desktop == 'mega' and section.settings.menu_media -%}
+  <script src="{{ 'melt-menu-media.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {%- liquid
   for block in section.blocks
@@ -633,6 +639,32 @@
       "label": "t:sections.header.settings.menu_type_desktop.label"
     },
     {
+      "type": "range",
+      "id": "menu_column_links",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 8,
+      "label": "t:sections.header.settings.menu_column_links.label",
+      "info": "t:sections.header.settings.menu_column_links.info",
+      "visible_if": "{{ section.settings.menu_type_desktop == 'mega' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_media",
+      "label": "t:sections.header.settings.menu_media.label",
+      "info": "t:sections.header.settings.menu_media.info",
+      "default": false,
+      "visible_if": "{{ section.settings.menu_type_desktop == 'mega' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "menu_media_image",
+      "label": "t:sections.header.settings.menu_media_image.label",
+      "info": "t:sections.header.settings.menu_media_image.info",
+      "visible_if": "{{ section.settings.menu_type_desktop == 'mega' and section.settings.menu_media }}"
+    },
+    {
       "type": "select",
       "id": "menu_alignment",
       "label": "t:sections.header.settings.menu_alignment.label",
@@ -766,6 +798,14 @@
       "default": 100,
       "label": "t:sections.header.settings.bar_opacity.label",
       "info": "t:sections.header.settings.bar_opacity.info"
+    },
+    {
+      "type": "color",
+      "id": "bar_hover_color",
+      "label": "t:sections.header.settings.bar_hover_color.label",
+      "info": "t:sections.header.settings.bar_hover_color.info",
+      "default": "#F6F4EE",
+      "visible_if": "{{ section.settings.bar_opacity < 100 }}"
     },
     {
       "type": "range",

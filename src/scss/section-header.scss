@@ -40,9 +40,41 @@
   margin-inline: auto;
 }
 
+.section-header .header-wrapper {
+  transition:
+    background-color var(--duration-medium) ease,
+    border-radius var(--duration-medium) ease;
+}
+
 // Only when opacity is below 100%, so colour scheme gradients still work at full opacity.
 .section-header .header-wrapper--translucent.gradient {
   background: rgba(var(--color-background), var(--melt-header-opacity, 1));
+}
+
+// Translucent bar fades to a solid colour on hover (header setting "Background on hover", else the
+// colour scheme's background), and stays solid while a mega menu or the mobile menu drawer is open.
+// The mega menu itself keeps its own menu colour scheme.
+// Hover only on devices that really hover, so a tap doesn't leave it stuck opaque.
+@media (hover: hover) {
+  .section-header .header-wrapper--translucent.gradient:hover {
+    background-color: var(--melt-header-hover-bg, rgb(var(--color-background)));
+  }
+}
+
+.section-header .header-wrapper--translucent.gradient:has(.mega-menu[open], .menu-drawer-container[open]) {
+  background-color: var(--melt-header-hover-bg, rgb(var(--color-background)));
+}
+
+// Mega menu open: the bar's bottom corners go square so it joins the menu seamlessly, and the
+// menu takes the bottom corners instead — Theme settings → Media → Corner radius.
+// (.section-header prefix beats Dawn's .global-settings-popup and component-mega-menu.css.)
+.section-header .header-wrapper:has(.mega-menu[open]) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.section-header .mega-menu__content {
+  border-radius: 0 0 var(--media-radius) var(--media-radius);
 }
 
 // Overlay (home page): the section's footprint is cancelled out by a negative margin equal to
@@ -173,4 +205,104 @@
 
 .header__menu-item .icon-caret {
   display: none;
+}
+
+// ------------------------------------------------------------------ mega menu: column headings
+
+// Rule under each column heading (the level-2 links), 750px and up. Not in condensed menus, where
+// the level-2 links are a plain list rather than headings.
+// .section-header prefix beats component-mega-menu.css, which loads after this file.
+@include bp.from(bp.$medium) {
+  .section-header .mega-menu__list:not(.mega-menu__list--condensed) .mega-menu__link--level-2 {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 12px;
+  }
+}
+
+// ------------------------------------------------------------------ mega menu: long columns
+
+// A heading with more links than the "Links per column" setting (header-mega-menu.liquid) spans
+// extra columns of the menu's grid, and its links flow down N rows then into the next column.
+// The column gap matches Dawn's 4rem between menu columns, so the wrapped links line up with the
+// grid. .section-header prefix beats component-mega-menu.css, which loads after this file.
+.section-header .mega-menu__list > li.melt-menu-split {
+  grid-column: span var(--melt-menu-span, 1);
+
+  > ul {
+    display: grid;
+    grid-template-columns: repeat(var(--melt-menu-span, 1), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--melt-menu-rows, 8), auto);
+    grid-auto-flow: column;
+    column-gap: 4rem;
+  }
+}
+
+// Logo top-centre layout: Dawn sets each column to 16% wide in a flex row instead of a grid.
+.section-header .header--top-center .mega-menu__list > li.melt-menu-split {
+  width: calc(16% * var(--melt-menu-span, 1));
+}
+
+// ------------------------------------------------------------------ mega menu media
+
+// Optional image/video panel beside the mega menu links (snippets/header-mega-menu.liquid,
+// assets/melt-menu-media.js). Only rendered for menus with four columns or fewer: the links take
+// four of Dawn's six columns and the panel the other two, so the columns keep their usual width.
+// .section-header prefix beats component-mega-menu.css, which loads after this file.
+.melt-menu-media__panel {
+  display: none;
+}
+
+@include bp.from(bp.$large) {
+  .melt-menu-media {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+    padding: 0 4rem;
+  }
+
+  .section-header .melt-menu-media .mega-menu__list:not(.mega-menu__list--condensed) {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-left: 0;
+
+    > li {
+      width: auto;
+      padding-right: 0;
+    }
+  }
+
+  // Theme settings → Media → Corner radius.
+  .melt-menu-media__panel {
+    display: block;
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: var(--media-radius);
+    background: rgba(var(--color-foreground), 0.05);
+  }
+}
+
+.melt-menu-media__item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration-medium) ease;
+
+  &.is-active {
+    opacity: 1;
+  }
+
+  img,
+  video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }

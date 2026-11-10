@@ -3,6 +3,15 @@
 
   Usage:
   {% render 'header-mega-menu' %}
+
+  Melt: optional media panel (header setting "Show media in the mega menu", 990px and up). Only
+  in menus with four columns or fewer, where there's room. Each link's image or video comes from
+  snippets/melt-menu-media-item.liquid; links without one show the default (header setting, or
+  assets/melt-menu-placeholder.jpg), which is also what shows when nothing is hovered.
+
+  Melt: long link lists under a column heading wrap into extra columns of N links (header
+  setting "Links per column"), and that heading's column spans them. The extra columns count
+  towards the four-column limit above. Behaviour: assets/melt-menu-media.js.
 {% endcomment %}
 
 <nav class="header__inline-menu">
@@ -10,6 +19,25 @@
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
+          {%- liquid
+            assign per_column = section.settings.menu_column_links | default: 8
+            assign menu_columns = 0
+            for childlink in link.links
+              assign child_span = childlink.links.size | plus: per_column | minus: 1 | divided_by: per_column
+              if child_span < 1
+                assign child_span = 1
+              endif
+              assign menu_columns = menu_columns | plus: child_span
+            endfor
+            if link.levels == 1
+              assign menu_columns = 1
+            endif
+            assign show_media = false
+            if section.settings.menu_media and menu_columns <= 4
+              assign show_media = true
+            endif
+            assign media_panel = ''
+          -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
@@ -31,16 +59,38 @@
                 class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
+                {%- if show_media -%}<melt-menu-media class="melt-menu-media page-width">{%- endif -%}
                 <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                  class="mega-menu__list{% unless show_media %} page-width{% endunless %}{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
                   role="list"
                 >
                   {%- for childlink in link.links -%}
-                    <li>
+                    {%- liquid
+                      assign child_target = 'default'
+                      if show_media
+                        assign child_key = link.handle | append: '--' | append: childlink.handle
+                        capture media_item
+                          render 'melt-menu-media-item', link: childlink, key: child_key
+                        endcapture
+                        if media_item != blank
+                          assign child_target = child_key
+                          assign media_panel = media_panel | append: media_item
+                        endif
+                      endif
+                      assign child_span = childlink.links.size | plus: per_column | minus: 1 | divided_by: per_column
+                    -%}
+                    <li
+                      {% if child_span > 1 %}
+                        class="melt-menu-split" style="--melt-menu-span: {{ child_span }}; --melt-menu-rows: {{ per_column }};"
+                      {% endif %}
+                    >
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
                         class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                        {% if show_media %}
+                          data-menu-media-target="{{ child_target }}"
+                        {% endif %}
                         {% if childlink.current %}
                           aria-current="page"
                         {% endif %}
@@ -50,11 +100,27 @@
                       {%- if childlink.links != blank -%}
                         <ul class="list-unstyled" role="list">
                           {%- for grandchildlink in childlink.links -%}
+                            {%- liquid
+                              assign grandchild_target = 'default'
+                              if show_media
+                                assign grandchild_key = child_key | append: '--' | append: grandchildlink.handle
+                                capture media_item
+                                  render 'melt-menu-media-item', link: grandchildlink, key: grandchild_key
+                                endcapture
+                                if media_item != blank
+                                  assign grandchild_target = grandchild_key
+                                  assign media_panel = media_panel | append: media_item
+                                endif
+                              endif
+                            -%}
                             <li>
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                 href="{{ grandchildlink.url }}"
                                 class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                {% if show_media %}
+                                  data-menu-media-target="{{ grandchild_target }}"
+                                {% endif %}
                                 {% if grandchildlink.current %}
                                   aria-current="page"
                                 {% endif %}
@@ -68,6 +134,19 @@
                     </li>
                   {%- endfor -%}
                 </ul>
+                {%- if show_media -%}
+                    <div class="melt-menu-media__panel" aria-hidden="true">
+                      <div class="melt-menu-media__item is-active" data-menu-media="default">
+                        {%- if section.settings.menu_media_image != blank -%}
+                          {{ section.settings.menu_media_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 990px) 33vw, 0px', alt: '' }}
+                        {%- else -%}
+                          <img src="{{ 'melt-menu-placeholder.jpg' | asset_url }}" width="1024" height="682" loading="lazy" alt="">
+                        {%- endif -%}
+                      </div>
+                      {{- media_panel -}}
+                    </div>
+                  </melt-menu-media>
+                {%- endif -%}
               </div>
             </details>
           </header-menu>

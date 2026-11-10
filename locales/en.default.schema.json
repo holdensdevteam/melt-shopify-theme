@@ -2485,6 +2485,10 @@
           "label": "Background opacity",
           "info": "Below 100% the page shows through the header. Best with Overlay home page switched on."
         },
+        "bar_hover_color": {
+          "label": "Background on hover",
+          "info": "Solid colour the header fades to on hover and while the mega menu or mobile menu is open. Leave empty to use the colour scheme's background."
+        },
         "bar_radius": {
           "label": "Corner radius"
         },
@@ -2537,6 +2541,18 @@
           "options__3": {
             "label": "Drawer"
           }
+        },
+        "menu_column_links": {
+          "label": "Mega menu links per column",
+          "info": "Longer lists under a heading continue in the next column."
+        },
+        "menu_media": {
+          "label": "Show media in the mega menu",
+          "info": "Desktop only. Hovering a link shows its image or video. Only appears in menus with four columns or fewer. Media comes from the link's Menu media metafield, otherwise the collection, product or article image."
+        },
+        "menu_media_image": {
+          "label": "Default menu image",
+          "info": "Shown when nothing is hovered, and for links without an image. Leave empty to use the candle photo."
         },
         "show_line_separator": {
           "label": "Separator line"
