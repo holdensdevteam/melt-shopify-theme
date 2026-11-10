@@ -154,8 +154,10 @@
   }
 }
 
-// Larger card names
-.melt-cards--name-large .card__heading {
+// Larger card names. Also the blog's article card titles (melt-article-card), so a blog card and a
+// product card set to the same size match.
+.melt-cards--name-large .card__heading,
+.melt-cards--name-large .melt-article-card__title {
   font-size: calc(var(--font-heading-scale) * 2rem);
 
   @media screen and (min-width: 750px) {
@@ -163,7 +165,8 @@
   }
 }
 
-.melt-cards--name-xlarge .card__heading {
+.melt-cards--name-xlarge .card__heading,
+.melt-cards--name-xlarge .melt-article-card__title {
   font-size: calc(var(--font-heading-scale) * 2.4rem);
 
   @media screen and (min-width: 750px) {
@@ -171,7 +174,8 @@
   }
 }
 
-.melt-cards--name-xxlarge .card__heading {
+.melt-cards--name-xxlarge .card__heading,
+.melt-cards--name-xxlarge .melt-article-card__title {
   font-size: calc(var(--font-heading-scale) * 2.6rem);
 
   @media screen and (min-width: 750px) {
@@ -274,8 +278,10 @@
 // product grid): add .melt-cards to the section wrapper; .melt-cards--price-row for the
 // "Price and rating on one line" setting.
 
-// Product type eyebrow: smaller on cards than the shared 18px eyebrow.
-.melt-cards .card__eyebrow {
+// Product type eyebrow: smaller on cards than the shared 18px eyebrow. The blog's article card
+// category uses the same size.
+.melt-cards .card__eyebrow,
+.melt-article-card .melt-article-card__category {
   font-size: 1.5rem;
 }
 

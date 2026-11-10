@@ -1,17 +1,17 @@
 {%- comment -%}
   Melt: blog article card (Blog overview grid, Keep reading).
-  Image 16:10 (16:9 on mobile), category eyebrow, title, optional excerpt, meta (date · read time).
+  Image 16:10 (16:9 on mobile), category eyebrow, title, meta (date · read time). The whole card is
+  one link; the image is decorative (empty alt) because the title already names the link.
 
   Accepts:
   - article: {Object} The article.
   - categories: {String} Comma-separated category tags; the first of these on the article is
     shown as the eyebrow. Falls back to the article's first tag.
-  - show_excerpt: {Boolean} Default: true
   - heading_tag: {String} Default: 'h3'
   - lazy: {Boolean} Lazy-load the image. Default: true
 
   Usage:
-  {% render 'melt-article-card', article: article, categories: 'Candle Care,Scent Notes' %}
+  {% render 'melt-article-card', article: article, categories: 'Candles,Fragrances' %}
 {%- endcomment -%}
 {%- liquid
   assign card_category = ''
@@ -40,34 +40,30 @@
   endif
 -%}
 <article class="melt-article-card">
-  <a href="{{ article.url }}" class="melt-article-card__media" tabindex="-1" aria-hidden="true">
-    {%- if article.image -%}
-      {{
-        article.image
-        | image_url: width: 1200
-        | image_tag:
-          loading: loading_attr,
-          sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
-          widths: '375, 550, 750, 900, 1200',
-          alt: article.image.alt | default: article.title
-      }}
-    {%- else -%}
-      <span class="melt-article-card__placeholder"></span>
-    {%- endif -%}
-  </a>
-  <div class="melt-article-card__body">
-    {%- if card_category != blank -%}
-      {%- render 'melt-eyebrow', text: card_category, class: 'melt-article-card__category' -%}
-    {%- endif -%}
-    <{{ tag }} class="melt-article-card__title h4"><a href="{{ article.url }}">{{ article.title | escape }}</a></{{ tag }}>
-    {%- unless show_excerpt == false -%}
-      {%- assign card_excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 26 -%}
-      {%- if card_excerpt != blank -%}
-        <p class="melt-article-card__excerpt">{{ card_excerpt }}</p>
+  <a href="{{ article.url }}" class="melt-article-card__link">
+    <div class="melt-article-card__media">
+      {%- if article.image -%}
+        {{
+          article.image
+          | image_url: width: 1200
+          | image_tag:
+            loading: loading_attr,
+            sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+            widths: '375, 550, 750, 900, 1200',
+            alt: ''
+        }}
+      {%- else -%}
+        <span class="melt-article-card__placeholder"></span>
       {%- endif -%}
-    {%- endunless -%}
-    <p class="melt-article-card__meta">
-      {{- article.published_at | date: '%-d %b %Y' }} · {{ 'sections.melt_article.read_time' | t: minutes: read_mins }}
-    </p>
-  </div>
+    </div>
+    <div class="melt-article-card__body">
+      {%- if card_category != blank -%}
+        {%- render 'melt-eyebrow', text: card_category, class: 'melt-article-card__category' -%}
+      {%- endif -%}
+      <{{ tag }} class="melt-article-card__title h5">{{ article.title | escape }}</{{ tag }}>
+      <p class="melt-article-card__meta">
+        {{- article.published_at | date: '%-d %b %Y' }} · {{ 'sections.melt_article.read_time' | t: minutes: read_mins }}
+      </p>
+    </div>
+  </a>
 </article>

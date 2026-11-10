@@ -11,13 +11,19 @@
 
 @include bp.from(bp.$medium) {
   .melt-blog__hero {
-    padding-top: 5.6rem;
+    padding-top: 0;
     padding-bottom: 3.2rem;
   }
 }
 
 .melt-blog__breadcrumbs {
-  margin-bottom: 1.6rem;
+  font-size: 13px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  @include bp.from(bp.$medium) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 }
 
 .melt-blog__measure {
@@ -34,13 +40,13 @@
   line-height: 1.5;
 }
 
+// The bar sits in the page width (the nav carries .page-width: centred, with the theme's
+// gutters). The dividers are on the list, so they stop at the content edge like the header's.
 .melt-blog__chips {
-  position: sticky;
+  //position: sticky;
   top: var(--header-height, 0px);
   z-index: 2;
   background: rgb(var(--color-background));
-  border-top: 1px solid rgba(var(--color-foreground), 0.1);
-  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
 }
 
 .melt-blog__chip-list {
@@ -49,7 +55,8 @@
   gap: 0.8rem 1rem;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
-  margin: 0 auto;
+  border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
 }
 
 .melt-blog__chip {
@@ -95,7 +102,8 @@
   color: rgb(var(--color-background));
 }
 
-.melt-blog__count, .melt-blog__empty {
+.melt-blog__count,
+.melt-blog__empty {
   text-align: center;
   margin: 1.4rem 0 0;
   font-size: 1.4rem;

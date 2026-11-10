@@ -24,10 +24,25 @@
   }
 }
 
+.melt-article-card__link {
+  display: block;
+  height: 100%;
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+}
+
+.melt-article-card__link:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.4rem;
+  border-radius: var(--media-radius);
+}
+
+// Theme settings → Media → Corner radius.
 .melt-article-card__media {
   display: block;
   aspect-ratio: 16/9;
   overflow: hidden;
+  border-radius: var(--media-radius);
   background: rgba(var(--color-foreground), 0.05);
 }
 
@@ -54,21 +69,6 @@
 
 .melt-article-card__title {
   margin: 0 0 0.8rem;
-}
-
-.melt-article-card__title a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.melt-article-card__title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
-
-.melt-article-card__excerpt {
-  margin: 0 0 1.2rem;
-  line-height: 1.6;
 }
 
 .melt-article-card__meta {

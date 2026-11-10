@@ -491,6 +491,10 @@
         },
         "related_eyebrow": {
           "label": "Keep reading eyebrow"
+        },
+        "card_title_size": {
+          "label": "Keep reading title size",
+          "info": "Same sizes as the product name size on product cards."
         }
       }
     },
@@ -512,6 +516,10 @@
         },
         "per_page": {
           "label": "Articles per page"
+        },
+        "card_title_size": {
+          "label": "Article title size",
+          "info": "Same sizes as the product name size on product cards."
         },
         "empty_text": {
           "label": "Text when there are no articles"

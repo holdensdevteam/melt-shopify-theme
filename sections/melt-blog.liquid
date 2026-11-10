@@ -36,8 +36,8 @@
   </header>
 
   {%- if section.blocks.size > 0 -%}
-    <nav class="melt-blog__chips" aria-label="{{ section.settings.chips_label | escape }}">
-      <ul class="melt-blog__chip-list page-width list-unstyled" role="list">
+    <nav class="melt-blog__chips page-width" aria-label="{{ section.settings.chips_label | escape }}">
+      <ul class="melt-blog__chip-list list-unstyled" role="list">
         <li>
           <a href="{{ blog.url }}" class="melt-blog__chip{% if current_tags == blank %} is-active{% endif %}"{% if current_tags == blank %} aria-current="page"{% endif %}>{{ section.settings.all_label | escape }}</a>
         </li>
@@ -58,7 +58,7 @@
   <div class="page-width section-{{ section.id }}-padding">
     {%- paginate blog.articles by section.settings.per_page -%}
       {%- if blog.articles.size > 0 -%}
-        <ul class="melt-blog__grid list-unstyled" role="list">
+        <ul class="melt-blog__grid melt-cards--name-{{ section.settings.card_title_size }} list-unstyled" role="list">
           {%- for article in blog.articles -%}
             {%- liquid
               assign card_lazy = true
@@ -141,6 +141,19 @@
       "step": 3,
       "label": "t:sections.melt_blog.settings.per_page.label",
       "default": 9
+    },
+    {
+      "type": "select",
+      "id": "card_title_size",
+      "label": "t:sections.melt_blog.settings.card_title_size.label",
+      "info": "t:sections.melt_blog.settings.card_title_size.info",
+      "options": [
+        { "value": "default", "label": "t:sections.collection-list.settings.card_heading_size.options__default.label" },
+        { "value": "large", "label": "t:sections.collection-list.settings.card_heading_size.options__large.label" },
+        { "value": "xlarge", "label": "t:sections.collection-list.settings.card_heading_size.options__xlarge.label" },
+        { "value": "xxlarge", "label": "t:sections.collection-list.settings.card_heading_size.options__xxlarge.label" }
+      ],
+      "default": "large"
     },
     {
       "type": "text",

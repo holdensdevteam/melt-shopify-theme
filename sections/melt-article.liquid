@@ -137,7 +137,7 @@
         {%- for a in blog.articles limit: 50 -%}
           {%- if related_count >= 3 -%}{%- break -%}{%- endif -%}
           {%- if a.id != article.id and a.tags contains category -%}
-            <li>{% render 'melt-article-card', article: a, categories: section.settings.category_tags, show_excerpt: false %}</li>
+            <li>{% render 'melt-article-card', article: a, categories: section.settings.category_tags %}</li>
             {%- assign related_ids = related_ids | append: ',' | append: a.id | append: ',' -%}
             {%- assign related_count = related_count | plus: 1 -%}
           {%- endif -%}
@@ -147,7 +147,7 @@
         {%- if related_count >= 3 -%}{%- break -%}{%- endif -%}
         {%- assign key = ',' | append: a.id | append: ',' -%}
         {%- unless a.id == article.id or related_ids contains key -%}
-          <li>{% render 'melt-article-card', article: a, categories: section.settings.category_tags, show_excerpt: false %}</li>
+          <li>{% render 'melt-article-card', article: a, categories: section.settings.category_tags %}</li>
           {%- assign related_count = related_count | plus: 1 -%}
         {%- endunless -%}
       {%- endfor -%}
@@ -155,7 +155,7 @@
     {%- if related_count > 0 -%}
       <section class="melt-article__related page-width" aria-label="{{ section.settings.related_eyebrow | escape }}">
         {%- render 'melt-eyebrow', text: section.settings.related_eyebrow -%}
-        <ul class="melt-blog__grid list-unstyled" role="list">{{ related_cards }}</ul>
+        <ul class="melt-blog__grid melt-cards--name-{{ section.settings.card_title_size }} list-unstyled" role="list">{{ related_cards }}</ul>
       </section>
     {%- endif -%}
   {%- endif -%}
@@ -208,7 +208,7 @@
       "type": "text",
       "id": "category_tags",
       "label": "t:sections.melt_article.settings.category_tags.label",
-      "default": "Candle Care,Scent Notes,Moments & Occasions,Life Down the Lane",
+      "default": "Candles,Fragrances,Tips & Advice,Melt News",
       "info": "t:sections.melt_article.settings.category_tags.info"
     },
     {
@@ -266,6 +266,19 @@
       "id": "related_eyebrow",
       "label": "t:sections.melt_article.settings.related_eyebrow.label",
       "default": "Keep reading"
+    },
+    {
+      "type": "select",
+      "id": "card_title_size",
+      "label": "t:sections.melt_article.settings.card_title_size.label",
+      "info": "t:sections.melt_article.settings.card_title_size.info",
+      "options": [
+        { "value": "default", "label": "t:sections.collection-list.settings.card_heading_size.options__default.label" },
+        { "value": "large", "label": "t:sections.collection-list.settings.card_heading_size.options__large.label" },
+        { "value": "xlarge", "label": "t:sections.collection-list.settings.card_heading_size.options__xlarge.label" },
+        { "value": "xxlarge", "label": "t:sections.collection-list.settings.card_heading_size.options__xxlarge.label" }
+      ],
+      "default": "large"
     },
     {
       "type": "color_scheme",

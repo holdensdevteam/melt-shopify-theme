@@ -3,40 +3,40 @@
     "main": {
       "type": "melt-blog",
       "blocks": {
-        "cat_care": {
+        "cat_candles": {
           "type": "category",
           "settings": {
-            "tag": "Candle Care",
+            "tag": "Candles",
             "label": ""
           }
         },
-        "cat_notes": {
+        "cat_fragrances": {
           "type": "category",
           "settings": {
-            "tag": "Scent Notes",
+            "tag": "Fragrances",
             "label": ""
           }
         },
-        "cat_moments": {
+        "cat_tips": {
           "type": "category",
           "settings": {
-            "tag": "Moments & Occasions",
+            "tag": "Tips & Advice",
             "label": ""
           }
         },
-        "cat_lane": {
+        "cat_news": {
           "type": "category",
           "settings": {
-            "tag": "Life Down the Lane",
+            "tag": "Melt News",
             "label": ""
           }
         }
       },
       "block_order": [
-        "cat_care",
-        "cat_notes",
-        "cat_moments",
-        "cat_lane"
+        "cat_candles",
+        "cat_fragrances",
+        "cat_tips",
+        "cat_news"
       ],
       "settings": {
         "heading": "",
