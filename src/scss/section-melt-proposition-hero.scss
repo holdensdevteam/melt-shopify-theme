@@ -1,0 +1,156 @@
+/*! Compiled from src/scss/section-melt-proposition-hero.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Proposition hero (sections/melt-proposition-hero.liquid): copy, key facts and calls to action,
+// with the image on the right (above the copy on mobile).
+
+.melt-prop-hero {
+  display: grid;
+}
+
+.melt-prop-hero__media {
+  order: -1;
+  min-height: 26rem;
+  background: rgba(var(--color-foreground), 0.06);
+  position: relative;
+}
+
+.melt-prop-hero__media img, .melt-prop-hero__media svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.melt-prop-hero__copy {
+  padding: 2.4rem 2rem 4rem;
+}
+
+@include bp.from(bp.$large) {
+  .melt-prop-hero {
+    grid-template-columns: minmax(0, 61fr) minmax(0, 39fr);
+    min-height: 62rem;
+  }
+  .melt-prop-hero__media {
+    order: 0;
+    min-height: 0;
+  }
+  .melt-prop-hero__copy {
+    padding: 12rem 8rem 8rem max(5rem, (100vw - var(--page-width, 120rem)) / 2 + 5rem);
+    max-width: 88rem;
+  }
+}
+
+.melt-prop-hero__breadcrumbs {
+  margin-bottom: 1.6rem;
+}
+
+.melt-prop-hero__eyebrow {
+  margin: 0 0 1rem;
+}
+
+.melt-prop-hero__title {
+  margin: 0 0 1.4rem;
+}
+
+.melt-prop-hero__standfirst p {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+
+.melt-prop-hero__facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 2.4rem 0;
+}
+
+.melt-prop-hero__fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.6rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.12);
+}
+
+.melt-prop-hero__fact dt {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.melt-prop-hero__fact dd {
+  margin: 0;
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
+@include bp.from(bp.$medium) {
+  .melt-prop-hero__facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .melt-prop-hero__fact {
+    display: block;
+    padding: 0 2.2rem;
+    border-bottom: 0;
+    border-left: 1px solid rgba(var(--color-foreground), 0.15);
+  }
+  .melt-prop-hero__fact:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .melt-prop-hero__fact dt {
+    font-size: 2.4rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+.melt-prop-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2.4rem 0;
+}
+
+.melt-prop-hero__chips li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.4rem;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  font-size: 1.4rem;
+}
+
+.melt-prop-hero__chips li::before {
+  content: "";
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.2 3.3 8l1-1 2.2 2.2 5.2-5.2 1 1z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.2 3.3 8l1-1 2.2 2.2 5.2-5.2 1 1z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+@include bp.below(bp.$medium) {
+  .melt-prop-hero__chips li {
+    width: 100%;
+  }
+}
+
+.melt-prop-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+@include bp.below(bp.$medium) {
+  .melt-prop-hero__ctas .button {
+    width: 100%;
+  }
+}
+
+.melt-prop-hero__note {
+  margin: 1.8rem 0 0;
+  font-size: 1.4rem;
+}

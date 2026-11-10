@@ -67,7 +67,7 @@
       {%- endif -%}
     {%- endunless -%}
     <p class="melt-article-card__meta">
-      {{- article.published_at | date: '%-d %b %Y' }} · {{ read_mins }} min read
+      {{- article.published_at | date: '%-d %b %Y' }} · {{ 'sections.melt_article.read_time' | t: minutes: read_mins }}
     </p>
   </div>
 </article>

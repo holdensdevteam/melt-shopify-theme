@@ -43,6 +43,8 @@
 {{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-melt-article-grid.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-article.css' | asset_url | stylesheet_tag }}
 
 {%- capture callout -%}
   {%- if callout_collection != blank -%}
@@ -67,7 +69,8 @@
 <article class="melt-article color-{{ section.settings.color_scheme }} gradient">
   <header class="melt-article__header page-width">
     <div class="melt-article__measure">
-      {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-article__breadcrumbs' -%}
+      {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
+      {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-article__breadcrumbs' -%}
       {%- if category != blank -%}
         {%- render 'melt-eyebrow', text: category, class: 'melt-article__category' -%}
       {%- endif -%}
@@ -77,7 +80,7 @@
       {%- endif -%}
       <p class="melt-article__byline">
         {%- if section.settings.byline != blank -%}<span>{{ section.settings.byline | escape }}</span> · {% endif -%}
-        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d %B %Y' }}</time> · {{ read_mins }} min read
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d %B %Y' }}</time> · {{ 'sections.melt_article.read_time' | t: minutes: read_mins }}
       </p>
     </div>
   </header>
@@ -116,9 +119,9 @@
 
     <div class="melt-article__measure melt-article__footer">
       {%- if category != blank -%}
-        <a href="{{ blog.url }}/tagged/{{ category | handleize }}" class="melt-article__more link">More in {{ category | escape }} →</a>
+        <a href="{{ blog.url }}/tagged/{{ category | handleize }}" class="melt-article__more link">{{ 'sections.melt_article.more_in' | t: category: category }} →</a>
       {%- else -%}
-        <a href="{{ blog.url }}" class="melt-article__more link">More from the {{ blog.title | escape }} →</a>
+        <a href="{{ blog.url }}" class="melt-article__more link">{{ 'sections.melt_article.more_from' | t: blog: blog.title }} →</a>
       {%- endif -%}
       <button type="button" class="melt-article__share link" data-share-url="{{ request.origin }}{{ article.url }}" data-share-title="{{ article.title | escape }}">
         <span data-share-label>{{ section.settings.share_label | escape }}</span>
@@ -195,56 +198,81 @@
   }
 </script>
 
-{% stylesheet %}
-  .melt-article__header { padding-top: 2.4rem; padding-bottom: 3.2rem; }
-  @media screen and (min-width: 750px) { .melt-article__header { padding-top: 4rem; padding-bottom: 4rem; } }
-  .melt-article__measure { max-width: 72rem; margin-left: auto; margin-right: auto; }
-  .melt-article__wide { max-width: 86rem; margin: 4.4rem auto; }
-  .melt-article__breadcrumbs { margin-bottom: 1.8rem; }
-  .melt-article__category { margin: 0 0 1rem; }
-  .melt-article__title { margin: 0 0 1.4rem; }
-  .melt-article__standfirst { margin: 0 0 2rem; font-size: 1.9rem; line-height: 1.5; }
-  .melt-article__byline { margin: 0; font-size: 1.3rem; opacity: 0.75; }
-  .melt-article__hero img { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; max-height: 54rem; object-fit: cover; }
-  .melt-article__body { padding-top: 4.8rem; padding-bottom: 2.4rem; }
-  .melt-article__body .rte h2 { margin: 3.6rem 0 1.4rem; }
-  .melt-article__body .rte p { line-height: 1.75; }
-  .melt-article__body .rte blockquote { margin: 2.4rem 0; padding: 0.4rem 0 0.4rem 2.4rem; border-left: 2px solid rgb(var(--color-foreground)); font-size: 2.2rem; line-height: 1.4; font-family: var(--font-heading-family); font-style: normal; }
-  .melt-article__callout { display: grid; background: rgba(var(--color-foreground), 0.04); }
-  @media screen and (min-width: 750px) { .melt-article__callout { grid-template-columns: 28rem minmax(0, 1fr); } }
-  .melt-article__callout-media { min-height: 18rem; background: rgba(var(--color-foreground), 0.06); }
-  .melt-article__callout-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .melt-article__callout-copy { padding: 2.4rem 2rem; align-self: center; }
-  @media screen and (min-width: 750px) { .melt-article__callout-copy { padding: 3.2rem; } }
-  .melt-article__callout-title { margin: 0.6rem 0 0.8rem; }
-  .melt-article__callout-copy p { margin: 0 0 1.6rem; }
-  .melt-article__product-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(15rem, 1fr); gap: 1.4rem; overflow-x: auto; scroll-snap-type: x mandatory; margin: 1.6rem 0 0; padding-bottom: 0.8rem; }
-  @media screen and (min-width: 750px) { .melt-article__product-track { grid-auto-columns: calc((100% - 6rem) / 4); gap: 2rem; } }
-  .melt-article__product-track > li { scroll-snap-align: start; }
-  .melt-article__footer { display: flex; justify-content: space-between; align-items: center; gap: 1.6rem; padding: 2.4rem 0; border-top: 1px solid rgba(var(--color-foreground), 0.15); margin-top: 4rem; }
-  .melt-article__share { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 0.3rem; }
-  .melt-article__related { padding-top: 4.8rem; padding-bottom: 6.4rem; }
-  .melt-article__related .melt-eyebrow { margin-bottom: 2rem; }
-{% endstylesheet %}
-
 {% schema %}
 {
-  "name": "Blog article",
+  "name": "t:sections.melt_article.name",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "category_tags", "label": "Category tags", "default": "Candle Care,Scent Notes,Moments & Occasions,Life Down the Lane", "info": "Comma-separated, matching the Blog overview chips. The first one an article has is its category." },
-    { "type": "text", "id": "byline", "label": "Byline", "info": "Optional, e.g. 'Written by the chandlery'." },
-    { "type": "header", "content": "Embeds" },
-    { "type": "text", "id": "callout_eyebrow", "label": "Collection callout eyebrow", "default": "Shop the moment" },
-    { "type": "text", "id": "callout_button", "label": "Collection callout button", "default": "Shop [collection]" },
-    { "type": "text", "id": "products_eyebrow", "label": "Product row eyebrow", "default": "Mentioned in this piece" },
-    { "type": "header", "content": "Footer" },
-    { "type": "text", "id": "share_label", "label": "Share label", "default": "Share" },
-    { "type": "text", "id": "copied_label", "label": "Link copied label", "default": "Link copied" },
-    { "type": "checkbox", "id": "show_related", "label": "Show Keep reading", "default": true },
-    { "type": "text", "id": "related_eyebrow", "label": "Keep reading eyebrow", "default": "Keep reading" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+    {
+      "type": "text",
+      "id": "category_tags",
+      "label": "t:sections.melt_article.settings.category_tags.label",
+      "default": "Candle Care,Scent Notes,Moments & Occasions,Life Down the Lane",
+      "info": "t:sections.melt_article.settings.category_tags.info"
+    },
+    {
+      "type": "text",
+      "id": "byline",
+      "label": "t:sections.melt_article.settings.byline.label",
+      "info": "t:sections.melt_article.settings.byline.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_article.settings.header__embeds.content"
+    },
+    {
+      "type": "text",
+      "id": "callout_eyebrow",
+      "label": "t:sections.melt_article.settings.callout_eyebrow.label",
+      "default": "Shop the moment"
+    },
+    {
+      "type": "text",
+      "id": "callout_button",
+      "label": "t:sections.melt_article.settings.callout_button.label",
+      "default": "Shop [collection]"
+    },
+    {
+      "type": "text",
+      "id": "products_eyebrow",
+      "label": "t:sections.melt_article.settings.products_eyebrow.label",
+      "default": "Mentioned in this piece"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_article.settings.header__footer.content"
+    },
+    {
+      "type": "text",
+      "id": "share_label",
+      "label": "t:sections.melt_article.settings.share_label.label",
+      "default": "Share"
+    },
+    {
+      "type": "text",
+      "id": "copied_label",
+      "label": "t:sections.melt_article.settings.copied_label.label",
+      "default": "Link copied"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "t:sections.melt_article.settings.show_related.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_eyebrow",
+      "label": "t:sections.melt_article.settings.related_eyebrow.label",
+      "default": "Keep reading"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
   ]
 }
 {% endschema %}

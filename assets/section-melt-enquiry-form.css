@@ -1,0 +1,169 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-melt-enquiry-form.scss — edit that file, not this one. */
+.melt-enquiry {
+  scroll-margin-top: var(--header-height, 0px);
+}
+
+.melt-enquiry__inner {
+  display: grid;
+  gap: 3.2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media screen and (min-width: 990px) {
+  .melt-enquiry__inner {
+    grid-template-columns: minmax(0, 834fr) minmax(0, 380fr);
+    gap: 6.4rem;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+.melt-enquiry__heading {
+  margin: 0 0 1rem;
+}
+
+.melt-enquiry__intro {
+  margin: 0 0 2.6rem;
+}
+
+.melt-enquiry__grid {
+  display: grid;
+  gap: 1.6rem 2rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 2.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .melt-enquiry__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.melt-enquiry__field--full {
+  grid-column: 1/-1;
+}
+
+.melt-enquiry__field label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-size: 1.4rem;
+}
+
+.melt-enquiry__optional {
+  margin-left: 0.6rem;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.melt-enquiry__field input, .melt-enquiry__field select, .melt-enquiry__field textarea {
+  width: 100%;
+  min-height: 5rem;
+  padding: 1.2rem 1.6rem;
+  font: inherit;
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+  border: 1px solid rgba(var(--color-foreground), 0.3);
+  border-radius: 0;
+}
+
+.melt-enquiry__field textarea {
+  min-height: 14rem;
+  resize: vertical;
+}
+
+.melt-enquiry__field input:focus-visible, .melt-enquiry__field select:focus-visible, .melt-enquiry__field textarea:focus-visible {
+  outline: 2px solid rgb(var(--color-foreground));
+  outline-offset: 1px;
+}
+
+.melt-enquiry__consent {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 0 0 2.4rem;
+  font-size: 1.4rem;
+}
+
+.melt-enquiry__consent input {
+  margin-top: 0.3rem;
+}
+
+.melt-enquiry__reply {
+  margin: 1.4rem 0 0;
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
+.melt-enquiry__errors {
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.6rem;
+  border: 1px solid rgb(var(--color-foreground));
+}
+
+.melt-enquiry__success {
+  padding: 2.4rem;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.melt-enquiry__aside {
+  display: grid;
+  gap: 1.4rem;
+  align-content: start;
+}
+
+.melt-enquiry__panel {
+  padding: 2.2rem;
+}
+
+.melt-enquiry__panel--tint {
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.melt-enquiry__panel--outline {
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+}
+
+.melt-enquiry__points {
+  margin: 1.4rem 0 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.melt-enquiry__points li {
+  position: relative;
+  padding-left: 2.8rem;
+  font-size: 1.5rem;
+}
+
+.melt-enquiry__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: rgb(var(--color-foreground));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.2 3.3 8l1-1 2.2 2.2 5.2-5.2 1 1z' fill='%23000'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 11.2 3.3 8l1-1 2.2 2.2 5.2-5.2 1 1z' fill='%23000'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.melt-enquiry__phone {
+  margin: 1.4rem 0 0.2rem;
+  font-size: 2.2rem;
+}
+
+.melt-enquiry__phone a, .melt-enquiry__email a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.melt-enquiry__hours {
+  margin: 0 0 1.2rem;
+  font-size: 1.4rem;
+  opacity: 0.75;
+}
+
+.melt-enquiry__email {
+  margin: 0;
+}

@@ -1,0 +1,63 @@
+/*! Compiled from src/scss/section-melt-spec-table.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Spec table (sections/melt-spec-table.liquid): heading and text beside a two-column table.
+
+.melt-spec__inner {
+  display: grid;
+  gap: 2.4rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@include bp.from(bp.$large) {
+  .melt-spec__inner {
+    grid-template-columns: minmax(0, 380fr) minmax(0, 834fr);
+    gap: 6.4rem;
+    padding-top: 7.2rem;
+    padding-bottom: 7.2rem;
+  }
+}
+
+.melt-spec__copy h2 {
+  margin: 0 0 1.2rem;
+}
+
+.melt-spec__table {
+  margin: 0;
+}
+
+.melt-spec__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.15);
+}
+
+.melt-spec__row:first-child {
+  padding-top: 0;
+}
+
+.melt-spec__row:last-child {
+  border-bottom: 0;
+}
+
+.melt-spec__title {
+  display: block;
+  font-weight: 600;
+  font-size: 1.7rem;
+}
+
+.melt-spec__note {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.3rem;
+  opacity: 0.7;
+}
+
+.melt-spec__row dd {
+  margin: 0;
+  white-space: nowrap;
+}

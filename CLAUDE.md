@@ -68,4 +68,4 @@ The old site's taxonomy is faceted — everything under `/scented-candles/` spli
 
 Warm, understated, rural, quietly confident. First-person plural, storytelling, dry humour. Not shouty, not corporate. **Never over-claim.**
 
-Any placeholder or example copy written into the theme should sound like Melt. Several brand claims are still unverified (founding date, "traditional slow-burning techniques", 36-hour make time) — don't put them in copy.
+Any placeholder or example copy written into the theme should sound like Melt. Confirmed by Melt (Nov 2026): founded in **1999** (any other founding year is wrong), and the **1pm** next-working-day order cut-off. Still unverified — keep out of copy: "traditional slow-burning techniques", 36-hour make time.

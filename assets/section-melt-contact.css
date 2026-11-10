@@ -1,0 +1,238 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/section-melt-contact.scss — edit that file, not this one. */
+.melt-contact__hero {
+  display: grid;
+  gap: 2.4rem;
+  padding-top: 2.4rem;
+  padding-bottom: 3.2rem;
+}
+
+@media screen and (min-width: 990px) {
+  .melt-contact__hero {
+    grid-template-columns: minmax(0, 874fr) minmax(0, 340fr);
+    gap: 6.4rem;
+    align-items: start;
+    padding-top: 4rem;
+    padding-bottom: 4.8rem;
+  }
+}
+.melt-contact__breadcrumbs {
+  margin-bottom: 1.6rem;
+}
+
+.melt-contact__title {
+  margin: 0 0 1.2rem;
+}
+
+.melt-contact__intro p {
+  margin: 0;
+  font-size: 1.7rem;
+  line-height: 1.55;
+}
+
+.melt-contact__promise {
+  padding: 2rem 2.2rem;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.melt-contact__promise-title {
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+}
+
+.melt-contact__promise-text {
+  margin: 0;
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+.melt-contact__deflect {
+  padding-bottom: 4rem;
+}
+
+.melt-contact__cards {
+  display: grid;
+  gap: 1.2rem;
+  margin: 1.6rem 0 0;
+}
+
+@media screen and (min-width: 750px) {
+  .melt-contact__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .melt-contact__cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.melt-contact__card a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+  color: inherit;
+  text-decoration: none;
+}
+
+.melt-contact__card a:hover {
+  border-color: rgb(var(--color-foreground));
+}
+
+.melt-contact__card-title {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.melt-contact__card-text {
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+.melt-contact__card-link {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  font-size: 1.4rem;
+}
+
+.melt-contact__main {
+  display: grid;
+  gap: 3.2rem;
+  padding-bottom: 6.4rem;
+}
+
+@media screen and (min-width: 990px) {
+  .melt-contact__main {
+    grid-template-columns: minmax(0, 814fr) minmax(0, 400fr);
+    gap: 6.4rem;
+    padding-bottom: 8rem;
+  }
+}
+@media screen and (max-width: 989px) {
+  .melt-contact__aside {
+    order: -1;
+  }
+}
+.melt-contact__form-title {
+  margin: 0 0 2rem;
+}
+
+.melt-contact__grid {
+  display: grid;
+  gap: 1.8rem 2rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .melt-contact__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.melt-contact__field--full {
+  grid-column: 1/-1;
+}
+
+.melt-contact__field[hidden] {
+  display: none;
+}
+
+.melt-contact__field label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-size: 1.4rem;
+}
+
+.melt-contact__optional {
+  margin-left: 0.6rem;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.melt-contact__field input, .melt-contact__field select, .melt-contact__field textarea {
+  width: 100%;
+  min-height: 5rem;
+  padding: 1.2rem 1.6rem;
+  font: inherit;
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+  border: 1px solid rgba(var(--color-foreground), 0.3);
+  border-radius: 0;
+}
+
+.melt-contact__field textarea {
+  min-height: 15rem;
+  resize: vertical;
+}
+
+.melt-contact__consent {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 2.4rem;
+  font-size: 1.4rem;
+}
+
+.melt-contact__consent small {
+  display: block;
+  font-size: 1.3rem;
+  opacity: 0.7;
+}
+
+.melt-contact__reply {
+  margin: 1.4rem 0 0;
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
+.melt-contact__errors {
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.6rem;
+  border: 1px solid rgb(var(--color-foreground));
+}
+
+.melt-contact__success {
+  padding: 2.4rem;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.melt-contact__aside {
+  display: grid;
+  gap: 1.4rem;
+  align-content: start;
+}
+
+.melt-contact__panel {
+  padding: 2.2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.15);
+}
+
+.melt-contact__line {
+  margin: 1.2rem 0 0;
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+.melt-contact__line strong {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.melt-contact__line a, .melt-contact__more {
+  color: inherit;
+  text-decoration: none;
+}
+
+.melt-contact__more {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 1.4rem;
+}
+
+.melt-contact__social {
+  justify-content: flex-start;
+  margin-top: 1rem;
+}

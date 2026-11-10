@@ -2,6 +2,7 @@
   Melt: heading + text on the left, a simple two-column table on the right
   (Wireframes — Subscribe & Save · 05 How often). Rows are blocks: title, small note, value.
 {%- endcomment -%}
+{{ 'section-melt-spec-table.css' | asset_url | stylesheet_tag }}
 <div class="melt-spec color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width melt-spec__inner">
     <div class="melt-spec__copy">
@@ -19,40 +20,56 @@
   </div>
 </div>
 
-{% stylesheet %}
-  .melt-spec__inner { display: grid; gap: 2.4rem; padding-top: 4rem; padding-bottom: 4rem; }
-  @media screen and (min-width: 990px) { .melt-spec__inner { grid-template-columns: minmax(0, 380fr) minmax(0, 834fr); gap: 6.4rem; padding-top: 7.2rem; padding-bottom: 7.2rem; } }
-  .melt-spec__copy h2 { margin: 0 0 1.2rem; }
-  .melt-spec__table { margin: 0; }
-  .melt-spec__row { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(var(--color-foreground), 0.15); }
-  .melt-spec__row:first-child { padding-top: 0; }
-  .melt-spec__row:last-child { border-bottom: 0; }
-  .melt-spec__title { display: block; font-weight: 600; font-size: 1.7rem; }
-  .melt-spec__note { display: block; margin-top: 0.4rem; font-size: 1.3rem; opacity: 0.7; }
-  .melt-spec__row dd { margin: 0; white-space: nowrap; }
-{% endstylesheet %}
-
 {% schema %}
 {
-  "name": "Spec table",
+  "name": "t:sections.melt_spec_table.name",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "inline_richtext", "id": "heading", "label": "Heading" },
-    { "type": "richtext", "id": "text", "label": "Text" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:sections.melt_spec_table.settings.heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.melt_spec_table.settings.text.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
   ],
   "blocks": [
     {
       "type": "row",
-      "name": "Row",
+      "name": "t:sections.melt_spec_table.blocks.row.name",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title" },
-        { "type": "text", "id": "note", "label": "Note" },
-        { "type": "text", "id": "value", "label": "Value" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.melt_spec_table.blocks.row.settings.title.label"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "t:sections.melt_spec_table.blocks.row.settings.note.label"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "t:sections.melt_spec_table.blocks.row.settings.value.label"
+        }
       ]
     }
   ],
-  "presets": [ { "name": "Spec table" } ]
+  "presets": [
+    {
+      "name": "t:sections.melt_spec_table.presets.name"
+    }
+  ]
 }
 {% endschema %}

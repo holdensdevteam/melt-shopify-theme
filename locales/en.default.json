@@ -328,7 +328,50 @@
       }
     },
     "breadcrumbs": {
-      "label": "Breadcrumb"
+      "label": "Breadcrumb",
+      "home": "Home"
+    },
+    "melt_forms": {
+      "optional": "optional",
+      "please_choose": "Please choose…",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "phone_placeholder": "Only if you would rather we rang",
+      "company": "Company",
+      "company_placeholder": "Acme Ltd"
+    },
+    "melt_contact": {
+      "reason": "What is it about?",
+      "order_number": "Order number",
+      "message": "Your message",
+      "message_placeholder": "Tell us what you need…",
+      "keep_shopping": "Keep shopping",
+      "read_faqs": "Read our FAQs while you wait",
+      "call_us": "Call us",
+      "office": "Office",
+      "shop": "Shop",
+      "email": "Email",
+      "find_us": "Find us",
+      "get_directions": "Get directions",
+      "follow": "Follow"
+    },
+    "melt_article": {
+      "read_time": "{{ minutes }} min read",
+      "more_in": "More in {{ category }}",
+      "more_from": "More from the {{ blog }}"
+    },
+    "melt_blog": {
+      "showing": "Showing {{ shown }} of {{ total }} articles"
+    },
+    "melt_policy": {
+      "last_updated": "Last updated {{ date }}"
+    },
+    "melt_visit_us": {
+      "noon": "noon",
+      "tomorrow": "tomorrow",
+      "map_title": "{{ name }} map"
     },
     "banner_media": {
       "label": "Banner",

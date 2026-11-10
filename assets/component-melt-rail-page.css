@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/*! Compiled from src/scss/component-melt-rail-page.scss — edit that file, not this one. */
+.melt-faqpage__header {
+  padding-top: 3.2rem;
+  padding-bottom: 2.4rem;
+}
+@media screen and (min-width: 990px) {
+  .melt-faqpage__header {
+    padding-top: 6.4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.melt-faqpage__breadcrumbs {
+  margin-bottom: 1.6rem;
+}
+
+.melt-faqpage__measure {
+  max-width: 76rem;
+}
+
+.melt-faqpage__title {
+  margin: 0 0 1.2rem;
+}
+
+.melt-faqpage__intro p {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.melt-faqpage__body {
+  display: grid;
+  gap: 2.4rem;
+  padding-bottom: 6.4rem;
+}
+@media screen and (min-width: 990px) {
+  .melt-faqpage__body {
+    grid-template-columns: 24rem minmax(0, 1fr);
+    gap: 6.4rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.melt-faqpage__rail-title {
+  margin: 0 0 1.4rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.melt-faqpage__rail ul {
+  margin: 0;
+}
+
+.melt-faqpage__rail a {
+  color: inherit;
+  text-decoration: none;
+}
+.melt-faqpage__rail a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+@media screen and (min-width: 990px) {
+  .melt-faqpage__rail {
+    position: sticky;
+    top: calc(var(--header-height, 0px) + 2.4rem);
+    align-self: start;
+  }
+  .melt-faqpage__rail li + li {
+    margin-top: 1.1rem;
+  }
+}
+@media screen and (max-width: 989px) {
+  .melt-faqpage__rail-title {
+    display: none;
+  }
+  .melt-faqpage__rail ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .melt-faqpage__rail a {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid rgba(var(--color-foreground), 0.25);
+    border-radius: 10rem;
+    font-size: 1.3rem;
+  }
+}

@@ -15,6 +15,8 @@
 
 {{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
 {{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{{ 'component-melt-article-grid.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-blog.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
@@ -23,7 +25,8 @@
 
 <div class="melt-blog color-{{ section.settings.color_scheme }} gradient">
   <header class="melt-blog__hero page-width">
-    {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-blog__breadcrumbs' -%}
+    {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
+    {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-blog__breadcrumbs' -%}
     <div class="melt-blog__measure">
       <h1 class="melt-blog__title h1">{{ heading | escape }}</h1>
       {%- if section.settings.standfirst != blank -%}
@@ -94,69 +97,108 @@
         </nav>
       {%- endif -%}
       {%- if paginate.items > 0 -%}
-        <p class="melt-blog__count">Showing {{ blog.articles.size }} of {{ paginate.items }} articles</p>
+        <p class="melt-blog__count">{{ 'sections.melt_blog.showing' | t: shown: blog.articles.size, total: paginate.items }}</p>
       {%- endif -%}
     {%- endpaginate -%}
   </div>
 </div>
 
-{% stylesheet %}
-  .melt-blog__hero { padding-top: 3.2rem; padding-bottom: 2.4rem; }
-  @media screen and (min-width: 750px) { .melt-blog__hero { padding-top: 5.6rem; padding-bottom: 3.2rem; } }
-  .melt-blog__breadcrumbs { margin-bottom: 1.6rem; }
-  .melt-blog__measure { max-width: 82rem; }
-  .melt-blog__title { margin: 0 0 1.2rem; }
-  .melt-blog__standfirst p { margin: 0; font-size: 1.8rem; line-height: 1.5; }
-  .melt-blog__chips { position: sticky; top: var(--header-height, 0px); z-index: 2; background: rgb(var(--color-background)); border-top: 1px solid rgba(var(--color-foreground), 0.1); border-bottom: 1px solid rgba(var(--color-foreground), 0.1); }
-  .melt-blog__chip-list { display: flex; flex-wrap: wrap; gap: 0.8rem 1rem; padding-top: 1.6rem; padding-bottom: 1.6rem; margin: 0 auto; }
-  .melt-blog__chip { display: inline-block; padding: 0.8rem 1.6rem; border: 1px solid rgba(var(--color-foreground), 0.25); border-radius: 10rem; font-size: 1.4rem; text-decoration: none; color: rgb(var(--color-foreground)); }
-  .melt-blog__chip:hover { border-color: rgb(var(--color-foreground)); }
-  .melt-blog__chip.is-active { background: rgb(var(--color-foreground)); color: rgb(var(--color-background)); border-color: rgb(var(--color-foreground)); }
-  .melt-blog__grid { display: grid; gap: 4rem 3.2rem; grid-template-columns: 1fr; margin: 0; }
-  @media screen and (min-width: 750px) { .melt-blog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media screen and (min-width: 990px) { .melt-blog__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5.2rem 3.2rem; } }
-  .melt-blog__pagination ul { display: flex; justify-content: center; gap: 0.8rem; margin: 5.6rem 0 0; }
-  .melt-blog__page { display: inline-flex; align-items: center; justify-content: center; width: 4rem; height: 4rem; border: 1px solid rgba(var(--color-foreground), 0.2); text-decoration: none; color: rgb(var(--color-foreground)); }
-  .melt-blog__page.is-current { background: rgb(var(--color-foreground)); color: rgb(var(--color-background)); }
-  .melt-blog__count, .melt-blog__empty { text-align: center; margin: 1.4rem 0 0; font-size: 1.4rem; opacity: 0.75; }
-  .melt-article-card__media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: rgba(var(--color-foreground), 0.05); }
-  @media screen and (min-width: 750px) { .melt-article-card__media { aspect-ratio: 16 / 10; } }
-  .melt-article-card__media img, .melt-article-card__placeholder { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .melt-article-card__body { padding-top: 1.6rem; }
-  .melt-article-card__category { margin: 0 0 0.8rem; }
-  .melt-article-card__title { margin: 0 0 0.8rem; }
-  .melt-article-card__title a { text-decoration: none; color: inherit; }
-  .melt-article-card__title a:hover { text-decoration: underline; text-underline-offset: 0.3rem; }
-  .melt-article-card__excerpt { margin: 0 0 1.2rem; line-height: 1.6; }
-  .melt-article-card__meta { margin: 0; font-size: 1.3rem; opacity: 0.7; }
-{% endstylesheet %}
-
 {% schema %}
 {
-  "name": "Blog overview",
+  "name": "t:sections.melt_blog.name",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the blog's title." },
-    { "type": "richtext", "id": "standfirst", "label": "Standfirst", "default": "<p>Candle care, scent notes, what to light and when, and news from down the lane.</p>" },
-    { "type": "text", "id": "chips_label", "label": "Categories label (screen readers)", "default": "Blog categories" },
-    { "type": "text", "id": "all_label", "label": "'All' chip label", "default": "All" },
-    { "type": "range", "id": "per_page", "min": 3, "max": 24, "step": 3, "label": "Articles per page", "default": 9 },
-    { "type": "text", "id": "empty_text", "label": "Text when there are no articles", "default": "No articles here yet." },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 72 }
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.melt_blog.settings.heading.label",
+      "info": "t:sections.melt_blog.settings.heading.info"
+    },
+    {
+      "type": "richtext",
+      "id": "standfirst",
+      "label": "t:sections.melt_blog.settings.standfirst.label",
+      "default": "<p>Candle care, scent notes, what to light and when, and news from down the lane.</p>"
+    },
+    {
+      "type": "text",
+      "id": "chips_label",
+      "label": "t:sections.melt_blog.settings.chips_label.label",
+      "default": "Blog categories"
+    },
+    {
+      "type": "text",
+      "id": "all_label",
+      "label": "t:sections.melt_blog.settings.all_label.label",
+      "default": "All"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "label": "t:sections.melt_blog.settings.per_page.label",
+      "default": 9
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "t:sections.melt_blog.settings.empty_text.label",
+      "default": "No articles here yet."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.melt_blog.settings.padding_top.label",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.melt_blog.settings.padding_bottom.label",
+      "default": 72
+    }
   ],
   "blocks": [
     {
       "type": "category",
-      "name": "Category",
+      "name": "t:sections.melt_blog.blocks.category.name",
       "settings": [
-        { "type": "text", "id": "tag", "label": "Article tag", "info": "Articles with this exact tag appear under this category." },
-        { "type": "text", "id": "label", "label": "Chip label", "info": "Optional. Defaults to the tag." }
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "t:sections.melt_blog.blocks.category.settings.tag.label",
+          "info": "t:sections.melt_blog.blocks.category.settings.tag.info"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.melt_blog.blocks.category.settings.label.label",
+          "info": "t:sections.melt_blog.blocks.category.settings.label.info"
+        }
       ]
     }
   ],
-  "presets": [ { "name": "Blog overview" } ]
+  "presets": [
+    {
+      "name": "t:sections.melt_blog.presets.name"
+    }
+  ]
 }
 {% endschema %}

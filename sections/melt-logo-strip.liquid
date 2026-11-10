@@ -3,6 +3,7 @@
   A row of client logos (image, or the name as text until a logo is uploaded) with a footnote.
 {%- endcomment -%}
 {{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-logo-strip.css' | asset_url | stylesheet_tag }}
 <div class="melt-logos color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width melt-logos__inner">
     {%- render 'melt-eyebrow', text: section.settings.eyebrow, class: 'melt-logos__eyebrow' -%}
@@ -23,38 +24,53 @@
   </div>
 </div>
 
-{% stylesheet %}
-  .melt-logos__inner { padding-top: 4rem; padding-bottom: 4rem; text-align: center; }
-  @media screen and (min-width: 750px) { .melt-logos__inner { padding-top: 5.6rem; padding-bottom: 5.6rem; } }
-  .melt-logos__eyebrow { margin: 0 0 2rem; }
-  .melt-logos__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0; }
-  @media screen and (min-width: 750px) { .melt-logos__list { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 2rem; } }
-  .melt-logos__item { display: flex; align-items: center; justify-content: center; min-height: 5.6rem; padding: 1rem 1.6rem; background: rgb(var(--color-background)); filter: grayscale(1); }
-  .melt-logos__item span { font-size: 1.3rem; letter-spacing: 0.1rem; text-transform: uppercase; opacity: 0.7; }
-  .melt-logos__item img { max-height: 3.6rem; width: auto; max-width: 100%; }
-  .melt-logos__footnote { margin: 1.8rem 0 0; font-size: 1.4rem; opacity: 0.8; }
-{% endstylesheet %}
-
 {% schema %}
 {
-  "name": "Logo strip",
+  "name": "t:sections.melt_logo_strip.name",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "We have made gifts for" },
-    { "type": "text", "id": "footnote", "label": "Footnote" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.melt_logo_strip.settings.eyebrow.label",
+      "default": "We have made gifts for"
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "t:sections.melt_logo_strip.settings.footnote.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    }
   ],
   "blocks": [
     {
       "type": "logo",
-      "name": "Logo",
+      "name": "t:sections.melt_logo_strip.blocks.logo.name",
       "settings": [
-        { "type": "text", "id": "name", "label": "Name", "info": "Shown as text until a logo is uploaded; used as the logo's alt text." },
-        { "type": "image_picker", "id": "logo", "label": "Logo" }
+        {
+          "type": "text",
+          "id": "name",
+          "label": "t:sections.melt_logo_strip.blocks.logo.settings.name.label",
+          "info": "t:sections.melt_logo_strip.blocks.logo.settings.name.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "t:sections.melt_logo_strip.blocks.logo.settings.logo.label"
+        }
       ]
     }
   ],
-  "presets": [ { "name": "Logo strip" } ]
+  "presets": [
+    {
+      "name": "t:sections.melt_logo_strip.presets.name"
+    }
+  ]
 }
 {% endschema %}

@@ -454,6 +454,619 @@
     }
   },
   "sections": {
+    "melt_article": {
+      "name": "Blog article",
+      "settings": {
+        "category_tags": {
+          "label": "Category tags",
+          "info": "Comma-separated, matching the Blog overview chips. The first one an article has is its category."
+        },
+        "byline": {
+          "label": "Byline",
+          "info": "Optional, e.g. 'Written by the chandlery'."
+        },
+        "header__embeds": {
+          "content": "Embeds"
+        },
+        "callout_eyebrow": {
+          "label": "Collection callout eyebrow"
+        },
+        "callout_button": {
+          "label": "Collection callout button"
+        },
+        "products_eyebrow": {
+          "label": "Product row eyebrow"
+        },
+        "header__footer": {
+          "content": "Footer"
+        },
+        "share_label": {
+          "label": "Share label"
+        },
+        "copied_label": {
+          "label": "Link copied label"
+        },
+        "show_related": {
+          "label": "Show Keep reading"
+        },
+        "related_eyebrow": {
+          "label": "Keep reading eyebrow"
+        }
+      }
+    },
+    "melt_blog": {
+      "name": "Blog overview",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "info": "Leave empty to use the blog's title."
+        },
+        "standfirst": {
+          "label": "Standfirst"
+        },
+        "chips_label": {
+          "label": "Categories label (screen readers)"
+        },
+        "all_label": {
+          "label": "'All' chip label"
+        },
+        "per_page": {
+          "label": "Articles per page"
+        },
+        "empty_text": {
+          "label": "Text when there are no articles"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "category": {
+          "name": "Category",
+          "settings": {
+            "tag": {
+              "label": "Article tag",
+              "info": "Articles with this exact tag appear under this category."
+            },
+            "label": {
+              "label": "Chip label",
+              "info": "Optional. Defaults to the tag."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Blog overview"
+      }
+    },
+    "melt_contact": {
+      "name": "Contact page",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "intro": {
+          "label": "Intro"
+        },
+        "promise_title": {
+          "label": "Reply promise"
+        },
+        "promise_text": {
+          "label": "Reply promise detail"
+        },
+        "cards_eyebrow": {
+          "label": "Cards eyebrow"
+        },
+        "header__form": {
+          "content": "Form"
+        },
+        "form_heading": {
+          "label": "Form heading"
+        },
+        "reasons": {
+          "label": "'What is it about?' options",
+          "info": "One per line. Trade, white label and corporate gifting have their own pages."
+        },
+        "order_reasons": {
+          "label": "Options that show the order number field",
+          "info": "Comma-separated, matching the options above."
+        },
+        "order_placeholder": {
+          "label": "Order number placeholder"
+        },
+        "consent_label": {
+          "label": "Newsletter opt-in"
+        },
+        "consent_note": {
+          "label": "Newsletter opt-in note"
+        },
+        "button_label": {
+          "label": "Button"
+        },
+        "reply_note": {
+          "label": "Note under the button"
+        },
+        "success_heading": {
+          "label": "Thank-you heading"
+        },
+        "success_text": {
+          "label": "Thank-you text"
+        },
+        "header__direct_contact": {
+          "content": "Direct contact"
+        },
+        "office_phone": {
+          "label": "Office phone"
+        },
+        "office_hours": {
+          "label": "Office hours"
+        },
+        "shop_phone": {
+          "label": "Shop phone"
+        },
+        "shop_hours": {
+          "label": "Shop hours"
+        },
+        "email": {
+          "label": "Email"
+        },
+        "email_note": {
+          "label": "Email note"
+        },
+        "address_line_1": {
+          "label": "Address line 1"
+        },
+        "address_line_2": {
+          "label": "Address line 2"
+        }
+      },
+      "blocks": {
+        "card": {
+          "name": "Help card",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "text": {
+              "label": "Text"
+            },
+            "link_label": {
+              "label": "Link label"
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Contact page"
+      }
+    },
+    "melt_enquiry_form": {
+      "name": "Enquiry form",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "intro": {
+          "label": "Intro"
+        },
+        "enquiry_type": {
+          "label": "Enquiry type",
+          "info": "Sent with every enquiry so you can tell which page it came from. Defaults to the page title."
+        },
+        "company_required": {
+          "label": "Company is required"
+        },
+        "message_label": {
+          "label": "Message label"
+        },
+        "message_placeholder": {
+          "label": "Message placeholder"
+        },
+        "consent_label": {
+          "label": "Newsletter opt-in label",
+          "info": "Leave empty to hide. Ticked enquiries are flagged in the email; add the address to the mailing list by hand or via your email platform."
+        },
+        "button_label": {
+          "label": "Button"
+        },
+        "reply_note": {
+          "label": "Note under the button"
+        },
+        "success_heading": {
+          "label": "Thank-you heading"
+        },
+        "success_text": {
+          "label": "Thank-you text"
+        },
+        "header__right_hand_column": {
+          "content": "Right-hand column"
+        },
+        "points_eyebrow": {
+          "label": "Points eyebrow"
+        },
+        "contact_eyebrow": {
+          "label": "Contact eyebrow"
+        },
+        "phone": {
+          "label": "Phone"
+        },
+        "hours": {
+          "label": "Hours"
+        },
+        "email": {
+          "label": "Email"
+        }
+      },
+      "blocks": {
+        "select": {
+          "name": "Qualifying question",
+          "settings": {
+            "label": {
+              "label": "Question"
+            },
+            "options": {
+              "label": "Options",
+              "info": "One per line."
+            },
+            "required": {
+              "label": "Required"
+            }
+          }
+        },
+        "point": {
+          "name": "What you get point",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Enquiry form"
+      }
+    },
+    "melt_faq_page": {
+      "name": "FAQ page",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "info": "Leave empty to use the page title."
+        },
+        "intro": {
+          "label": "Intro"
+        },
+        "rail_label": {
+          "label": "Contents label"
+        },
+        "open_first": {
+          "label": "Open the first question"
+        },
+        "structured_data": {
+          "label": "Output FAQPage structured data"
+        }
+      },
+      "blocks": {
+        "group": {
+          "name": "Group",
+          "settings": {
+            "title": {
+              "label": "Group title"
+            }
+          }
+        },
+        "question": {
+          "name": "Question",
+          "settings": {
+            "question": {
+              "label": "Question"
+            },
+            "answer": {
+              "label": "Answer"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "FAQ page"
+      }
+    },
+    "melt_logo_strip": {
+      "name": "Logo strip",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "footnote": {
+          "label": "Footnote"
+        }
+      },
+      "blocks": {
+        "logo": {
+          "name": "Logo",
+          "settings": {
+            "name": {
+              "label": "Name",
+              "info": "Shown as text until a logo is uploaded; used as the logo's alt text."
+            },
+            "logo": {
+              "label": "Logo"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Logo strip"
+      }
+    },
+    "melt_policy": {
+      "name": "Policy page",
+      "settings": {
+        "rail_label": {
+          "label": "Contents label"
+        },
+        "show_updated": {
+          "label": "Show 'Last updated' date"
+        }
+      },
+      "presets": {
+        "name": "Policy page"
+      }
+    },
+    "melt_proposition_hero": {
+      "name": "Proposition hero",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading",
+          "info": "Leave empty to use the page title."
+        },
+        "standfirst": {
+          "label": "Standfirst"
+        },
+        "primary_label": {
+          "label": "Primary button"
+        },
+        "primary_link": {
+          "label": "Primary button link",
+          "info": "Leave empty to jump to the enquiry form on this page (#enquiry)."
+        },
+        "secondary_label": {
+          "label": "Secondary button"
+        },
+        "secondary_link": {
+          "label": "Secondary button link",
+          "info": "A page link, or tel:01200443377 for a phone number."
+        },
+        "note": {
+          "label": "Note under the buttons",
+          "info": "e.g. a Christmas deadline."
+        },
+        "image": {
+          "label": "Image"
+        }
+      },
+      "blocks": {
+        "chip": {
+          "name": "Benefit chip",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "fact": {
+          "name": "Key fact",
+          "settings": {
+            "value": {
+              "label": "Value"
+            },
+            "label": {
+              "label": "Label"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Proposition hero"
+      }
+    },
+    "melt_spec_table": {
+      "name": "Spec table",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "text": {
+          "label": "Text"
+        }
+      },
+      "blocks": {
+        "row": {
+          "name": "Row",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "note": {
+              "label": "Note"
+            },
+            "value": {
+              "label": "Value"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Spec table"
+      }
+    },
+    "melt_visit_us": {
+      "name": "Visit us",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "options__h2": {
+            "label": "Small"
+          },
+          "options__h1": {
+            "label": "Medium"
+          },
+          "options__h0": {
+            "label": "Large"
+          }
+        },
+        "header__opening_hours": {
+          "content": "Opening hours"
+        },
+        "hours_label": {
+          "label": "Label",
+          "info": "Optional heading above the hours. Add each row of hours as a block."
+        },
+        "show_open_status": {
+          "label": "Show 'Open now' status",
+          "info": "Worked out in UK time from the hours for search engines below."
+        },
+        "open_now_text": {
+          "label": "Open now text"
+        },
+        "opens_today_text": {
+          "label": "Opens later today text"
+        },
+        "opens_later_text": {
+          "label": "Closed text"
+        },
+        "opening_hours_schema": {
+          "label": "Hours for search engines",
+          "info": "Same hours in schema.org format, separated by commas. Keep in step with the hours above."
+        },
+        "header__address": {
+          "content": "Address"
+        },
+        "address_label": {
+          "label": "Label"
+        },
+        "business_name": {
+          "label": "Business name"
+        },
+        "street_address": {
+          "label": "Street"
+        },
+        "locality": {
+          "label": "Town"
+        },
+        "region": {
+          "label": "County"
+        },
+        "postcode": {
+          "label": "Postcode"
+        },
+        "address_note": {
+          "label": "Note under the address"
+        },
+        "phone_label": {
+          "label": "Phone label"
+        },
+        "telephone": {
+          "label": "Phone"
+        },
+        "header__directions_and_map": {
+          "content": "Directions and map"
+        },
+        "directions_label": {
+          "label": "Directions button label"
+        },
+        "button_2_label": {
+          "label": "Second button label"
+        },
+        "button_2_link": {
+          "label": "Second button link"
+        },
+        "directions_url": {
+          "label": "Directions link",
+          "info": "Optional. Leave empty to link Google Maps directions to the address."
+        },
+        "map_query": {
+          "label": "Map search",
+          "info": "What Google Maps searches for. Leave empty to use the name and address."
+        },
+        "map_image": {
+          "label": "Image behind the map button",
+          "info": "Shown until the visitor loads the map. Also used as the image in structured data."
+        },
+        "map_button_label": {
+          "label": "Map button label"
+        },
+        "map_note": {
+          "label": "Note under the map button"
+        },
+        "header__structured_data": {
+          "content": "Structured data"
+        },
+        "structured_data": {
+          "label": "Output LocalBusiness structured data",
+          "info": "Use on one page only, the location's own page."
+        },
+        "business_type": {
+          "label": "Business type",
+          "options__store": {
+            "label": "Store"
+          },
+          "options__localbusiness": {
+            "label": "Local business"
+          }
+        },
+        "latitude": {
+          "label": "Latitude"
+        },
+        "longitude": {
+          "label": "Longitude"
+        },
+        "same_as": {
+          "label": "Social profiles",
+          "info": "One URL per line."
+        },
+        "header__layout": {
+          "content": "Layout"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "hours": {
+          "name": "Opening hours row",
+          "settings": {
+            "days": {
+              "label": "Days"
+            },
+            "times": {
+              "label": "Times"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Visit us"
+      }
+    },
     "melt_collection_list_banner": {
       "name": "Collection list banner",
       "blocks": {

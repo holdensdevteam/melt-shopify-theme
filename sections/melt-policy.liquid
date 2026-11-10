@@ -5,15 +5,18 @@
   Use for Cookies, Accessibility and any page written in the page editor with H2 headings.
 {%- endcomment -%}
 {{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{{ 'component-melt-rail-page.css' | asset_url | stylesheet_tag }}
+{{ 'section-melt-policy.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign parts = page.content | split: '<h2'
 -%}
 <div class="melt-policy color-{{ section.settings.color_scheme }} gradient">
   <header class="page-width melt-faqpage__header">
-    {%- render 'melt-breadcrumbs', home_label: 'Home', separator: '/', class: 'melt-faqpage__breadcrumbs' -%}
+    {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
+    {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-faqpage__breadcrumbs' -%}
     <div class="melt-faqpage__measure">
       <h1 class="h1 melt-faqpage__title">{{ page.title | escape }}</h1>
-      {%- if section.settings.show_updated -%}<p class="melt-policy__updated">Last updated {{ page.updated_at | date: '%-d %B %Y' }}</p>{%- endif -%}
+      {%- if section.settings.show_updated -%}{%- assign updated_date = page.updated_at | date: '%-d %B %Y' -%}<p class="melt-policy__updated">{{ 'sections.melt_policy.last_updated' | t: date: updated_date }}</p>{%- endif -%}
     </div>
   </header>
   <div class="page-width melt-faqpage__body">
@@ -22,7 +25,11 @@
         <p class="melt-faqpage__rail-title">{{ section.settings.rail_label | escape }}</p>
         <ul class="list-unstyled" role="list">
           {%- for part in parts offset: 1 -%}
-            {%- assign h = part | split: '</h2>' | first | split: '>' | last | strip_html | strip -%}
+            {%- liquid
+              assign head = part | split: '</h2>' | first
+              assign head_attrs = head | split: '>' | first
+              assign h = head | remove_first: head_attrs | remove_first: '>' | strip_html | strip
+            -%}
             <li><a href="#{{ h | handleize }}">{{ h }}</a></li>
           {%- endfor -%}
         </ul>
@@ -33,32 +40,53 @@
         {%- if forloop.first -%}
           {{ part }}
         {%- else -%}
-          {%- assign h = part | split: '</h2>' | first | split: '>' | last | strip_html | strip -%}
-          <h2 id="{{ h | handleize }}"{{ part }}
+          {%- liquid
+            # Each part starts just after "<h2": the tag's own attributes, ">", the heading, "</h2>",
+            # then the content up to the next heading. Rebuild the heading as a whole element with
+            # an id for the "On this page" links.
+            assign head = part | split: '</h2>' | first
+            assign head_attrs = head | split: '>' | first
+            assign head_html = head | remove_first: head_attrs | remove_first: '>'
+            assign h = head_html | strip_html | strip
+            assign after = part | remove_first: head | remove_first: '</h2>'
+          -%}
+          <h2 id="{{ h | handleize }}" {{ head_attrs }}>{{ head_html }}</h2>
+          {{- after -}}
         {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
 </div>
 
-{% stylesheet %}
-  .melt-policy__updated { margin: 0; font-size: 1.4rem; opacity: 0.7; }
-  .melt-policy__content { max-width: 72rem; }
-  .melt-policy__content h2 { margin: 4rem 0 1.2rem; scroll-margin-top: calc(var(--header-height, 0px) + 2.4rem); }
-  .melt-policy__content h2:first-child { margin-top: 0; }
-  .melt-policy__content p, .melt-policy__content li { line-height: 1.75; }
-{% endstylesheet %}
-
 {% schema %}
 {
-  "name": "Policy page",
+  "name": "t:sections.melt_policy.name",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "rail_label", "label": "Contents label", "default": "On this page" },
-    { "type": "checkbox", "id": "show_updated", "label": "Show 'Last updated' date", "default": true },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+    {
+      "type": "text",
+      "id": "rail_label",
+      "label": "t:sections.melt_policy.settings.rail_label.label",
+      "default": "On this page"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_updated",
+      "label": "t:sections.melt_policy.settings.show_updated.label",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
   ],
-  "presets": [ { "name": "Policy page" } ]
+  "presets": [
+    {
+      "name": "t:sections.melt_policy.presets.name"
+    }
+  ]
 }
 {% endschema %}

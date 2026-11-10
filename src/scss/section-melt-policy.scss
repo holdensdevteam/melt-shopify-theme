@@ -1,0 +1,27 @@
+/*! Compiled from src/scss/section-melt-policy.scss — edit that file, not this one. */
+
+// Policy page (sections/melt-policy.liquid): the page content in a reading measure. Layout and
+// rail from component-melt-rail-page.scss.
+
+.melt-policy__updated {
+  margin: 0;
+  font-size: 1.4rem;
+  opacity: 0.7;
+}
+
+.melt-policy__content {
+  max-width: 72rem;
+}
+
+.melt-policy__content h2 {
+  margin: 4rem 0 1.2rem;
+  scroll-margin-top: calc(var(--header-height, 0px) + 2.4rem);
+}
+
+.melt-policy__content h2:first-child {
+  margin-top: 0;
+}
+
+.melt-policy__content p, .melt-policy__content li {
+  line-height: 1.75;
+}

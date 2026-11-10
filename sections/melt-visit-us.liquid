@@ -5,6 +5,7 @@
   before they choose to see it. Outputs Store (LocalBusiness) structured data from the
   same settings, so the page and the schema can't disagree.
 {%- endcomment -%}
+{{ 'section-melt-visit-us.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign s = section.settings
   assign address_query = s.business_name | append: ', ' | append: s.street_address | append: ', ' | append: s.locality | append: ', ' | append: s.postcode
@@ -21,36 +22,6 @@
   }
 {%- endstyle -%}
 
-<style>
-  /* Details panel + full-bleed map (map first on mobile), per the wireframe */
-  .melt-visit__inner { display: grid; align-items: stretch; }
-  .melt-visit__content { padding: 3.2rem 2rem 4rem; }
-  .melt-visit__map { order: -1; min-height: 22rem; }
-  @media screen and (min-width: 750px) {
-    .melt-visit__inner { grid-template-columns: minmax(0, 57fr) minmax(0, 43fr); }
-    .melt-visit__content { padding: 6.4rem 5rem 6.4rem max(5rem, calc((100vw - var(--page-width, 120rem)) / 2 + 5rem)); }
-    .melt-visit__map { order: 0; min-height: 56rem; }
-  }
-  .melt-visit__eyebrow { margin: 0 0 1.2rem; }
-  .melt-visit__heading { margin: 0 0 2.4rem; }
-  .melt-visit__group { margin-bottom: 2.4rem; }
-  .melt-visit__label { margin: 0 0 0.6rem; font-size: 1.3rem; letter-spacing: 0.1rem; text-transform: uppercase; }
-  .melt-visit__group .rte p, .melt-visit__address { margin: 0; line-height: 1.7; font-style: normal; }
-  .melt-visit__map { position: relative; border-radius: 0; overflow: hidden; background: rgba(var(--color-foreground), 0.04); display: flex; align-items: center; justify-content: center; text-align: center; }
-  .melt-visit__map img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .melt-visit__map-inner { position: relative; padding: 2.4rem; }
-  .melt-visit__map-note { margin: 1.2rem 0 0; font-size: 1.3rem; opacity: 0.75; }
-  .melt-visit__hours { margin: 0 0 1.2rem; }
-  .melt-visit__hours-row { display: flex; justify-content: space-between; gap: 1.6rem; padding: 0.8rem 0; border-bottom: 1px solid rgba(var(--color-foreground), 0.15); }
-  .melt-visit__hours dt { font-weight: 600; }
-  .melt-visit__hours dd { margin: 0; }
-  .melt-visit__status { display: flex; align-items: center; gap: 0.8rem; margin: 0; font-size: 1.4rem; }
-  .melt-visit__status::before { content: ''; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: currentColor; opacity: 0.4; }
-  .melt-visit__status.is-open::before { background: #3a8a4a; opacity: 1; }
-  .melt-visit__note { margin: 0.6rem 0 0; font-size: 1.4rem; opacity: 0.8; }
-  .melt-visit__buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-  .melt-visit__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-</style>
 
 <div class="melt-visit color-{{ s.color_scheme }} gradient">
   <div class="melt-visit__inner section-{{ section.id }}-padding">
@@ -129,14 +100,17 @@
       });
       var fmt = function (mins) {
         var h = Math.floor(mins / 60), mm = mins % 60, h12 = h % 12 || 12;
-        if (h === 12 && mm === 0) return 'noon';
+        if (h === 12 && mm === 0) return {{ 'sections.melt_visit_us.noon' | t | json }};
         return h12 + (mm ? '.' + String(mm).padStart(2, '0') : '') + (h < 12 ? 'am' : 'pm');
       };
       var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
       var get = function (t) { return (parts.find(function (p) { return p.type === t; }) || {}).value; };
       var today = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(get('weekday'));
       var now = +get('hour') * 60 + +get('minute');
-      var names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      // Day names in the storefront's language; 1 Jan 2024 was a Monday, matching days[0].
+      var dayName = function (d) {
+        return new Intl.DateTimeFormat(document.documentElement.lang || 'en-GB', { weekday: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, 1 + d)));
+      };
       var text = '';
       if (spec[today] && now >= spec[today][0] && now < spec[today][1]) {
         text = {{ s.open_now_text | json }}.replace('[time]', fmt(spec[today][1]));
@@ -146,7 +120,7 @@
       } else {
         for (var i = 1; i <= 7; i++) {
           var d = (today + i) % 7;
-          if (spec[d]) { text = {{ s.opens_later_text | json }}.replace('[day]', i === 1 ? 'tomorrow' : names[d]).replace('[time]', fmt(spec[d][0])); break; }
+          if (spec[d]) { text = {{ s.opens_later_text | json }}.replace('[day]', i === 1 ? {{ 'sections.melt_visit_us.tomorrow' | t | json }} : dayName(d)).replace('[time]', fmt(spec[d][0])); break; }
         }
       }
       if (text) { status.textContent = text; status.hidden = false; }
@@ -157,7 +131,7 @@
     btn.addEventListener('click', function () {
       var frame = document.createElement('iframe');
       frame.src = map.getAttribute('data-map-src');
-      frame.title = {{ s.business_name | append: ' map' | json }};
+      frame.title = {{ 'sections.melt_visit_us.map_title' | t: name: s.business_name | json }};
       frame.loading = 'lazy';
       frame.referrerPolicy = 'no-referrer-when-downgrade';
       map.innerHTML = '';
@@ -206,76 +180,306 @@
 
 {% schema %}
 {
-  "name": "Visit us",
+  "name": "t:sections.melt_visit_us.name",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
-    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Visit our shop" },
     {
-      "type": "select", "id": "heading_size", "label": "Heading size", "default": "h1",
-      "options": [ { "value": "h2", "label": "Small" }, { "value": "h1", "label": "Medium" }, { "value": "h0", "label": "Large" } ]
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.melt_visit_us.settings.eyebrow.label"
     },
-    { "type": "header", "content": "Opening hours" },
-    { "type": "text", "id": "hours_label", "label": "Label", "info": "Optional heading above the hours. Add each row of hours as a block." },
-    { "type": "checkbox", "id": "show_open_status", "label": "Show 'Open now' status", "default": true, "info": "Worked out in UK time from the hours for search engines below." },
-    { "type": "text", "id": "open_now_text", "label": "Open now text", "default": "Open now – until [time] today" },
-    { "type": "text", "id": "opens_today_text", "label": "Opens later today text", "default": "Closed – opens at [time] today" },
-    { "type": "text", "id": "opens_later_text", "label": "Closed text", "default": "Closed – opens [day] at [time]" },
     {
-      "type": "text", "id": "opening_hours_schema", "label": "Hours for search engines",
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:sections.melt_visit_us.settings.heading.label",
+      "default": "Visit our shop"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:sections.melt_visit_us.settings.heading_size.label",
+      "default": "h1",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.melt_visit_us.settings.heading_size.options__h2.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.melt_visit_us.settings.heading_size.options__h1.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.melt_visit_us.settings.heading_size.options__h0.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_visit_us.settings.header__opening_hours.content"
+    },
+    {
+      "type": "text",
+      "id": "hours_label",
+      "label": "t:sections.melt_visit_us.settings.hours_label.label",
+      "info": "t:sections.melt_visit_us.settings.hours_label.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_open_status",
+      "label": "t:sections.melt_visit_us.settings.show_open_status.label",
+      "default": true,
+      "info": "t:sections.melt_visit_us.settings.show_open_status.info"
+    },
+    {
+      "type": "text",
+      "id": "open_now_text",
+      "label": "t:sections.melt_visit_us.settings.open_now_text.label",
+      "default": "Open now – until [time] today"
+    },
+    {
+      "type": "text",
+      "id": "opens_today_text",
+      "label": "t:sections.melt_visit_us.settings.opens_today_text.label",
+      "default": "Closed – opens at [time] today"
+    },
+    {
+      "type": "text",
+      "id": "opens_later_text",
+      "label": "t:sections.melt_visit_us.settings.opens_later_text.label",
+      "default": "Closed – opens [day] at [time]"
+    },
+    {
+      "type": "text",
+      "id": "opening_hours_schema",
+      "label": "t:sections.melt_visit_us.settings.opening_hours_schema.label",
       "default": "Mo-Sa 10:00-17:00, Su 12:00-16:30",
-      "info": "Same hours in schema.org format, separated by commas. Keep in step with the hours above."
+      "info": "t:sections.melt_visit_us.settings.opening_hours_schema.info"
     },
-    { "type": "header", "content": "Address" },
-    { "type": "text", "id": "address_label", "label": "Label" },
-    { "type": "text", "id": "business_name", "label": "Business name", "default": "Melt" },
-    { "type": "text", "id": "street_address", "label": "Street", "default": "Backridge Farm, Twitter Lane" },
-    { "type": "text", "id": "locality", "label": "Town", "default": "Waddington" },
-    { "type": "text", "id": "region", "label": "County", "default": "Lancashire" },
-    { "type": "text", "id": "postcode", "label": "Postcode", "default": "BB7 3LQ" },
-    { "type": "text", "id": "address_note", "label": "Note under the address", "default": "Parking directly outside the entrance." },
-    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Shop" },
-    { "type": "text", "id": "telephone", "label": "Phone", "default": "01200 443412" },
-    { "type": "header", "content": "Directions and map" },
-    { "type": "text", "id": "directions_label", "label": "Directions button label", "default": "Get directions" },
-    { "type": "text", "id": "button_2_label", "label": "Second button label", "default": "Contact us" },
-    { "type": "url", "id": "button_2_link", "label": "Second button link" },
-    { "type": "url", "id": "directions_url", "label": "Directions link", "info": "Optional. Leave empty to link Google Maps directions to the address." },
-    { "type": "text", "id": "map_query", "label": "Map search", "info": "What Google Maps searches for. Leave empty to use the name and address." },
-    { "type": "image_picker", "id": "map_image", "label": "Image behind the map button", "info": "Shown until the visitor loads the map. Also used as the image in structured data." },
-    { "type": "text", "id": "map_button_label", "label": "Map button label", "default": "Show map" },
-    { "type": "text", "id": "map_note", "label": "Note under the map button", "default": "Loads Google Maps" },
-    { "type": "header", "content": "Structured data" },
-    { "type": "checkbox", "id": "structured_data", "label": "Output LocalBusiness structured data", "default": true, "info": "Use on one page only, the location's own page." },
     {
-      "type": "select", "id": "business_type", "label": "Business type", "default": "Store",
-      "options": [ { "value": "Store", "label": "Store" }, { "value": "LocalBusiness", "label": "Local business" } ]
+      "type": "header",
+      "content": "t:sections.melt_visit_us.settings.header__address.content"
     },
-    { "type": "text", "id": "latitude", "label": "Latitude", "default": "53.8798168" },
-    { "type": "text", "id": "longitude", "label": "Longitude", "default": "-2.4295273" },
-    { "type": "textarea", "id": "same_as", "label": "Social profiles", "info": "One URL per line.", "default": "https://www.instagram.com/themeltco/\nhttps://www.facebook.com/meltcandles" },
-    { "type": "header", "content": "Layout" },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+    {
+      "type": "text",
+      "id": "address_label",
+      "label": "t:sections.melt_visit_us.settings.address_label.label"
+    },
+    {
+      "type": "text",
+      "id": "business_name",
+      "label": "t:sections.melt_visit_us.settings.business_name.label",
+      "default": "Melt"
+    },
+    {
+      "type": "text",
+      "id": "street_address",
+      "label": "t:sections.melt_visit_us.settings.street_address.label",
+      "default": "Backridge Farm, Twitter Lane"
+    },
+    {
+      "type": "text",
+      "id": "locality",
+      "label": "t:sections.melt_visit_us.settings.locality.label",
+      "default": "Waddington"
+    },
+    {
+      "type": "text",
+      "id": "region",
+      "label": "t:sections.melt_visit_us.settings.region.label",
+      "default": "Lancashire"
+    },
+    {
+      "type": "text",
+      "id": "postcode",
+      "label": "t:sections.melt_visit_us.settings.postcode.label",
+      "default": "BB7 3LQ"
+    },
+    {
+      "type": "text",
+      "id": "address_note",
+      "label": "t:sections.melt_visit_us.settings.address_note.label",
+      "default": "Parking directly outside the entrance."
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "t:sections.melt_visit_us.settings.phone_label.label",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "telephone",
+      "label": "t:sections.melt_visit_us.settings.telephone.label",
+      "default": "01200 443412"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_visit_us.settings.header__directions_and_map.content"
+    },
+    {
+      "type": "text",
+      "id": "directions_label",
+      "label": "t:sections.melt_visit_us.settings.directions_label.label",
+      "default": "Get directions"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "t:sections.melt_visit_us.settings.button_2_label.label",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "t:sections.melt_visit_us.settings.button_2_link.label"
+    },
+    {
+      "type": "url",
+      "id": "directions_url",
+      "label": "t:sections.melt_visit_us.settings.directions_url.label",
+      "info": "t:sections.melt_visit_us.settings.directions_url.info"
+    },
+    {
+      "type": "text",
+      "id": "map_query",
+      "label": "t:sections.melt_visit_us.settings.map_query.label",
+      "info": "t:sections.melt_visit_us.settings.map_query.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "map_image",
+      "label": "t:sections.melt_visit_us.settings.map_image.label",
+      "info": "t:sections.melt_visit_us.settings.map_image.info"
+    },
+    {
+      "type": "text",
+      "id": "map_button_label",
+      "label": "t:sections.melt_visit_us.settings.map_button_label.label",
+      "default": "Show map"
+    },
+    {
+      "type": "text",
+      "id": "map_note",
+      "label": "t:sections.melt_visit_us.settings.map_note.label",
+      "default": "Loads Google Maps"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_visit_us.settings.header__structured_data.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "structured_data",
+      "label": "t:sections.melt_visit_us.settings.structured_data.label",
+      "default": true,
+      "info": "t:sections.melt_visit_us.settings.structured_data.info"
+    },
+    {
+      "type": "select",
+      "id": "business_type",
+      "label": "t:sections.melt_visit_us.settings.business_type.label",
+      "default": "Store",
+      "options": [
+        {
+          "value": "Store",
+          "label": "t:sections.melt_visit_us.settings.business_type.options__store.label"
+        },
+        {
+          "value": "LocalBusiness",
+          "label": "t:sections.melt_visit_us.settings.business_type.options__localbusiness.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "latitude",
+      "label": "t:sections.melt_visit_us.settings.latitude.label",
+      "default": "53.8798168"
+    },
+    {
+      "type": "text",
+      "id": "longitude",
+      "label": "t:sections.melt_visit_us.settings.longitude.label",
+      "default": "-2.4295273"
+    },
+    {
+      "type": "textarea",
+      "id": "same_as",
+      "label": "t:sections.melt_visit_us.settings.same_as.label",
+      "info": "t:sections.melt_visit_us.settings.same_as.info",
+      "default": "https://www.instagram.com/themeltco/\nhttps://www.facebook.com/meltcandles"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.melt_visit_us.settings.header__layout.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.melt_visit_us.settings.padding_top.label",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.melt_visit_us.settings.padding_bottom.label",
+      "default": 48
+    }
   ],
   "blocks": [
     {
       "type": "hours",
-      "name": "Opening hours row",
+      "name": "t:sections.melt_visit_us.blocks.hours.name",
       "settings": [
-        { "type": "text", "id": "days", "label": "Days", "default": "Monday to Saturday" },
-        { "type": "text", "id": "times", "label": "Times", "default": "10am – 5pm" }
+        {
+          "type": "text",
+          "id": "days",
+          "label": "t:sections.melt_visit_us.blocks.hours.settings.days.label",
+          "default": "Monday to Saturday"
+        },
+        {
+          "type": "text",
+          "id": "times",
+          "label": "t:sections.melt_visit_us.blocks.hours.settings.times.label",
+          "default": "10am – 5pm"
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Visit us",
+      "name": "t:sections.melt_visit_us.presets.name",
       "blocks": [
-        { "type": "hours", "settings": { "days": "Monday to Saturday", "times": "10am – 5pm" } },
-        { "type": "hours", "settings": { "days": "Sunday", "times": "12pm – 4.30pm" } }
+        {
+          "type": "hours",
+          "settings": {
+            "days": "Monday to Saturday",
+            "times": "10am – 5pm"
+          }
+        },
+        {
+          "type": "hours",
+          "settings": {
+            "days": "Sunday",
+            "times": "12pm – 4.30pm"
+          }
+        }
       ]
     }
   ]
