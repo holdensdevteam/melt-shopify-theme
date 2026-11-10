@@ -197,6 +197,89 @@
   }
 }
 
+// ------------------------------------------------------------------ search
+
+// Search modal (snippets/header-search.liquid) and its predictive results
+// (sections/predictive-search.liquid). The .section-header prefix beats base.css and the
+// deferred component-search / component-predictive-search stylesheets.
+
+// The search bar takes the header bar's shape and its hover colour, rather than a square white
+// box. The colour sits on the content, not the modal, so the overlay below can sit behind it.
+.section-header .search-modal.gradient {
+  background: none;
+  border-bottom: 0;
+  min-height: 100%;
+}
+
+.section-header .search-modal__content {
+  background-color: var(--melt-header-hover-bg, rgb(var(--color-background)));
+  border-radius: var(--melt-header-radius, 0);
+}
+
+// Overlay: the whole screen behind the search bar and results (Dawn's only covered the strip
+// below the bar). Clicking it closes search (details-modal.js). Dawn animates the modal with a
+// transform, which would trap a fixed overlay inside it while it runs, so the slide-in moves to
+// the content and the overlay fades in on its own.
+.section-header details[open] > .search-modal {
+  animation: none;
+}
+
+.section-header details[open] > .search-modal .search-modal__content {
+  animation: animateMenuOpen var(--duration-default) ease;
+}
+
+.section-header details[open] .modal-overlay::after {
+  position: fixed;
+  inset: 0;
+  height: auto;
+  background-color: rgba(var(--color-foreground), 0.4);
+  animation: melt-fade-in var(--duration-default) ease;
+}
+
+@keyframes melt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+// Input: a 1px border that darkens on focus, instead of Dawn's heavy 2px ring.
+.section-header .search-modal .field__input:focus,
+.section-header .search-modal .field__input:focus-visible {
+  box-shadow: none;
+}
+
+.section-header .search-modal .field:focus-within::after {
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground));
+}
+
+// Results: a rounded card just below the input, with a soft shadow.
+.section-header .predictive-search--header {
+  top: calc(100% + 0.8rem);
+  left: 0;
+  width: 100%;
+  border: 0;
+  border-radius: var(--media-radius);
+  box-shadow: 0 1.2rem 3.2rem rgba(var(--color-foreground), 0.14);
+}
+
+// Product thumbnails: square, rounded, centred against the title. Products without an image get
+// an empty tile so every title lines up.
+.section-header .predictive-search__item--link-with-thumbnail {
+  align-items: center;
+}
+
+.section-header .predictive-search__image {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+  border-radius: var(--media-radius);
+}
+
+.section-header .predictive-search__image--placeholder {
+  background: rgba(var(--color-foreground), 0.05);
+}
+
 // ------------------------------------------------------------------ current page
 
 // The menu item for the page you're on (top level, and in the mega menu) is black instead of
