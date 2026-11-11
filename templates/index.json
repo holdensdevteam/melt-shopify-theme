@@ -243,8 +243,8 @@
         "featured_collection_ryhnRJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "christmas-candles",
-            "subtitle": "From 10 November",
+            "collection": "christmas-1",
+            "subtitle": "The scent of a proper Christmas",
             "tags": "",
             "button_label": "",
             "button_link": "",
@@ -256,8 +256,8 @@
         "featured_collection_qYBEg4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "valentines-day",
-            "subtitle": "From 10 January",
+            "collection": "wedding",
+            "subtitle": "Your names, your date, your scent",
             "tags": "",
             "button_label": "",
             "button_link": "",
@@ -269,8 +269,8 @@
         "featured_collection_ky33Br": {
           "type": "featured_collection",
           "settings": {
-            "collection": "mothers-day",
-            "subtitle": "From 10 March",
+            "collection": "new-home",
+            "subtitle": "New scents for a new home",
             "tags": "",
             "button_label": "",
             "button_link": "",

@@ -1,40 +1,26 @@
 {%- comment -%}
   Melt: the eyebrow and name shown on a product card.
 
-  When the card shows an eyebrow and the product has a Fragrance and a Short Title, the card
-  mirrors the product page:
-    eyebrow = Short Title                    e.g. "Tall & Fat"
-    name    = Fragrance + Product type       e.g. "Wisteria Scented Candle"
-  Otherwise (gift cards, hampers, holders, or cards without an eyebrow) it falls back to the
-  original layout: eyebrow = Product type, name = snippets/melt-product-name.liquid.
-  Display only: the Shopify product title is unchanged.
+    eyebrow = Product type                   e.g. "Scented Candle", "Reed Diffuser", "Wax Melts"
+    name    = snippets/melt-product-name.liquid (the product title, or Fragrance + Short Title,
+              per the section's name setting)    e.g. "Wisteria Tall & Fat"
+  Products without a type (gift cards, hampers) show no eyebrow. Display only: the Shopify
+  product title is unchanged. The product page's own heading is separate and not affected.
 
   Accepts:
   - part: {String} 'eyebrow' or 'name'
   - product: {Object} the product
   - show_eyebrow: {Boolean} whether the card shows an eyebrow
   - eyebrow_color: {Color} eyebrow colour (optional)
-  - name_source: {String} passed to melt-product-name for the fallback name (optional)
+  - name_source: {String} passed to melt-product-name (optional)
 
   Usage:
   {% render 'melt-card-label', part: 'name', product: card_product, show_eyebrow: true %}
 {%- endcomment -%}
-{%- liquid
-  assign fragrance_name = product.metafields.custom.fragrance.value.fragrance.value
-  assign short_title = product.metafields.custom.short_title.value.short_title.value
-  assign pdp_style = false
-  if show_eyebrow and fragrance_name != blank and short_title != blank and product.type != blank
-    assign pdp_style = true
-  endif
--%}
 {%- if part == 'eyebrow' -%}
-  {%- if pdp_style -%}
-    {%- render 'melt-eyebrow', text: short_title, color: eyebrow_color, class: 'card__eyebrow' -%}
-  {%- elsif show_eyebrow and product.type != blank -%}
+  {%- if show_eyebrow and product.type != blank -%}
     {%- render 'melt-eyebrow', text: product.type, color: eyebrow_color, class: 'card__eyebrow' -%}
   {%- endif -%}
-{%- elsif pdp_style -%}
-  {{- fragrance_name | append: ' ' | append: product.type | escape -}}
 {%- else -%}
   {%- render 'melt-product-name', product: product, source: name_source -%}
 {%- endif -%}
