@@ -193,7 +193,8 @@
                 {%- endfor -%}
               </ul>
 
-              {%- if paginate.pages > 1 -%}
+              {%- comment -%} Melt: pagination can be switched off to cap the grid at one page (Best sellers). {%- endcomment -%}
+              {%- if paginate.pages > 1 and section.settings.show_pagination -%}
                 {% render 'pagination', paginate: paginate, anchor: '' %}
               {%- endif -%}
             </div>
@@ -220,6 +221,13 @@
       "step": 4,
       "default": 16,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.show_pagination.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_pagination.info"
     },
     {
       "type": "range",

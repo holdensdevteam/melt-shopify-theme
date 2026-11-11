@@ -3546,6 +3546,10 @@
         "products_per_page": {
           "label": "Products per page"
         },
+        "show_pagination": {
+          "label": "Show pagination",
+          "info": "Switch off to show only the first page, e.g. a top 16 Best sellers."
+        },
         "columns_desktop": {
           "label": "Columns"
         },
