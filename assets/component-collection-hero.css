@@ -9,15 +9,17 @@
   margin-bottom: 0;
   padding-bottom: 2rem;
 }
+
 @media screen and (min-width: 750px) {
-  .collection-hero--with-image .collection-hero__inner {
+  .collection-hero__inner {
     min-height: 280px;
   }
 }
 
 @media screen and (min-width: 750px) {
-  .collection-hero.collection-hero--with-image {
-    padding: calc(4rem + var(--page-width-margin)) 0 calc(4rem + var(--page-width-margin));
+  .collection-hero.collection-hero--with-image,
+  .collection-hero {
+    padding: calc(4rem + var(--page-width-margin)) 0 calc(4rem + var(--page-width-margin)) !important;
     overflow: hidden;
   }
   .collection-hero--with-image .collection-hero__inner {
@@ -39,7 +41,7 @@
   }
 }
 .collection-hero__title {
-  margin: 2.5rem 0;
+  margin: 0;
 }
 
 .collection-hero__title + .collection-hero__description {
