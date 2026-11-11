@@ -2062,6 +2062,9 @@
         },
         "show_author": {
           "label": "Author"
+        },
+        "show_excerpt": {
+          "label": "Excerpt"
         }
       },
       "presets": {

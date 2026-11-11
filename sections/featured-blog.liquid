@@ -26,17 +26,19 @@
 -%}
 <div class="blog color-{{ section.settings.color_scheme }} gradient{% if section.settings.heading == blank %} no-heading{% endif %}">
   <div class="page-width-desktop isolate{% if posts_displayed < 3 %} page-width-tablet{% endif %} section-{{ section.id }}-padding">
-    {%- unless section.settings.heading == blank -%}
+    {%- if section.settings.heading != blank or section.settings.cta_label != blank -%}
       <div class="title-wrapper-with-link{% if posts_displayed > 2 %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
-        <h2
-          id="SectionHeading-{{ section.id }}"
-          class="blog__title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-          {% endif %}
-        >
-          {{ section.settings.heading }}
-        </h2>
+        {%- if section.settings.heading != blank -%}
+          <h2
+            id="SectionHeading-{{ section.id }}"
+            class="blog__title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+            {% endif %}
+          >
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
 
         {%- if section.settings.blog != blank
           and section.settings.show_view_all
@@ -49,8 +51,15 @@
             {{ 'sections.featured_blog.view_all' | t }}
           </a>
         {%- endif -%}
+
+        {%- render 'melt-heading-link',
+          label: section.settings.cta_label,
+          url: section.settings.cta_link,
+          color_scheme: section.settings.cta_color_scheme,
+          show_arrow: section.settings.cta_arrow
+        -%}
       </div>
-    {%- endunless -%}
+    {%- endif -%}
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
@@ -75,7 +84,7 @@
                 show_image: section.settings.show_image,
                 show_date: section.settings.show_date,
                 show_author: section.settings.show_author,
-                show_excerpt: true
+                show_excerpt: section.settings.show_excerpt
               %}
             </li>
           {%- endfor -%}
@@ -116,9 +125,11 @@
                         <h3 class="card__heading h2">
                           {{ 'sections.featured_blog.onboarding_title' | t }}
                         </h3>
-                        <p class="article-card__excerpt rte-width">
-                          {{ 'sections.featured_blog.onboarding_content' | t }}
-                        </p>
+                        {%- if section.settings.show_excerpt -%}
+                          <p class="article-card__excerpt rte-width">
+                            {{ 'sections.featured_blog.onboarding_content' | t }}
+                          </p>
+                        {%- endif -%}
                       </div>
                     </div>
                   </div>
@@ -127,9 +138,11 @@
                       <h3 class="card__heading h2">
                         {{ 'sections.featured_blog.onboarding_title' | t }}
                       </h3>
-                      <p class="article-card__excerpt rte-width">
-                        {{ 'sections.featured_blog.onboarding_content' | t }}
-                      </p>
+                      {%- if section.settings.show_excerpt -%}
+                        <p class="article-card__excerpt rte-width">
+                          {{ 'sections.featured_blog.onboarding_content' | t }}
+                        </p>
+                      {%- endif -%}
                     </div>
                   </div>
                 </div>
@@ -252,6 +265,33 @@
     },
     {
       "type": "header",
+      "content": "t:sections.collection-list.settings.header_cta.content",
+      "info": "t:sections.collection-list.settings.header_cta.info"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.collection-list.settings.cta_label.label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:sections.collection-list.settings.cta_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_arrow",
+      "default": true,
+      "label": "t:sections.collection-list.settings.cta_arrow.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "cta_color_scheme",
+      "default": "scheme-2",
+      "label": "t:sections.collection-list.settings.cta_color_scheme.label"
+    },
+    {
+      "type": "header",
       "content": "t:sections.featured-blog.settings.layout_header.content"
     },        
     {
@@ -287,6 +327,12 @@
       "id": "show_author",
       "default": false,
       "label": "t:sections.featured-blog.settings.show_author.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "t:sections.featured-blog.settings.show_excerpt.label"
     },
     {
       "type": "color_scheme",

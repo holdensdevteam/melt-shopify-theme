@@ -1,0 +1,96 @@
+/*! Compiled from src/scss/section-featured-blog.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Blog posts section (sections/featured-blog.liquid). Dawn's rules are unchanged down to the Melt
+// block at the end; port any upstream Dawn changes to this section in here by hand.
+
+.blog-placeholder-svg {
+  height: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .grid--1-col-desktop .article-card .card__content {
+    text-align: center;
+  }
+}
+
+.blog__title {
+  margin: 0;
+}
+
+.blog__posts.articles-wrapper {
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 990px) {
+  .blog__posts.articles-wrapper {
+    margin-bottom: 0;
+  }
+}
+
+.blog__posts.articles-wrapper .article {
+  scroll-snap-align: start;
+}
+
+@media screen and (max-width: 749px) {
+  .blog__post.article {
+    width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+  }
+}
+
+.background-secondary .blog-placeholder__content {
+  background-color: rgb(var(--color-background));
+}
+
+.blog__posts .card-wrapper {
+  width: 100%;
+}
+
+.blog__button {
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 750px) {
+  .blog__button {
+    margin-top: 5rem;
+  }
+}
+
+/* check for flexbox gap in older Safari versions */
+@supports not (inset: 10px) {
+  @media screen and (min-width: 750px) {
+    .blog__posts .article + .article {
+      margin-left: var(--grid-desktop-horizontal-spacing);
+    }
+  }
+}
+
+// ------------------------------------------------------------------ Melt
+
+// Corners take the theme's media radius (Theme settings › Media › Corner radius) rather than
+// Blog cards › Corner radius. Dawn's card CSS rounds both the card and its image from
+// --border-radius, so this one variable gives:
+// - Standard style: the image is rounded.
+// - Card style: the card is rounded, and the image follows the card's top corners.
+.blog .article-card-wrapper .card {
+  --border-radius: var(--media-radius);
+}
+
+// Heading row: title on the left, optional heading link (snippets/melt-heading-link.liquid) top
+// right, wrapping under the title when space runs out. Same layout as the Collection list.
+.blog .title-wrapper-with-link {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.6rem 3rem;
+}
+
+.blog .blog__title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+// No underline on the post title when the card is hovered (Dawn adds one through
+// .underline-links-hover in component-card.css).
+.blog .article-card-wrapper:hover .card__heading a {
+  text-decoration: none;
+}
