@@ -49,7 +49,7 @@
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
-    if card_product.featured_media and media_aspect_ratio == 'portrait'
+    if media_aspect_ratio == 'portrait'
       assign ratio = 0.8
     elsif card_product.featured_media and media_aspect_ratio == 'adapt'
       assign ratio = card_product.featured_media.aspect_ratio
@@ -87,17 +87,16 @@
       <div
         class="
           card card--{{ card_style }}
-          {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
+          card--media
           {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
           {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
           {% if extend_height %} card--extend-height{% endif %}
-          {% if card_product.featured_media == nil and card_style == 'card' %} ratio{% endif %}
           {% if horizontal_class %} card--horizontal{% endif %}
         "
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         <div
-          class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or card_style == 'standard' %} ratio{% endif %}"
+          class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %} ratio"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
           {%- if card_product.featured_media -%}
@@ -148,15 +147,23 @@
                 {%- endif -%}
               </div>
             </div>
+          {%- else -%}
+            {%- comment -%}
+              Melt: no image yet, so show the product placeholder (snippets/melt-product-placeholder)
+              rather than Dawn's text-only card, keeping the grid even.
+            {%- endcomment -%}
+            <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ card_color_scheme }} gradient{% endif %}">
+              <div class="media media--transparent">
+                {%- capture placeholder_sizes -%}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2){%- endcapture -%}
+                {%- render 'melt-product-placeholder', class: 'motion-reduce', sizes: placeholder_sizes, lazy: lazy_load -%}
+              </div>
+            </div>
           {%- endif -%}
           <div class="card__content">
             <div class="card__information">
               {{- card_eyebrow -}}
               <h3
                 class="card__heading"
-                {% if card_product.featured_media == null and card_style == 'standard' %}
-                  id="title-{{ section_id }}-{{ card_product.id }}"
-                {% endif %}
               >
                 <a
                   href="{{ card_product.url }}"
@@ -191,10 +198,8 @@
           <div class="card__information">
             {{- card_eyebrow -}}
             <h3
-              class="card__heading{% if card_product.featured_media or card_style == 'standard' %} h5{% endif %}"
-              {% if card_product.featured_media or card_style == 'card' %}
-                id="title-{{ section_id }}-{{ card_product.id }}"
-              {% endif %}
+              class="card__heading h5"
+              id="title-{{ section_id }}-{{ card_product.id }}"
             >
               <a
                 href="{{ card_product.url }}"

@@ -151,8 +151,8 @@
                           height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
                         >
                       {%- else -%}
-                        {%- comment -%} Melt: empty thumbnail so titles line up with the rest. {%- endcomment -%}
-                        <span class="predictive-search__image predictive-search__image--placeholder"></span>
+                        {%- comment -%} Melt: no product image yet, so show the product placeholder. {%- endcomment -%}
+                        {%- render 'melt-product-placeholder', class: 'predictive-search__image', sizes: '50px' -%}
                       {%- endif -%}
                       <div class="predictive-search__item-content{% unless settings.predictive_search_show_vendor or settings.predictive_search_show_price %} predictive-search__item-content--centered{% endunless %}">
                         {%- if settings.predictive_search_show_vendor -%}

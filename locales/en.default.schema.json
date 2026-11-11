@@ -304,7 +304,16 @@
       "paragraph": "Affects areas like navigation dropdowns, pop-up modals, and cart pop-ups"
     },
     "media": {
-      "name": "Media"
+      "name": "Media",
+      "settings": {
+        "header__placeholder": {
+          "content": "Product placeholder"
+        },
+        "product_placeholder_image": {
+          "label": "Product placeholder image",
+          "info": "Shown wherever a product has no image yet: product cards, the product page, the cart and search. Leave empty to use the Melt logo placeholder."
+        }
+      }
     },
     "drawers": {
       "name": "Drawers"

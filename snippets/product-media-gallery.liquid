@@ -129,6 +129,22 @@
           </li>
         {%- endunless -%}
       {%- endfor -%}
+      {%- if product.media.size == 0 -%}
+        {%- comment -%} Melt: no images yet, so show the product placeholder. {%- endcomment -%}
+        <li
+          id="Slide-{{ section.id }}-placeholder"
+          class="product__media-item grid__item slider__slide is-active product__media-item--single"
+        >
+          <div
+            class="product-media-container media-type-image media-fit-{{ media_fit }} global-media-settings gradient{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
+            style="--ratio: 1; --preview-ratio: 1;"
+          >
+            <div class="product__media media media--transparent">
+              {%- render 'melt-product-placeholder', sizes: '(min-width: 750px) 50vw, 100vw', lazy: false -%}
+            </div>
+          </div>
+        </li>
+      {%- endif -%}
     </ul>
     <div class="slider-buttons quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}">
       <button

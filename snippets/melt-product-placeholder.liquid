@@ -1,0 +1,60 @@
+{%- comment -%}
+  Melt: stand-in image for a product that has no media yet. Used by product cards, the product
+  page gallery, the cart (page, drawer, notification) and predictive search.
+
+  Uses Theme settings › Media › "Product placeholder image" when one is chosen; otherwise the
+  Melt logo square in assets/melt-product-placeholder.png (1600 × 1600).
+
+  The image is decorative — the product name always sits beside it — so alt is empty.
+
+  Accepts:
+  - class: {String} Class(es) for the <img> (optional)
+  - sizes: {String} sizes attribute (optional, default 100vw)
+  - lazy: {Boolean} Lazy-load the image. Default: true (optional)
+  - width: {Number} Display width in px for the width/height attributes, where the surrounding CSS
+    doesn't size the image (e.g. the cart notification). Default: the image's own size (optional)
+
+  Usage:
+  {% render 'melt-product-placeholder', class: 'cart-item__image', sizes: '150px' %}
+{%- endcomment -%}
+{%- liquid
+  assign placeholder_loading = 'lazy'
+  if lazy == false
+    assign placeholder_loading = 'eager'
+  endif
+  assign placeholder_sizes = sizes | default: '100vw'
+  assign placeholder_image = settings.product_placeholder_image
+  assign placeholder_width = 1600
+  assign placeholder_height = 1600
+  if placeholder_image != blank
+    assign placeholder_width = placeholder_image.width
+    assign placeholder_height = placeholder_image.height
+  endif
+  if width
+    assign placeholder_height = width | times: placeholder_height | divided_by: placeholder_width | round
+    assign placeholder_width = width
+  endif
+  assign placeholder_class = 'melt-product-placeholder ' | append: class | strip
+-%}
+{%- if placeholder_image != blank -%}
+  {{
+    placeholder_image
+    | image_url: width: 1600
+    | image_tag:
+      alt: '',
+      class: placeholder_class,
+      sizes: placeholder_sizes,
+      loading: placeholder_loading,
+      width: placeholder_width,
+      height: placeholder_height
+  }}
+{%- else -%}
+  <img
+    src="{{ 'melt-product-placeholder.png' | asset_url }}"
+    alt=""
+    width="{{ placeholder_width }}"
+    height="{{ placeholder_height }}"
+    class="{{ placeholder_class }}"
+    loading="{{ placeholder_loading }}"
+  >
+{%- endif -%}

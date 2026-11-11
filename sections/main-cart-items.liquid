@@ -103,6 +103,12 @@
                             height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
                           >
                         </div>
+                      {% else %}
+                        {% comment %} Melt: no product image yet, so show the product placeholder. {% endcomment %}
+                        <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                        <div class="cart-item__image-container gradient {% if item.parent_relationship.parent == null %}global-media-settings{% endif %}">
+                          {% render 'melt-product-placeholder', class: 'cart-item__image', sizes: '150px' %}
+                        </div>
                       {% endif %}
                     </td>
 

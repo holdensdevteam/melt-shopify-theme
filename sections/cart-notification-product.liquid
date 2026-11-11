@@ -11,6 +11,11 @@
             loading="lazy"
           >
         </div>
+      {%- else -%}
+        {%- comment -%} Melt: no product image yet, so show the product placeholder. {%- endcomment -%}
+        <div class="cart-notification-product__image global-media-settings">
+          {%- render 'melt-product-placeholder', sizes: '70px', width: 70 -%}
+        </div>
       {%- endif -%}
       <div>
         {%- if settings.show_vendor -%}

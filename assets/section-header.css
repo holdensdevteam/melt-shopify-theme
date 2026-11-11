@@ -201,10 +201,6 @@
   border-radius: var(--media-radius);
 }
 
-.section-header .predictive-search__image--placeholder {
-  background: rgba(var(--color-foreground), 0.05);
-}
-
 .section-header .header__active-menu-item,
 .section-header .mega-menu__link--active {
   color: #000000;

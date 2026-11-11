@@ -1144,6 +1144,16 @@
         "unit": "px",
         "label": "t:settings_schema.global.settings.blur.label",
         "default": 0
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.media.settings.header__placeholder.content"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_placeholder_image",
+        "label": "t:settings_schema.media.settings.product_placeholder_image.label",
+        "info": "t:settings_schema.media.settings.product_placeholder_image.info"
       }
     ]
   },
