@@ -114,3 +114,18 @@
 .collection-list-section--no-arrow .card__heading .icon-wrap {
   display: none;
 }
+
+.collection-list-section .collection-list__item--title-size .card__heading {
+  font-size: var(--melt-card-title-size);
+}
+
+.collection-list-section .collection-list__item--tag-size .card__tag {
+  font-size: var(--melt-card-tag-size);
+}
+
+.collection-list-section .card__tags {
+  gap: 0.6rem;
+}
+.collection-list-section .card__tags .card__tag {
+  padding: 0.4rem 1.2rem;
+}

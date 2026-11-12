@@ -2007,6 +2007,22 @@
             "button_arrow": {
               "label": "Show arrow"
             },
+            "header_font_sizes": {
+              "content": "Font sizes",
+              "info": "Override the section's sizes for this card only."
+            },
+            "custom_title_size": {
+              "label": "Custom title size"
+            },
+            "title_size": {
+              "label": "Title size"
+            },
+            "custom_tag_size": {
+              "label": "Custom tag size"
+            },
+            "tag_size": {
+              "label": "Tag size"
+            },
             "tags": {
               "label": "Tags",
               "info": "Up to 4, separated by commas, e.g. Citrus, Green, Clean."

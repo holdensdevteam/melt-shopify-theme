@@ -128,3 +128,21 @@
 .collection-list-section--no-arrow .card__heading .icon-wrap {
   display: none;
 }
+
+// Collection block › Font sizes: per-card px overrides for the title and the tags, set as custom
+// properties on the grid item. Beats the section's card name size (.melt-cards--name-*) and the
+// shared tag size in melt-global.scss.
+.collection-list-section .collection-list__item--title-size .card__heading {
+  font-size: var(--melt-card-title-size);
+}
+
+.collection-list-section .collection-list__item--tag-size .card__tag {
+  font-size: var(--melt-card-tag-size);
+}
+
+.collection-list-section .card__tags {
+  gap: 0.6rem;
+  .card__tag {
+    padding: 0.4rem 1.2rem;
+  }
+}

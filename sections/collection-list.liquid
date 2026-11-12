@@ -131,11 +131,26 @@
         {%- for block in section.blocks -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if block.settings.custom_title_size %} collection-list__item--title-size{% endif %}{% if block.settings.custom_tag_size %} collection-list__item--tag-size{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
+            {%- liquid
+              # Melt: block font sizes (Collection block › Font sizes), read by section-collection-list.scss.
+              assign item_style = ''
+              if settings.animations_reveal_on_scroll
+                assign item_style = '--animation-order: ' | append: forloop.index | append: ';'
+              endif
+              if block.settings.custom_title_size
+                assign item_style = item_style | append: ' --melt-card-title-size: ' | append: block.settings.title_size | append: 'px;'
+              endif
+              if block.settings.custom_tag_size
+                assign item_style = item_style | append: ' --melt-card-tag-size: ' | append: block.settings.tag_size | append: 'px;'
+              endif
+            -%}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
-              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+            {% if item_style != blank %}
+              style="{{ item_style | strip }}"
             {% endif %}
           >
             {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
@@ -617,6 +632,45 @@
           "id": "tags",
           "label": "t:sections.collection-list.blocks.featured_collection.settings.tags.label",
           "info": "t:sections.collection-list.blocks.featured_collection.settings.tags.info"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.collection-list.blocks.featured_collection.settings.header_font_sizes.content",
+          "info": "t:sections.collection-list.blocks.featured_collection.settings.header_font_sizes.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_title_size",
+          "default": false,
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.custom_title_size.label"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 12,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 24,
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.title_size.label",
+          "visible_if": "{{ block.settings.custom_title_size }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_tag_size",
+          "default": false,
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.custom_tag_size.label"
+        },
+        {
+          "type": "range",
+          "id": "tag_size",
+          "min": 8,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.tag_size.label",
+          "visible_if": "{{ block.settings.custom_tag_size }}"
         },
         {
           "type": "header",

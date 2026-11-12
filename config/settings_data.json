@@ -161,18 +161,18 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#ffffff",
+          "background": "#F5F5F5",
           "background_gradient": "",
           "background_hover": "#f6f4ee",
-          "text": "#121212",
+          "text": "#3D3C3C",
           "text_hover": "",
-          "button": "#121212",
+          "button": "#3D3C3C",
           "button_hover": "",
           "button_label": "#ffffff",
           "button_label_hover": "",
-          "secondary_button_label": "#000000",
+          "secondary_button_label": "#3D3C3C",
           "secondary_button_label_hover": "",
-          "border": "#121212",
+          "border": "#3D3C3C",
           "border_hover": "#ce7721",
           "shadow": "rgba(0,0,0,0)",
           "shadow_hover": ""
@@ -183,15 +183,15 @@
           "background": "#f6f4ee",
           "background_gradient": "",
           "background_hover": "",
-          "text": "#121212",
+          "text": "#3D3C3C",
           "text_hover": "",
-          "button": "#ce7721",
+          "button": "#3D3C3C",
           "button_hover": "",
           "button_label": "#ffffff",
           "button_label_hover": "",
-          "secondary_button_label": "#121212",
+          "secondary_button_label": "#3D3C3C",
           "secondary_button_label_hover": "",
-          "border": "#121212",
+          "border": "#3D3C3C",
           "border_hover": "",
           "shadow": "#121212",
           "shadow_hover": ""
@@ -199,7 +199,7 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#383838",
+          "background": "#3D3C3C",
           "background_gradient": "",
           "background_hover": "",
           "text": "#ffffff",
@@ -325,25 +325,6 @@
           "secondary_button_label": "#ce7721",
           "secondary_button_label_hover": "",
           "border": "#ce7721",
-          "border_hover": "#ce7721",
-          "shadow": "rgba(0,0,0,0)",
-          "shadow_hover": ""
-        }
-      },
-      "scheme-5bef7a06-96f2-4dd7-beb2-e7040467da8e": {
-        "settings": {
-          "background": "#ffffff",
-          "background_gradient": "",
-          "background_hover": "#E5E3DC",
-          "text": "#121212",
-          "text_hover": "",
-          "button": "#121212",
-          "button_hover": "",
-          "button_label": "#ffffff",
-          "button_label_hover": "",
-          "secondary_button_label": "#000000",
-          "secondary_button_label_hover": "",
-          "border": "#121212",
           "border_hover": "#ce7721",
           "shadow": "rgba(0,0,0,0)",
           "shadow_hover": ""
