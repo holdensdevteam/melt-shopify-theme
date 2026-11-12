@@ -324,6 +324,9 @@
     {%- if request.page_type == 'collection' -%}
       {{ 'template-collection-page.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
+    {%- if request.page_type == 'list-collections' -%}
+      {{ 'template-list-collections.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
     {%- if request.page_type == 'blog' -%}
       {{ 'template-blog.css' | asset_url | stylesheet_tag }}
     {%- endif -%}

@@ -1,0 +1,22 @@
+/*! Compiled from src/scss/template-list-collections.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
+
+// Collection list template only (templates/list-collections.json, the /collections page) —
+// layout/theme.liquid loads this when request.page_type is 'list-collections'.
+//
+// Not the Fragrances page: that lists collections too, but it's a page template
+// (page.fragrances), so it gets template-page.scss.
+//
+// Page-level rules go here. Styles for the template's sections belong in their own files:
+// section-melt-collection-list-banner.scss and section-main-list-collections.scss.
+
+body {
+  background: #f6f4ee !important;
+}
+
+#MainContent {
+  margin-top: 8px;
+  @include bp.from(bp.$medium) {
+    margin-top: 1em;
+  }
+}
