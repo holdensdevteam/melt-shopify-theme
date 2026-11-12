@@ -143,6 +143,26 @@
 .collection-list-section .card__tags {
   gap: 0.6rem;
   .card__tag {
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 1.125rem;
+  }
+}
+
+// Collection block › Show button on the title line (card-collection's button_inline): title left,
+// button right, centred on each other. Wraps the button under the title when there isn't room.
+.collection-list-section .card__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem 2rem;
+
+  .card__heading {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .card__button-wrapper {
+    flex: 0 0 auto;
+    margin-top: 0;
   }
 }

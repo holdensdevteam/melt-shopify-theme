@@ -2007,6 +2007,10 @@
             "button_arrow": {
               "label": "Show arrow"
             },
+            "button_inline": {
+              "label": "Show button on the title line",
+              "info": "Title on the left, button on the right. On narrow cards the button moves under the title."
+            },
             "header_font_sizes": {
               "content": "Font sizes",
               "info": "Override the section's sizes for this card only."

@@ -20,6 +20,7 @@
   - button_text_color / button_background_color: {Color} Button colours; blank uses the colour
     scheme's button colours. The arrow follows the text colour (optional, Melt)
   - button_arrow: {Boolean} Show the long arrow in the button. Default: true (optional, Melt)
+  - button_inline: {Boolean} Put the button on the same line as the title, aligned right. Default: false (optional, Melt)
 
   Usage:
   {% render 'card-collection' %}
@@ -55,21 +56,7 @@
   {%- render 'melt-eyebrow', text: eyebrow, color: eyebrow_color, class: 'card__eyebrow' -%}
 {%- endcapture -%}
 
-{%- capture card_extras -%}
-  {%- if subtitle != blank -%}
-    <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
-  {%- endif -%}
-  {%- if tags != blank -%}
-    {%- assign tag_list = tags | split: ',' -%}
-    <ul class="card__tags list-unstyled" role="list">
-      {%- for tag in tag_list limit: 4 -%}
-        {%- assign tag_text = tag | strip -%}
-        {%- if tag_text != blank -%}
-          <li class="card__tag{% if tag_color_scheme != blank %} card__tag--scheme color-{{ tag_color_scheme }}{% endif %}">{{ tag_text | escape }}</li>
-        {%- endif -%}
-      {%- endfor -%}
-    </ul>
-  {%- endif -%}
+{%- capture card_button -%}
   {%- if button_label != blank -%}
     {%- liquid
       assign button_url = button_link | default: card_collection.url
@@ -103,6 +90,34 @@
       </a>
     </div>
   {%- endif -%}
+{%- endcapture -%}
+
+{%- liquid
+  # Melt: button_inline puts the button on the title line (.card__title-row).
+  assign title_row = false
+  if button_inline and card_button != blank
+    assign title_row = true
+  endif
+-%}
+
+{%- capture card_extras -%}
+  {%- if subtitle != blank -%}
+    <p class="card__caption card__subtitle">{{ subtitle | escape }}</p>
+  {%- endif -%}
+  {%- if tags != blank -%}
+    {%- assign tag_list = tags | split: ',' -%}
+    <ul class="card__tags list-unstyled" role="list">
+      {%- for tag in tag_list limit: 4 -%}
+        {%- assign tag_text = tag | strip -%}
+        {%- if tag_text != blank -%}
+          <li class="card__tag{% if tag_color_scheme != blank %} card__tag--scheme color-{{ tag_color_scheme }}{% endif %}">{{ tag_text | escape }}</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+  {%- unless title_row -%}
+    {{- card_button -}}
+  {%- endunless -%}
 {%- endcapture -%}
 
 <div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
@@ -158,6 +173,7 @@
         <div class="card__content">
           <div class="card__information">
             {{- card_eyebrow -}}
+            {%- if title_row -%}<div class="card__title-row">{%- endif -%}
             <h3 class="card__heading">
               <a
                 {% if card_collection == blank %}
@@ -179,6 +195,10 @@
                 {%- endif %}
               </a>
             </h3>
+            {%- if title_row -%}
+              {{- card_button -}}
+              </div>
+            {%- endif -%}
             {{- card_extras -}}
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
@@ -196,6 +216,7 @@
       <div class="card__content">
         <div class="card__information">
           {{- card_eyebrow -}}
+          {%- if title_row -%}<div class="card__title-row">{%- endif -%}
           <h3 class="card__heading">
             <a
               {% if card_collection == blank %}
@@ -217,6 +238,10 @@
               {%- endif %}
             </a>
           </h3>
+          {%- if title_row -%}
+            {{- card_button -}}
+            </div>
+          {%- endif -%}
           {{- card_extras -}}
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">

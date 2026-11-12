@@ -127,5 +127,21 @@
   gap: 0.6rem;
 }
 .collection-list-section .card__tags .card__tag {
-  padding: 0.4rem 1.2rem;
+  padding: 0.4rem 1.125rem;
+}
+
+.collection-list-section .card__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem 2rem;
+}
+.collection-list-section .card__title-row .card__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.collection-list-section .card__title-row .card__button-wrapper {
+  flex: 0 0 auto;
+  margin-top: 0;
 }

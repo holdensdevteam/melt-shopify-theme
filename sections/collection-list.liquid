@@ -168,7 +168,8 @@
               button_link: block.settings.button_link,
               button_text_color: block.settings.button_text_color,
               button_background_color: block.settings.button_background_color,
-              button_arrow: block.settings.button_arrow
+              button_arrow: block.settings.button_arrow,
+              button_inline: block.settings.button_inline
             %}
           </li>
         {%- endfor -%}
@@ -704,6 +705,13 @@
           "id": "button_arrow",
           "default": true,
           "label": "t:sections.collection-list.blocks.featured_collection.settings.button_arrow.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_inline",
+          "default": false,
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.button_inline.label",
+          "info": "t:sections.collection-list.blocks.featured_collection.settings.button_inline.info"
         }
       ]
     }
