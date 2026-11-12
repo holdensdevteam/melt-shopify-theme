@@ -25,7 +25,7 @@
           "settings": {
             "heading_rich": "<p>Luxury candles, reed diffusers & wax melts lovingly&nbsp;hand-poured since 1999</p>",
             "heading": "",
-            "heading_size": "h1"
+            "heading_size": "melt-h-small"
           }
         },
         "text_wtRGxp": {
@@ -155,7 +155,7 @@
         "button_jHmhC6": {
           "type": "button",
           "settings": {
-            "button_label": "Shop autumn",
+            "button_label": "SHOP AUTUMN",
             "button_link": "shopify://collections/autumn-collection",
             "button_style_secondary": false
           }
@@ -219,7 +219,7 @@
             "text_color": "#000000",
             "card_color": "#f9f9f9",
             "stars_color": "",
-            "arrows_color": "#ce7721",
+            "arrows_color": "#4D4D4D",
             "transition_speed": 5,
             "header_text": "In your words",
             "show_average_rating": false,
@@ -819,7 +819,7 @@
         "price_collection_1": "under-20",
         "price_collection_2": "under-30",
         "price_collection_3": "under-50",
-        "price_color_scheme": "scheme-59ea2cf9-05de-4eed-8404-60f500b2ab1f",
+        "price_color_scheme": "scheme-1",
         "color_scheme": "",
         "background_image": "shopify://shop_images/melt-section-bg3.png",
         "padding_top": 36,
