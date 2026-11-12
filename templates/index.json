@@ -255,7 +255,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_qYBEg4": {
@@ -272,7 +273,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_ky33Br": {
@@ -289,7 +291,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         }
       },
@@ -349,7 +352,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": false
+            "button_arrow": false,
+            "button_inline": false
           }
         },
         "featured_collection_ewNiym": {
@@ -366,7 +370,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_CVpBeb": {
@@ -383,7 +388,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_QiVigJ": {
@@ -400,7 +406,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_34F8Fj": {
@@ -417,7 +424,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_qN3xRz": {
@@ -434,7 +442,8 @@
             "button_link": "",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         }
       },
@@ -500,13 +509,13 @@
         "cta_label": "Shop best sellers",
         "cta_link": "shopify://collections/best-sellers",
         "cta_arrow": true,
-        "cta_color_scheme": "scheme-1",
+        "cta_color_scheme": "scheme-748ac1cb-6d42-4fae-a8d3-07ee88891d4b",
         "columns_desktop": 4,
         "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "outline",
-        "color_scheme": "",
+        "color_scheme": "scheme-748ac1cb-6d42-4fae-a8d3-07ee88891d4b",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -514,10 +523,10 @@
         "show_rating": true,
         "quick_add": "none",
         "card_style": "card",
-        "card_color_scheme": "scheme-5",
+        "card_color_scheme": "scheme-748ac1cb-6d42-4fae-a8d3-07ee88891d4b",
         "card_image_padding": 12,
         "card_radius": 8,
-        "card_border_width": 1,
+        "card_border_width": 0,
         "card_name_size": "large",
         "show_type_eyebrow": true,
         "eyebrow_color": "#171717",
@@ -539,15 +548,16 @@
             "collection": "scented-candles",
             "subtitle": "Six shapes, from the new travel tin to the luxury glass jar.",
             "tags": "",
-            "custom_title_size": false,
-            "title_size": 24,
+            "custom_title_size": true,
+            "title_size": 26,
             "custom_tag_size": false,
             "tag_size": 14,
             "button_label": "Shop Candles",
             "button_link": "shopify://collections/scented-candles",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_a6APCt": {
@@ -556,15 +566,16 @@
             "collection": "wax-melts",
             "subtitle": "Continuous fragrance, plus refills  so the bottle stays.",
             "tags": "",
-            "custom_title_size": false,
-            "title_size": 24,
+            "custom_title_size": true,
+            "title_size": 26,
             "custom_tag_size": false,
             "tag_size": 14,
             "button_label": "Shop Wax Melts",
             "button_link": "shopify://collections/wax-melts",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_yDtTrF": {
@@ -573,15 +584,16 @@
             "collection": "reed-diffusers",
             "subtitle": "Six and twelve packs, and the burners to go with them.",
             "tags": "",
-            "custom_title_size": false,
-            "title_size": 24,
+            "custom_title_size": true,
+            "title_size": 26,
             "custom_tag_size": false,
             "tag_size": 14,
             "button_label": "Shop Diffusers",
             "button_link": "shopify://collections/reed-diffusers",
             "button_text_color": "",
             "button_background_color": "",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         }
       },
@@ -611,7 +623,7 @@
         "card_color_scheme": "scheme-1",
         "card_image_padding": 12,
         "card_radius": 8,
-        "card_border_width": 1,
+        "card_border_width": 0,
         "card_text_alignment": "theme",
         "card_heading_size": "large",
         "show_arrow": false,
@@ -630,102 +642,108 @@
           "type": "featured_collection",
           "settings": {
             "collection": "unwind",
-            "subtitle": "",
+            "subtitle": "This needs to be a subheading",
             "tags": "",
             "custom_title_size": false,
             "title_size": 24,
             "custom_tag_size": false,
             "tag_size": 14,
-            "button_label": "Shop Moment",
+            "button_label": "",
             "button_link": "",
             "button_text_color": "#ffffff",
             "button_background_color": "#3d3c3c",
-            "button_arrow": true
+            "button_arrow": false,
+            "button_inline": false
           }
         },
         "featured_collection_NRFkwy": {
           "type": "featured_collection",
           "settings": {
             "collection": "welcome",
-            "subtitle": "",
+            "subtitle": "This needs to be a subheading",
             "tags": "",
             "custom_title_size": false,
             "title_size": 24,
             "custom_tag_size": false,
             "tag_size": 14,
-            "button_label": "Shop moment",
+            "button_label": "",
             "button_link": "",
             "button_text_color": "#ffffff",
             "button_background_color": "#3d3c3c",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_rpj9zY": {
           "type": "featured_collection",
           "settings": {
             "collection": "romance",
-            "subtitle": "",
+            "subtitle": "This needs to be a subheading",
             "tags": "",
             "custom_title_size": false,
             "title_size": 24,
             "custom_tag_size": false,
             "tag_size": 14,
-            "button_label": "Shop moment",
+            "button_label": "",
             "button_link": "",
             "button_text_color": "#ffffff",
             "button_background_color": "#3d3c3c",
-            "button_arrow": true
+            "button_arrow": true,
+            "button_inline": false
           }
         },
         "featured_collection_LFUddR": {
           "type": "featured_collection",
           "settings": {
             "collection": "restore",
-            "subtitle": "",
+            "subtitle": "This needs to be a subheading",
             "tags": "",
             "custom_title_size": false,
             "title_size": 24,
             "custom_tag_size": false,
             "tag_size": 14,
-            "button_label": "Shop Moment",
+            "button_label": "",
             "button_link": "",
             "button_text_color": "#ffffff",
             "button_background_color": "#3d3c3c",
-            "button_arrow": true
+            "button_arrow": false,
+            "button_inline": false
           }
         },
         "featured_collection_rjbLeM": {
           "type": "featured_collection",
           "settings": {
             "collection": "celebrate",
-            "subtitle": "",
+            "subtitle": "This needs to be a subheading",
             "tags": "",
             "custom_title_size": false,
             "title_size": 24,
             "custom_tag_size": false,
             "tag_size": 14,
-            "button_label": "Shop moment",
+            "button_label": "",
             "button_link": "",
             "button_text_color": "#ffffff",
             "button_background_color": "#3d3c3c",
-            "button_arrow": true
+            "button_arrow": false,
+            "button_inline": false
           }
         },
         "featured_collection_3MGhUH": {
           "type": "featured_collection",
           "settings": {
             "collection": "focus",
-            "subtitle": "",
+            "subtitle": "This needs to be a subheading",
             "tags": "",
             "custom_title_size": false,
             "title_size": 24,
             "custom_tag_size": false,
             "tag_size": 14,
-            "button_label": "Shop moment",
+            "button_label": "",
             "button_link": "",
             "button_text_color": "#ffffff",
             "button_background_color": "#3d3c3c",
-            "button_arrow": true
+            "button_arrow": false,
+            "button_inline": false
           }
         }
       },
@@ -754,8 +772,8 @@
         "columns_desktop": 3,
         "color_scheme": "scheme-1",
         "show_view_all": false,
-        "card_style": "theme",
-        "card_color_scheme": "",
+        "card_style": "card",
+        "card_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "card_image_padding": 12,
         "card_radius": 8,
         "card_border_width": 0,
