@@ -11,6 +11,52 @@
 
 // ------------------------------------------------------------------ buttons
 
+// Size: every button is 85% of Dawn's size (font, letter spacing, padding, minimum width and
+// height). Change --melt-button-scale to resize them all. Same selectors as base.css, which this
+// file loads after. The arrow buttons (.melt-arrow-button, below) use the same scale.
+:root {
+  --melt-button-scale: 0.85;
+}
+
+.button,
+.shopify-challenge__button,
+.customer button,
+button.shopify-payment-button__button--unbranded {
+  min-width: calc(12rem * var(--melt-button-scale) + var(--buttons-border-width) * 2);
+  min-height: calc(4.5rem * var(--melt-button-scale) + var(--buttons-border-width) * 2);
+}
+
+.button,
+.shopify-challenge__button,
+.customer button {
+  padding: 0 calc(3rem * var(--melt-button-scale));
+}
+
+.button,
+.button-label,
+.shopify-challenge__button,
+.customer button {
+  font-size: calc(1.5rem * var(--melt-button-scale));
+  letter-spacing: calc(0.1rem * var(--melt-button-scale));
+}
+
+.button--tertiary {
+  font-size: calc(1.2rem * var(--melt-button-scale));
+  padding: calc(1rem * var(--melt-button-scale)) calc(1.5rem * var(--melt-button-scale));
+  min-width: calc(9rem * var(--melt-button-scale) + var(--buttons-border-width) * 2);
+  min-height: calc(3.5rem * var(--melt-button-scale) + var(--buttons-border-width) * 2);
+}
+
+.button--small {
+  padding: calc(1.2rem * var(--melt-button-scale)) calc(2.6rem * var(--melt-button-scale));
+}
+
+// Shop Pay / dynamic checkout buttons (Shopify renders these): match the other buttons' height.
+shopify-accelerated-checkout,
+shopify-accelerated-checkout-cart {
+  --shopify-accelerated-checkout-button-block-size: calc(4.5rem * var(--melt-button-scale));
+}
+
 .button:not([disabled]):hover,
 .shopify-challenge__button:hover,
 .customer button:not([disabled]):hover {
@@ -193,14 +239,14 @@
 .melt-arrow-button {
   position: relative;
   z-index: 2;
-  gap: 2rem;
-  padding: 1.4rem 2.4rem;
-  font-size: 1.4rem;
-  letter-spacing: 0.1rem;
+  gap: calc(2rem * var(--melt-button-scale));
+  padding: calc(1.4rem * var(--melt-button-scale)) calc(2.4rem * var(--melt-button-scale));
+  font-size: calc(1.4rem * var(--melt-button-scale));
+  letter-spacing: calc(0.1rem * var(--melt-button-scale));
   text-transform: uppercase;
 
   @media screen and (min-width: 750px) {
-    font-size: 1.5rem;
+    font-size: calc(1.5rem * var(--melt-button-scale));
   }
 }
 
@@ -209,8 +255,8 @@
   transition: transform var(--duration-short) ease;
 
   .icon {
-    width: 3.2rem;
-    height: 1.6rem;
+    width: calc(3.2rem * var(--melt-button-scale));
+    height: calc(1.6rem * var(--melt-button-scale));
   }
 
   .melt-arrow-button:hover & {

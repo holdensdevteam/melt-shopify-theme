@@ -237,13 +237,13 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 1.6rem 0.8rem;
+  padding: calc(1.6rem * var(--melt-button-scale, 1)) calc(0.8rem * var(--melt-button-scale, 1));
   border: 1px solid rgb(var(--color-border));
   border-radius: var(--buttons-radius);
   background: var(--gradient-background);
   color: rgb(var(--color-foreground));
-  font-size: 1.3rem;
-  letter-spacing: 0.08rem;
+  font-size: calc(1.3rem * var(--melt-button-scale, 1));
+  letter-spacing: calc(0.08rem * var(--melt-button-scale, 1));
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -251,8 +251,8 @@
 }
 @media screen and (min-width: 750px) {
   .melt-gifting__button {
-    padding: 2.25rem 2rem;
-    font-size: 2rem;
+    padding: calc(2.25rem * var(--melt-button-scale, 1)) calc(2rem * var(--melt-button-scale, 1));
+    font-size: calc(2rem * var(--melt-button-scale, 1));
     letter-spacing: 0.12rem;
   }
 }

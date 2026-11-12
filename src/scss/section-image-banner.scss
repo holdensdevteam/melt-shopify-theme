@@ -516,6 +516,17 @@
   }
 }
 
+// Heading block › Heading size › Small: about 35px desktop / 28px mobile, between Extra small
+// (Dawn's h2, 24px) and Medium (h1, 40px). Works on both the single-line <h2> and the rich text
+// wrapper; the classes beat the h2 element's own size.
+.banner__heading.melt-h-small {
+  font-size: calc(var(--font-heading-scale) * 2.8rem);
+
+  @include bp.from(bp.$medium) {
+    font-size: calc(var(--font-heading-scale) * 3.5rem);
+  }
+}
+
 /*
  * ------------------------------------------------------------
  * Melt: Slide blocks — images and silent looping videos (assets/melt-banner-media.js)

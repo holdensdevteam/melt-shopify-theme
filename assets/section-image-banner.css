@@ -444,6 +444,15 @@
   font-size: inherit;
 }
 
+.banner__heading.melt-h-small {
+  font-size: calc(var(--font-heading-scale) * 2.8rem);
+}
+@media screen and (min-width: 750px) {
+  .banner__heading.melt-h-small {
+    font-size: calc(var(--font-heading-scale) * 3.5rem);
+  }
+}
+
 /*
  * ------------------------------------------------------------
  * Melt: Slide blocks — images and silent looping videos (assets/melt-banner-media.js)

@@ -2844,6 +2844,11 @@
               "label_single_line": "Heading (single line)",
               "info_single_line": "Only used when the Heading above is empty.",
               "default": "Image banner"
+            },
+            "heading_size": {
+              "options__extra_small": {
+                "label": "Extra small"
+              }
             }
           }
         },
