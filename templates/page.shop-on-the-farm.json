@@ -9,17 +9,27 @@
  */
 {
   "sections": {
+    "melt_breadcrumbs_PMz8Xy": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "banner": {
       "type": "melt-collection-list-banner",
       "blocks": {
-        "breadcrumbs": {
-          "type": "breadcrumbs",
-          "settings": {
-            "home_label": "Home",
-            "separator": "/",
-            "structured_data": true
-          }
-        },
         "heading": {
           "type": "heading",
           "settings": {
@@ -41,12 +51,13 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
-            "ratio": "landscape"
+            "ratio": "wide",
+            "image_width": 75,
+            "image_alignment": "center"
           }
         }
       },
       "block_order": [
-        "breadcrumbs",
         "heading",
         "text",
         "image"
@@ -55,8 +66,8 @@
         "color_scheme": "",
         "layout": "stacked",
         "media_position": "right",
-        "text_alignment": "left",
-        "padding_top": 24,
+        "text_alignment": "center",
+        "padding_top": 10,
         "padding_bottom": 24
       }
     },
@@ -66,7 +77,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Our journey at Backridge Farm began in 2002, when we moved into the old stable block and set up a dedicated workshop. Before that, we had been carefully pouring our luxury handmade candles in kitchens and basements since 1999, one batch at a time. But once we settled in, something lovely started to happen – curious visitors began turning up at the door, hoping to take a candle home. We weren’t sure if our tucked-away spot in the Ribble Valley was quite right for a shop, but their warmth and enthusiasm nudged us to give it a try. And so, our little shop was born – which over the decades, has expanded and grown into the beautiful, calming, retail retreat it is today.</p><p>As word spread, more and more visitors found their way to our door, drawn by the distinctive fragrances, gentle flicker, and long-lasting quality of our handmade fragranced candles. We quickly realised we needed to create a space where you could fully explore the range in true Melt style. So, alongside our signature collection of luxury handmade candles, we introduced a curated selection of organic skincare, niche perfumes, cashmere, leather goods and jewellery – all chosen to complement the calm, welcoming atmosphere we’ve become known for.</p><p>Now, we’ve been proudly making our handmade luxury scented candles for over 25 years. Each one is hand-poured using traditional methods and fine fragrance blends, crafted to burn slowly and fill your space with a rich, lasting scent.</p><p>No matter the season or the changeable Ribble Valley weather, you can always expect a warm and smiley welcome when you visit us. Plus, with parking right outside the door, it means you can scamper in very quickly when it’s raining. Which, being in the Ribble Valley, it does a lot!</p>"
+            "text": "<p>Our journey at Backridge Farm began in 2002, when we moved into the old stable block and set up a dedicated workshop. Before that, we had been carefully pouring our luxury handmade candles in kitchens and basements since 1999, one batch at a time. But once we settled in, something lovely started to happen – curious visitors began turning up at the door, hoping to take a candle home. We weren’t sure if our tucked-away spot in the Ribble Valley was quite right for a shop, but their warmth and enthusiasm nudged us to give it a try. And so, our little shop was born – which over the decades, has expanded and grown into the beautiful, calming, retail retreat it is today.</p><p>As word spread, more and more visitors found their way to our door, drawn by the distinctive fragrances, gentle flicker, and long-lasting quality of our handmade fragranced candles. We quickly realised we needed to create a space where you could fully explore the range in true Melt style. So, alongside our signature collection of luxury handmade candles, we introduced a curated selection of organic skincare, niche perfumes, cashmere, leather goods and jewellery – all chosen to complement the calm, welcoming atmosphere we’ve become known for.</p><p>Now, we’ve been proudly making our handmade luxury scented candles for over 25 years. Each one is hand-poured using traditional methods and fine fragrance blends, crafted to burn slowly and fill your space with a rich, lasting scent.</p><p>No matter the season or the changeable Ribble Valley weather, you can always expect a warm and smiley welcome when you visit us. Plus, with parking right outside the door, it means you can scamper in very quickly when it’s raining. Which, being in the Ribble Valley, it does a lot!</p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -80,6 +92,18 @@
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "melt_divider_DbU9mM": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "rooms": {
@@ -126,6 +150,18 @@
         "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "melt_divider_wXnr3x": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "statement": {
@@ -291,6 +327,18 @@
         "padding_bottom": 0
       }
     },
+    "melt_divider_R8nGdW": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 40,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": "scheme-2"
+      }
+    },
     "keep_reading": {
       "type": "melt-columns",
       "blocks": {
@@ -309,8 +357,8 @@
             "h1": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/our-story\">Our Story</a>",
-                "heading_size": "h4"
+                "text": "Our Story",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -320,12 +368,26 @@
                 "text": "<p>Twenty-five years of it, most of them down this lane.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_waWqJM": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/our-story",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im1",
             "h1",
-            "t1"
+            "t1",
+            "columns_link_waWqJM"
           ]
         },
         "k2": {
@@ -343,8 +405,8 @@
             "h2": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/made-in-lancashire\">Made in Lancashire</a>",
-                "heading_size": "h4"
+                "text": "Made in Lancashire",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -354,12 +416,26 @@
                 "text": "<p>Why 89% of what goes into a Melt candle comes from within the county.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_g3qRXw": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/made-in-lancashire",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im2",
             "h2",
-            "t2"
+            "t2",
+            "columns_link_g3qRXw"
           ]
         },
         "k3": {
@@ -369,7 +445,7 @@
             "im3": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/what-we-do.jpg",
+                "image": "shopify://shop_images/the-chandlers-hero.png",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -377,15 +453,28 @@
             "h3": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
-                "heading_size": "h4"
+                "text": "The Chandlers",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
             "t3": {
               "type": "_columns-text",
               "settings": {
-                "text": "<p>Twenty-four fragrances, in every format.</p>"
+                "text": "<p>The people behind Melt and our collective love of candles and fragrances.</p>"
+              },
+              "blocks": {}
+            },
+            "columns_link_G3j7Fz": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/the-chandlers",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
               },
               "blocks": {}
             }
@@ -393,7 +482,8 @@
           "block_order": [
             "im3",
             "h3",
-            "t3"
+            "t3",
+            "columns_link_G3j7Fz"
           ]
         }
       },
@@ -405,17 +495,17 @@
       "settings": {
         "eyebrow": "Keep reading",
         "eyebrow_color": "",
-        "title": "",
+        "title": "More about us",
         "heading_size": "h1",
         "intro": "",
         "custom_code": "",
         "link_label": "",
         "link_url": "",
         "columns_desktop": 3,
-        "column_style": "plain",
-        "card_color_scheme": "",
+        "column_style": "card",
+        "card_color_scheme": "scheme-1",
         "column_alignment": "left",
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
@@ -425,12 +515,16 @@
     }
   },
   "order": [
+    "melt_breadcrumbs_PMz8Xy",
     "banner",
     "intro",
+    "melt_divider_DbU9mM",
     "rooms",
+    "melt_divider_wXnr3x",
     "statement",
     "gallery",
     "visit",
+    "melt_divider_R8nGdW",
     "keep_reading"
   ]
 }

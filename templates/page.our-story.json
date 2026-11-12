@@ -1,16 +1,40 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_eEpiXp": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "banner": {
       "type": "melt-collection-list-banner",
       "blocks": {
-        "breadcrumbs": {
-          "type": "breadcrumbs",
-          "settings": {}
-        },
         "heading": {
           "type": "heading",
           "settings": {
             "source": "page",
+            "heading": "",
             "heading_size": "h1",
             "heading_tag": "h1"
           }
@@ -19,6 +43,7 @@
           "type": "text",
           "settings": {
             "source": "page",
+            "text": "",
             "text_style": "subtitle"
           }
         },
@@ -26,21 +51,23 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/our-story-hero.jpg",
-            "ratio": "landscape"
+            "ratio": "wide",
+            "image_width": 75,
+            "image_alignment": "center"
           }
         }
       },
       "block_order": [
-        "breadcrumbs",
         "heading",
         "text",
         "image"
       ],
       "settings": {
+        "color_scheme": "",
         "layout": "stacked",
         "media_position": "right",
-        "text_alignment": "left",
-        "padding_top": 24,
+        "text_alignment": "center",
+        "padding_top": 10,
         "padding_bottom": 24
       }
     },
@@ -50,7 +77,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>It was December 2000. The last year had seen us migrate from the kitchen, to the garage, to a small basement unit in the local town – and now seemed like the right time to commit to bigger premises more suitable to lugging bags of heavy wax around. We knew it had to be practical; but in an ideal world – and being country bumpkins – we also wanted somewhere idyllic, and peaceful, and rural.</p><p>The list went on… so; information was collected, newspapers scoured, properties visited – but we quickly realised that practical and idyllic don’t often go hand in hand. Practical was easily found, but as for the rest… well!</p>"
+            "text": "<p>It was December 2000. The last year had seen us migrate from the kitchen, to the garage, to a small basement unit in the local town – and now seemed like the right time to commit to bigger premises more suitable to lugging bags of heavy wax around. We knew it had to be practical; but in an ideal world – and being country bumpkins – we also wanted somewhere idyllic, and peaceful, and rural.</p><p>The list went on… so; information was collected, newspapers scoured, properties visited – but we quickly realised that practical and idyllic don’t often go hand in hand. Practical was easily found, but as for the rest… well!</p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -60,9 +88,22 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "melt_divider_h6hgfF": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "rows": {
@@ -117,8 +158,22 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "melt_divider_ECkPBg": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "quote": {
@@ -138,6 +193,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 24
@@ -149,7 +205,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>With our very best wishes – melt x</p><p><em>P.S. The village pub still beckons…!</em></p>"
+            "text": "<p>With our very best wishes – melt x</p><p><em>P.S. The village pub still beckons…!</em></p>",
+            "alignment": "center"
           }
         }
       },
@@ -159,6 +216,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
@@ -182,8 +240,8 @@
             "h1": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/the-shop-on-the-farm\">The Shop on the Farm</a>",
-                "heading_size": "h4"
+                "text": "The Shop on the Farm",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -193,12 +251,26 @@
                 "text": "<p>Down a country lane, a mile from the nearest village. Open six and a half days a week.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_nhEjPg": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/the-shop-on-the-farm",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im1",
             "h1",
-            "t1"
+            "t1",
+            "columns_link_nhEjPg"
           ]
         },
         "k2": {
@@ -216,8 +288,8 @@
             "h2": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/made-in-lancashire\">Made in Lancashire</a>",
-                "heading_size": "h4"
+                "text": "Made in Lancashire",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -227,12 +299,26 @@
                 "text": "<p>Why 89% of what goes into a Melt candle comes from within the county.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_Hx9KTb": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/made-in-lancashire",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im2",
             "h2",
-            "t2"
+            "t2",
+            "columns_link_Hx9KTb"
           ]
         },
         "k3": {
@@ -242,7 +328,7 @@
             "im3": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/what-we-do.jpg",
+                "image": "shopify://shop_images/the-chandlers-hero.png",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -250,15 +336,28 @@
             "h3": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
-                "heading_size": "h4"
+                "text": "The Chandlers",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
             "t3": {
               "type": "_columns-text",
               "settings": {
-                "text": "<p>Twenty-four fragrances, in every format.</p>"
+                "text": "<p>The people behind Melt and our collective love of candles and fragrances.</p>"
+              },
+              "blocks": {}
+            },
+            "columns_link_q3dJRk": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/the-chandlers",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
               },
               "blocks": {}
             }
@@ -266,7 +365,8 @@
           "block_order": [
             "im3",
             "h3",
-            "t3"
+            "t3",
+            "columns_link_q3dJRk"
           ]
         }
       },
@@ -277,11 +377,19 @@
       ],
       "settings": {
         "eyebrow": "Keep reading",
-        "title": "",
+        "eyebrow_color": "",
+        "title": "More about us",
         "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
-        "column_style": "plain",
+        "column_style": "card",
+        "card_color_scheme": "scheme-1",
         "column_alignment": "left",
+        "color_scheme": "scheme-2",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
@@ -290,9 +398,12 @@
     }
   },
   "order": [
+    "melt_breadcrumbs_eEpiXp",
     "banner",
     "intro",
+    "melt_divider_h6hgfF",
     "rows",
+    "melt_divider_ECkPBg",
     "quote",
     "signoff",
     "keep_reading"

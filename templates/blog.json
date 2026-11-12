@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -39,9 +48,16 @@
         "cat_news"
       ],
       "settings": {
-        "heading": "",
+        "heading": "The Melt Blog",
         "standfirst": "<p>Candle care, scent notes, what to light and when, and news from down the lane.</p>",
-        "per_page": 9
+        "chips_label": "Blog categories",
+        "all_label": "All",
+        "per_page": 9,
+        "card_title_size": "large",
+        "empty_text": "No articles here yet.",
+        "color_scheme": "",
+        "padding_top": 48,
+        "padding_bottom": 72
       }
     }
   },

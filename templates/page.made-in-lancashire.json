@@ -1,16 +1,40 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_VntNmU": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "banner": {
       "type": "melt-collection-list-banner",
       "blocks": {
-        "breadcrumbs": {
-          "type": "breadcrumbs",
-          "settings": {}
-        },
         "heading": {
           "type": "heading",
           "settings": {
             "source": "page",
+            "heading": "",
             "heading_size": "h1",
             "heading_tag": "h1"
           }
@@ -19,6 +43,7 @@
           "type": "text",
           "settings": {
             "source": "page",
+            "text": "",
             "text_style": "subtitle"
           }
         },
@@ -26,21 +51,23 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/candle-manufacturing.jpg",
-            "ratio": "landscape"
+            "ratio": "wide",
+            "image_width": 75,
+            "image_alignment": "center"
           }
         }
       },
       "block_order": [
-        "breadcrumbs",
         "heading",
         "text",
         "image"
       ],
       "settings": {
+        "color_scheme": "",
         "layout": "stacked",
         "media_position": "right",
-        "text_alignment": "left",
-        "padding_top": 24,
+        "text_alignment": "center",
+        "padding_top": 10,
         "padding_bottom": 24
       }
     },
@@ -50,7 +77,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Melt is made at Backridge Farm, down Twitter Lane in Waddington, in the heart of the Ribble Valley. Every candle is poured by hand in the Open Barn, where all our candle making is done.</p><p>We have worked hard to source our raw materials close to home. Over 89% of what goes into a Melt candle, from the ingredients to the packaging, comes from Lancashire companies, with the balance from the UK.</p>"
+            "text": "<p>Melt is made at Backridge Farm, down Twitter Lane in Waddington, in the heart of the Ribble Valley. Every candle is poured by hand in the Open Barn, where all our candle making is done.</p><p>We have worked hard to source our raw materials close to home. Over 89% of what goes into a Melt candle, from the ingredients to the packaging, comes from Lancashire companies, with the balance from the UK.</p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -60,9 +88,22 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "melt_divider_ACYCDE": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "facts": {
@@ -150,15 +191,36 @@
         "c3"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "",
         "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "plain",
+        "card_color_scheme": "",
         "column_alignment": "left",
+        "color_scheme": "",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "melt_divider_8DHjzq": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "rows": {
@@ -201,6 +263,8 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -222,6 +286,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 24
@@ -245,8 +310,8 @@
             "h1": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/our-story\">Our Story</a>",
-                "heading_size": "h4"
+                "text": "Our Story",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -256,12 +321,26 @@
                 "text": "<p>Twenty-five years of it, most of them down this lane.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_6aRGar": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/our-story",
+                "style": "button",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#ce7721",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im1",
             "h1",
-            "t1"
+            "t1",
+            "columns_link_6aRGar"
           ]
         },
         "k2": {
@@ -279,8 +358,8 @@
             "h2": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/the-shop-on-the-farm\">The Shop on the Farm</a>",
-                "heading_size": "h4"
+                "text": "The Shop on the Farm",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -290,12 +369,26 @@
                 "text": "<p>Down a country lane, a mile from the nearest village. Open six and a half days a week.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_78TdTm": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/the-shop-on-the-farm",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im2",
             "h2",
-            "t2"
+            "t2",
+            "columns_link_78TdTm"
           ]
         },
         "k3": {
@@ -305,7 +398,7 @@
             "im3": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/what-we-do.jpg",
+                "image": "shopify://shop_images/the-chandlers-hero.png",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -313,15 +406,28 @@
             "h3": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
-                "heading_size": "h4"
+                "text": "The Chandlers",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
             "t3": {
               "type": "_columns-text",
               "settings": {
-                "text": "<p>Twenty-four fragrances, in every format.</p>"
+                "text": "<p>The people behind Melt and our collective love of candles and fragrances.</p>"
+              },
+              "blocks": {}
+            },
+            "columns_link_3wikUf": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/the-chandlers",
+                "style": "button",
+                "button_text_color": "#FFFFFF",
+                "button_background_color": "#CE7721",
+                "button_arrow": true
               },
               "blocks": {}
             }
@@ -329,7 +435,8 @@
           "block_order": [
             "im3",
             "h3",
-            "t3"
+            "t3",
+            "columns_link_3wikUf"
           ]
         }
       },
@@ -340,11 +447,19 @@
       ],
       "settings": {
         "eyebrow": "Keep reading",
-        "title": "",
+        "eyebrow_color": "",
+        "title": "More about us",
         "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
-        "column_style": "plain",
+        "column_style": "card",
+        "card_color_scheme": "scheme-1",
         "column_alignment": "left",
+        "color_scheme": "scheme-2",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
@@ -353,9 +468,12 @@
     }
   },
   "order": [
+    "melt_breadcrumbs_VntNmU",
     "banner",
     "intro",
+    "melt_divider_ACYCDE",
     "facts",
+    "melt_divider_8DHjzq",
     "rows",
     "quote",
     "keep_reading"
