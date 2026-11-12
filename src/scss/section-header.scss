@@ -401,3 +401,17 @@
     transition: none;
   }
 }
+
+// ------------------------------------------------------------------ "#" menu links
+// Menu items whose link is "#" (e.g. a column heading) render without an href in
+// header-mega-menu / header-dropdown-menu / header-drawer, so they can't be clicked or tabbed to.
+// No pointer events means no hover styling and the normal arrow cursor.
+.section-header .melt-menu-nolink {
+  pointer-events: none;
+  cursor: default;
+
+  &,
+  span {
+    text-decoration: none;
+  }
+}

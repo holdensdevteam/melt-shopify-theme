@@ -86,8 +86,8 @@
                     >
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                        {% unless childlink.url == '#' %}href="{{ childlink.url }}"{% endunless %}
+                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}{% if childlink.url == '#' %} melt-menu-nolink{% endif %}"
                         {% if show_media %}
                           data-menu-media-target="{{ child_target }}"
                         {% endif %}
@@ -116,8 +116,8 @@
                             <li>
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                {% unless grandchildlink.url == '#' %}href="{{ grandchildlink.url }}"{% endunless %}
+                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}{% if grandchildlink.url == '#' %} melt-menu-nolink{% endif %}"
                                 {% if show_media %}
                                   data-menu-media-target="{{ grandchild_target }}"
                                 {% endif %}
@@ -153,8 +153,8 @@
         {%- else -%}
           <a
             id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% unless link.url == '#' %}href="{{ link.url }}"{% endunless %}
+            class="header__menu-item list-menu__item link link--text focus-inset{% if link.url == '#' %} melt-menu-nolink{% endif %}"
             {% if link.current %}
               aria-current="page"
             {% endif %}

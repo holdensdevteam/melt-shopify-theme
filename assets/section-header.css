@@ -293,3 +293,12 @@
     transition: none;
   }
 }
+
+.section-header .melt-menu-nolink {
+  pointer-events: none;
+  cursor: default;
+}
+.section-header .melt-menu-nolink,
+.section-header .melt-menu-nolink span {
+  text-decoration: none;
+}
