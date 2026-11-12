@@ -580,7 +580,7 @@
         "featured_collection_UtF4F4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "winding-down",
+            "collection": "unwind",
             "subtitle": "",
             "tags": "",
             "button_label": "Shop Moment",
@@ -593,7 +593,7 @@
         "featured_collection_NRFkwy": {
           "type": "featured_collection",
           "settings": {
-            "collection": "bath-time",
+            "collection": "welcome",
             "subtitle": "",
             "tags": "",
             "button_label": "Shop moment",
@@ -619,7 +619,7 @@
         "featured_collection_LFUddR": {
           "type": "featured_collection",
           "settings": {
-            "collection": "meditation",
+            "collection": "restore",
             "subtitle": "",
             "tags": "",
             "button_label": "Shop Moment",
@@ -632,7 +632,7 @@
         "featured_collection_rjbLeM": {
           "type": "featured_collection",
           "settings": {
-            "collection": "morning",
+            "collection": "celebrate",
             "subtitle": "",
             "tags": "",
             "button_label": "Shop moment",
@@ -645,7 +645,7 @@
         "featured_collection_3MGhUH": {
           "type": "featured_collection",
           "settings": {
-            "collection": "dining",
+            "collection": "focus",
             "subtitle": "",
             "tags": "",
             "button_label": "Shop moment",

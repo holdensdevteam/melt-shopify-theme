@@ -1,5 +1,26 @@
 /*! Compiled from src/scss/section-melt-collection-list-banner.scss — edit that file, not this one. */
+@use 'breakpoints' as bp;
 
 // Collection list banner (sections/melt-collection-list-banner.liquid). Layout and blocks share
 // the Collection banner's styles (section-main-collection-banner.scss); add styles for the
 // collection list pages here.
+
+// Image block › Image width (50–100%) and Image alignment, stacked layout only. From 750px the
+// image takes that share of the content width; below 750px it stays full width.
+.melt-banner--stacked .melt-banner__content .melt-banner__media--sized {
+  @include bp.from(bp.$medium) {
+    width: var(--melt-banner-media-width, 100%);
+
+    &.melt-banner__media--align-left {
+      align-self: flex-start;
+    }
+
+    &.melt-banner__media--align-center {
+      align-self: center;
+    }
+
+    &.melt-banner__media--align-right {
+      align-self: flex-end;
+    }
+  }
+}

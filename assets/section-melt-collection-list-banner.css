@@ -1,2 +1,16 @@
 @charset "UTF-8";
 /*! Compiled from src/scss/section-melt-collection-list-banner.scss — edit that file, not this one. */
+@media screen and (min-width: 750px) {
+  .melt-banner--stacked .melt-banner__content .melt-banner__media--sized {
+    width: var(--melt-banner-media-width, 100%);
+  }
+  .melt-banner--stacked .melt-banner__content .melt-banner__media--sized.melt-banner__media--align-left {
+    align-self: flex-start;
+  }
+  .melt-banner--stacked .melt-banner__content .melt-banner__media--sized.melt-banner__media--align-center {
+    align-self: center;
+  }
+  .melt-banner--stacked .melt-banner__content .melt-banner__media--sized.melt-banner__media--align-right {
+    align-self: flex-end;
+  }
+}

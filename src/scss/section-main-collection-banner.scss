@@ -95,6 +95,11 @@
     aspect-ratio: 16 / 9;
   }
 
+  // Collection list banner's Image block only: Landscape (10:5).
+  &--wide {
+    aspect-ratio: 2 / 1;
+  }
+
   &--square {
     aspect-ratio: 1 / 1;
   }

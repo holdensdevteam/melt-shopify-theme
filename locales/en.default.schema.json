@@ -1123,6 +1123,27 @@
         "image": {
           "image": {
             "info": "Pages have no image of their own — choose one, or connect a page metafield."
+          },
+          "ratio": {
+            "options__wide": {
+              "label": "Landscape (10:5)"
+            }
+          },
+          "image_width": {
+            "label": "Image width",
+            "info": "100% is full width. On mobile the image is always full width."
+          },
+          "image_alignment": {
+            "label": "Image alignment",
+            "options__left": {
+              "label": "Left"
+            },
+            "options__center": {
+              "label": "Centre"
+            },
+            "options__right": {
+              "label": "Right"
+            }
           }
         }
       }
@@ -4844,6 +4865,12 @@
             "text": {
               "label": "Text",
               "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            },
+            "alignment": {
+              "label": "Text alignment",
+              "options__inherit": {
+                "label": "Match section"
+              }
             }
           }
         },

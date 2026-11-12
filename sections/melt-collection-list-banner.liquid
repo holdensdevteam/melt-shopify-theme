@@ -349,6 +349,10 @@
               "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.options__landscape.label"
             },
             {
+              "value": "wide",
+              "label": "t:sections.melt_collection_list_banner.blocks.image.ratio.options__wide.label"
+            },
+            {
               "value": "square",
               "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.options__square.label"
             },
@@ -358,6 +362,39 @@
             }
           ],
           "default": "landscape"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "t:sections.melt_collection_list_banner.blocks.image.image_width.label",
+          "info": "t:sections.melt_collection_list_banner.blocks.image.image_width.info",
+          "min": 50,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 100,
+          "visible_if": "{{ section.settings.layout == 'stacked' }}"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "t:sections.melt_collection_list_banner.blocks.image.image_alignment.label",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.melt_collection_list_banner.blocks.image.image_alignment.options__left.label"
+            },
+            {
+              "value": "center",
+              "label": "t:sections.melt_collection_list_banner.blocks.image.image_alignment.options__center.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.melt_collection_list_banner.blocks.image.image_alignment.options__right.label"
+            }
+          ],
+          "default": "left",
+          "visible_if": "{{ section.settings.layout == 'stacked' and block.settings.image_width < 100 }}"
         }
       ]
     },

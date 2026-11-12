@@ -26,7 +26,23 @@
       endif
     -%}
     {%- if banner_image != blank or request.design_mode -%}
-      <div class="melt-banner__media melt-banner__media--{{ block.settings.ratio }}" {{ block.shopify_attributes }}>
+      {%- liquid
+        # Width and alignment: only the Collection list banner's Image block has these settings
+        # (stacked layout, 750px and up). The Collection banner's image stays full width.
+        assign media_sizes = '(min-width: 990px) 50vw, 100vw'
+        assign media_sized = false
+        if block.settings.image_width and block.settings.image_width < 100
+          assign media_sized = true
+          assign media_sizes = '(min-width: 750px) ' | append: block.settings.image_width | append: 'vw, 100vw'
+        endif
+      -%}
+      <div
+        class="melt-banner__media melt-banner__media--{{ block.settings.ratio }}{% if media_sized %} melt-banner__media--sized melt-banner__media--align-{{ block.settings.image_alignment }}{% endif %}"
+        {% if media_sized %}
+          style="--melt-banner-media-width: {{ block.settings.image_width }}%;"
+        {% endif %}
+        {{ block.shopify_attributes }}
+      >
         {%- if banner_image != blank -%}
           {%- liquid
             assign focal_style = nil
@@ -39,7 +55,7 @@
             | image_url: width: 2400
             | image_tag:
               widths: '375, 550, 750, 1100, 1500, 1800, 2400',
-              sizes: '(min-width: 990px) 50vw, 100vw',
+              sizes: media_sizes,
               fetchpriority: 'high',
               style: focal_style,
               class: 'melt-banner__image'

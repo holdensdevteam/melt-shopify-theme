@@ -82,6 +82,9 @@
 .melt-banner__media--landscape {
   aspect-ratio: 16/9;
 }
+.melt-banner__media--wide {
+  aspect-ratio: 2/1;
+}
 .melt-banner__media--square {
   aspect-ratio: 1/1;
 }

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -5,12 +14,17 @@
       "blocks": {
         "breadcrumbs": {
           "type": "breadcrumbs",
-          "settings": {}
+          "settings": {
+            "home_label": "Home",
+            "separator": "/",
+            "structured_data": true
+          }
         },
         "heading": {
           "type": "heading",
           "settings": {
             "source": "page",
+            "heading": "",
             "heading_size": "h1",
             "heading_tag": "h1"
           }
@@ -19,6 +33,7 @@
           "type": "text",
           "settings": {
             "source": "page",
+            "text": "",
             "text_style": "subtitle"
           }
         },
@@ -37,6 +52,7 @@
         "image"
       ],
       "settings": {
+        "color_scheme": "",
         "layout": "stacked",
         "media_position": "right",
         "text_alignment": "left",
@@ -60,6 +76,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "scheme-1",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
@@ -105,42 +122,10 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "visit": {
-      "type": "melt-visit-us",
-      "blocks": {
-        "mon_sat": {
-          "type": "hours",
-          "settings": {
-            "days": "Monday to Saturday",
-            "times": "10am – 5pm"
-          }
-        },
-        "sun": {
-          "type": "hours",
-          "settings": {
-            "days": "Sunday",
-            "times": "12pm – 4.30pm"
-          }
-        }
-      },
-      "block_order": [
-        "mon_sat",
-        "sun"
-      ],
-      "settings": {
-        "eyebrow": "Come and see us",
-        "heading": "Open six and a half days a week",
-        "heading_size": "h2",
-        "button_2_label": "Contact us",
-        "button_2_link": "shopify://pages/contact",
-        "map_image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
-        "color_scheme": "scheme-2",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     },
     "statement": {
@@ -160,6 +145,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 24
@@ -226,15 +212,83 @@
         "g3"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "",
         "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "plain",
+        "card_color_scheme": "",
         "column_alignment": "left",
+        "color_scheme": "",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 12,
         "padding_bottom": 36
+      }
+    },
+    "visit": {
+      "type": "melt-visit-us",
+      "blocks": {
+        "mon_sat": {
+          "type": "hours",
+          "settings": {
+            "days": "Monday to Saturday",
+            "times": "10am – 5pm"
+          }
+        },
+        "sun": {
+          "type": "hours",
+          "settings": {
+            "days": "Sunday",
+            "times": "12pm – 4.30pm"
+          }
+        }
+      },
+      "block_order": [
+        "mon_sat",
+        "sun"
+      ],
+      "settings": {
+        "eyebrow": "Come and see us",
+        "heading": "Open six and a half days a week",
+        "heading_size": "h2",
+        "hours_label": "",
+        "show_open_status": true,
+        "open_now_text": "Open now – until [time] today",
+        "opens_today_text": "Closed – opens at [time] today",
+        "opens_later_text": "Closed – opens [day] at [time]",
+        "opening_hours_schema": "Mo-Sa 10:00-17:00, Su 12:00-16:30",
+        "address_label": "",
+        "business_name": "Melt",
+        "street_address": "Backridge Farm, Twitter Lane",
+        "locality": "Waddington",
+        "region": "Lancashire",
+        "postcode": "BB7 3LQ",
+        "address_note": "Parking directly outside the entrance.",
+        "phone_label": "Shop",
+        "telephone": "01200 443412",
+        "directions_label": "Get directions",
+        "button_2_label": "Contact us",
+        "button_2_link": "shopify://pages/contact",
+        "directions_url": "",
+        "map_query": "",
+        "map_image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
+        "map_button_label": "Show map",
+        "map_note": "Loads Google Maps",
+        "structured_data": true,
+        "business_type": "Store",
+        "latitude": "53.8798168",
+        "longitude": "-2.4295273",
+        "same_as": "https://www.instagram.com/themeltco/\nhttps://www.facebook.com/meltcandles",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "keep_reading": {
@@ -350,11 +404,19 @@
       ],
       "settings": {
         "eyebrow": "Keep reading",
+        "eyebrow_color": "",
         "title": "",
         "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "plain",
+        "card_color_scheme": "",
         "column_alignment": "left",
+        "color_scheme": "",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
