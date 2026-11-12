@@ -329,6 +329,25 @@
           "shadow": "rgba(0,0,0,0)",
           "shadow_hover": ""
         }
+      },
+      "scheme-5bef7a06-96f2-4dd7-beb2-e7040467da8e": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "background_hover": "#E5E3DC",
+          "text": "#121212",
+          "text_hover": "",
+          "button": "#121212",
+          "button_hover": "",
+          "button_label": "#ffffff",
+          "button_label_hover": "",
+          "secondary_button_label": "#000000",
+          "secondary_button_label_hover": "",
+          "border": "#121212",
+          "border_hover": "#ce7721",
+          "shadow": "rgba(0,0,0,0)",
+          "shadow_hover": ""
+        }
       }
     }
   },

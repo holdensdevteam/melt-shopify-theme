@@ -9,22 +9,43 @@
  */
 {
   "sections": {
+    "melt_breadcrumbs_wjkTMd": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "scheme-2",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "melt_collection_list_banner_d9hJjJ": {
       "type": "melt-collection-list-banner",
       "blocks": {
-        "image_Mai7W8": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/collection-morning-hero.jpg",
-            "ratio": "landscape"
-          }
-        },
         "breadcrumbs_pqB3jN": {
           "type": "breadcrumbs",
+          "disabled": true,
           "settings": {
             "home_label": "Home",
             "separator": "/",
             "structured_data": true
+          }
+        },
+        "image_Mai7W8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/collection-morning-hero.jpg",
+            "ratio": "landscape",
+            "image_width": 100,
+            "image_alignment": "left"
           }
         },
         "heading_Y9kpUh": {
@@ -46,8 +67,8 @@
         }
       },
       "block_order": [
-        "image_Mai7W8",
         "breadcrumbs_pqB3jN",
+        "image_Mai7W8",
         "heading_Y9kpUh",
         "text_gyxaE9"
       ],
@@ -57,7 +78,7 @@
         "layout": "split",
         "media_position": "right",
         "text_alignment": "left",
-        "padding_top": 24,
+        "padding_top": 10,
         "padding_bottom": 24
       }
     },
@@ -71,7 +92,7 @@
         "columns_desktop": 4,
         "columns_mobile": "2",
         "card_style": "card",
-        "card_color_scheme": "scheme-2",
+        "card_color_scheme": "scheme-5bef7a06-96f2-4dd7-beb2-e7040467da8e",
         "card_image_padding": 12,
         "card_radius": 8,
         "card_border_width": 0,
@@ -81,14 +102,15 @@
         "card_eyebrow": "Scent Type",
         "card_eyebrow_color": "#ce7721",
         "card_tags": "scent_notes",
-        "card_tag_color_scheme": "",
+        "card_tag_color_scheme": "scheme-4",
         "show_arrow": false,
-        "padding_top": 60,
-        "padding_bottom": 80
+        "padding_top": 20,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
+    "melt_breadcrumbs_wjkTMd",
     "melt_collection_list_banner_d9hJjJ",
     "main"
   ]
