@@ -575,48 +575,6 @@
   border-radius: 50%;
 }
 
-.banner-media__toggle {
-  position: absolute;
-  right: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.6rem;
-  height: 3.6rem;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  cursor: pointer;
-  transition: background-color var(--duration-short) ease;
-}
-@media screen and (min-width: 750px) {
-  .banner-media__toggle {
-    right: 5rem;
-  }
-}
-.banner-media__toggle:hover {
-  background-color: rgba(0, 0, 0, 0.55);
-}
-.banner-media__toggle:focus-visible {
-  outline: 0.2rem solid #fff;
-  outline-offset: 0.2rem;
-}
-.banner-media__toggle svg {
-  width: 1.6rem;
-  height: 1.6rem;
-}
-
-.banner-media__icon-play,
-.banner-media--paused .banner-media__icon-pause {
-  display: none;
-}
-
-.banner-media--paused .banner-media__icon-play {
-  display: block;
-}
-
 /*
  * ------------------------------------------------------------
  * Melt: review badge (Review badge settings)
@@ -709,12 +667,24 @@
 }
 
 @media screen and (max-width: 749px) {
-  .banner--mobile-bottom .banner__badge-wrapper {
-    position: static;
-    padding-bottom: 3rem;
+  .banner__badge-wrapper--left,
+  .banner__badge-wrapper--right {
+    justify-content: center;
+    text-align: center;
   }
 }
-.banner--has-badge .banner-media__toggle {
-  position: static;
-  margin-left: 0.8rem;
+@media screen and (max-width: 749px) {
+  .banner--mobile-bottom .banner__badge-wrapper {
+    position: relative;
+    bottom: auto;
+    order: 1;
+    height: 0;
+    align-items: flex-end;
+  }
+  .banner--mobile-bottom .banner__badge {
+    margin-bottom: 2rem;
+  }
+  .banner--slides.banner--mobile-bottom .banner__box {
+    padding: 4rem 2rem;
+  }
 }

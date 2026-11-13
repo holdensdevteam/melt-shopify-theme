@@ -7,14 +7,8 @@
   assign slide_blocks = section.blocks | where: 'type', 'slide'
   assign slide_count = slide_blocks.size
   assign has_slides = false
-  assign has_video = false
   if slide_count > 0
     assign has_slides = true
-    for slide in slide_blocks
-      if slide.settings.media_type == 'video' and slide.settings.video != blank
-        assign has_video = true
-      endif
-    endfor
   endif
 
   # "Adapt to first image" follows the first slide (its image, or its video's shape), or Image.
@@ -135,19 +129,17 @@
     assign fetch_priority = 'high'
   endif
 
-  # Melt: review badge, an image or a line of text (Review badge › Badge type).
-  assign badge_type = section.settings.badge_type | default: 'image'
-  assign has_badge = false
-  if badge_type == 'text' and section.settings.badge_text != blank
-    assign has_badge = true
-  elsif badge_type != 'text' and section.settings.badge_image != blank
-    assign has_badge = true
+  # Melt: review badge, an image or a line of text (Review badge › Badge type). badge_content is
+  # whichever the type uses; no badge when it's blank.
+  assign badge_content = section.settings.badge_image
+  if section.settings.badge_type == 'text'
+    assign badge_content = section.settings.badge_text
   endif
 -%}
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if has_slides == false and section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and adapt_ratio != blank %} banner--adapt{% endif %}{% if has_slides %} banner--slides{% endif %}{% if has_badge %} banner--has-badge{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if has_slides == false and section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and adapt_ratio != blank %} banner--adapt{% endif %}{% if has_slides %} banner--slides{% endif %}{% if badge_content != blank %} banner--has-badge{% endif %}{% if section.settings.show_text_below and slide_count <= 1 %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
 >
   {%- if has_slides -%}
     <div class="banner__media media banner__media--slides{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -181,7 +173,7 @@
               {{ slide.shopify_attributes }}
             >
               {%- if slide.settings.media_type == 'video' and slide.settings.video != blank -%}
-                {%- comment -%} Decorative background video: silent, looping, no controls — the pause button below stops it. {%- endcomment -%}
+                {%- comment -%} Decorative background video: silent, looping, no controls. Visitors with reduced motion on start paused. {%- endcomment -%}
                 {%- comment -%}
                   Optional Mobile video for screens up to 599px. The desktop source is listed first with
                   media="(min-width: 600px)" so the browser loads only the file for its screen size; older
@@ -262,7 +254,8 @@
           {%- endfor -%}
         </div>
 
-        {%- if slide_count > 1 or has_video -%}
+        {%- comment -%} Melt: no pause button — removed at Lawrence's request (Nov 2026). {%- endcomment -%}
+        {%- if slide_count > 1 -%}
           <div class="banner-media__controls">
             {%- if slide_count > 1 -%}
               <div class="banner-media__dots">
@@ -277,23 +270,6 @@
                   ></button>
                 {%- endfor -%}
               </div>
-            {%- endif -%}
-            {%- if has_video or section.settings.slider_autoplay and slide_count > 1 -%}
-              <button
-                type="button"
-                class="banner-media__toggle"
-                aria-label="{{ 'sections.banner_media.pause' | t }}"
-                data-label-pause="{{ 'sections.banner_media.pause' | t }}"
-                data-label-play="{{ 'sections.banner_media.play' | t }}"
-              >
-                <svg class="banner-media__icon-pause" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
-                  <rect x="4" y="3" width="2.5" height="10" rx="0.5" fill="currentColor"/>
-                  <rect x="9.5" y="3" width="2.5" height="10" rx="0.5" fill="currentColor"/>
-                </svg>
-                <svg class="banner-media__icon-play" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
-                  <path d="M5 3.2v9.6a.5.5 0 0 0 .77.42l7.2-4.8a.5.5 0 0 0 0-.84l-7.2-4.8A.5.5 0 0 0 5 3.2Z" fill="currentColor"/>
-                </svg>
-              </button>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -482,25 +458,17 @@
     Badge type › Text shows a line of text instead, with its own size, alignment and colour.
   {%- endcomment -%}
   {%- assign badge = section.settings.badge_image -%}
-  {%- if has_badge and badge_type == 'text' -%}
-    <div class="banner__badge-wrapper banner__badge-wrapper--{{ section.settings.badge_text_alignment }} page-width">
-      {%- capture badge_text_style -%}
-        {%- if section.settings.badge_text_color != blank and section.settings.badge_text_color.alpha != 0 -%}
-          --banner-badge-color: {{ section.settings.badge_text_color }};
-        {%- endif -%}
-      {%- endcapture -%}
-      {%- assign badge_text_class = 'banner__badge banner__badge--text banner__badge--text-' | append: section.settings.badge_text_size -%}
-      {%- if section.settings.badge_link != blank -%}
-        <a href="{{ section.settings.badge_link }}" class="{{ badge_text_class }}" style="{{ badge_text_style }}">
-          {{- section.settings.badge_text | escape -}}
-        </a>
-      {%- else -%}
-        <p class="{{ badge_text_class }}" style="{{ badge_text_style }}">
-          {{- section.settings.badge_text | escape -}}
-        </p>
-      {%- endif -%}
-    </div>
-  {%- elsif has_badge -%}
+  {%- if badge_content == blank -%}
+    {%- comment -%} No badge {%- endcomment -%}
+  {%- elsif section.settings.badge_type == 'text' -%}
+    {%- render 'melt-banner-badge-text',
+      text: section.settings.badge_text,
+      link: section.settings.badge_link,
+      size: section.settings.badge_text_size,
+      alignment: section.settings.badge_text_alignment,
+      color: section.settings.badge_text_color
+    -%}
+  {%- else -%}
     {%- liquid
       assign badge_width = section.settings.badge_width
       assign badge_width_mobile = section.settings.badge_width_mobile
@@ -701,6 +669,7 @@
       "type": "select",
       "id": "badge_text_alignment",
       "label": "t:sections.image-banner.settings.badge_text_alignment.label",
+      "info": "t:sections.image-banner.settings.badge_text_alignment.info",
       "options": [
         {
           "value": "left",
@@ -914,7 +883,8 @@
       "type": "checkbox",
       "id": "show_text_below",
       "default": true,
-      "label": "t:sections.image-banner.settings.show_text_below.label"
+      "label": "t:sections.image-banner.settings.show_text_below.label",
+      "info": "t:sections.image-banner.settings.show_text_below.info"
     }
   ],
   "blocks": [

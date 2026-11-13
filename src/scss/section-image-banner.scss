@@ -666,50 +666,6 @@
   }
 }
 
-.banner-media__toggle {
-  position: absolute;
-  right: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.6rem;
-  height: 3.6rem;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  cursor: pointer;
-  transition: background-color var(--duration-short) ease;
-
-  @include bp.from(bp.$medium) {
-    right: 5rem;
-  }
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.55);
-  }
-
-  &:focus-visible {
-    outline: 0.2rem solid #fff;
-    outline-offset: 0.2rem;
-  }
-
-  svg {
-    width: 1.6rem;
-    height: 1.6rem;
-  }
-}
-
-.banner-media__icon-play,
-.banner-media--paused .banner-media__icon-pause {
-  display: none;
-}
-
-.banner-media--paused .banner-media__icon-play {
-  display: block;
-}
-
 /*
  * ------------------------------------------------------------
  * Melt: review badge (Review badge settings)
@@ -800,18 +756,33 @@
   text-align: right;
 }
 
-// "Show content below image on mobile": the text box sits under the image there, so the badge
-// joins the flow after it, on the right, rather than covering the text.
+// Below 750px the text badge is always centred, whatever its alignment setting.
 @include bp.below(bp.$medium) {
-  .banner--mobile-bottom .banner__badge-wrapper {
-    position: static;
-    padding-bottom: 3rem;
+  .banner__badge-wrapper--left,
+  .banner__badge-wrapper--right {
+    justify-content: center;
+    text-align: center;
   }
 }
 
-// The pause button normally sits bottom right too; with a badge it moves beside the dots.
-.banner--has-badge .banner-media__toggle {
-  position: static;
-  margin-left: 0.8rem;
-}
+// "Stack text below image" on mobile: the text sits under the image or video, so the badge stays
+// on the media instead, 2rem up from its bottom edge. The wrapper drops into the flow straight
+// after the media (the content is order 2) with no height; the badge hangs up from it.
+@include bp.below(bp.$medium) {
+  .banner--mobile-bottom .banner__badge-wrapper {
+    position: relative;
+    bottom: auto;
+    order: 1;
+    height: 0;
+    align-items: flex-end;
+  }
 
+  .banner--mobile-bottom .banner__badge {
+    margin-bottom: 2rem;
+  }
+
+  // Single slide with the text below: even spacing above and below the content.
+  .banner--slides.banner--mobile-bottom .banner__box {
+    padding: 4rem 2rem;
+  }
+}

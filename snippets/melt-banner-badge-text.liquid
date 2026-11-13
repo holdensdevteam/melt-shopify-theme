@@ -1,0 +1,34 @@
+{% comment %}
+  Renders the Image banner's text review badge (Review badge › Badge type › Text), bottom of the
+  banner, over every slide. Styles: src/scss/section-image-banner.scss.
+
+  Accepts:
+  - text: {String} The badge text. Nothing renders if blank.
+  - link: {String} Link for the badge (optional).
+  - size: {String} 'small', 'medium', 'large' or 'xlarge'.
+  - alignment: {String} 'left', 'center' or 'right' (desktop; always centred on mobile).
+  - color: {Color} Text colour; blank uses the colour scheme's text colour (optional).
+
+  Usage:
+  {% render 'melt-banner-badge-text', text: section.settings.badge_text, link: section.settings.badge_link, size: section.settings.badge_text_size, alignment: section.settings.badge_text_alignment, color: section.settings.badge_text_color %}
+{% endcomment %}
+
+{%- if text != blank -%}
+  <div class="banner__badge-wrapper banner__badge-wrapper--{{ alignment }} page-width">
+    {%- capture badge_text_style -%}
+      {%- if color != blank and color.alpha != 0 -%}
+        --banner-badge-color: {{ color }};
+      {%- endif -%}
+    {%- endcapture -%}
+    {%- assign badge_text_class = 'banner__badge banner__badge--text banner__badge--text-' | append: size -%}
+    {%- if link != blank -%}
+      <a href="{{ link }}" class="{{ badge_text_class }}" style="{{ badge_text_style }}">
+        {{- text | escape -}}
+      </a>
+    {%- else -%}
+      <p class="{{ badge_text_class }}" style="{{ badge_text_style }}">
+        {{- text | escape -}}
+      </p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
