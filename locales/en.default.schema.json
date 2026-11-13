@@ -2691,6 +2691,7 @@
         },
         "badge_text_alignment": {
           "label": "Text alignment",
+          "info": "Desktop. On mobile the text is always centred.",
           "options__left": {
             "label": "Left"
           },
@@ -2827,7 +2828,18 @@
           "label": "Stack images"
         },
         "show_text_below": {
-          "label": "Container"
+          "label": "Text below image",
+          "info": "Puts the heading, text and buttons under the image or video instead of over it. With Slide blocks, only when there's a single slide."
+        },
+        "color_scheme": {
+          "info": "Desktop. Turn on Different colour scheme on mobile below to change the content's colours on phones."
+        },
+        "mobile_color_scheme_custom": {
+          "label": "Different colour scheme on mobile"
+        },
+        "mobile_color_scheme": {
+          "label": "Mobile colour scheme",
+          "info": "Heading, text and buttons below 750px. With Text below image on, also the background behind them."
         }
       },
       "blocks": {
@@ -2904,22 +2916,8 @@
             "header_style": {
               "content": "Button style"
             },
-            "button_color": {
-              "label": "Button colour",
-              "info": "Leave blank to use the colour scheme. Applies to primary buttons; outline buttons keep the scheme colours."
-            },
-            "button_text_color": {
-              "label": "Button text colour"
-            },
             "button_text_transform": {
               "label": "Text case"
-            },
-            "button_padding_vertical": {
-              "label": "Padding top and bottom",
-              "info": "0 keeps the standard button height."
-            },
-            "button_padding_horizontal": {
-              "label": "Padding left and right"
             },
             "button_margin_top": {
               "label": "Margin top",
