@@ -200,7 +200,7 @@
             "filter_pinned": false,
             "filter_featured": true,
             "filter_custom_tags": "",
-            "star_rating": "all",
+            "star_rating": "5_star",
             "show_review_media": false,
             "display_order": "media_first",
             "no_image_fallback": "review_text_only",
@@ -208,7 +208,7 @@
             "review_length": "medium",
             "text_size": "medium",
             "image_ratio": "1",
-            "reviews_shown": 5,
+            "reviews_shown": 3,
             "show_reviewer_name": true,
             "show_product_name": false,
             "hide_arrows_mobile": true,
@@ -217,9 +217,9 @@
             "corner_styling": "soft",
             "header_text_color": "#000000",
             "text_color": "#000000",
-            "card_color": "#f9f9f9",
+            "card_color": "#f5f5f5",
             "stars_color": "",
-            "arrows_color": "#4D4D4D",
+            "arrows_color": "#4d4d4d",
             "transition_speed": 5,
             "header_text": "In your words",
             "show_average_rating": false,
@@ -840,14 +840,14 @@
               "type": "_columns-heading",
               "settings": {
                 "text": "The shop on the farm",
-                "heading_size": "h3"
+                "heading_size": "h2"
               },
               "blocks": {}
             },
             "columns_image_RDFjKM": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/burgundy-candles-with-autumn-leaves.png",
+                "image": "shopify://shop_images/our-shop-on-the-farm-hero.jpg",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -866,7 +866,7 @@
                 "url": "shopify://pages/the-shop-on-the-farm",
                 "style": "button",
                 "button_text_color": "#ffffff",
-                "button_background_color": "#ce7721",
+                "button_background_color": "#3d3c3c",
                 "button_arrow": true
               },
               "blocks": {}
@@ -887,14 +887,14 @@
               "type": "_columns-heading",
               "settings": {
                 "text": "Made in Lancashire",
-                "heading_size": "h3"
+                "heading_size": "h2"
               },
               "blocks": {}
             },
             "columns_image_PQJXjA": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/homemade-candles.png",
+                "image": "shopify://shop_images/candle-manufacturing.jpg",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -913,7 +913,7 @@
                 "url": "shopify://pages/made-in-lancashire",
                 "style": "button",
                 "button_text_color": "#ffffff",
-                "button_background_color": "#ce7721",
+                "button_background_color": "#3d3c3c",
                 "button_arrow": true
               },
               "blocks": {}

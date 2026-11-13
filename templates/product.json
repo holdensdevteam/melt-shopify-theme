@@ -185,6 +185,18 @@
         "padding_bottom": 44
       }
     },
+    "melt_divider_CLYTiw": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
+      }
+    },
     "melt_product_details_ji3FE9": {
       "type": "melt-product-details",
       "blocks": {
@@ -255,21 +267,23 @@
           "settings": {
             "label": "Burn time",
             "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }}",
-            "suffix": " hours"
+            "suffix": "hours"
           }
         },
         "detail_Rhxjrq": {
           "type": "detail",
           "settings": {
             "label": "Wick",
-            "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}"
+            "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}",
+            "suffix": ""
           }
         },
         "detail_rgbA6q": {
           "type": "detail",
           "settings": {
             "label": "Made",
-            "value": "{{ product.metafields.custom.made.value.made.value }}"
+            "value": "{{ product.metafields.custom.made.value.made.value }}",
+            "suffix": ""
           }
         }
       },
@@ -633,6 +647,7 @@
     "main",
     "melt_divider_HaphGQ",
     "usp_bar_bgyAdV",
+    "melt_divider_CLYTiw",
     "melt_product_details_ji3FE9",
     "image_with_text_ARHnVz",
     "multicolumn_HXkwnz",
