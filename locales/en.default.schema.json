@@ -2540,27 +2540,11 @@
         },
         "bar_opacity": {
           "label": "Background opacity",
-          "info": "Below 100% the page shows through the header. Best with Overlay home page switched on."
+          "info": "Home page only. Below 100% the page shows through the header. Best with Overlay home page switched on."
         },
         "bar_hover_color": {
-          "label": "Background on hover",
-          "info": "Solid colour the header fades to on hover and while the mega menu or mobile menu is open. Leave empty to use the colour scheme's background."
-        },
-        "bar_radius": {
-          "label": "Corner radius"
-        },
-        "bar_margin_top": {
-          "label": "Margin top",
-          "info": "Margins are halved on mobile."
-        },
-        "bar_margin_right": {
-          "label": "Margin right"
-        },
-        "bar_margin_bottom": {
-          "label": "Margin bottom"
-        },
-        "bar_margin_left": {
-          "label": "Margin left"
+          "label": "Solid background",
+          "info": "The header's background on every page except the home page. On the home page the header fades to it on hover and while the mega menu or mobile menu is open. Leave empty to use the colour scheme's background."
         },
         "overlay_home": {
           "label": "Overlay home page",
@@ -2646,9 +2630,6 @@
           "label": "Language selector",
           "info": "[Manage languages](/admin/settings/languages)"
         },
-        "margin_bottom": {
-          "label": "Bottom margin"
-        },
         "mobile_logo_position": {
           "label": "Mobile logo position",
           "options__1": {
@@ -2679,6 +2660,50 @@
         },
         "header_badge": {
           "content": "Review badge"
+        },
+        "badge_type": {
+          "label": "Badge type",
+          "options__image": {
+            "label": "Image"
+          },
+          "options__text": {
+            "label": "Text"
+          }
+        },
+        "badge_text": {
+          "label": "Badge text",
+          "info": "E.g. Rated 4.9 out of 5 by our customers."
+        },
+        "badge_text_size": {
+          "label": "Text size",
+          "options__small": {
+            "label": "Small"
+          },
+          "options__medium": {
+            "label": "Medium"
+          },
+          "options__large": {
+            "label": "Large"
+          },
+          "options__xlarge": {
+            "label": "Extra large"
+          }
+        },
+        "badge_text_alignment": {
+          "label": "Text alignment",
+          "options__left": {
+            "label": "Left"
+          },
+          "options__center": {
+            "label": "Centre"
+          },
+          "options__right": {
+            "label": "Right"
+          }
+        },
+        "badge_text_color": {
+          "label": "Text colour",
+          "info": "Leave empty to use the colour scheme's text colour."
         },
         "badge_image": {
           "label": "Badge image",

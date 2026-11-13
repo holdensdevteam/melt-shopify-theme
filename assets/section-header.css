@@ -1,6 +1,33 @@
 @charset "UTF-8";
 /*! Compiled from src/scss/section-header.scss — edit that file, not this one. */
 .section-header {
+  --melt-header-radius: 6px;
+  --melt-header-margin-top: 9px;
+  --melt-header-margin-right: 13px;
+  --melt-header-margin-bottom: 0px;
+  --melt-header-margin-left: 13px;
+  margin-bottom: 0;
+}
+@media screen and (min-width: 750px) {
+  .section-header {
+    --melt-header-margin-top: 18px;
+    --melt-header-margin-right: 26px;
+    --melt-header-margin-bottom: 0px;
+    --melt-header-margin-left: 26px;
+  }
+}
+
+.header {
+  padding: 4px 3rem;
+}
+@media screen and (min-width: 990px) {
+  .header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+.section-header {
   padding: var(--melt-header-margin-top, 0) var(--melt-header-margin-right, 0) var(--melt-header-margin-bottom, 0) var(--melt-header-margin-left, 0);
 }
 
@@ -33,6 +60,10 @@
 
 .section-header .header-wrapper--translucent.gradient {
   background: rgba(var(--color-background), var(--melt-header-opacity, 1));
+}
+
+.section-header .header-wrapper--solid.gradient {
+  background: var(--melt-header-hover-bg, var(--gradient-background));
 }
 
 @media (hover: hover) {
