@@ -2691,7 +2691,6 @@
         },
         "badge_text_alignment": {
           "label": "Text alignment",
-          "info": "Desktop. On mobile the text is always centred.",
           "options__left": {
             "label": "Left"
           },
@@ -2828,8 +2827,7 @@
           "label": "Stack images"
         },
         "show_text_below": {
-          "label": "Text below image",
-          "info": "Puts the heading, text and buttons under the image or video instead of over it. With Slide blocks, only when there's a single slide."
+          "label": "Container"
         }
       },
       "blocks": {

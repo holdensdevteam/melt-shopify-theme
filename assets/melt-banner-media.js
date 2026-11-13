@@ -7,8 +7,7 @@
  * - Only the visible slide's video plays.
  * - Optional auto-advance (data-autoplay, data-speed in seconds). It stops while keyboard focus is
  *   inside, and for good once the visitor picks a slide.
- * - No pause button since Nov 2026 (removed on request); the hooks below still work if one is
- *   added back as .banner-media__toggle. Visitors whose device asks for reduced motion
+ * - The pause button stops videos and auto-advance. Visitors whose device asks for reduced motion
  *   start paused.
  * - Theme editor: selecting a Slide block shows that slide and holds auto-advance.
  */
