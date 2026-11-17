@@ -79,10 +79,12 @@
         "desktop_content_position": "bottom-left",
         "desktop_content_alignment": "left",
         "show_text_box": false,
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-3",
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": true,
+        "mobile_color_scheme_custom": true,
+        "mobile_color_scheme": ""
       }
     },
     "usp_bar_fVNHrU": {
@@ -129,6 +131,65 @@
         "padding_bottom": 52
       }
     },
+    "image_with_text_YJyzte": {
+      "type": "image-with-text",
+      "blocks": {
+        "eyebrow_eFrG8T": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Christmas",
+            "eyebrow_color": ""
+          }
+        },
+        "heading_H3eEWz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Christmas title",
+            "heading_size": "h1"
+          }
+        },
+        "text_axXMCJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_E93Jgy": {
+          "type": "button",
+          "settings": {
+            "button_label": "SHOP CHRISTMAS",
+            "button_link": "shopify://collections/christmas-1",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_eFrG8T",
+        "heading_H3eEWz",
+        "text_axXMCJ",
+        "button_E93Jgy"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image_source": "manual",
+        "height": "adapt",
+        "image_corners": "theme",
+        "image_radius": 8,
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_side_padding": "both",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_with_text_WxeKV7": {
       "type": "image-with-text",
       "blocks": {
@@ -136,7 +197,7 @@
           "type": "eyebrow",
           "settings": {
             "text": "AUTUMN",
-            "eyebrow_color": "#000000"
+            "eyebrow_color": ""
           }
         },
         "heading_CyKp3g": {
@@ -168,6 +229,7 @@
         "text_8QpfQK",
         "button_jHmhC6"
       ],
+      "disabled": true,
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image_source": "manual",
@@ -532,7 +594,7 @@
         "show_type_eyebrow": true,
         "eyebrow_color": "#171717",
         "price_rating_row": false,
-        "background_image": "shopify://shop_images/melt-section-bg.png",
+        "background_image": "shopify://shop_images/occasion-bg2.png",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
         "padding_top": 36,
@@ -1152,6 +1214,7 @@
   "order": [
     "image_banner",
     "usp_bar_fVNHrU",
+    "image_with_text_YJyzte",
     "image_with_text_WxeKV7",
     "17927738092bb092d4",
     "collection_list_aEkfbC",
