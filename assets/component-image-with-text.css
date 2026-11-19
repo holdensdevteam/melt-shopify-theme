@@ -377,3 +377,12 @@
 .image-with-text .image-with-text__content--flush-right {
   padding-right: 0;
 }
+
+.image-with-text__text.rte ul {
+  padding-left: 2px;
+}
+.image-with-text__text.rte ul li::marker {
+  color: #e1ac1b;
+  font-size: 2rem;
+  line-height: 1;
+}

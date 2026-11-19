@@ -318,14 +318,14 @@
           "background_hover": "#f6f4ee",
           "text": "#121212",
           "text_hover": "",
-          "button": "#ce7721",
+          "button": "#e1ac1b",
           "button_hover": "",
           "button_label": "#ffffff",
           "button_label_hover": "",
-          "secondary_button_label": "#ce7721",
+          "secondary_button_label": "#e1ac1b",
           "secondary_button_label_hover": "",
-          "border": "#ce7721",
-          "border_hover": "#ce7721",
+          "border": "#e1ac1b",
+          "border_hover": "#e1ac1b",
           "shadow": "rgba(0,0,0,0)",
           "shadow_hover": ""
         }

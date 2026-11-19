@@ -460,3 +460,15 @@
 .image-with-text .image-with-text__content--flush-right {
   padding-right: 0;
 }
+
+// Melt: bullet lists in the Text block — gold markers, flush left, matching the product page's
+// bullet list block (section-main-product.scss).
+.image-with-text__text.rte ul {
+  padding-left: 2px;
+
+  li::marker {
+    color: #e1ac1b;
+    font-size: 2rem;
+    line-height: 1;
+  }
+}
