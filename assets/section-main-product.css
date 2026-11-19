@@ -1579,11 +1579,11 @@ a.product__text {
   .melt-buy-buttons__options:has(.sls-more-info-container):has(.melt-buy-buttons__quantity) {
     --melt-qty-width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
     --melt-qty-height: calc((var(--inputs-border-width) * 2) + 3.6rem);
-    --melt-details-line: 2.6rem;
+    --melt-details-centre: 3.7rem;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
-    margin-bottom: 1.6rem;
+    margin-bottom: 0.5rem;
   }
   .melt-buy-buttons__options:has(.sls-more-info-container):has(.melt-buy-buttons__quantity) > #sealsubscriptions-default-widget-target-element {
     grid-column: 1/-1;
@@ -1594,7 +1594,7 @@ a.product__text {
     grid-row: 1;
     position: relative;
     z-index: 1;
-    margin: 0 0 calc((var(--melt-details-line) - var(--melt-qty-height)) / 2);
+    margin: 0 0 calc(var(--melt-details-centre) - var(--melt-qty-height) / 2);
   }
   .melt-buy-buttons__options:has(.sls-more-info-container):has(.melt-buy-buttons__quantity) .sls-more-info-container {
     padding-right: calc(var(--melt-qty-width) + 1.6rem);
