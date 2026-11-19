@@ -73,7 +73,7 @@
           "type": "standout_text",
           "settings": {
             "text": "Next working day delivery on orders by 1pm",
-            "color_scheme": "scheme-2"
+            "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
           }
         },
         "divider_Gwcpnm": {
@@ -92,15 +92,13 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_gift_card_recipient": true,
+            "show_quantity_selector": true,
+            "buttons_inline": true
           }
         }
       },
@@ -114,7 +112,6 @@
         "standout_text_JqaAXw",
         "divider_Gwcpnm",
         "variant_picker",
-        "quantity_selector",
         "buy_buttons"
       ],
       "settings": {
