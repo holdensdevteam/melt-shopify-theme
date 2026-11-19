@@ -1583,16 +1583,31 @@ a.product__text {
 
 @media screen and (min-width: 750px) {
   .product-form__buttons.melt-buy-buttons--inline {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+    align-items: start;
   }
-  .product-form__buttons.melt-buy-buttons--inline > .product-form__submit,
-  .product-form__buttons.melt-buy-buttons--inline > .shopify-payment-button {
-    flex: 1 1 0;
+  .product-form__buttons.melt-buy-buttons--inline > .product-form__submit {
+    grid-column: 1;
+    grid-row: 1;
     min-width: 0;
     padding: 0;
     margin-bottom: 0;
+  }
+  .product-form__buttons.melt-buy-buttons--inline > .product-form__submit:only-child {
+    grid-column: 1/-1;
+  }
+  .product-form__buttons.melt-buy-buttons--inline > .shopify-payment-button {
+    display: contents;
+  }
+  .product-form__buttons.melt-buy-buttons--inline > .shopify-payment-button > * {
+    grid-column: 1/-1;
+    min-width: 0;
+  }
+  .product-form__buttons.melt-buy-buttons--inline > .shopify-payment-button > :first-child {
+    grid-column: 2;
+    grid-row: 1;
   }
   .product-form__buttons.melt-buy-buttons--inline .shopify-payment-button__button,
   .product-form__buttons.melt-buy-buttons--inline .product-form__submit {
@@ -1621,6 +1636,9 @@ a.product__text {
   border: 1px solid #e5e3dc;
   border-radius: calc(var(--media-radius) - var(--media-border-width));
   margin-bottom: 1rem;
+}
+#sealsubscriptions-default-widget-target-element .sealsubs-target-element .sealsubs-container .sls-purchase-options-container .sls-option-container .sls-select {
+  border-radius: calc(var(--media-radius) - var(--media-border-width));
 }
 #sealsubscriptions-default-widget-target-element .sealsubs-target-element .sealsubs-container .sls-more-info-container {
   padding-bottom: 0;

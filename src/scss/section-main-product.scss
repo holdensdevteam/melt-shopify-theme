@@ -1748,18 +1748,42 @@ $gallery-fold-offset: 200px;
 }
 
 // "Buttons side by side": Add to cart and the dynamic checkout button 50/50 from 750px; stacked below.
+// A grid, with Shopify's .shopify-payment-button wrapper set to display: contents so its children
+// join the grid: the checkout button takes the right-hand half, and anything Shopify adds after it
+// (the subscription consent text, "More payment options") spans the full width underneath.
 @include bp.from(bp.$medium) {
   .product-form__buttons.melt-buy-buttons--inline {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+    align-items: start;
 
-    > .product-form__submit,
-    > .shopify-payment-button {
-      flex: 1 1 0;
+    > .product-form__submit {
+      grid-column: 1;
+      grid-row: 1;
       min-width: 0;
       padding: 0;
       margin-bottom: 0;
+
+      // Dynamic checkout off: Add to cart takes the full row.
+      &:only-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    > .shopify-payment-button {
+      display: contents;
+
+      > * {
+        grid-column: 1 / -1;
+        min-width: 0;
+      }
+
+      // The checkout button itself (shopify-accelerated-checkout, or older .shopify-payment-button__button)
+      > :first-child {
+        grid-column: 2;
+        grid-row: 1;
+      }
     }
 
     // Dawn's min-width on buttons (12rem+) can't push a half past 50%.
@@ -1805,6 +1829,9 @@ $gallery-fold-offset: 200px;
           border: 1px solid#e5e3dc;
           border-radius: calc(var(--media-radius) - var(--media-border-width));
           margin-bottom: 1rem;
+          .sls-select {
+            border-radius: calc(var(--media-radius) - var(--media-border-width));
+          }
         }
       }
       .sls-more-info-container {
