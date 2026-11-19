@@ -60,7 +60,21 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
-        <div class="product-form__buttons">
+        {%- comment -%}
+          Melt: Seal Subscriptions puts its widget in this element when it finds one in the form
+          (otherwise it prepends to the form), so the order is subscription options → quantity → buttons.
+        {%- endcomment -%}
+        <div id="sealsubscriptions-default-widget-target-element"></div>
+
+        {%- if block.settings.show_quantity_selector -%}
+          {%- render 'melt-product-quantity',
+            product: product,
+            product_form_id: product_form_id,
+            class: 'melt-buy-buttons__quantity'
+          -%}
+        {%- endif -%}
+
+        <div class="product-form__buttons{% if block.settings.buttons_inline %} melt-buy-buttons--inline{% endif %}">
           {%- liquid
             assign check_against_inventory = true
             if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'

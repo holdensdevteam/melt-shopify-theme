@@ -4008,6 +4008,14 @@
             "show_gift_card_recipient": {
               "label": " Gift card sending options",
               "info": "Customers can add a personal message and schedule the send date. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
+            },
+            "show_quantity_selector": {
+              "label": "Show quantity selector",
+              "info": "Shows above the buttons, below any subscription options. Remove the separate Quantity selector block when this is on."
+            },
+            "buttons_inline": {
+              "label": "Buttons side by side",
+              "info": "Add to cart and the dynamic checkout button share one line. They stack on mobile."
             }
           }
         },

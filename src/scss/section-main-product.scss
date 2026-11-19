@@ -1719,3 +1719,101 @@ $gallery-fold-offset: 200px;
     );
   }
 }
+
+/*
+ * Melt: Buy buttons block — quantity selector and side-by-side buttons (snippets/buy-buttons.liquid).
+ * Order inside the form: Seal Subscriptions widget → quantity → buttons.
+ */
+.product-form .melt-buy-buttons__quantity {
+  margin-top: 1.2rem;
+  margin-bottom: 1.6rem;
+  .quantity__label {
+    display: none;
+  }
+  .quantity {
+    color: #3d3c3c;
+    min-height: calc((var(--inputs-border-width) * 2) + 3.6rem);
+    &::after {
+      box-shadow: 0 0 0 var(--inputs-border-width) rgb(61 60 60);
+    }
+    .quantity__input {
+      opacity: 1;
+    }
+  }
+}
+
+// The Seal target is empty until Seal fills it (or if the app is off) — don't let it add space.
+#sealsubscriptions-default-widget-target-element:empty {
+  display: none;
+}
+
+// "Buttons side by side": Add to cart and the dynamic checkout button 50/50 from 750px; stacked below.
+@include bp.from(bp.$medium) {
+  .product-form__buttons.melt-buy-buttons--inline {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+
+    > .product-form__submit,
+    > .shopify-payment-button {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    // Dawn's min-width on buttons (12rem+) can't push a half past 50%.
+    .shopify-payment-button__button,
+    .product-form__submit {
+      min-width: 0;
+    }
+
+    .product-form__submit {
+      border: 1px solid #3d3c3c;
+      &::after {
+        box-shadow: none;
+      }
+      &:hover {
+        &::after {
+          box-shadow:
+            0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
+              rgba(var(--color-button-text), var(--border-opacity)),
+            0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
+        }
+      }
+    }
+
+    .shopify-payment-button__button {
+    }
+
+    // "More payment options" link sits under the dynamic checkout half only.
+    .shopify-payment-button__more-options {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#sealsubscriptions-default-widget-target-element {
+  .sealsubs-target-element {
+    .sealsubs-container {
+      #seal-purchase-options-label {
+        display: none;
+      }
+      .sls-purchase-options-container {
+        border: none;
+        .sls-option-container {
+          border: 1px solid#e5e3dc;
+          border-radius: calc(var(--media-radius) - var(--media-border-width));
+          margin-bottom: 1rem;
+        }
+      }
+      .sls-more-info-container {
+        padding-bottom: 0;
+        padding-left: 0;
+        .sls-more-info-text {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

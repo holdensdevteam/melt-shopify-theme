@@ -25,6 +25,20 @@
 
   .jm-review-widget-sidebar-header__sidebar {
     display: grid;
+    // The sidebar stretches to the reviews column's height and Judge.me pushes the button to the
+    // bottom of it; keep everything at the top so "Write a review" sits under the histogram.
+
+    @include bp.from(bp.$medium) {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start !important;
+      align-self: flex-start;
+      width: 100%;
+    }
+    @media (min-width: 868px) {
+      position: sticky;
+      top: 10rem;
+    }
     .jm-review-widget-sidebar-header__title {
       font-family: var(--font-heading-family);
       font-style: var(--font-heading-style);
@@ -34,6 +48,7 @@
     }
     .jm-action-buttons {
       order: 2;
+      margin-top: 2.4rem !important; // replaces Judge.me's margin-top: auto
     }
     .jm-histogram {
       order: 1;
@@ -61,7 +76,7 @@
 
   .jm-review-widget__body {
     .jm-box {
-      background-color: #f6f4ee;
+      background-color: #e5e3dc;
       padding: 3rem 3rem 1.5rem;
       border-bottom: none;
       border-radius: 6px;

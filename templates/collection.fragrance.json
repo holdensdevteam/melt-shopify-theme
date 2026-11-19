@@ -51,7 +51,7 @@
           "type": "video",
           "settings": {
             "video": "{{ collection.metafields.custom.fragrance_details.value.video.value }}",
-            "playback": "controls",
+            "playback": "ambient",
             "ratio": "landscape",
             "description": ""
           }

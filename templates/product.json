@@ -49,7 +49,7 @@
             "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
             "tags_text": "",
             "max_tags": 3,
-            "color_scheme": "scheme-2"
+            "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
           }
         },
         "judge_me_reviews_preview_badge_k3Lxwa": {
@@ -456,7 +456,7 @@
         "cta_arrow": true,
         "cta_color_scheme": "",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -476,7 +476,7 @@
         "show_type_eyebrow": true,
         "eyebrow_color": "#171717",
         "price_rating_row": true,
-        "background_image": "shopify://shop_images/melt-section-bg.png",
+        "background_image": "shopify://shop_images/occasion-bg2.png",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -509,7 +509,7 @@
         "judge_me_reviews_review_widget_FagqEG": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "review_data": "sample_data",
+            "review_data": "real_data",
             "max_width": 1200,
             "show_shop_reviews": false,
             "empty_state": "empty_widget"
