@@ -48,13 +48,18 @@
             "button_margin_top": 30,
             "button_margin_bottom": 0
           }
+        },
+        "judge_me_reviews_all_reviews_text_tdAQ3n": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
         }
       },
       "block_order": [
         "slide_WTexM9",
         "heading",
         "text_wtRGxp",
-        "button"
+        "button",
+        "judge_me_reviews_all_reviews_text_tdAQ3n"
       ],
       "settings": {
         "image": "shopify://shop_images/Home-hero.jpg",
@@ -63,7 +68,7 @@
         "image_behavior": "none",
         "slider_autoplay": false,
         "slider_speed": 6,
-        "badge_type": "text",
+        "badge_type": "app",
         "badge_image": "shopify://shop_images/trustpilot-badge-white.png",
         "badge_text": "★★★★★ Rated 4.9 by 2,118 customers",
         "badge_text_size": "small",
