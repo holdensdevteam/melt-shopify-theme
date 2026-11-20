@@ -33,7 +33,8 @@
           "type": "text",
           "settings": {
             "text": "{{ product.metafields.custom.short_title.value.short_title.value }}",
-            "text_style": "uppercase"
+            "text_style": "uppercase",
+            "text_size": "xlarge"
           }
         },
         "heading_37ehEM": {

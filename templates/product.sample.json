@@ -32,28 +32,20 @@
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "{{ product.metafields.custom.short_title.value.short_title.value }}",
-            "text_style": "uppercase"
+            "text": "Wax samples",
+            "text_style": "uppercase",
+            "text_size": "xlarge"
           }
         },
         "heading_37ehEM": {
           "type": "heading",
           "settings": {
-            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}&nbsp;[type]",
+            "heading": "Sample selection",
             "heading_tag": "h2"
           }
         },
-        "tags_qEJnDW": {
-          "type": "tags",
-          "settings": {
-            "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
-            "tags_text": "",
-            "max_tags": 3,
-            "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
-          }
-        },
-        "judge_me_reviews_preview_badge_k3Lxwa": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "description_mFrHth": {
+          "type": "description",
           "settings": {}
         },
         "price": {
@@ -69,37 +61,11 @@
             "max_items": 6
           }
         },
-        "standout_text_JqaAXw": {
-          "type": "standout_text",
-          "settings": {
-            "text": "Next working day delivery on orders by 1pm",
-            "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
-          }
-        },
-        "divider_Gwcpnm": {
-          "type": "divider",
-          "disabled": true,
-          "settings": {
-            "thickness": 1,
-            "color": "#e5e3dc",
-            "margin_top": 20,
-            "margin_bottom": 20
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle"
-          }
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true,
-            "show_quantity_selector": true,
-            "buttons_inline": true
           }
         },
         "fragrance_picker": {
@@ -108,21 +74,38 @@
             "title": "Choose 5 fragrances",
             "max": 5,
             "require_full": true,
+            "fragrances": [],
             "property_name": "Fragrances"
+          }
+        },
+        "divider_rrAtM8": {
+          "type": "divider",
+          "settings": {
+            "thickness": 1,
+            "color": "",
+            "margin_top": 24,
+            "margin_bottom": 24
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "show_quantity_selector": true,
+            "buttons_inline": true
           }
         }
       },
       "block_order": [
         "vendor",
         "heading_37ehEM",
-        "tags_qEJnDW",
-        "judge_me_reviews_preview_badge_k3Lxwa",
+        "description_mFrHth",
         "price",
         "bullet_list_KPreAr",
-        "standout_text_JqaAXw",
-        "divider_Gwcpnm",
         "variant_picker",
         "fragrance_picker",
+        "divider_rrAtM8",
         "buy_buttons"
       ],
       "settings": {
@@ -219,6 +202,7 @@
         },
         "accordion_hiCmzi": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "Why we love it",
             "source": "custom",
@@ -232,15 +216,6 @@
             "heading": "How it is made",
             "source": "custom",
             "content": "<p>{{ product.metafields.custom.how_it_is_made | metafield_tag }}</p>",
-            "open": false
-          }
-        },
-        "accordion_gNKamB": {
-          "type": "accordion",
-          "settings": {
-            "heading": "Burn guide & care",
-            "source": "custom",
-            "content": "<p>{{ product.metafields.custom.burn_guide_and_care | metafield_tag }}</p>",
             "open": false
           }
         },
@@ -266,39 +241,15 @@
           "type": "detail",
           "settings": {
             "label": "Type",
-            "value": "{{ product.metafields.custom.candle_type | metafield_text: field: 'type' }}",
+            "value": "[type]",
             "suffix": ""
           }
         },
         "detail_eY8gD4": {
           "type": "detail",
           "settings": {
-            "label": "Colour",
-            "value": "{{ product.metafields.custom.colour | metafield_text: field: 'colour' }}",
-            "suffix": ""
-          }
-        },
-        "detail_gtPPb6": {
-          "type": "detail",
-          "settings": {
-            "label": "Mood",
-            "value": "{{ product.metafields.custom.mood | metafield_text: field: 'label' }}",
-            "suffix": ""
-          }
-        },
-        "detail_fCgWmx": {
-          "type": "detail",
-          "settings": {
-            "label": "Burn time",
-            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours",
-            "suffix": ""
-          }
-        },
-        "detail_Rhxjrq": {
-          "type": "detail",
-          "settings": {
-            "label": "Wick",
-            "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}",
+            "label": "Quantity",
+            "value": "5",
             "suffix": ""
           }
         },
@@ -315,14 +266,10 @@
         "accordion_XKAzje",
         "accordion_hiCmzi",
         "accordion_9wR3TW",
-        "accordion_gNKamB",
         "accordion_mUyrM7",
         "accordion_Pz3yUz",
         "detail_43NAqi",
         "detail_eY8gD4",
-        "detail_gtPPb6",
-        "detail_fCgWmx",
-        "detail_Rhxjrq",
         "detail_rgbA6q"
       ],
       "name": "t:sections.melt_product_details.name",
@@ -331,121 +278,11 @@
         "heading_size": "h1",
         "item_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
         "glance_title": "At a glance",
-        "glance_color_scheme": "",
+        "glance_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "glance_sticky": true,
         "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 40
-      }
-    },
-    "image_with_text_ARHnVz": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_tJarBq": {
-          "type": "heading",
-          "settings": {
-            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}",
-            "heading_size": "h1"
-          }
-        },
-        "scent_notes_9dWTRT": {
-          "type": "scent_notes",
-          "settings": {
-            "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
-            "tags_text": "",
-            "max_tags": 6,
-            "color_scheme": "scheme-07ffbc8b-f381-4fa5-bb0d-50e31039397e"
-          }
-        },
-        "text_x3yCMt": {
-          "type": "text",
-          "settings": {
-            "text": "<p>{{ product.metafields.custom.fragrance.value.detail | metafield_tag }}</p><p></p><p><strong>{{ product.metafields.custom.fragrance.value.fragrance.value }}</strong><strong> uses the following scent notes:</strong></p>{{ product.metafields.custom.all_scent_notes | metafield_tag: field: 'scent' }}",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "heading_tJarBq",
-        "scent_notes_9dWTRT",
-        "text_x3yCMt"
-      ],
-      "name": "t:sections.image-with-text.presets.name",
-      "settings": {
-        "image_source": "manual",
-        "height": "medium",
-        "image_corners": "theme",
-        "image_radius": 8,
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "image_behavior": "none",
-        "content_layout": "no-overlap",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_side_padding": "flush-left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn_HXkwnz": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_ikFacF": {
-          "type": "column",
-          "settings": {
-            "title": "The Blend",
-            "heading_size": "h2",
-            "text": "<p>{{ product.metafields.custom.fragrance.value.the_blend | metafield_tag }}</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_xBLzpw": {
-          "type": "column",
-          "settings": {
-            "title": "Perfect for",
-            "heading_size": "h2",
-            "text": "<p>{{ product.metafields.custom.fragrance.value.perfect_for | metafield_tag }}</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_jBLTtw": {
-          "type": "column",
-          "settings": {
-            "title": "Moments",
-            "heading_size": "h2",
-            "text": "<p>{{ product.metafields.custom.fragrance.value.moments | metafield_tag }}</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_ikFacF",
-        "column_xBLzpw",
-        "column_jBLTtw"
-      ],
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "column_heading_size": "h3",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "disclosures": {
@@ -675,8 +512,6 @@
     "usp_bar_bgyAdV",
     "melt_divider_CLYTiw",
     "melt_product_details_ji3FE9",
-    "image_with_text_ARHnVz",
-    "multicolumn_HXkwnz",
     "disclosures",
     "featured_collection_KeLjXB",
     "related-products",
