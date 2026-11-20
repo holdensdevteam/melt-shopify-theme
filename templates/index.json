@@ -144,14 +144,14 @@
         "heading_H3eEWz": {
           "type": "heading",
           "settings": {
-            "heading": "Christmas title",
+            "heading": "Home for Christmas",
             "heading_size": "h1"
           }
         },
         "text_axXMCJ": {
           "type": "text",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p>The best-smelling room in the house. Mince pies on the go, the tree finally up and everyone home at once. Our Christmas fragrances, gathered in one place.</p>",
             "text_style": "body"
           }
         },
@@ -173,6 +173,7 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image_source": "manual",
+        "image": "shopify://shop_images/Melt_Home_00180.jpg",
         "height": "adapt",
         "image_corners": "theme",
         "image_radius": 8,
@@ -180,7 +181,7 @@
         "layout": "image_first",
         "image_behavior": "none",
         "content_layout": "no-overlap",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "content_side_padding": "both",
         "mobile_content_alignment": "left",
@@ -285,7 +286,7 @@
             "corner_styling": "soft",
             "header_text_color": "#000000",
             "text_color": "#000000",
-            "card_color": "#FFFFFF",
+            "card_color": "#ffffff",
             "stars_color": "",
             "arrows_color": "#4d4d4d",
             "transition_speed": 5,
