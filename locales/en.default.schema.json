@@ -2663,11 +2663,15 @@
         },
         "badge_type": {
           "label": "Badge type",
+          "info": "App block: add an app block to this section (e.g. Judge.me All Reviews Counter) and it shows here.",
           "options__image": {
             "label": "Image"
           },
           "options__text": {
             "label": "Text"
+          },
+          "options__app": {
+            "label": "App block"
           }
         },
         "badge_text": {

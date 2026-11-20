@@ -651,6 +651,34 @@
   }
 }
 
+.banner__badge--app {
+  width: auto;
+  max-width: 100%;
+  color: var(--banner-badge-color, rgb(var(--color-foreground)));
+}
+.banner__badge--app .shopify-app-block {
+  margin: 0;
+}
+.banner__badge--app .jdgm-widget .jdgm-all-reviews-text__wrapper .jdgm-all-reviews-rating {
+  padding-right: 0;
+}
+.banner__badge--app .jdgm-widget .jdgm-all-reviews-text__wrapper .jdgm-all-reviews-rating::before {
+  display: none;
+}
+.banner__badge--app .jdgm-widget .jdgm-all-reviews-text__wrapper .jdgm-all-reviews-rating .jdgm-all-reviews-rating__score {
+  display: none;
+}
+.banner__badge--app .jdgm-widget .jdgm-all-reviews-text__wrapper .jdgm-all-reviews-rating .jdgm-all-reviews-rating__stars .jdgm-star {
+  color: #fff;
+}
+.banner__badge--app .jdgm-widget .jdgm-all-reviews-text__wrapper .jdgm-all-reviews-text__text {
+  border: none;
+  color: #fff;
+}
+.banner__badge--app .jdgm-widget .jdgm-verified-by {
+  display: none;
+}
+
 .banner__badge-wrapper--left {
   justify-content: flex-start;
   text-align: left;

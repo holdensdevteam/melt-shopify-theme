@@ -741,6 +741,44 @@
   }
 }
 
+// Badge type › App block: an app block (e.g. Judge.me All Reviews Counter) in the badge spot.
+// Sized by its content; Text colour sets the colour it inherits (the app may set its own).
+.banner__badge--app {
+  width: auto;
+  max-width: 100%;
+  color: var(--banner-badge-color, rgb(var(--color-foreground)));
+
+  .shopify-app-block {
+    margin: 0;
+  }
+
+  .jdgm-widget {
+    .jdgm-all-reviews-text__wrapper {
+      .jdgm-all-reviews-rating {
+        padding-right: 0;
+        &::before {
+          display: none;
+        }
+        .jdgm-all-reviews-rating__score {
+          display: none;
+        }
+        .jdgm-all-reviews-rating__stars {
+          .jdgm-star {
+            color: #fff;
+          }
+        }
+      }
+      .jdgm-all-reviews-text__text {
+        border: none;
+        color: #fff;
+      }
+    }
+    .jdgm-verified-by {
+      display: none;
+    }
+  }
+}
+
 .banner__badge-wrapper--left {
   justify-content: flex-start;
   text-align: left;

@@ -136,6 +136,20 @@
     assign badge_content = section.settings.badge_text
   endif
 -%}
+{%- comment -%}
+  Badge type › App block: app blocks added to this section (e.g. Judge.me's All Reviews Counter)
+  render in the badge spot, not in the content box.
+{%- endcomment -%}
+{%- if section.settings.badge_type == 'app' -%}
+  {%- capture badge_content -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == '@app' -%}
+        {%- render block -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- assign badge_content = badge_content | strip -%}
+{%- endif -%}
 
 <div
   id="Banner-{{ section.id }}"
@@ -447,6 +461,15 @@
   {%- assign badge = section.settings.badge_image -%}
   {%- if badge_content == blank -%}
     {%- comment -%} No badge {%- endcomment -%}
+  {%- elsif section.settings.badge_type == 'app' -%}
+    <div
+      class="banner__badge-wrapper banner__badge-wrapper--{{ section.settings.badge_text_alignment }} page-width"
+      {% if section.settings.badge_text_color != blank %}
+        style="--banner-badge-color: {{ section.settings.badge_text_color }};"
+      {% endif %}
+    >
+      <div class="banner__badge banner__badge--app">{{ badge_content }}</div>
+    </div>
   {%- elsif section.settings.badge_type == 'text' -%}
     {%- render 'melt-banner-badge-text',
       text: section.settings.badge_text,
@@ -609,8 +632,13 @@
         {
           "value": "text",
           "label": "t:sections.image-banner.settings.badge_type.options__text.label"
+        },
+        {
+          "value": "app",
+          "label": "t:sections.image-banner.settings.badge_type.options__app.label"
         }
       ],
+      "info": "t:sections.image-banner.settings.badge_type.info",
       "default": "image"
     },
     {
@@ -618,7 +646,7 @@
       "id": "badge_image",
       "label": "t:sections.image-banner.settings.badge_image.label",
       "info": "t:sections.image-banner.settings.badge_image.info",
-      "visible_if": "{{ section.settings.badge_type != 'text' }}"
+      "visible_if": "{{ section.settings.badge_type == 'image' }}"
     },
     {
       "type": "text",
@@ -672,7 +700,7 @@
         }
       ],
       "default": "right",
-      "visible_if": "{{ section.settings.badge_type == 'text' }}"
+      "visible_if": "{{ section.settings.badge_type != 'image' }}"
     },
     {
       "type": "color",
@@ -680,12 +708,13 @@
       "label": "t:sections.image-banner.settings.badge_text_color.label",
       "info": "t:sections.image-banner.settings.badge_text_color.info",
       "default": "#FFFFFF",
-      "visible_if": "{{ section.settings.badge_type == 'text' }}"
+      "visible_if": "{{ section.settings.badge_type != 'image' }}"
     },
     {
       "type": "url",
       "id": "badge_link",
-      "label": "t:sections.image-banner.settings.badge_link.label"
+      "label": "t:sections.image-banner.settings.badge_link.label",
+      "visible_if": "{{ section.settings.badge_type != 'app' }}"
     },
     {
       "type": "range",
@@ -696,7 +725,7 @@
       "unit": "px",
       "default": 120,
       "label": "t:sections.image-banner.settings.badge_width.label",
-      "visible_if": "{{ section.settings.badge_type != 'text' }}"
+      "visible_if": "{{ section.settings.badge_type == 'image' }}"
     },
     {
       "type": "range",
@@ -707,7 +736,7 @@
       "unit": "px",
       "default": 90,
       "label": "t:sections.image-banner.settings.badge_width_mobile.label",
-      "visible_if": "{{ section.settings.badge_type != 'text' }}"
+      "visible_if": "{{ section.settings.badge_type == 'image' }}"
     },
     {
       "type": "header",
@@ -889,6 +918,9 @@
     }
   ],
   "blocks": [
+    {
+      "type": "@app"
+    },
     {
       "type": "heading",
       "name": "t:sections.image-banner.blocks.heading.name",

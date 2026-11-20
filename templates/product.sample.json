@@ -44,6 +44,10 @@
             "heading_tag": "h2"
           }
         },
+        "judge_me_reviews_preview_badge_rBj4MD": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
         "description_mFrHth": {
           "type": "description",
           "settings": {}
@@ -52,6 +56,15 @@
           "type": "price",
           "settings": {
             "price_size": "large"
+          }
+        },
+        "divider_fDDgYV": {
+          "type": "divider",
+          "settings": {
+            "thickness": 1,
+            "color": "",
+            "margin_top": 14,
+            "margin_bottom": 14
           }
         },
         "bullet_list_KPreAr": {
@@ -90,9 +103,9 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": true,
-            "show_quantity_selector": true,
+            "show_quantity_selector": false,
             "buttons_inline": true
           }
         }
@@ -100,8 +113,10 @@
       "block_order": [
         "vendor",
         "heading_37ehEM",
+        "judge_me_reviews_preview_badge_rBj4MD",
         "description_mFrHth",
         "price",
+        "divider_fDDgYV",
         "bullet_list_KPreAr",
         "variant_picker",
         "fragrance_picker",
