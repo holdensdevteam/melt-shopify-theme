@@ -256,15 +256,7 @@
           "type": "detail",
           "settings": {
             "label": "Type",
-            "value": "{{ product.metafields.custom.candle_type | metafield_text: field: 'type' }}",
-            "suffix": ""
-          }
-        },
-        "detail_eY8gD4": {
-          "type": "detail",
-          "settings": {
-            "label": "Colour",
-            "value": "{{ product.metafields.custom.colour | metafield_text: field: 'colour' }}",
+            "value": "[type]",
             "suffix": ""
           }
         },
@@ -273,22 +265,6 @@
           "settings": {
             "label": "Mood",
             "value": "{{ product.metafields.custom.mood | metafield_text: field: 'label' }}",
-            "suffix": ""
-          }
-        },
-        "detail_fCgWmx": {
-          "type": "detail",
-          "settings": {
-            "label": "Burn time",
-            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours",
-            "suffix": ""
-          }
-        },
-        "detail_Rhxjrq": {
-          "type": "detail",
-          "settings": {
-            "label": "Wick",
-            "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}",
             "suffix": ""
           }
         },
@@ -309,10 +285,7 @@
         "accordion_mUyrM7",
         "accordion_Pz3yUz",
         "detail_43NAqi",
-        "detail_eY8gD4",
         "detail_gtPPb6",
-        "detail_fCgWmx",
-        "detail_Rhxjrq",
         "detail_rgbA6q"
       ],
       "name": "t:sections.melt_product_details.name",
@@ -321,7 +294,7 @@
         "heading_size": "h1",
         "item_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
         "glance_title": "At a glance",
-        "glance_color_scheme": "",
+        "glance_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "glance_sticky": true,
         "color_scheme": "",
         "padding_top": 40,
