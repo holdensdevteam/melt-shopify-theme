@@ -23,10 +23,17 @@
 {%- endstyle -%}
 
 {%- liquid
+  # Detail values can use the placeholders [type], [title] and [vendor] (as in the Product
+  # information section's Text and Heading blocks). Raw values here: the value is escaped on output.
+  # A placeholder for an empty field becomes nothing, so the row hides.
+  assign placeholder_type = product.type
+  assign placeholder_title = product.title
+  assign placeholder_vendor = product.vendor
+
   assign has_details = false
   for block in section.blocks
     if block.type == 'detail' and block.settings.label != blank
-      assign detail_value = block.settings.value | strip
+      assign detail_value = block.settings.value | replace: '[type]', placeholder_type | replace: '[title]', placeholder_title | replace: '[vendor]', placeholder_vendor | strip
       if detail_value != blank or request.design_mode
         assign has_details = true
       endif
@@ -49,11 +56,16 @@
                   The unit lives in its own setting so an empty metafield hides the row,
                   rather than leaving the unit on its own (e.g. "g" with no weight).
                 {%- endcomment -%}
-                {%- assign detail_value = block.settings.value | strip -%}
+                {%- assign detail_value = block.settings.value
+                  | replace: '[type]', placeholder_type
+                  | replace: '[title]', placeholder_title
+                  | replace: '[vendor]', placeholder_vendor
+                  | strip
+                -%}
                 {%- if detail_value != blank -%}
                   <div class="melt-details__row" {{ block.shopify_attributes }}>
                     <dt class="melt-details__label">{{ block.settings.label | escape }}</dt>
-                    <dd class="melt-details__value">{{ detail_value | append: block.settings.suffix | escape }}</dd>
+                    <dd class="melt-details__value">{{ detail_value | append: block.settings.suffix | escape_once }}</dd>
                   </div>
                 {%- elsif request.design_mode -%}
                   <div class="melt-details__row melt-details__row--empty" {{ block.shopify_attributes }}>

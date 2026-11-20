@@ -1240,7 +1240,7 @@
             },
             "value": {
               "label": "Value",
-              "info": "Type it, or use the dynamic source icon to connect a metafield. Rows without a value are hidden."
+              "info": "Type it, use [type], [title] or [vendor] for the product's own details, or use the dynamic source icon to connect a metafield. Rows without a value are hidden."
             }
           }
         }

@@ -111,7 +111,13 @@
   assign fc_hide = false
   if fc_source == 'product_fragrance' and product
     if fc_fragrance_handle != blank
-      assign fc_collection = collections[fc_fragrance_handle]
+      # Fragrance collections are handled "<fragrance>-fragrance" (e.g. angel-fragrance for the
+      # "angel" fragrance entry); the bare handle is kept as a fallback.
+      assign fc_fragrance_collection_handle = fc_fragrance_handle | append: '-fragrance'
+      assign fc_collection = collections[fc_fragrance_collection_handle]
+      if fc_collection == blank
+        assign fc_collection = collections[fc_fragrance_handle]
+      endif
     else
       assign fc_hide = true
     endif
