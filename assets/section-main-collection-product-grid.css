@@ -1,2 +1,5 @@
 @charset "UTF-8";
 /*! Compiled from src/scss/section-main-collection-product-grid.scss — edit that file, not this one. */
+#product-grid .product-card-wrapper .card {
+  --border-radius: var(--media-radius);
+}

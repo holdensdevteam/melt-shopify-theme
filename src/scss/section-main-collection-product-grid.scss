@@ -5,3 +5,9 @@
 // Card content options (eyebrow, scent notes, price + rating row, name size) are the shared
 // .melt-cards rules in melt-global.scss; Dawn's grid styles stay in template-collection.css.
 // Add grid-specific styles here.
+
+// Product images take the theme's media corner radius (Theme settings › Media › Corner radius)
+// rather than the product card radius. In Card style the whole card is rounded instead.
+#product-grid .product-card-wrapper .card {
+  --border-radius: var(--media-radius);
+}
