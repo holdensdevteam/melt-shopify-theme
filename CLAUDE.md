@@ -29,12 +29,12 @@ shopify theme dev --store=melt-co-uk-maqm6c3j.myshopify.com   # local dev, http:
 shopify theme check                                            # lint — must pass before a PR
 shopify theme list
 shopify theme pull --live                                      # pull theme-editor changes back (commit first)
-shopify theme push --live                                      # deploy to Holdens Dawn Theme (see below)
+shopify theme push --live                                      # deploy to the published theme, Melt Dawn v2 (see below)
 ```
 
 Deploys are **manual CLI** during the build. The Shopify GitHub integration is deliberately not connected yet — don't suggest connecting it as a fix for something.
 
-Store `melt-co-uk-maqm6c3j.myshopify.com` — a paid **client transfer store** (replaced the earlier `holdens-melt-dev` Partner dev store, which is retired). It transfers to Melt at handover and will take the `melt.co.uk` domain once acquired. Its published theme is **`Holdens Dawn Theme`** (id `195550380358`) — our Dawn fork.
+Store `melt-co-uk-maqm6c3j.myshopify.com` — a paid **client transfer store** (replaced the earlier `holdens-melt-dev` Partner dev store, which is retired). It transfers to Melt at handover and will take the `melt.co.uk` domain once acquired. Its published theme is **`Melt Dawn v2`** (id `198574899526`), live since Nov 2026. Our original Dawn fork, **`Holdens Dawn Theme`** (id `195550380358`), is now unpublished. It isn't confirmed that v2 matches `develop`: it may carry theme-editor edits that aren't in git, so diff a file against v2 before pushing it there, and run `shopify theme list` before any live push to confirm which theme is `[live]`.
 
 **Pre-launch, "live" is still a dev site.** The customer-facing site is the WooCommerce store at `https://www.themeltco.com/` until the Shopify launch in October 2026. The Shopify store is password-protected with no SEO, so `shopify theme push --live` is acceptable while Lawrence is the sole editor. Still commit before any push or pull — both overwrite without merging and ignore Git state.
 
@@ -44,7 +44,7 @@ Store `melt-co-uk-maqm6c3j.myshopify.com` — a paid **client transfer store** (
 
 ## Branches
 
-`main` = production/live · `develop` = integration (currently what's on Holdens Dawn Theme) · `feature/*` off develop.
+`main` = production/live · `develop` = integration (what was on Holdens Dawn Theme; not yet reconciled with Melt Dawn v2) · `feature/*` off develop.
 
 Work happens on `develop` unless told otherwise. Don't commit or push unless asked.
 
