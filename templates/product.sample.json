@@ -96,10 +96,19 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": true,
             "show_quantity_selector": true,
             "buttons_inline": true
+          }
+        },
+        "fragrance_picker": {
+          "type": "fragrance_picker",
+          "settings": {
+            "title": "Choose 5 fragrances",
+            "max": 5,
+            "require_full": true,
+            "property_name": "Fragrances"
           }
         }
       },
@@ -113,6 +122,7 @@
         "standout_text_JqaAXw",
         "divider_Gwcpnm",
         "variant_picker",
+        "fragrance_picker",
         "buy_buttons"
       ],
       "settings": {

@@ -3867,6 +3867,31 @@
             }
           }
         },
+        "fragrance_picker": {
+          "name": "Fragrance picker",
+          "settings": {
+            "title": {
+              "label": "Title",
+              "default": "Choose 5 fragrances"
+            },
+            "max": {
+              "label": "Fragrances to choose"
+            },
+            "require_full": {
+              "label": "Must choose all before adding to cart",
+              "info": "Add to cart asks for the full number first. Turn off dynamic checkout buttons in the Buy buttons block on this product's template, as Buy it now skips this check."
+            },
+            "fragrances": {
+              "label": "Fragrances",
+              "info": "Leave empty to list every fragrance (Content › Metaobjects › Fragrance) A–Z, or pick which to offer and in what order."
+            },
+            "property_name": {
+              "label": "Order label",
+              "default": "Fragrances",
+              "info": "How the choices are labelled on the cart and order, e.g. Fragrances: Angel, Noir, Still."
+            }
+          }
+        },
         "standout_text": {
           "name": "Standout text",
           "settings": {
@@ -3922,6 +3947,13 @@
               "options__3": {
                 "label": "Uppercase"
               }
+            },
+            "text_size": {
+              "label": "Size",
+              "options__small": "Small",
+              "options__medium": "Medium",
+              "options__large": "Large",
+              "options__xlarge": "Extra large"
             }
           }
         },

@@ -98,7 +98,7 @@
                   {% render block %}
                 {%- when 'text' -%}
                   <p
-                    class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                    class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if block.settings.text_size != blank and block.settings.text_size != 'small' %} product__text--sized product__text--{{ block.settings.text_size }}{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {{- block.settings.text | replace: '[type]', placeholder_type | replace: '[title]', placeholder_title | replace: '[vendor]', placeholder_vendor -}}
@@ -125,6 +125,8 @@
                     color_scheme: block.settings.color_scheme,
                     attributes: block.shopify_attributes
                   -%}
+                {%- when 'fragrance_picker' -%}
+                  {%- render 'melt-fragrance-picker', block: block, product_form_id: product_form_id -%}
                 {%- when 'standout_text' -%}
                   {%- comment -%} Melt: highlighted line in a tinted box, e.g. a delivery promise. {%- endcomment -%}
                   {%- if block.settings.text != blank -%}
@@ -652,6 +654,18 @@
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            { "value": "small", "label": "t:sections.main-product.blocks.text.settings.text_size.options__small" },
+            { "value": "medium", "label": "t:sections.main-product.blocks.text.settings.text_size.options__medium" },
+            { "value": "large", "label": "t:sections.main-product.blocks.text.settings.text_size.options__large" },
+            { "value": "xlarge", "label": "t:sections.main-product.blocks.text.settings.text_size.options__xlarge" }
+          ],
+          "default": "small",
+          "label": "t:sections.main-product.blocks.text.settings.text_size.label"
         }
       ]
     },
@@ -725,6 +739,50 @@
           "id": "color_scheme",
           "label": "t:sections.main-product.blocks.tags.settings.color_scheme.label",
           "default": "scheme-2"
+        }
+      ]
+    },
+    {
+      "type": "fragrance_picker",
+      "name": "t:sections.main-product.blocks.fragrance_picker.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "t:sections.main-product.blocks.fragrance_picker.settings.title.default",
+          "label": "t:sections.main-product.blocks.fragrance_picker.settings.title.label"
+        },
+        {
+          "type": "range",
+          "id": "max",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 5,
+          "label": "t:sections.main-product.blocks.fragrance_picker.settings.max.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "require_full",
+          "default": true,
+          "label": "t:sections.main-product.blocks.fragrance_picker.settings.require_full.label",
+          "info": "t:sections.main-product.blocks.fragrance_picker.settings.require_full.info"
+        },
+        {
+          "type": "metaobject_list",
+          "id": "fragrances",
+          "metaobject_type": "fragrance",
+          "limit": 50,
+          "label": "t:sections.main-product.blocks.fragrance_picker.settings.fragrances.label",
+          "info": "t:sections.main-product.blocks.fragrance_picker.settings.fragrances.info"
+        },
+        {
+          "type": "text",
+          "id": "property_name",
+          "default": "t:sections.main-product.blocks.fragrance_picker.settings.property_name.default",
+          "label": "t:sections.main-product.blocks.fragrance_picker.settings.property_name.label",
+          "info": "t:sections.main-product.blocks.fragrance_picker.settings.property_name.info"
         }
       ]
     },

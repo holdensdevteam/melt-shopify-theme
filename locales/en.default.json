@@ -116,6 +116,13 @@
   "products": {
     "product": {
       "scent_notes": "Scent notes",
+      "fragrance_picker": {
+        "legend": "Choose {{ max }} fragrances",
+        "property": "Fragrances",
+        "count": "[count] of {{ max }} chosen",
+        "error": "Please choose {{ max }} fragrances.",
+        "empty": "No fragrances to show yet. Add entries in Content › Metaobjects › Fragrance."
+      },
       "add_to_cart": "Add to cart",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",

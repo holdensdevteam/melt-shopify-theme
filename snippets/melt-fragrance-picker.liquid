@@ -1,0 +1,106 @@
+{% comment %}
+  Melt: "Fragrance picker" block for the Product information section (main-product), e.g. the
+  "x 5 Samples" product. A list of fragrances with a checkbox each; customers choose up to `max`.
+  Once the limit is reached the rest fade out and can't be ticked until one is unticked.
+
+  The choices go on the order as a line item property: a hidden input, tied to the product form
+  with form="", holds the chosen names ("Angel, Noir, Still, …") under the block's
+  "Order label" (e.g. Fragrances). They show on the cart, order, and order confirmation email.
+
+  Fragrances: the block's own list if one is picked, otherwise every Fragrance entry
+  (Content › Metaobjects › Fragrance), A–Z.
+
+  Accepts:
+  - block: {Object} the fragrance_picker block.
+  - product_form_id: {String} id of the product form.
+
+  Usage:
+  {% render 'melt-fragrance-picker', block: block, product_form_id: product_form_id %}
+{% endcomment %}
+{%- liquid
+  assign picker_max = block.settings.max | default: 5
+  assign picker_property = block.settings.property_name | strip
+  if picker_property == blank
+    assign picker_property = 'products.product.fragrance_picker.property' | t
+  endif
+  assign picker_id = 'FragrancePicker-' | append: block.id
+
+  # A delimiter that won't appear in a fragrance name.
+  assign picker_names = ''
+  if block.settings.fragrances != blank
+    for fragrance in block.settings.fragrances
+      assign picker_names = picker_names | append: fragrance.fragrance.value | append: '~~'
+    endfor
+    assign picker_list = picker_names | split: '~~'
+  else
+    for fragrance in metaobjects.fragrance.values
+      assign picker_names = picker_names | append: fragrance.fragrance.value | append: '~~'
+    endfor
+    assign picker_list = picker_names | split: '~~' | sort_natural
+  endif
+-%}
+
+<script src="{{ 'melt-fragrance-picker.js' | asset_url }}" defer="defer"></script>
+
+<melt-fragrance-picker
+  class="melt-fragrance-picker"
+  data-max="{{ picker_max }}"
+  data-required="{{ block.settings.require_full }}"
+  data-form-id="{{ product_form_id }}"
+  data-count-text="{{ 'products.product.fragrance_picker.count' | t: max: picker_max | escape }}"
+  {{ block.shopify_attributes }}
+>
+  <fieldset class="melt-fragrance-picker__fieldset" aria-describedby="{{ picker_id }}-count">
+    {%- comment -%}
+      The legend names the group for screen readers; the visible title sits in a header row with
+      the count, on the same grid as the list so the count lines up with the second column.
+    {%- endcomment -%}
+    <legend class="visually-hidden">
+      {%- if block.settings.title != blank -%}
+        {{ block.settings.title | escape }}
+      {%- else -%}
+        {{ 'products.product.fragrance_picker.legend' | t: max: picker_max }}
+      {%- endif -%}
+    </legend>
+
+    <div class="melt-fragrance-picker__header">
+      {%- if block.settings.title != blank -%}
+        <p class="melt-fragrance-picker__title" aria-hidden="true">{{ block.settings.title | escape }}</p>
+      {%- endif -%}
+      <p id="{{ picker_id }}-count" class="melt-fragrance-picker__count" aria-live="polite">
+        {{- 'products.product.fragrance_picker.count' | t: max: picker_max | replace: '[count]', '0' -}}
+      </p>
+    </div>
+
+    {%- if picker_list.size > 0 -%}
+      <ul class="melt-fragrance-picker__list list-unstyled" role="list">
+        {%- for name in picker_list -%}
+          {%- assign option_id = picker_id | append: '-' | append: forloop.index -%}
+          <li class="melt-fragrance-picker__item">
+            <input
+              type="checkbox"
+              id="{{ option_id }}"
+              class="melt-fragrance-picker__input"
+              value="{{ name | escape }}"
+            >
+            <label for="{{ option_id }}" class="melt-fragrance-picker__label">{{ name | escape }}</label>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- elsif request.design_mode -%}
+      <p class="melt-fragrance-picker__empty">{{ 'products.product.fragrance_picker.empty' | t }}</p>
+    {%- endif -%}
+
+    <p class="melt-fragrance-picker__error" role="alert" hidden>
+      {{- 'products.product.fragrance_picker.error' | t: max: picker_max -}}
+    </p>
+  </fieldset>
+
+  <input
+    type="hidden"
+    class="melt-fragrance-picker__value"
+    name="properties[{{ picker_property | escape }}]"
+    value=""
+    form="{{ product_form_id }}"
+  >
+</melt-fragrance-picker>

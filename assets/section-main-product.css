@@ -235,6 +235,34 @@ a.product__text {
   text-transform: uppercase;
 }
 
+.product__text--medium {
+  --melt-text-scale: 1.2;
+}
+
+.product__text--large {
+  --melt-text-scale: 1.4;
+}
+
+.product__text--xlarge {
+  --melt-text-scale: 1.6;
+}
+
+.product__text--sized {
+  font-size: calc(1.5rem * var(--melt-text-scale));
+}
+@media screen and (min-width: 750px) {
+  .product__text--sized {
+    font-size: calc(1.6rem * var(--melt-text-scale));
+  }
+}
+.product__text--sized.subtitle {
+  font-size: calc(1.8rem * var(--melt-text-scale));
+}
+.product__text--sized.caption-with-letter-spacing {
+  font-size: calc(1rem * var(--melt-text-scale));
+  letter-spacing: calc(0.13rem * var(--melt-text-scale));
+}
+
 .product__title {
   word-break: break-word;
   margin-bottom: 1.5rem;
@@ -1665,4 +1693,122 @@ a.product__text {
 }
 #sealsubscriptions-default-widget-target-element .sealsubs-target-element .sealsubs-container .sls-more-info-container .sls-more-info-text {
   padding: 0;
+}
+
+/*
+ * Melt: Fragrance picker block (snippets/melt-fragrance-picker.liquid, assets/melt-fragrance-picker.js).
+ * Two columns of checkboxes; once the limit is reached the unticked ones fade and can't be ticked.
+ */
+.melt-fragrance-picker {
+  display: block;
+  margin: 1.6rem 0 2rem;
+}
+
+.melt-fragrance-picker__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.melt-fragrance-picker__header {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+  align-items: baseline;
+  margin-bottom: 1.6rem;
+}
+
+.melt-fragrance-picker__title {
+  grid-column: 1;
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: calc(var(--font-heading-scale) * 2rem);
+  line-height: 1.3;
+}
+
+.melt-fragrance-picker__count {
+  grid-column: 2;
+  margin: 0;
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.melt-fragrance-picker__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 2rem;
+  margin: 0;
+}
+
+.melt-fragrance-picker__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: opacity var(--duration-short) ease;
+}
+.melt-fragrance-picker__item.is-locked {
+  opacity: 0.35;
+}
+
+.melt-fragrance-picker__input {
+  appearance: none;
+  flex-shrink: 0;
+  position: relative;
+  width: 2rem !important;
+  height: 2rem;
+  margin: 0.1rem 0 0;
+  border: 1px solid rgba(var(--color-foreground), 0.55);
+  border-radius: 0.3rem;
+  background: rgb(var(--color-background));
+  cursor: pointer;
+}
+.melt-fragrance-picker__input::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 0.2rem;
+  width: 0.6rem;
+  height: 1.1rem;
+  border: solid #fff;
+  border-width: 0 0.2rem 0.2rem 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+.melt-fragrance-picker__input:checked {
+  background: #e1ac1b;
+  border-color: #e1ac1b;
+}
+.melt-fragrance-picker__input:checked::after {
+  opacity: 1;
+}
+.melt-fragrance-picker__input:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.2rem;
+}
+.melt-fragrance-picker__input:disabled {
+  cursor: default;
+}
+
+.melt-fragrance-picker__label {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.is-locked .melt-fragrance-picker__label {
+  cursor: default;
+}
+
+.melt-fragrance-picker__error {
+  margin: 1.2rem 0 0;
+  font-size: 1.4rem;
+  color: rgb(var(--color-foreground));
+  font-weight: 600;
+}
+
+.melt-fragrance-picker__empty {
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.7);
 }
