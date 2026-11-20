@@ -159,7 +159,7 @@
           "type": "button",
           "settings": {
             "button_label": "SHOP CHRISTMAS",
-            "button_link": "shopify://collections/christmas-1",
+            "button_link": "shopify://collections/christmas-collection",
             "button_style_secondary": false
           }
         }
@@ -254,14 +254,19 @@
     "17927738092bb092d4": {
       "type": "apps",
       "blocks": {
+        "judge_me_reviews_all_reviews_text_8Xr6HK": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
         "judge_me_reviews_cards_carousel_GyUTPU": {
           "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "show_sample_reviews": true,
+            "show_sample_reviews": false,
             "reviews_selection": "all",
             "products": [],
             "filter_pinned": false,
-            "filter_featured": true,
+            "filter_featured": false,
             "filter_custom_tags": "",
             "star_rating": "5_star",
             "show_review_media": false,
@@ -280,7 +285,7 @@
             "corner_styling": "soft",
             "header_text_color": "#000000",
             "text_color": "#000000",
-            "card_color": "#f5f5f5",
+            "card_color": "#FFFFFF",
             "stars_color": "",
             "arrows_color": "#4d4d4d",
             "transition_speed": 5,
@@ -291,6 +296,7 @@
         }
       },
       "block_order": [
+        "judge_me_reviews_all_reviews_text_8Xr6HK",
         "judge_me_reviews_cards_carousel_GyUTPU"
       ],
       "settings": {
@@ -307,7 +313,7 @@
         "featured_collection_ryhnRJ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "christmas-1",
+            "collection": "christmas-collection",
             "subtitle": "The scent of a proper Christmas",
             "tags": "",
             "custom_title_size": false,

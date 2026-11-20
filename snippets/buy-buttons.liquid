@@ -66,6 +66,7 @@
         {%- endcomment -%}
         <div class="melt-buy-buttons__options">
           <div id="sealsubscriptions-default-widget-target-element"></div>
+          <script src="{{ 'melt-seal-details.js' | asset_url }}" defer="defer"></script>
 
           {%- if block.settings.show_quantity_selector -%}
             {%- render 'melt-product-quantity',

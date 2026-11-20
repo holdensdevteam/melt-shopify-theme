@@ -22,6 +22,10 @@
 
 #judgeme_product_reviews {
   padding: 1rem 0 2rem;
+  // Judge.me's "Maximum width" slider stops at 1200px (it's the app's setting, so the theme can't
+  // extend it) and writes it as an inline style. Override it to match the theme's 1600px page width;
+  // the slider no longer has any effect.
+  max-width: 1600px !important;
 
   .jm-review-widget-sidebar-header__sidebar {
     display: grid;

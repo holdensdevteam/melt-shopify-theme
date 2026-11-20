@@ -2,6 +2,7 @@
 /*! Compiled from src/scss/component-judgeme-reviews.scss — edit that file, not this one. */
 #judgeme_product_reviews {
   padding: 1rem 0 2rem;
+  max-width: 1600px !important;
 }
 #judgeme_product_reviews .jm-review-widget-sidebar-header__sidebar {
   display: grid;

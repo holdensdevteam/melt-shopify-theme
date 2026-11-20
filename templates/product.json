@@ -78,6 +78,7 @@
         },
         "divider_Gwcpnm": {
           "type": "divider",
+          "disabled": true,
           "settings": {
             "thickness": 1,
             "color": "#e5e3dc",
@@ -251,20 +252,36 @@
             "open": false
           }
         },
+        "detail_43NAqi": {
+          "type": "detail",
+          "settings": {
+            "label": "Type",
+            "value": "{{ product.metafields.custom.candle_type | metafield_text: field: 'type' }}",
+            "suffix": ""
+          }
+        },
         "detail_eY8gD4": {
           "type": "detail",
           "settings": {
-            "label": "Weight",
-            "value": "{{ product.metafields.custom.weight.value.weight_g.value }}",
-            "suffix": "g"
+            "label": "Colour",
+            "value": "{{ product.metafields.custom.colour | metafield_text: field: 'colour' }}",
+            "suffix": ""
+          }
+        },
+        "detail_gtPPb6": {
+          "type": "detail",
+          "settings": {
+            "label": "Mood",
+            "value": "{{ product.metafields.custom.mood | metafield_text: field: 'label' }}",
+            "suffix": ""
           }
         },
         "detail_fCgWmx": {
           "type": "detail",
           "settings": {
             "label": "Burn time",
-            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }}",
-            "suffix": "hours"
+            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours",
+            "suffix": ""
           }
         },
         "detail_Rhxjrq": {
@@ -291,7 +308,9 @@
         "accordion_gNKamB",
         "accordion_mUyrM7",
         "accordion_Pz3yUz",
+        "detail_43NAqi",
         "detail_eY8gD4",
+        "detail_gtPPb6",
         "detail_fCgWmx",
         "detail_Rhxjrq",
         "detail_rgbA6q"
@@ -331,7 +350,7 @@
         "text_x3yCMt": {
           "type": "text",
           "settings": {
-            "text": "<p>{{ product.metafields.custom.fragrance.value.detail | metafield_tag }}</p>{{ product.metafields.custom.all_scent_notes | metafield_tag: field: 'scent' }}",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.detail | metafield_tag }}</p><p></p><p><strong>{{ product.metafields.custom.fragrance.value.fragrance.value }}</strong><strong> uses the following scent notes:</strong></p>{{ product.metafields.custom.all_scent_notes | metafield_tag: field: 'scent' }}",
             "text_style": "body"
           }
         }
@@ -434,7 +453,7 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "collection": "angel",
+        "collection": "angel-fragrance",
         "collection_source": "product_fragrance",
         "products_to_show": 8,
         "heading_eyebrow": "[fragrance]",
@@ -449,7 +468,7 @@
         "heading_margin_bottom": 40,
         "heading_margin_sides": 0,
         "cta_label": "Shop all [fragrance]",
-        "cta_link": "shopify://collections/angel",
+        "cta_link": "shopify://collections/angel-fragrance",
         "cta_arrow": true,
         "cta_color_scheme": "",
         "columns_desktop": 4,
@@ -458,11 +477,11 @@
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "quick_add": "none",
         "card_style": "card",
         "card_color_scheme": "",
@@ -552,11 +571,11 @@
         "show_view_all": false,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "quick_add": "none",
         "card_style": "card",
         "card_color_scheme": "scheme-1",
@@ -567,7 +586,7 @@
         "show_type_eyebrow": true,
         "eyebrow_color": "#171717",
         "price_rating_row": true,
-        "background_image": "shopify://shop_images/melt-section-bg.png",
+        "background_image": "shopify://shop_images/occasion-bg2.png",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -629,9 +648,9 @@
         "link_label": "Get in touch",
         "link_url": "shopify://pages/contact",
         "link_arrow": true,
-        "link_color_scheme": "",
+        "link_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
         "source": "automatic",
-        "item_color_scheme": "scheme-2",
+        "item_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
         "structured_data": true,
         "color_scheme": "",
         "padding_top": 100,
