@@ -110,7 +110,7 @@
               "type": "_columns-link",
               "settings": {
                 "label": "Go",
-                "url": "shopify://pages/fragrances",
+                "url": "/collections",
                 "style": "link",
                 "button_text_color": "",
                 "button_background_color": "",
