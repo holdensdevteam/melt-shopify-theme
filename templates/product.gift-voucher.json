@@ -1,0 +1,678 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "melt-breadcrumbs",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your cart",
+        "font_size": 13,
+        "text_color": "#121212",
+        "link_color": "#121212",
+        "link_hover_color": "#ce7721",
+        "color_scheme": "scheme-1",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.custom.short_title.value.short_title.value }}",
+            "text_style": "uppercase",
+            "text_size": "xlarge"
+          }
+        },
+        "heading_37ehEM": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}&nbsp;[type]",
+            "heading_tag": "h2"
+          }
+        },
+        "tags_qEJnDW": {
+          "type": "tags",
+          "settings": {
+            "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
+            "tags_text": "",
+            "max_tags": 3,
+            "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
+          }
+        },
+        "judge_me_reviews_preview_badge_k3Lxwa": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": "large"
+          }
+        },
+        "bullet_list_KPreAr": {
+          "type": "bullet_list",
+          "settings": {
+            "metafield": "custom.selling_points",
+            "max_items": 6
+          }
+        },
+        "standout_text_JqaAXw": {
+          "type": "standout_text",
+          "settings": {
+            "text": "Next working day delivery on orders by 1pm",
+            "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
+          }
+        },
+        "divider_Gwcpnm": {
+          "type": "divider",
+          "disabled": true,
+          "settings": {
+            "thickness": 1,
+            "color": "#e5e3dc",
+            "margin_top": 20,
+            "margin_bottom": 20
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true,
+            "show_quantity_selector": true,
+            "buttons_inline": true
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "heading_37ehEM",
+        "tags_qEJnDW",
+        "judge_me_reviews_preview_badge_k3Lxwa",
+        "price",
+        "bullet_list_KPreAr",
+        "standout_text_JqaAXw",
+        "divider_Gwcpnm",
+        "variant_picker",
+        "buy_buttons"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 72
+      }
+    },
+    "melt_divider_HaphGQ": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
+      }
+    },
+    "usp_bar_bgyAdV": {
+      "type": "usp-bar",
+      "blocks": {
+        "usp_eJ4fYk": {
+          "type": "usp",
+          "settings": {
+            "text": "Hand-poured in the Ribble Valley",
+            "icon": "melt_valley",
+            "image": "shopify://shop_images/Valley-icon.svg"
+          }
+        },
+        "usp_XwAPzy": {
+          "type": "usp",
+          "settings": {
+            "text": "Next working day delivery. Order by 1pm",
+            "icon": "melt_next_day",
+            "image": "shopify://shop_images/Next-day-icon.svg"
+          }
+        },
+        "usp_6RgWwf": {
+          "type": "usp",
+          "settings": {
+            "text": "Making candles since 1999",
+            "icon": "melt_established",
+            "image": "shopify://shop_images/established-icon.svg"
+          }
+        }
+      },
+      "block_order": [
+        "usp_eJ4fYk",
+        "usp_XwAPzy",
+        "usp_6RgWwf"
+      ],
+      "name": "t:sections.usp_bar.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "icon_position": "top",
+        "icon_height": 30,
+        "text_style": "heading",
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "melt_divider_CLYTiw": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
+      }
+    },
+    "melt_product_details_ji3FE9": {
+      "type": "melt-product-details",
+      "blocks": {
+        "accordion_XKAzje": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Description",
+            "source": "custom",
+            "content": "{{ product.description }}",
+            "open": false
+          }
+        },
+        "accordion_hiCmzi": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Why we love it",
+            "source": "custom",
+            "content": "<p>{{ product.metafields.custom.why_we_love_it | metafield_tag }}</p>",
+            "open": false
+          }
+        },
+        "accordion_9wR3TW": {
+          "type": "accordion",
+          "settings": {
+            "heading": "How it is made",
+            "source": "custom",
+            "content": "<p>{{ product.metafields.custom.how_it_is_made | metafield_tag }}</p>",
+            "open": false
+          }
+        },
+        "accordion_gNKamB": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Burn guide & care",
+            "source": "custom",
+            "content": "<p>{{ product.metafields.custom.burn_guide_and_care | metafield_tag }}</p>",
+            "open": false
+          }
+        },
+        "accordion_mUyrM7": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Safety, ingredients & allergens",
+            "source": "custom",
+            "content": "<p>{{ product.metafields.custom.safety_ingredients_and_allergens | metafield_tag }}</p>",
+            "open": false
+          }
+        },
+        "accordion_Pz3yUz": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Delivery & returns",
+            "source": "custom",
+            "content": "<p><strong>Standard Delivery</strong></p><p>You can take advantage of our Standard delivery service.</p><p>Smaller orders are sent first class with Royal Mail, whilst larger orders are despatched with courier. Both methods are on a signed for service to ensure safe delivery of your goods.</p><p><strong>Next Working Day</strong></p><p>If your order is urgent we offer a Next Working Day UK Mainland delivery service for orders placed by 1pm. Your goods will be sent via courier.</p><p>Next Day UK Mainland Single charge of £9.00</p><p><strong>Outside UK</strong></p><p>If you have any queries regarding carriage, please contact us at <a href=\"mailto:hello@melt.co.uk\" title=\"mailto:hello@melt.co.uk\">hello@melt.co.uk</a></p>",
+            "open": false
+          }
+        },
+        "detail_43NAqi": {
+          "type": "detail",
+          "settings": {
+            "label": "Type",
+            "value": "{{ product.metafields.custom.candle_type | metafield_text: field: 'type' }}",
+            "suffix": ""
+          }
+        },
+        "detail_eY8gD4": {
+          "type": "detail",
+          "settings": {
+            "label": "Colour",
+            "value": "{{ product.metafields.custom.colour | metafield_text: field: 'colour' }}",
+            "suffix": ""
+          }
+        },
+        "detail_gtPPb6": {
+          "type": "detail",
+          "settings": {
+            "label": "Mood",
+            "value": "{{ product.metafields.custom.mood | metafield_text: field: 'label' }}",
+            "suffix": ""
+          }
+        },
+        "detail_fCgWmx": {
+          "type": "detail",
+          "settings": {
+            "label": "Burn time",
+            "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours",
+            "suffix": ""
+          }
+        },
+        "detail_Rhxjrq": {
+          "type": "detail",
+          "settings": {
+            "label": "Wick",
+            "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}",
+            "suffix": ""
+          }
+        },
+        "detail_rgbA6q": {
+          "type": "detail",
+          "settings": {
+            "label": "Made",
+            "value": "{{ product.metafields.custom.made.value.made.value }}",
+            "suffix": ""
+          }
+        }
+      },
+      "block_order": [
+        "accordion_XKAzje",
+        "accordion_hiCmzi",
+        "accordion_9wR3TW",
+        "accordion_gNKamB",
+        "accordion_mUyrM7",
+        "accordion_Pz3yUz",
+        "detail_43NAqi",
+        "detail_eY8gD4",
+        "detail_gtPPb6",
+        "detail_fCgWmx",
+        "detail_Rhxjrq",
+        "detail_rgbA6q"
+      ],
+      "name": "t:sections.melt_product_details.name",
+      "settings": {
+        "title": "The detail",
+        "heading_size": "h1",
+        "item_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
+        "glance_title": "At a glance",
+        "glance_color_scheme": "",
+        "glance_sticky": true,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "image_with_text_ARHnVz": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_tJarBq": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}",
+            "heading_size": "h1"
+          }
+        },
+        "scent_notes_9dWTRT": {
+          "type": "scent_notes",
+          "settings": {
+            "tags_list": "{{ product.metafields.custom.fragrance.value.primary_scent_notes.value }}",
+            "tags_text": "",
+            "max_tags": 6,
+            "color_scheme": "scheme-07ffbc8b-f381-4fa5-bb0d-50e31039397e"
+          }
+        },
+        "text_x3yCMt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.fragrance.value.detail | metafield_tag }}</p><p></p><p><strong>{{ product.metafields.custom.fragrance.value.fragrance.value }}</strong><strong> uses the following scent notes:</strong></p>{{ product.metafields.custom.all_scent_notes | metafield_tag: field: 'scent' }}",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tJarBq",
+        "scent_notes_9dWTRT",
+        "text_x3yCMt"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image_source": "manual",
+        "height": "medium",
+        "image_corners": "theme",
+        "image_radius": 8,
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_side_padding": "flush-left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_HXkwnz": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_ikFacF": {
+          "type": "column",
+          "settings": {
+            "title": "The Blend",
+            "heading_size": "h2",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.the_blend | metafield_tag }}</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xBLzpw": {
+          "type": "column",
+          "settings": {
+            "title": "Perfect for",
+            "heading_size": "h2",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.perfect_for | metafield_tag }}</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jBLTtw": {
+          "type": "column",
+          "settings": {
+            "title": "Moments",
+            "heading_size": "h2",
+            "text": "<p>{{ product.metafields.custom.fragrance.value.moments | metafield_tag }}</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_ikFacF",
+        "column_xBLzpw",
+        "column_jBLTtw"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "column_heading_size": "h3",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_KeLjXB": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "angel-fragrance",
+        "collection_source": "product_fragrance",
+        "products_to_show": 8,
+        "heading_eyebrow": "[fragrance]",
+        "heading_eyebrow_color": "",
+        "title": "Also comes as",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 40,
+        "heading_margin_sides": 0,
+        "cta_label": "Shop all [fragrance]",
+        "cta_link": "shopify://collections/angel-fragrance",
+        "cta_arrow": true,
+        "cta_color_scheme": "",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "card_style": "card",
+        "card_color_scheme": "",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_name_size": "large",
+        "show_type_eyebrow": true,
+        "eyebrow_color": "#171717",
+        "price_rating_row": true,
+        "background_image": "shopify://shop_images/occasion-bg2.png",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_sides": 50
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "1792074495d96e01d2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_FagqEG": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_FagqEG"
+      ],
+      "settings": {
+        "include_margins": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "css_class": ""
+      }
+    },
+    "featured_collection_LAgtwX": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "floral",
+        "collection_source": "product_scent_family",
+        "products_to_show": 8,
+        "heading_eyebrow": "More in [family]",
+        "heading_eyebrow_color": "",
+        "title": "If you like [fragrance]",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "heading_alignment": "left",
+        "heading_margin_top": 0,
+        "heading_margin_bottom": 40,
+        "heading_margin_sides": 0,
+        "cta_label": "Shop all [family]",
+        "cta_link": "shopify://collections/floral",
+        "cta_arrow": true,
+        "cta_color_scheme": "scheme-1",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "card_style": "card",
+        "card_color_scheme": "scheme-1",
+        "card_image_padding": 12,
+        "card_radius": 8,
+        "card_border_width": 1,
+        "card_name_size": "large",
+        "show_type_eyebrow": true,
+        "eyebrow_color": "#171717",
+        "price_rating_row": true,
+        "background_image": "shopify://shop_images/occasion-bg2.png",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_sides": 50
+      }
+    },
+    "melt_faqs_b4Tjzf": {
+      "type": "melt-faqs",
+      "blocks": {
+        "question_GiMETc": {
+          "type": "question",
+          "settings": {
+            "question": "How long does a Short & Fat candle burn?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam justo, euismod in tristique eu, rhoncus in dui. Aenean erat ex, vestibulum eu euismod eget, scelerisque vel nulla.&nbsp;</p><p>Sed sit amet tortor nec felis tempor vulputate in a dolor. Aenean nec consequat nunc, non cursus arcu. Donec iaculis faucibus fermentum.</p>"
+          }
+        },
+        "question_T7NGcw": {
+          "type": "question",
+          "settings": {
+            "question": "What is the difference between Short & Fat and Tall & Thin?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam justo, euismod in tristique eu, rhoncus in dui. Aenean erat ex, vestibulum eu euismod eget, scelerisque vel nulla.&nbsp;</p><p>Sed sit amet tortor nec felis tempor vulputate in a dolor. Aenean nec consequat nunc, non cursus arcu. Donec iaculis faucibus fermentum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec ultrices sapien, et pretium justo. Etiam rhoncus sagittis tortor.</p>"
+          }
+        },
+        "question_gHdFyk": {
+          "type": "question",
+          "settings": {
+            "question": "Can I get Angel as a reed diffuser?",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        },
+        "question_dBGdVQ": {
+          "type": "question",
+          "settings": {
+            "question": "Do you post to Ireland and Europe?",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        },
+        "question_bxRWXC": {
+          "type": "question",
+          "settings": {
+            "question": "Are your candles vegan?",
+            "answer": "<p>Answer it plainly — the way you would in the shop.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_GiMETc",
+        "question_T7NGcw",
+        "question_gHdFyk",
+        "question_dBGdVQ",
+        "question_bxRWXC"
+      ],
+      "name": "t:sections.melt_faqs.name",
+      "settings": {
+        "title": "Questions we get asked",
+        "heading_size": "h1",
+        "description": "<p>Can't find what you're after? We're a small team in Lancashire and we read every message.</p>",
+        "link_label": "Get in touch",
+        "link_url": "shopify://pages/contact",
+        "link_arrow": true,
+        "link_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
+        "source": "automatic",
+        "item_color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f",
+        "structured_data": true,
+        "color_scheme": "",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "melt_divider_HaphGQ",
+    "usp_bar_bgyAdV",
+    "melt_divider_CLYTiw",
+    "melt_product_details_ji3FE9",
+    "image_with_text_ARHnVz",
+    "multicolumn_HXkwnz",
+    "disclosures",
+    "featured_collection_KeLjXB",
+    "related-products",
+    "1792074495d96e01d2",
+    "featured_collection_LAgtwX",
+    "melt_faqs_b4Tjzf"
+  ]
+}
