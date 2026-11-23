@@ -336,7 +336,8 @@
     },
     "breadcrumbs": {
       "label": "Breadcrumb",
-      "home": "Home"
+      "home": "Home",
+      "products": "Products"
     },
     "melt_forms": {
       "optional": "optional",

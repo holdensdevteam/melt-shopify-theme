@@ -4,12 +4,14 @@
   Breadcrumbs section and the collection banner's Breadcrumbs block. Styles:
   src/scss/section-melt-breadcrumbs.scss (load section-melt-breadcrumbs.css where it's used).
 
-  Product trail: the collection the shopper came through (collection-scoped URL), otherwise the
-  product's first collection. Shopify collections have no hierarchy, so this is one level.
-  Nothing renders on the home page.
+  Product trail: always the product's fragrance collection (the collection using the
+  `fragrance` template), whichever collection the shopper came through, so every product has one
+  consistent trail. Products with no fragrance collection (Gift Voucher, Wax Sample Selection)
+  show Home / Products / product, linking to /collections/all. Shopify collections have no
+  hierarchy, so this is one level. Nothing renders on the home page.
 
   Accepts:
-  - home_label, search_label, cart_label: {String} Labels. separator: {String} e.g. "/".
+  - home_label, products_label, search_label, cart_label: {String} Labels. separator: {String} e.g. "/".
   - class: {String} Extra classes for the <nav>. attributes: {String} e.g. block.shopify_attributes.
   - structured_data: {Boolean} Output BreadcrumbList JSON-LD. Default: true — keep it to one
     breadcrumb per page that outputs it.
@@ -26,13 +28,17 @@
 
   case request.page_type
     when 'product'
-      assign crumb_collection = collection
-      if crumb_collection == blank
-        assign crumb_collection = product.collections | first
-      endif
+      assign crumb_collection = product.collections | where: 'template_suffix', 'fragrance' | first
       if crumb_collection != blank
         assign titles = titles | append: sep | append: crumb_collection.title
         assign urls = urls | append: sep | append: crumb_collection.url
+      else
+        assign crumb_products_label = products_label
+        if crumb_products_label == blank
+          assign crumb_products_label = 'sections.breadcrumbs.products' | t
+        endif
+        assign titles = titles | append: sep | append: crumb_products_label
+        assign urls = urls | append: sep | append: routes.all_products_collection_url
       endif
       assign titles = titles | append: sep | append: product.title
       assign urls = urls | append: sep | append: product.url

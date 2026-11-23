@@ -42,6 +42,7 @@
     -%}
     {%- render 'melt-breadcrumbs',
       home_label: section.settings.home_label,
+      products_label: section.settings.products_label,
       separator: section.settings.separator,
       search_label: section.settings.search_label,
       cart_label: section.settings.cart_label,
@@ -83,6 +84,13 @@
       "id": "home_label",
       "label": "t:sections.melt_breadcrumbs.settings.home_label.label",
       "default": "t:sections.melt_breadcrumbs.settings.home_label.default"
+    },
+    {
+      "type": "text",
+      "id": "products_label",
+      "label": "t:sections.melt_breadcrumbs.settings.products_label.label",
+      "info": "t:sections.melt_breadcrumbs.settings.products_label.info",
+      "default": "t:sections.melt_breadcrumbs.settings.products_label.default"
     },
     {
       "type": "text",

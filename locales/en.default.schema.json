@@ -1333,6 +1333,11 @@
           "label": "Home label",
           "default": "Home"
         },
+        "products_label": {
+          "label": "Products label",
+          "info": "Product pages show their fragrance collection. Products without one (like the Gift Voucher) show this instead, linking to all products.",
+          "default": "Products"
+        },
         "separator": {
           "label": "Separator"
         },
