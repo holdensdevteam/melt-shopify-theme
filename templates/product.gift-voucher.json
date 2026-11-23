@@ -40,7 +40,7 @@
         "heading_37ehEM": {
           "type": "heading",
           "settings": {
-            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}&nbsp;[type]",
+            "heading": "{{ product.title }}",
             "heading_tag": "h2"
           }
         },
@@ -63,12 +63,9 @@
             "price_size": "large"
           }
         },
-        "bullet_list_KPreAr": {
-          "type": "bullet_list",
-          "settings": {
-            "metafield": "custom.selling_points",
-            "max_items": 6
-          }
+        "description_JBLPtf": {
+          "type": "description",
+          "settings": {}
         },
         "standout_text_JqaAXw": {
           "type": "standout_text",
@@ -79,12 +76,11 @@
         },
         "divider_Gwcpnm": {
           "type": "divider",
-          "disabled": true,
           "settings": {
             "thickness": 1,
             "color": "#e5e3dc",
-            "margin_top": 20,
-            "margin_bottom": 20
+            "margin_top": 24,
+            "margin_bottom": 24
           }
         },
         "variant_picker": {
@@ -110,7 +106,7 @@
         "tags_qEJnDW",
         "judge_me_reviews_preview_badge_k3Lxwa",
         "price",
-        "bullet_list_KPreAr",
+        "description_JBLPtf",
         "standout_text_JqaAXw",
         "divider_Gwcpnm",
         "variant_picker",
@@ -210,6 +206,7 @@
         },
         "accordion_hiCmzi": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "Why we love it",
             "source": "custom",
@@ -219,6 +216,7 @@
         },
         "accordion_9wR3TW": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "How it is made",
             "source": "custom",
@@ -228,6 +226,7 @@
         },
         "accordion_gNKamB": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "Burn guide & care",
             "source": "custom",
@@ -237,6 +236,7 @@
         },
         "accordion_mUyrM7": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "Safety, ingredients & allergens",
             "source": "custom",
@@ -246,6 +246,7 @@
         },
         "accordion_Pz3yUz": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "Delivery & returns",
             "source": "custom",
@@ -255,14 +256,16 @@
         },
         "detail_43NAqi": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Type",
-            "value": "{{ product.metafields.custom.candle_type | metafield_text: field: 'type' }}",
+            "value": "Gift Voucher",
             "suffix": ""
           }
         },
         "detail_eY8gD4": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Colour",
             "value": "{{ product.metafields.custom.colour | metafield_text: field: 'colour' }}",
@@ -271,6 +274,7 @@
         },
         "detail_gtPPb6": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Mood",
             "value": "{{ product.metafields.custom.mood | metafield_text: field: 'label' }}",
@@ -279,6 +283,7 @@
         },
         "detail_fCgWmx": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Burn time",
             "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours",
@@ -287,6 +292,7 @@
         },
         "detail_Rhxjrq": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Wick",
             "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}",
@@ -295,6 +301,7 @@
         },
         "detail_rgbA6q": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Made",
             "value": "{{ product.metafields.custom.made.value.made.value }}",
@@ -361,6 +368,7 @@
         "scent_notes_9dWTRT",
         "text_x3yCMt"
       ],
+      "disabled": true,
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image_source": "manual",
@@ -420,6 +428,7 @@
         "column_xBLzpw",
         "column_jBLTtw"
       ],
+      "disabled": true,
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
