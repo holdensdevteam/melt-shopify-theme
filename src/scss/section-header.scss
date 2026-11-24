@@ -108,10 +108,10 @@
   background-color: var(--melt-header-hover-bg, rgb(var(--color-background)));
 }
 
-// Mega menu open: the bar's bottom corners go square so it joins the menu seamlessly, and the
-// menu takes the bottom corners instead — Theme settings → Media → Corner radius.
+// Mega menu or mobile menu drawer open: the bar's bottom corners go square so it joins the menu
+// seamlessly, and the mega menu takes the bottom corners instead — Theme settings → Media → Corner radius.
 // (.section-header prefix beats Dawn's .global-settings-popup and component-mega-menu.css.)
-.section-header .header-wrapper:has(.mega-menu[open]) {
+.section-header .header-wrapper:has(.mega-menu[open], .menu-drawer-container[open]) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
