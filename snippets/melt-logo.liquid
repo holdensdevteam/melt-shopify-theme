@@ -27,14 +27,17 @@
   else
     assign logo_file = 'melt-logo.svg'
   endif
+
+  # The artwork's own proportions, from its viewBox, so the header can size it to a whole-pixel
+  # height (see .header__heading-logo-wrapper--svg in src/scss/section-header.scss).
+  assign logo_svg = logo_file | inline_asset_content
+  assign logo_viewbox = logo_svg | split: 'viewBox="' | last | split: '"' | first | split: ' '
 -%}
 
 <span
   class="melt-logo-wrapper melt-logo-wrapper--{{ color | default: 'auto' }}{% if class %} {{ class }}{% endif %}"
-  {% if width %}
-    style="width: {{ width }}px; max-width: 100%;"
-  {% endif %}
+  style="--melt-logo-w: {{ logo_viewbox[2] }}; --melt-logo-h: {{ logo_viewbox[3] }};{% if width %} width: {{ width }}px; max-width: 100%;{% endif %}"
 >
-  {{- logo_file | inline_asset_content -}}
+  {{- logo_svg -}}
 </span>
 <span class="visually-hidden">{{ shop.name }}</span>

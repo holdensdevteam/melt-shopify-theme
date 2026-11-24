@@ -453,3 +453,27 @@
     text-decoration: none;
   }
 }
+
+// ------------------------------------------------------------------ logo
+
+// The inline SVG logo (snippets/melt-logo.liquid) is sized by height, rounded to a whole pixel,
+// rather than by width. At Logo width 70px the v2 logo (viewBox 71 × 29) would otherwise draw
+// 28.586px tall at a fractional y, which blurs every edge and clips its bottom row. The logo
+// width setting arrives as --melt-logo-width; the artwork's proportions as --melt-logo-w/-h.
+// Dawn pads the logo link by 0.75rem (7.5px), which would put the logo on a half pixel; 8px keeps
+// it on the pixel grid on standard (1x) screens.
+.header__heading-link {
+  padding: 8px;
+}
+
+.header__heading-logo-wrapper--svg {
+  width: auto;
+  max-width: 100%;
+  height: calc(var(--melt-logo-width) * var(--melt-logo-h) / var(--melt-logo-w));
+  height: round(calc(var(--melt-logo-width) * var(--melt-logo-h) / var(--melt-logo-w)), 1px);
+
+  .melt-logo {
+    width: auto;
+    height: 100%;
+  }
+}

@@ -3695,4 +3695,6 @@ details-disclosure > details {
   display: block;
   width: 100%;
   height: auto;
+  /* The artwork touches the viewBox edges; without this the anti-aliased edge pixels get clipped. */
+  overflow: visible;
 }

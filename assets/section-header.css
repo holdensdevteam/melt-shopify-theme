@@ -333,3 +333,18 @@
 .section-header .melt-menu-nolink span {
   text-decoration: none;
 }
+
+.header__heading-link {
+  padding: 8px;
+}
+
+.header__heading-logo-wrapper--svg {
+  width: auto;
+  max-width: 100%;
+  height: calc(var(--melt-logo-width) * var(--melt-logo-h) / var(--melt-logo-w));
+  height: round(var(--melt-logo-width) * var(--melt-logo-h) / var(--melt-logo-w), 1px);
+}
+.header__heading-logo-wrapper--svg .melt-logo {
+  width: auto;
+  height: 100%;
+}

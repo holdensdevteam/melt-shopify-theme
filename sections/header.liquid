@@ -26,14 +26,17 @@
   }
 
   .header__heading-logo-wrapper--svg {
-    width: {{ settings.logo_width }}px;
-    max-width: {{ settings.logo_width }}px;
-    /* max-width: 100%; */
+    --melt-logo-width: {{ settings.logo_width }}px;
   }
 
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
+    }
+
+    .scrolled-past-header .header__heading-logo-wrapper--svg {
+      --melt-logo-width: {{ settings.logo_width | times: 0.75 }}px;
+      width: auto;
     }
   {%- endif -%}
 
