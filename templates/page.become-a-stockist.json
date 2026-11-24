@@ -71,13 +71,18 @@
         "eyebrow": "Wholesale",
         "heading": "Become a Melt stockist",
         "standfirst": "<p>If you’re an independent retailer looking for wholesale prices on unique, British-made, high-end candles that use the finest fragrances, then Melt is for you.</p>",
-        "primary_label": "Apply for a trade account",
+        "primary_label": "",
         "primary_link": "",
-        "secondary_label": "Call 01200 443377",
-        "secondary_link": "tel:01200443377",
+        "secondary_label": "",
+        "secondary_link": "",
         "note": "",
         "image": "shopify://shop_images/becoming-a-melt-stockist-hero.png",
-        "color_scheme": ""
+        "image_width": "page",
+        "image_ratio": "fill",
+        "copy_position": "center",
+        "color_scheme": "",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
     "why": {
@@ -325,11 +330,24 @@
         "email": "hello@themeltco.com",
         "color_scheme": ""
       }
+    },
+    "melt_divider_aGM9hP": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "melt_breadcrumbs_HcWwBy",
     "hero",
+    "melt_divider_aGM9hP",
     "why",
     "steps",
     "enquiry"

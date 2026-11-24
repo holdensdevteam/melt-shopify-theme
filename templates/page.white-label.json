@@ -9,6 +9,25 @@
  */
 {
   "sections": {
+    "melt_breadcrumbs_z3aFFn": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "products_label": "Products",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "hero": {
       "type": "melt-proposition-hero",
       "blocks": {
@@ -52,13 +71,18 @@
         "eyebrow": "White label",
         "heading": "Your brand, our candles",
         "standfirst": "<p>British made. Fine fragrance. Hand-poured. For over 25 years we have quietly created handmade candles and reed diffusers for other brands, helping them, big and small, find their own signature scent.</p>",
-        "primary_label": "Start an enquiry",
+        "primary_label": "",
         "primary_link": "",
-        "secondary_label": "Call 01200 443377",
-        "secondary_link": "tel:01200443377",
+        "secondary_label": "",
+        "secondary_link": "",
         "note": "",
         "image": "shopify://shop_images/private-label-hero.png",
-        "color_scheme": ""
+        "image_width": "page",
+        "image_ratio": "fill",
+        "copy_position": "center",
+        "color_scheme": "",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
     "logos": {
@@ -123,6 +147,18 @@
         "color_scheme": "scheme-38d4d80b-e666-4cca-bc83-076b6809b23f"
       }
     },
+    "melt_divider_hpiWNC": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
+      }
+    },
     "story": {
       "type": "rich-text",
       "blocks": {
@@ -150,7 +186,7 @@
         "content_alignment": "left",
         "color_scheme": "",
         "full_width": false,
-        "padding_top": 76,
+        "padding_top": 60,
         "padding_bottom": 52
       }
     },
@@ -470,31 +506,13 @@
         "email": "hello@themeltco.com",
         "color_scheme": ""
       }
-    },
-    "melt_breadcrumbs_z3aFFn": {
-      "type": "melt-breadcrumbs",
-      "name": "t:sections.melt_breadcrumbs.name",
-      "settings": {
-        "width": "container",
-        "home_label": "Home",
-        "products_label": "Products",
-        "separator": "/",
-        "search_label": "Search",
-        "cart_label": "Your basket",
-        "font_size": 14,
-        "text_color": "",
-        "link_color": "",
-        "link_hover_color": "",
-        "color_scheme": "",
-        "padding_top": 16,
-        "padding_bottom": 16
-      }
     }
   },
   "order": [
     "melt_breadcrumbs_z3aFFn",
     "hero",
     "logos",
+    "melt_divider_hpiWNC",
     "story",
     "products",
     "steps",
