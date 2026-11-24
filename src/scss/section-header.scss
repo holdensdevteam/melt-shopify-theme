@@ -25,9 +25,14 @@
   }
 }
 
-// Inside the bar: space above and below the logo/menu row, and Dawn's 3rem at the sides.
+// Inside the bar: space above and below the logo/menu row, and Dawn's 3rem at the sides
+// (1.5rem below 750px).
 .header {
   padding: 4px 3rem;
+
+  @include bp.below(bp.$medium) {
+    padding: 4px 1.5rem;
+  }
 
   @include bp.from(bp.$large) {
     padding-top: 8px;
