@@ -213,7 +213,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Displayed at 32 x 32px"
+          "info": "Use a square image, at least 512 x 512px, ideally without a transparent background. Shown in browser tabs, Google search results and phone home screens."
         }
       }
     },

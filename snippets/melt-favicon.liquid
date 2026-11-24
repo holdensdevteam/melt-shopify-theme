@@ -1,0 +1,14 @@
+{%- comment -%}
+  Favicon in the sizes browsers, Google and phones ask for, all from Theme settings › Logo › Favicon image.
+  - 32px: browser tabs
+  - 48px: Google search results (Google wants a multiple of 48px)
+  - 192px: Android home screens
+  - 180px apple-touch-icon: iPhone/iPad home screens (iOS fills transparency with black)
+  Rendered by layout/theme.liquid and layout/password.liquid.
+{%- endcomment -%}
+{%- if settings.favicon != blank -%}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ settings.favicon | image_url: width: 48, height: 48, crop: 'center' }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | image_url: width: 192, height: 192, crop: 'center' }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}">
+{%- endif -%}
