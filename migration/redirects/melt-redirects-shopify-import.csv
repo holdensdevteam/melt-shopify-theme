@@ -136,14 +136,14 @@ Redirect from,Redirect to
 /products/page/8/,/collections/all
 /products/page/9/,/collections/all
 /hampers/,/collections/hampers-gift-sets
-/hampers/christmas-hamper/,/collections/hampers-gift-sets
+/hampers/christmas-hamper/,/products/christmas-hamper
 /hampers/for-the-man-in-your-life/,/collections/hampers-gift-sets
 /hampers/luxury-pamper-hamper-medium/,/
 /hampers/luxury-pamper-hamper-small/,/
 /hampers/melt-luxury-gift-hamper/,/collections/hampers-gift-sets
 /hampers/summer-hamper/,/collections/hampers-gift-sets
 /hampers/taster-box/,/products/wax-sample-selection
-/its-on-offer/christmas-hamper/,/collections/hampers-gift-sets
+/its-on-offer/christmas-hamper/,/products/christmas-hamper
 /its-on-offer/,/
 /its-on-offer/3-x-travel-tins-18-00/,/collections/travel-tin
 /its-on-offer/eden-tall-thin-square-candle/,/collections/eden-fragrance
