@@ -1,5 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_EhYQPX": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "products_label": "Products",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "hero": {
       "type": "melt-proposition-hero",
       "blocks": {
@@ -39,6 +67,7 @@
         "f4"
       ],
       "settings": {
+        "show_breadcrumbs": false,
         "eyebrow": "Corporate gifting",
         "heading": "Client gifts that get kept",
         "standfirst": "<p>Hand-poured in Lancashire, boxed properly, and with your name on them if you would like. We have been making gifts for other people’s customers for over twenty-five years – including a few you would recognise.</p>",
@@ -46,7 +75,14 @@
         "primary_link": "",
         "secondary_label": "Call 01200 443377",
         "secondary_link": "tel:01200443377",
-        "note": "Branded orders for Christmas: enquire by 31 October"
+        "note": "Branded orders for Christmas: enquire by 31 October",
+        "image": "shopify://shop_images/all-candles-nov-26-2.jpg",
+        "image_width": "page",
+        "image_ratio": "fill",
+        "copy_position": "center",
+        "color_scheme": "",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     },
     "logos": {
@@ -97,6 +133,7 @@
         "l5",
         "l6"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "We have made gifts for",
         "footnote": "And a number who would rather we did not say.",
@@ -188,15 +225,22 @@
         "col3"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "Three ways to do this",
         "heading_size": "h2",
         "intro": "<p>Most people arrive knowing roughly the number and roughly the budget. Start wherever you are.</p>",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "card",
+        "card_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "column_alignment": "left",
+        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
         "padding_top": 56,
         "padding_bottom": 56
       }
@@ -211,7 +255,8 @@
             "c1_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "01"
+                "text": "01",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -244,7 +289,8 @@
             "c2_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "02"
+                "text": "02",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -277,7 +323,8 @@
             "c3_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "03"
+                "text": "03",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -310,7 +357,8 @@
             "c4_0": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "04"
+                "text": "04",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -344,15 +392,22 @@
         "col4"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "How it works",
         "heading_size": "h2",
         "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 4,
-        "column_style": "plain",
+        "column_style": "card",
+        "card_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "column_alignment": "left",
+        "color_scheme": "scheme-2",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 24
       }
@@ -445,10 +500,20 @@
         "heading": "Start an enquiry",
         "intro": "Four quick questions and we can price it. Nothing here commits you to anything.",
         "enquiry_type": "Corporate gifting",
+        "company_required": true,
+        "message_label": "Anything else we should know?",
+        "message_placeholder": "Branding, packaging, a deadline, an idea…",
         "consent_label": "Send me the trade letter – a few times a year, nothing else.",
         "button_label": "Send enquiry",
         "reply_note": "We reply within one working day. Sample requests are usually posted the same week.",
-        "email": "hello@themeltco.com"
+        "success_heading": "Thank you, we have your enquiry",
+        "success_text": "We reply within one working day.",
+        "points_eyebrow": "What you get",
+        "contact_eyebrow": "Or skip the form",
+        "phone": "01200 443377",
+        "hours": "Monday to Friday, 9am – 5pm",
+        "email": "hello@themeltco.com",
+        "color_scheme": ""
       }
     },
     "faqs": {
@@ -509,13 +574,21 @@
         "title": "Questions we get asked",
         "heading_size": "h2",
         "description": "<p>Can’t see yours? Call us on 01200 443377 or use the form above.</p>",
-        "link_label": "",
+        "link_label": "Contact us",
+        "link_url": "shopify://pages/contact",
+        "link_arrow": true,
+        "link_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "source": "manual",
-        "structured_data": true
+        "item_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
+        "structured_data": true,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
   "order": [
+    "melt_breadcrumbs_EhYQPX",
     "hero",
     "logos",
     "ways",

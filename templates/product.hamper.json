@@ -14,6 +14,7 @@
       "settings": {
         "width": "container",
         "home_label": "Home",
+        "products_label": "Products",
         "separator": "/",
         "search_label": "Search",
         "cart_label": "Your cart",
@@ -40,7 +41,7 @@
         "heading_37ehEM": {
           "type": "heading",
           "settings": {
-            "heading": "{{ product.metafields.custom.fragrance.value.fragrance.value }}&nbsp;[type]",
+            "heading": "{{ product.title }}",
             "heading_tag": "h2"
           }
         },
@@ -210,6 +211,7 @@
         },
         "accordion_hiCmzi": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "Why we love it",
             "source": "custom",
@@ -219,6 +221,7 @@
         },
         "accordion_9wR3TW": {
           "type": "accordion",
+          "disabled": true,
           "settings": {
             "heading": "How it is made",
             "source": "custom",
@@ -257,12 +260,13 @@
           "type": "detail",
           "settings": {
             "label": "Type",
-            "value": "{{ product.metafields.custom.candle_type | metafield_text: field: 'type' }}",
+            "value": "[type]",
             "suffix": ""
           }
         },
         "detail_eY8gD4": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Colour",
             "value": "{{ product.metafields.custom.colour | metafield_text: field: 'colour' }}",
@@ -279,6 +283,7 @@
         },
         "detail_fCgWmx": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Burn time",
             "value": "{{ product.metafields.custom.burn_time.value.burn_time.value }} hours",
@@ -287,6 +292,7 @@
         },
         "detail_Rhxjrq": {
           "type": "detail",
+          "disabled": true,
           "settings": {
             "label": "Wick",
             "value": "{{ product.metafields.custom.wick | metafield_text: field: 'wick_type' }}",
@@ -361,6 +367,7 @@
         "scent_notes_9dWTRT",
         "text_x3yCMt"
       ],
+      "disabled": true,
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image_source": "manual",
@@ -420,6 +427,7 @@
         "column_xBLzpw",
         "column_jBLTtw"
       ],
+      "disabled": true,
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
