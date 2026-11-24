@@ -6,7 +6,9 @@
   structured data for every question — keep product and collection FAQs different from these
   so they don't compete for the same result.
 {%- endcomment -%}
-{{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.show_breadcrumbs -%}
+  {{ 'section-melt-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 {{ 'component-melt-rail-page.css' | asset_url | stylesheet_tag }}
 {{ 'section-melt-faq-page.css' | asset_url | stylesheet_tag }}
 {%- liquid
@@ -17,8 +19,10 @@
 
 <div class="melt-faqpage color-{{ section.settings.color_scheme }} gradient">
   <header class="page-width melt-faqpage__header">
-    {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
-    {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-faqpage__breadcrumbs' -%}
+    {%- if section.settings.show_breadcrumbs -%}
+      {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
+      {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-faqpage__breadcrumbs' -%}
+    {%- endif -%}
     <div class="melt-faqpage__measure">
       <h1 class="h1 melt-faqpage__title">{{ section.settings.heading | default: page.title }}</h1>
       {%- if section.settings.intro != blank -%}<div class="melt-faqpage__intro">{{ section.settings.intro }}</div>{%- endif -%}
@@ -84,6 +88,13 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "t:sections.melt_faq_page.settings.show_breadcrumbs.label",
+      "info": "t:sections.melt_faq_page.settings.show_breadcrumbs.info",
+      "default": true
+    },
     {
       "type": "text",
       "id": "heading",

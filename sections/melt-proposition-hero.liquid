@@ -4,6 +4,13 @@
   deadline note, and an image on the right (above the copy on mobile).
   Used by Corporate Gifting, Trade, Become a Stockist, White Label and Subscribe & Save.
   Breadcrumbs can be switched off when the template has a separate Breadcrumbs section.
+  Image width: "Full width" runs the image to the edge of the screen; "Page width" keeps the whole
+  hero inside the theme's page width and rounds the image with the theme's corner radius.
+  Image shape: "Fill hero" stretches the image to the hero's height (the original layout); the
+  others match the Collection banner's Shape setting.
+  Spacing is the section's Top/Bottom padding (75% on mobile, as Dawn does); the copy and image
+  carry no vertical padding or margin of their own. Copy position sets where the copy sits against
+  the image on desktop.
 {%- endcomment -%}
 {{ 'component-eyebrow.css' | asset_url | stylesheet_tag }}
 {%- if section.settings.show_breadcrumbs -%}
@@ -11,58 +18,90 @@
 {%- endif -%}
 {{ 'section-melt-proposition-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="melt-prop-hero color-{{ section.settings.color_scheme }} gradient">
-  <div class="melt-prop-hero__copy">
-    {%- if section.settings.show_breadcrumbs -%}
-      {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
-      {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-prop-hero__breadcrumbs' -%}
-    {%- endif -%}
-    {%- render 'melt-eyebrow', text: section.settings.eyebrow, class: 'melt-prop-hero__eyebrow' -%}
-    <h1 class="melt-prop-hero__title h1">{{ section.settings.heading | default: page.title }}</h1>
-    {%- if section.settings.standfirst != blank -%}
-      <div class="melt-prop-hero__standfirst">{{ section.settings.standfirst }}</div>
-    {%- endif -%}
+{%- liquid
+  assign hero_image = section.settings.image
+  assign image_width = section.settings.image_width | default: 'full'
+  assign image_ratio = section.settings.image_ratio | default: 'fill'
+-%}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
 
-    {%- assign fact_blocks = section.blocks | where: 'type', 'fact' -%}
-    {%- assign chip_blocks = section.blocks | where: 'type', 'chip' -%}
-    {%- if fact_blocks.size > 0 -%}
-      <dl class="melt-prop-hero__facts">
-        {%- for block in fact_blocks -%}
-          <div class="melt-prop-hero__fact" {{ block.shopify_attributes }}>
-            <dt>{{ block.settings.value | escape }}</dt>
-            <dd>{{ block.settings.label | escape }}</dd>
-          </div>
-        {%- endfor -%}
-      </dl>
-    {%- endif -%}
-    {%- if chip_blocks.size > 0 -%}
-      <ul class="melt-prop-hero__chips list-unstyled" role="list">
-        {%- for block in chip_blocks -%}
-          <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
 
-    <div class="melt-prop-hero__ctas">
-      {%- if section.settings.primary_label != blank -%}
-        <a href="{{ section.settings.primary_link | default: '#enquiry' }}" class="button">{{ section.settings.primary_label | escape }}</a>
+<div class="melt-prop-hero melt-prop-hero--{{ image_width }} melt-prop-hero--copy-{{ section.settings.copy_position | default: 'center' }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
+  <div class="melt-prop-hero__inner{% if image_width == 'page' %} page-width{% endif %}">
+    <div class="melt-prop-hero__copy">
+      {%- if section.settings.show_breadcrumbs -%}
+        {%- assign breadcrumb_home = 'sections.breadcrumbs.home' | t -%}
+        {%- render 'melt-breadcrumbs', home_label: breadcrumb_home, separator: '/', class: 'melt-prop-hero__breadcrumbs' -%}
       {%- endif -%}
-      {%- if section.settings.secondary_label != blank -%}
-        <a href="{{ section.settings.secondary_link }}" class="button button--secondary">{{ section.settings.secondary_label | escape }}</a>
+      {%- render 'melt-eyebrow', text: section.settings.eyebrow, class: 'melt-prop-hero__eyebrow' -%}
+      <h1 class="melt-prop-hero__title h1">{{ section.settings.heading | default: page.title }}</h1>
+      {%- if section.settings.standfirst != blank -%}
+        <div class="melt-prop-hero__standfirst">{{ section.settings.standfirst }}</div>
+      {%- endif -%}
+
+      {%- assign fact_blocks = section.blocks | where: 'type', 'fact' -%}
+      {%- assign chip_blocks = section.blocks | where: 'type', 'chip' -%}
+      {%- if fact_blocks.size > 0 -%}
+        <dl class="melt-prop-hero__facts">
+          {%- for block in fact_blocks -%}
+            <div class="melt-prop-hero__fact" {{ block.shopify_attributes }}>
+              <dt>{{ block.settings.value | escape }}</dt>
+              <dd>{{ block.settings.label | escape }}</dd>
+            </div>
+          {%- endfor -%}
+        </dl>
+      {%- endif -%}
+      {%- if chip_blocks.size > 0 -%}
+        <ul class="melt-prop-hero__chips list-unstyled" role="list">
+          {%- for block in chip_blocks -%}
+            <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="melt-prop-hero__ctas">
+        {%- if section.settings.primary_label != blank -%}
+          <a href="{{ section.settings.primary_link | default: '#enquiry' }}" class="button">{{ section.settings.primary_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a href="{{ section.settings.secondary_link }}" class="button button--secondary">{{ section.settings.secondary_label | escape }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.note != blank -%}
+        <p class="melt-prop-hero__note">{{ section.settings.note | escape }}</p>
       {%- endif -%}
     </div>
 
-    {%- if section.settings.note != blank -%}
-      <p class="melt-prop-hero__note">{{ section.settings.note | escape }}</p>
-    {%- endif -%}
-  </div>
-
-  <div class="melt-prop-hero__media">
-    {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 40vw, 100vw', widths: '375, 750, 1100, 1600', alt: section.settings.image.alt }}
-    {%- else -%}
-      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-    {%- endif -%}
+    <div
+      class="melt-prop-hero__media melt-prop-hero__media--{{ image_ratio }}"
+      {% if image_ratio == 'adapt' and hero_image != blank %}
+        style="--melt-prop-hero-ratio: {{ hero_image.aspect_ratio }};"
+      {% endif %}
+    >
+      {%- if hero_image != blank -%}
+        {%- liquid
+          assign focal_style = nil
+          if hero_image.presentation.focal_point != blank
+            assign focal_style = 'object-position: ' | append: hero_image.presentation.focal_point
+          endif
+        -%}
+        {{ hero_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 40vw, 100vw', widths: '375, 750, 1100, 1600', alt: hero_image.alt, style: focal_style }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
@@ -132,10 +171,100 @@
       "label": "t:sections.melt_proposition_hero.settings.image.label"
     },
     {
+      "type": "select",
+      "id": "image_width",
+      "label": "t:sections.melt_proposition_hero.settings.image_width.label",
+      "info": "t:sections.melt_proposition_hero.settings.image_width.info",
+      "options": [
+        {
+          "value": "full",
+          "label": "t:sections.melt_proposition_hero.settings.image_width.options__full.label"
+        },
+        {
+          "value": "page",
+          "label": "t:sections.melt_proposition_hero.settings.image_width.options__page.label"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.label",
+      "options": [
+        {
+          "value": "fill",
+          "label": "t:sections.melt_proposition_hero.settings.image_ratio.options__fill.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.options__adapt.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.options__landscape.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.options__square.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-banner.blocks.image.settings.ratio.options__portrait.label"
+        }
+      ],
+      "default": "fill"
+    },
+    {
+      "type": "select",
+      "id": "copy_position",
+      "label": "t:sections.melt_proposition_hero.settings.copy_position.label",
+      "info": "t:sections.melt_proposition_hero.settings.copy_position.info",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.melt_proposition_hero.settings.copy_position.options__top.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.melt_proposition_hero.settings.copy_position.options__center.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.melt_proposition_hero.settings.copy_position.options__bottom.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
     }
   ],
   "blocks": [

@@ -761,6 +761,10 @@
     "melt_faq_page": {
       "name": "FAQ page",
       "settings": {
+        "show_breadcrumbs": {
+          "label": "Show breadcrumbs",
+          "info": "Switch off if the page has a separate Breadcrumbs section, so they don't appear twice."
+        },
         "heading": {
           "label": "Heading",
           "info": "Leave empty to use the page title."
@@ -882,6 +886,34 @@
         },
         "image": {
           "label": "Image"
+        },
+        "image_width": {
+          "label": "Width",
+          "info": "Page width keeps the hero inside the theme's page width and rounds the image's corners (Theme settings › Media › Corner radius).",
+          "options__full": {
+            "label": "Full width"
+          },
+          "options__page": {
+            "label": "Page width"
+          }
+        },
+        "image_ratio": {
+          "options__fill": {
+            "label": "Fill hero"
+          }
+        },
+        "copy_position": {
+          "label": "Copy position",
+          "info": "Where the copy sits beside the image on desktop.",
+          "options__top": {
+            "label": "Top"
+          },
+          "options__center": {
+            "label": "Center"
+          },
+          "options__bottom": {
+            "label": "Bottom"
+          }
         }
       },
       "blocks": {

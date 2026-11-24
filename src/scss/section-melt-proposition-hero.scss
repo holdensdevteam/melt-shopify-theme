@@ -4,18 +4,43 @@
 // Proposition hero (sections/melt-proposition-hero.liquid): copy, key facts and calls to action,
 // with the image on the right (above the copy on mobile).
 
-.melt-prop-hero {
+.melt-prop-hero__inner {
   display: grid;
+  // Stacked (below 990px): space between the image and the copy under it.
+  row-gap: 2.4rem;
 }
 
 .melt-prop-hero__media {
   order: -1;
-  min-height: 26rem;
-  background: rgba(var(--color-foreground), 0.06);
   position: relative;
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.06);
+
+  // Shape (Image shape setting). Fill stretches to the hero's height on desktop; the rest match
+  // the Collection banner's shapes.
+  &--fill {
+    min-height: 26rem;
+  }
+
+  &--adapt {
+    aspect-ratio: var(--melt-prop-hero-ratio, 3 / 2);
+  }
+
+  &--landscape {
+    aspect-ratio: 16 / 9;
+  }
+
+  &--square {
+    aspect-ratio: 1;
+  }
+
+  &--portrait {
+    aspect-ratio: 4 / 5;
+  }
 }
 
-.melt-prop-hero__media img, .melt-prop-hero__media svg {
+.melt-prop-hero__media img,
+.melt-prop-hero__media svg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -23,22 +48,62 @@
   object-fit: cover;
 }
 
+// No vertical padding: the section's Top/Bottom padding settings do that job.
 .melt-prop-hero__copy {
-  padding: 2.4rem 2rem 4rem;
+  padding-inline: 2rem;
+}
+
+// Page width: the hero sits in Dawn's .page-width container and the image takes the theme's
+// corner radius. The copy's side padding is dropped so it lines up with the container edge.
+.melt-prop-hero--page {
+  .melt-prop-hero__media {
+    border-radius: var(--media-radius);
+  }
+
+  .melt-prop-hero__copy {
+    padding-inline: 0;
+  }
 }
 
 @include bp.from(bp.$large) {
-  .melt-prop-hero {
+  .melt-prop-hero__inner {
     grid-template-columns: minmax(0, 61fr) minmax(0, 39fr);
-    min-height: 62rem;
+    row-gap: 0;
   }
   .melt-prop-hero__media {
     order: 0;
-    min-height: 0;
+
+    &--fill {
+      min-height: 0;
+    }
+
+    &:not(.melt-prop-hero__media--fill) {
+      align-self: center;
+    }
   }
+  // Side padding only: the left lines the copy up with the page width, the right is the gap to
+  // the image.
   .melt-prop-hero__copy {
-    padding: 12rem 8rem 8rem max(5rem, (100vw - var(--page-width, 120rem)) / 2 + 5rem);
+    padding: 0 8rem 0 max(5rem, (100vw - var(--page-width, 120rem)) / 2 + 5rem);
     max-width: 88rem;
+  }
+
+  .melt-prop-hero--page .melt-prop-hero__copy {
+    padding: 0 8rem 0 0;
+    max-width: none;
+  }
+
+  // Copy position
+  .melt-prop-hero--copy-top .melt-prop-hero__copy {
+    align-self: start;
+  }
+
+  .melt-prop-hero--copy-center .melt-prop-hero__copy {
+    align-self: center;
+  }
+
+  .melt-prop-hero--copy-bottom .melt-prop-hero__copy {
+    align-self: end;
   }
 }
 
@@ -119,6 +184,8 @@
   gap: 0.8rem;
   padding: 1rem 1.4rem;
   border: 1px solid rgba(var(--color-foreground), 0.2);
+  // Theme settings › Content containers › Corner radius.
+  border-radius: var(--text-boxes-radius);
   font-size: 1.4rem;
 }
 
