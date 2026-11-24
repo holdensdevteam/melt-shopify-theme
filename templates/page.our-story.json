@@ -15,6 +15,7 @@
       "settings": {
         "width": "container",
         "home_label": "Home",
+        "products_label": "Products",
         "separator": "/",
         "search_label": "Search",
         "cart_label": "Your basket",
@@ -259,8 +260,8 @@
                 "label": "Read more",
                 "url": "shopify://pages/the-shop-on-the-farm",
                 "style": "button",
-                "button_text_color": "#FFFFFF",
-                "button_background_color": "#CE7721",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#3D3C3C",
                 "button_arrow": true
               },
               "blocks": {}
@@ -307,8 +308,8 @@
                 "label": "Read more",
                 "url": "shopify://pages/made-in-lancashire",
                 "style": "button",
-                "button_text_color": "#FFFFFF",
-                "button_background_color": "#CE7721",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#3D3C3C",
                 "button_arrow": true
               },
               "blocks": {}
@@ -355,8 +356,8 @@
                 "label": "Read more",
                 "url": "shopify://pages/the-chandlers",
                 "style": "button",
-                "button_text_color": "#FFFFFF",
-                "button_background_color": "#CE7721",
+                "button_text_color": "#ffffff",
+                "button_background_color": "#3D3C3C",
                 "button_arrow": true
               },
               "blocks": {}

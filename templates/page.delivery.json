@@ -1,16 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_Ygy7AB": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "products_label": "Products",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "banner": {
       "type": "melt-collection-list-banner",
       "blocks": {
-        "breadcrumbs": {
-          "type": "breadcrumbs",
-          "settings": {}
-        },
         "heading": {
           "type": "heading",
           "settings": {
             "source": "page",
+            "heading": "",
             "heading_size": "h1",
             "heading_tag": "h1"
           }
@@ -19,21 +44,34 @@
           "type": "text",
           "settings": {
             "source": "page",
+            "text": "",
             "text_style": "subtitle"
           }
         }
       },
       "block_order": [
-        "breadcrumbs",
         "heading",
         "text"
       ],
       "settings": {
+        "color_scheme": "",
         "layout": "stacked",
         "media_position": "right",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "padding_top": 24,
         "padding_bottom": 24
+      }
+    },
+    "melt_divider_Mqfngc": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 60,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "rates": {
@@ -60,9 +98,11 @@
         "r1",
         "r2"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Delivery",
-        "text": ""
+        "text": "",
+        "color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75"
       }
     },
     "standard": {
@@ -78,7 +118,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Smaller orders are sent first class with Royal Mail, whilst larger orders are despatched with courier. Both methods are on a signed-for service to ensure safe delivery of your goods.</p><p>The courier will send updates about your delivery to the mobile number or email you gave when ordering. Special delivery requests can then be arranged directly with the courier.</p>"
+            "text": "<p>You can take advantage of our Standard delivery service.</p><p>Smaller orders are sent first class with Royal Mail, whilst larger orders are despatched with courier. Both methods are on a signed for service to ensure safe delivery of your goods.</p><p>The courier will send updates regarding delivery to your mobile or email provided on placing your order. Special delivery requests can then be arranged directly with the courier.</p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -89,9 +130,23 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "scheme-1",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "melt_divider_eDy7tE": {
+      "type": "melt-divider",
+      "disabled": true,
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "next_day": {
@@ -107,7 +162,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>If your order is urgent, we offer a Next Working Day UK Mainland delivery service for orders placed by 1pm. Your goods will be sent by courier, for a single charge of £9.</p>"
+            "text": "<p>If your order is urgent we offer a Next Working Day UK Mainland delivery service for orders placed by 1pm. Your goods will be sent via courier.</p><p>Next Day UK Mainland Single charge of £9</p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -118,9 +174,23 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "melt_divider_JcteAr": {
+      "type": "melt-divider",
+      "disabled": true,
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "outside_uk": {
@@ -136,7 +206,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>If you have any queries about carriage outside the UK, please email us at <a href=\"mailto:info@themeltco.com\">info@themeltco.com</a>.</p>"
+            "text": "<p>If you have any queries regarding carriage, please contact us at <a href=\"mailto:hello@melt.co.uk\" title=\"mailto:hello@melt.co.uk\">hello@melt.co.uk</a></p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -147,9 +218,23 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
         "padding_bottom": 40
+      }
+    },
+    "melt_divider_WKEpmP": {
+      "type": "melt-divider",
+      "disabled": true,
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "returns": {
@@ -165,7 +250,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>[Returns policy to confirm with Ted]</p><p><a href=\"/policies/refund-policy\">Read our full returns policy</a>.</p>"
+            "text": "<p>[Returns policy to confirm with Ted]</p><p><a href=\"/policies/refund-policy\">Read our full returns policy</a>.</p>",
+            "alignment": "inherit"
           }
         }
       },
@@ -176,125 +262,24 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
+        "color_scheme": "",
         "full_width": false,
         "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "keep_reading": {
-      "type": "melt-columns",
-      "blocks": {
-        "k1": {
-          "type": "_columns-column",
-          "settings": {},
-          "blocks": {
-            "h1": {
-              "type": "_columns-heading",
-              "settings": {
-                "text": "<a href=\"/pages/faqs\">FAQs</a>",
-                "heading_size": "h4"
-              },
-              "blocks": {}
-            },
-            "t1": {
-              "type": "_columns-text",
-              "settings": {
-                "text": "<p>Delivery, returns, Subscribe & Save and more.</p>"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "h1",
-            "t1"
-          ]
-        },
-        "k2": {
-          "type": "_columns-column",
-          "settings": {},
-          "blocks": {
-            "h2": {
-              "type": "_columns-heading",
-              "settings": {
-                "text": "<a href=\"/pages/contact\">Contact us</a>",
-                "heading_size": "h4"
-              },
-              "blocks": {}
-            },
-            "t2": {
-              "type": "_columns-text",
-              "settings": {
-                "text": "<p>A real person, within one working day.</p>"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "h2",
-            "t2"
-          ]
-        },
-        "k3": {
-          "type": "_columns-column",
-          "settings": {},
-          "blocks": {
-            "im3": {
-              "type": "_columns-image",
-              "settings": {
-                "image": "shopify://shop_images/round-pillar-candles.png",
-                "ratio": "landscape"
-              },
-              "blocks": {}
-            },
-            "h3": {
-              "type": "_columns-heading",
-              "settings": {
-                "text": "<a href=\"/pages/candle-sizes\">Candle Sizes</a>",
-                "heading_size": "h4"
-              },
-              "blocks": {}
-            },
-            "t3": {
-              "type": "_columns-text",
-              "settings": {
-                "text": "<p>Every format, its size and how long it burns.</p>"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "im3",
-            "h3",
-            "t3"
-          ]
-        }
-      },
-      "block_order": [
-        "k1",
-        "k2",
-        "k3"
-      ],
-      "settings": {
-        "eyebrow": "Keep reading",
-        "title": "",
-        "heading_size": "h1",
-        "columns_desktop": 3,
-        "column_style": "plain",
-        "column_alignment": "left",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 48,
-        "padding_bottom": 48
+        "padding_bottom": 100
       }
     }
   },
   "order": [
+    "melt_breadcrumbs_Ygy7AB",
     "banner",
+    "melt_divider_Mqfngc",
     "rates",
     "standard",
+    "melt_divider_eDy7tE",
     "next_day",
+    "melt_divider_JcteAr",
     "outside_uk",
-    "returns",
-    "keep_reading"
+    "melt_divider_WKEpmP",
+    "returns"
   ]
 }

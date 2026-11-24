@@ -1,5 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_HcWwBy": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "products_label": "Products",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "hero": {
       "type": "melt-proposition-hero",
       "blocks": {
@@ -39,6 +67,7 @@
         "f4"
       ],
       "settings": {
+        "show_breadcrumbs": false,
         "eyebrow": "Wholesale",
         "heading": "Become a Melt stockist",
         "standfirst": "<p>If you’re an independent retailer looking for wholesale prices on unique, British-made, high-end candles that use the finest fragrances, then Melt is for you.</p>",
@@ -47,7 +76,8 @@
         "secondary_label": "Call 01200 443377",
         "secondary_link": "tel:01200443377",
         "note": "",
-        "image": "shopify://shop_images/becoming-a-melt-stockist-hero.png"
+        "image": "shopify://shop_images/becoming-a-melt-stockist-hero.png",
+        "color_scheme": ""
       }
     },
     "why": {
@@ -135,15 +165,22 @@
         "col3"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "Why stock Melt",
         "heading_size": "h2",
         "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
         "column_style": "card",
+        "card_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "column_alignment": "left",
+        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
         "padding_top": 56,
         "padding_bottom": 56
       }
@@ -158,7 +195,8 @@
             "e1": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "01"
+                "text": "01",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -191,7 +229,8 @@
             "e2": {
               "type": "_columns-eyebrow",
               "settings": {
-                "text": "02"
+                "text": "02",
+                "eyebrow_color": ""
               },
               "blocks": {}
             },
@@ -223,15 +262,22 @@
         "col2"
       ],
       "settings": {
+        "eyebrow": "",
+        "eyebrow_color": "",
         "title": "How it works",
         "heading_size": "h2",
         "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 2,
-        "column_style": "plain",
+        "column_style": "card",
+        "card_color_scheme": "scheme-59ab2fd5-a40c-4bbc-9d24-7dcd6dd7ef75",
         "column_alignment": "left",
+        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 24
       }
@@ -264,14 +310,25 @@
         "heading": "Start an enquiry",
         "intro": "Tell us about your business and we will be in touch.",
         "enquiry_type": "Become a stockist",
+        "company_required": true,
+        "message_label": "Anything else we should know?",
+        "message_placeholder": "Branding, packaging, a deadline, an idea…",
         "consent_label": "Send me the trade letter – a few times a year, nothing else.",
         "button_label": "Send enquiry",
         "reply_note": "We reply within one working day. Sample requests are usually posted the same week.",
-        "email": "hello@themeltco.com"
+        "success_heading": "Thank you, we have your enquiry",
+        "success_text": "We reply within one working day.",
+        "points_eyebrow": "What you get",
+        "contact_eyebrow": "Or skip the form",
+        "phone": "01200 443377",
+        "hours": "Monday to Friday, 9am – 5pm",
+        "email": "hello@themeltco.com",
+        "color_scheme": ""
       }
     }
   },
   "order": [
+    "melt_breadcrumbs_HcWwBy",
     "hero",
     "why",
     "steps",

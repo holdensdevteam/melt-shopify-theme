@@ -1,5 +1,80 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_MqEJCc": {
+      "type": "melt-breadcrumbs",
+      "disabled": true,
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "products_label": "Products",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "melt_collection_list_banner_VE3WaL": {
+      "type": "melt-collection-list-banner",
+      "blocks": {
+        "image_Lgynf4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/all-candles-nov-26.jpg",
+            "ratio": "landscape",
+            "image_width": 100,
+            "image_alignment": "left"
+          }
+        },
+        "heading_KKydKU": {
+          "type": "heading",
+          "settings": {
+            "source": "page",
+            "heading": "",
+            "heading_size": "h1",
+            "heading_tag": "h1"
+          }
+        },
+        "text_zbwbGg": {
+          "type": "text",
+          "settings": {
+            "source": "page",
+            "text": "",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "image_Lgynf4",
+        "heading_KKydKU",
+        "text_zbwbGg"
+      ],
+      "disabled": true,
+      "name": "t:sections.melt_collection_list_banner.name",
+      "settings": {
+        "color_scheme": "",
+        "layout": "split",
+        "media_position": "right",
+        "text_alignment": "left",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
     "main": {
       "type": "melt-faq-page",
       "blocks": {
@@ -297,7 +372,11 @@
       ],
       "settings": {
         "heading": "Questions we get asked",
-        "intro": "<p>Most things are answered here. If yours is not, there is a real person at the end of the form at the bottom.</p>"
+        "intro": "<p>Most things are answered here. If yours is not, there is a real person at the end of the form at the bottom.</p>",
+        "rail_label": "On this page",
+        "open_first": true,
+        "structured_data": true,
+        "color_scheme": ""
       }
     },
     "still_stuck": {
@@ -313,7 +392,8 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Tell us what it is about and it goes to the right person first time. We reply within one working day, Monday to Friday. Or call us on 01200 443377.</p>"
+            "text": "<p>Tell us what it is about and it goes to the right person first time. We reply within one working day, Monday to Friday. Or call us on 01200 443377.</p>",
+            "alignment": "inherit"
           }
         },
         "button": {
@@ -334,9 +414,9 @@
         "button"
       ],
       "settings": {
-        "color_scheme": "scheme-2",
         "desktop_content_position": "center",
         "content_alignment": "center",
+        "color_scheme": "scheme-2",
         "full_width": true,
         "padding_top": 56,
         "padding_bottom": 56
@@ -344,6 +424,8 @@
     }
   },
   "order": [
+    "melt_breadcrumbs_MqEJCc",
+    "melt_collection_list_banner_VE3WaL",
     "main",
     "still_stuck"
   ]

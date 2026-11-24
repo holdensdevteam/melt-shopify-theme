@@ -1,16 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "melt_breadcrumbs_nEpxTm": {
+      "type": "melt-breadcrumbs",
+      "name": "t:sections.melt_breadcrumbs.name",
+      "settings": {
+        "width": "container",
+        "home_label": "Home",
+        "products_label": "Products",
+        "separator": "/",
+        "search_label": "Search",
+        "cart_label": "Your basket",
+        "font_size": 14,
+        "text_color": "",
+        "link_color": "",
+        "link_hover_color": "",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "banner": {
       "type": "melt-collection-list-banner",
       "blocks": {
-        "breadcrumbs": {
-          "type": "breadcrumbs",
-          "settings": {}
-        },
         "heading": {
           "type": "heading",
           "settings": {
             "source": "page",
+            "heading": "",
             "heading_size": "h1",
             "heading_tag": "h1"
           }
@@ -19,6 +44,7 @@
           "type": "text",
           "settings": {
             "source": "page",
+            "text": "",
             "text_style": "subtitle"
           }
         },
@@ -26,22 +52,36 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/candle-sizes-hero.png",
-            "ratio": "landscape"
+            "ratio": "wide",
+            "image_width": 75,
+            "image_alignment": "center"
           }
         }
       },
       "block_order": [
-        "breadcrumbs",
         "heading",
         "text",
         "image"
       ],
       "settings": {
+        "color_scheme": "",
         "layout": "stacked",
         "media_position": "right",
-        "text_alignment": "left",
+        "text_alignment": "center",
         "padding_top": 24,
         "padding_bottom": 24
+      }
+    },
+    "melt_divider_wPJkRr": {
+      "type": "melt-divider",
+      "name": "t:sections.melt_divider.name",
+      "settings": {
+        "thickness": 1,
+        "color": "",
+        "margin_top": 40,
+        "margin_bottom": 40,
+        "width": "page",
+        "color_scheme": ""
       }
     },
     "rows": {
@@ -84,6 +124,8 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -150,7 +192,8 @@
       ],
       "settings": {
         "heading": "Sizes and burn times",
-        "text": "<p>Approximate, and every candle burns a little differently depending on where it sits and how it is looked after.</p>"
+        "text": "<p>Approximate, and every candle burns a little differently depending on where it sits and how it is looked after.</p>",
+        "color_scheme": ""
       }
     },
     "keep_reading": {
@@ -163,7 +206,7 @@
             "im1": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/take-care-of-your-candles.jpg",
+                "image": "shopify://shop_images/wick-management-hero.jpg",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -171,8 +214,8 @@
             "h1": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/candle-care\">Candle Care</a>",
-                "heading_size": "h4"
+                "text": "Candle care",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -182,12 +225,26 @@
                 "text": "<p>Trimming, first burns and getting every hour out of a candle.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_KjTLBd": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/candle-care",
+                "style": "button",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im1",
             "h1",
-            "t1"
+            "t1",
+            "columns_link_KjTLBd"
           ]
         },
         "k2": {
@@ -197,7 +254,7 @@
             "im2": {
               "type": "_columns-image",
               "settings": {
-                "image": "shopify://shop_images/round-pillar-candles.png",
+                "image": "shopify://shop_images/all-candles-nov-26.jpg",
                 "ratio": "landscape"
               },
               "blocks": {}
@@ -205,8 +262,8 @@
             "h2": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/collections/scented-candles\">Shop all candles</a>",
-                "heading_size": "h4"
+                "text": "Shop all candles",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -216,23 +273,46 @@
                 "text": "<p>Twenty-four fragrances, in every format.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_AceU8m": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://collections",
+                "style": "button",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "im2",
             "h2",
-            "t2"
+            "t2",
+            "columns_link_AceU8m"
           ]
         },
         "k3": {
           "type": "_columns-column",
           "settings": {},
           "blocks": {
+            "columns_image_DpwP6V": {
+              "type": "_columns-image",
+              "name": "t:blocks.columns_image.name",
+              "settings": {
+                "image": "shopify://shop_images/all-candles-nov-26-2.jpg",
+                "ratio": "landscape"
+              },
+              "blocks": {}
+            },
             "h3": {
               "type": "_columns-heading",
               "settings": {
-                "text": "<a href=\"/pages/faqs\">FAQs</a>",
-                "heading_size": "h4"
+                "text": "FAQs",
+                "heading_size": "h2"
               },
               "blocks": {}
             },
@@ -242,11 +322,26 @@
                 "text": "<p>Delivery, returns, Subscribe & Save and more.</p>"
               },
               "blocks": {}
+            },
+            "columns_link_axpDYh": {
+              "type": "_columns-link",
+              "name": "t:blocks.columns_link.name",
+              "settings": {
+                "label": "Read more",
+                "url": "shopify://pages/faqs",
+                "style": "button",
+                "button_text_color": "",
+                "button_background_color": "",
+                "button_arrow": true
+              },
+              "blocks": {}
             }
           },
           "block_order": [
+            "columns_image_DpwP6V",
             "h3",
-            "t3"
+            "t3",
+            "columns_link_axpDYh"
           ]
         }
       },
@@ -256,12 +351,20 @@
         "k3"
       ],
       "settings": {
-        "eyebrow": "Keep reading",
-        "title": "",
+        "eyebrow": "Need to know more?",
+        "eyebrow_color": "",
+        "title": "Keep reading",
         "heading_size": "h1",
+        "intro": "",
+        "custom_code": "",
+        "link_label": "",
+        "link_url": "",
         "columns_desktop": 3,
-        "column_style": "plain",
+        "column_style": "card",
+        "card_color_scheme": "",
         "column_alignment": "left",
+        "color_scheme": "",
+        "enable_desktop_slider": false,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 48,
@@ -270,7 +373,9 @@
     }
   },
   "order": [
+    "melt_breadcrumbs_nEpxTm",
     "banner",
+    "melt_divider_wPJkRr",
     "rows",
     "sizes",
     "keep_reading"
